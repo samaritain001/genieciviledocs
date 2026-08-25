@@ -429,6 +429,72 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
 @media(max-width:860px){.hero{grid-template-columns:1fr}.hero-card{display:none}.footer-grid{grid-template-columns:1fr 1fr}.comments-grid{grid-template-columns:1fr}}
 @media(max-width:640px){.footer-grid{grid-template-columns:1fr}.nav-links{display:none}.featured-grid{grid-template-columns:1fr}.hero-stats{flex-wrap:wrap;gap:1.2rem}.notif-panel{width:270px;right:-50px}}
 
+/* ═══ DONATION ═══ */
+.btn-donate{background:linear-gradient(135deg,#ff9f5a,#ff6b6b);color:#fff}
+.btn-donate:hover{filter:brightness(1.08);transform:translateY(-1px);box-shadow:0 8px 24px rgba(255,107,107,.35)}
+.donate-modal{max-width:440px;text-align:center}
+.donate-icon{font-size:2.8rem;margin-bottom:.5rem}
+.donate-text{font-size:.88rem;color:var(--text2);line-height:1.7;margin-bottom:1.5rem}
+.donate-paypal-btn{display:flex;align-items:center;justify-content:center;gap:.5rem;width:100%;padding:.85rem;border-radius:10px;background:#ffc439;color:#111;font-weight:800;font-size:.95rem;text-decoration:none;transition:all var(--tr)}
+.donate-paypal-btn:hover{background:#ffb800;transform:translateY(-1px)}
+.donate-note{font-size:.7rem;color:var(--text3);margin-top:1rem}
+
+/* ═══ JOBS SECTION ═══ */
+.jobs-section{max-width:1440px;margin:0 auto;padding:0 1.5rem 4rem}
+.jobs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.1rem;margin-top:1.4rem}
+.job-card{background:var(--surface);border:1px solid var(--border);border-radius:15px;padding:1.25rem;transition:all var(--tr);position:relative}
+.job-card:hover{border-color:var(--border2);transform:translateY(-3px);box-shadow:0 16px 40px rgba(0,0,0,.3)}
+.job-card.sponsored{border-color:rgba(232,197,71,.35);background:linear-gradient(135deg,var(--surface),rgba(232,197,71,.04))}
+.job-sponsored-tag{position:absolute;top:1rem;right:1rem;font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:#0a0c10;padding:.2rem .5rem;border-radius:5px}
+.job-type-tag{display:inline-block;font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.2rem .55rem;border-radius:5px;margin-bottom:.6rem}
+.job-type-tag.cdi{background:var(--green-dim);color:var(--green)}
+.job-type-tag.stage{background:var(--blue-dim);color:var(--blue)}
+.job-type-tag.freelance{background:var(--orange-dim);color:var(--orange)}
+.job-type-tag.cdd{background:var(--red-dim);color:var(--red)}
+.job-title{font-family:'DM Serif Display',serif;font-size:1.05rem;color:var(--text);margin-bottom:.3rem;padding-right:.5rem}
+.job-company{font-size:.82rem;color:var(--accent);font-weight:700;margin-bottom:.4rem}
+.job-meta{font-size:.72rem;color:var(--text3);font-family:'JetBrains Mono';margin-bottom:.7rem}
+.job-desc{font-size:.82rem;color:var(--text2);line-height:1.6;margin-bottom:1rem}
+.job-footer{display:flex;gap:.5rem}
+.job-footer .btn{flex:1;justify-content:center;font-size:.72rem;padding:.5rem}
+.job-admin-bar{display:flex;gap:.4rem;margin-top:.7rem;padding-top:.7rem;border-top:1px solid var(--border)}
+.job-empty{grid-column:1/-1;text-align:center;padding:2.5rem;color:var(--text3);font-size:.85rem}
+.jobs-cta{background:var(--surface);border:1px dashed var(--border2);border-radius:14px;padding:1.25rem;text-align:center;margin-top:1.1rem}
+.jobs-cta p{font-size:.82rem;color:var(--text2)}
+.jobs-cta strong{color:var(--accent)}
+
+/* ═══ ASSISTANT CHAT WIDGET ═══ */
+.chat-fab{position:fixed;bottom:1.5rem;right:1.5rem;z-index:600;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#0a0c10;border:none;cursor:pointer;font-size:1.5rem;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 28px var(--accent-glow);transition:all .2s ease}
+.chat-fab:hover{transform:scale(1.06)}
+.chat-fab-dot{position:absolute;top:2px;right:2px;width:12px;height:12px;border-radius:50%;background:var(--green);border:2px solid var(--bg)}
+.chat-window{position:fixed;bottom:1.5rem;right:1.5rem;z-index:601;width:360px;max-width:calc(100vw - 2rem);height:500px;max-height:calc(100vh - 3rem);background:var(--surface);border:1px solid var(--border2);border-radius:18px;box-shadow:0 24px 70px rgba(0,0,0,.5);display:none;flex-direction:column;overflow:hidden;animation:mIn .22s ease both}
+.chat-window.open{display:flex}
+.chat-head{background:linear-gradient(135deg,var(--surface2),var(--surface3));padding:.9rem 1.1rem;display:flex;align-items:center;gap:.65rem;border-bottom:1px solid var(--border)}
+.chat-head-avatar{width:34px;height:34px;border-radius:9px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:1.05rem;flex-shrink:0}
+.chat-head-info{flex:1;min-width:0}
+.chat-head-title{font-size:.85rem;font-weight:800;color:var(--text)}
+.chat-head-status{font-size:.66rem;color:var(--green);display:flex;align-items:center;gap:.3rem}
+.chat-head-status::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green)}
+.chat-close{width:28px;height:28px;border-radius:7px;background:var(--surface);border:1px solid var(--border);color:var(--text3);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0}
+.chat-close:hover{color:var(--text)}
+.chat-body{flex:1;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:.7rem}
+.chat-msg{max-width:82%;font-size:.82rem;line-height:1.55;padding:.6rem .85rem;border-radius:12px;animation:slideIn .3s ease both}
+.chat-msg.bot{align-self:flex-start;background:var(--surface2);color:var(--text2);border-bottom-left-radius:4px}
+.chat-msg.user{align-self:flex-end;background:var(--accent);color:#0a0c10;border-bottom-right-radius:4px;font-weight:600}
+.chat-quick{display:flex;flex-wrap:wrap;gap:.4rem;padding:0 1rem .8rem}
+.chat-quick-btn{font-size:.7rem;background:var(--surface2);border:1px solid var(--border);color:var(--text2);padding:.35rem .7rem;border-radius:100px;cursor:pointer;transition:all var(--tr)}
+.chat-quick-btn:hover{border-color:var(--accent);color:var(--accent)}
+.chat-input-row{display:flex;gap:.5rem;padding:.8rem;border-top:1px solid var(--border)}
+.chat-input-row input{flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:9px;padding:.6rem .8rem;font-size:.82rem;color:var(--text);outline:none}
+.chat-input-row input:focus{border-color:var(--accent)}
+.chat-send{width:38px;height:38px;border-radius:9px;background:var(--accent);color:#0a0c10;border:none;cursor:pointer;font-size:.95rem;flex-shrink:0}
+.chat-send:hover{background:var(--accent2)}
+.chat-typing{align-self:flex-start;display:flex;gap:.25rem;padding:.6rem .85rem;background:var(--surface2);border-radius:12px;border-bottom-left-radius:4px}
+.chat-typing span{width:6px;height:6px;border-radius:50%;background:var(--text3);animation:typingDot 1.2s infinite}
+.chat-typing span:nth-child(2){animation-delay:.2s}.chat-typing span:nth-child(3){animation-delay:.4s}
+@keyframes typingDot{0%,60%,100%{opacity:.3;transform:translateY(0)}30%{opacity:1;transform:translateY(-3px)}}
+@media(max-width:480px){.chat-window{width:calc(100vw - 1.5rem);right:.75rem;bottom:.75rem;height:70vh}.chat-fab{right:1.25rem;bottom:1.25rem}}
+
 /* ═══ REDUCED MOTION ═══ */
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:0.001ms!important;animation-iteration-count:1!important;transition-duration:0.001ms!important;scroll-behavior:auto!important}
@@ -461,6 +527,7 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
     <div class="nav-links">
       <a href="#" class="active">Accueil</a>
       <a href="#docs">Documents</a>
+      <a href="#jobs">Emplois</a>
       <a href="#authors">Auteurs</a>
       <a href="#comments">Discussions</a>
       <a href="#about">À propos</a>
@@ -484,6 +551,7 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
         </div>
       </div>
       <button class="btn btn-ghost" onclick="openOverlay('favsOverlay')" title="Mes favoris" aria-label="Mes favoris">❤️</button>
+      <button class="btn btn-donate" onclick="openOverlay('donateOverlay')">☕ Soutenir</button>
       <button class="btn btn-ghost" id="adminNavBtn" onclick="isAdmin?openOverlay('logOverlay'):openOverlay('loginOverlay')">🔐 Admin</button>
     </div>
   </div>
@@ -645,6 +713,23 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
   </aside>
 </div>
 
+<!-- ═══ JOBS ═══ -->
+<div class="jobs-section reveal" id="jobs">
+  <div class="section-head">
+    <div>
+      <h2>💼 Offres d'<span>emploi</span></h2>
+      <p class="doc-count">Opportunités pour la communauté du génie civil</p>
+    </div>
+    <button class="btn btn-accent" id="postJobBtn" onclick="isAdmin?openJobEdit(null):null" style="display:none">📢 Publier une offre</button>
+  </div>
+  <div class="jobs-grid" id="jobsGrid">
+    <div class="job-empty">Chargement des offres…</div>
+  </div>
+  <div class="jobs-cta">
+    <p>Vous représentez une entreprise et souhaitez publier une offre sur GenieCivil Docs ? <strong>Contactez-nous</strong> via le formulaire de contact ci-dessous.</p>
+  </div>
+</div>
+
 <!-- COMMENTS -->
 <div class="comments-section reveal" id="comments">
   <div class="section-head" style="border:none;padding:0;margin-bottom:0"><h2>💬 Espace <span>discussions</span></h2></div>
@@ -750,9 +835,9 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
   <div class="contact-grid">
     <div class="contact-info-card">
       <h3>Coordonnées</h3>
-      <div class="contact-row"><span class="ci-icon">✉️</span><span>contact@genieciviledocs.bf</span></div>
-      <div class="contact-row"><span class="ci-icon">📍</span><span>Bobo-Dioulasso, Burkina Faso</span></div>
-      <div class="contact-row"><span class="ci-icon">💬</span><span>Réponse sous 48h ouvrées</span></div>
+      <div class="contact-row"><span class="ci-icon">✉️</span><a href="mailto:genieciviledocs@yahoo.com" style="color:inherit">genieciviledocs@yahoo.com</a></div>
+      <div class="contact-row"><span class="ci-icon">💬</span><a href="https://wa.me/22662478410" target="_blank" rel="noopener" style="color:inherit">WhatsApp — +226 62 47 84 10</a></div>
+      <div class="contact-row"><span class="ci-icon">📍</span><span>Ouagadougou, Burkina Faso</span></div>
       <div class="contact-row"><span class="ci-icon">🔔</span><span>Suggestions de documents bienvenues</span></div>
     </div>
     <div class="contact-form-card">
@@ -990,6 +1075,67 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
   </div>
 </div>
 
+<!-- ═══ MODAL : DONATE ═══ -->
+<div class="overlay" id="donateOverlay">
+  <div class="modal donate-modal">
+    <button class="modal-close" onclick="closeOverlay('donateOverlay')">✕</button>
+    <div class="donate-icon">☕</div>
+    <h2 class="modal-title" style="border:none;padding:0;margin-bottom:.6rem">Soutenir <span>GenieCivil Docs</span></h2>
+    <p class="donate-text">Ce site est gratuit et le restera. Si les documents vous ont aidé dans vos études ou vos projets, un petit don aide à couvrir l'hébergement et à faire grandir la bibliothèque. Merci ! 🙏</p>
+    <a class="donate-paypal-btn" href="https://paypal.me/ramd420" target="_blank" rel="noopener">💛 Faire un don via PayPal</a>
+    <p class="donate-note">Vous quittez GenieCivil Docs pour PayPal, un site sécurisé.</p>
+  </div>
+</div>
+
+<!-- ═══ MODAL : POST / EDIT JOB (admin) ═══ -->
+<div class="overlay" id="jobOverlay">
+  <div class="modal">
+    <button class="modal-close" onclick="closeOverlay('jobOverlay')">✕</button>
+    <h2 class="modal-title">📢 Publier une <span>offre d'emploi</span></h2>
+    <input type="hidden" id="jobId"/>
+    <div class="form-row-2">
+      <div class="form-group" style="margin:0"><label class="fl">Intitulé du poste *</label><input class="fc" type="text" id="jobTitle" placeholder="Ex: Ingénieur béton armé"/></div>
+      <div class="form-group" style="margin:0"><label class="fl">Entreprise *</label><input class="fc" type="text" id="jobCompany" placeholder="Nom de l'entreprise"/></div>
+    </div>
+    <div class="form-row-2" style="margin-top:.8rem">
+      <div class="form-group" style="margin:0"><label class="fl">Type de contrat</label>
+        <select class="fc" id="jobType">
+          <option value="cdi">CDI</option>
+          <option value="cdd">CDD</option>
+          <option value="stage">Stage</option>
+          <option value="freelance">Freelance</option>
+        </select>
+      </div>
+      <div class="form-group" style="margin:0"><label class="fl">Lieu</label><input class="fc" type="text" id="jobLocation" placeholder="Ex: Bobo-Dioulasso"/></div>
+    </div>
+    <div class="form-group" style="margin-top:.8rem"><label class="fl">Description</label><textarea class="fc" id="jobDesc" placeholder="Description du poste, profil recherché…" style="min-height:70px"></textarea></div>
+    <div class="form-group"><label class="fl">Contact / lien pour postuler *</label><input class="fc" type="text" id="jobContact" placeholder="Email ou lien de candidature"/></div>
+    <label style="display:flex;align-items:center;gap:.5rem;font-size:.78rem;color:var(--text2);margin-bottom:.8rem;cursor:pointer"><input type="checkbox" id="jobSponsored" style="accent-color:var(--accent)"/> Offre sponsorisée (mise en avant)</label>
+    <div class="modal-footer"><button class="btn btn-ghost" onclick="closeOverlay('jobOverlay')">Annuler</button><button class="btn btn-accent" onclick="saveJob()">🚀 Publier l'offre</button></div>
+  </div>
+</div>
+
+<!-- ═══ ASSISTANT CHAT WIDGET ═══ -->
+<button class="chat-fab" id="chatFab" onclick="toggleChat()" aria-label="Ouvrir l'assistant" title="Assistant GenieCivil Docs">
+  💬<span class="chat-fab-dot"></span>
+</button>
+<div class="chat-window" id="chatWindow">
+  <div class="chat-head">
+    <div class="chat-head-avatar">🤖</div>
+    <div class="chat-head-info">
+      <div class="chat-head-title">Assistant GenieCivil Docs</div>
+      <div class="chat-head-status">En ligne</div>
+    </div>
+    <button class="chat-close" onclick="toggleChat()" aria-label="Fermer">✕</button>
+  </div>
+  <div class="chat-body" id="chatBody"></div>
+  <div class="chat-quick" id="chatQuick"></div>
+  <div class="chat-input-row">
+    <input type="text" id="chatInput" placeholder="Posez votre question…" onkeydown="if(event.key==='Enter')sendChatMsg()"/>
+    <button class="chat-send" onclick="sendChatMsg()" aria-label="Envoyer">➤</button>
+  </div>
+</div>
+
 <div class="toast-wrap" id="toastWrap"></div>
 
 <!-- ═══════════════════════ JAVASCRIPT ═══════════════════════ -->
@@ -1037,6 +1183,7 @@ async function initSupabase() {
       banner.className = 'status-banner error-state show';
       banner.innerHTML = '⚠️ Supabase non configuré — Mode démo activé. Suivez le guide GUIDE_DEPLOIEMENT.md pour connecter la base de données.';
       loadDemoData();
+      loadDemoJobs();
       updateVisitorPanel();
       return;
     }
@@ -1044,6 +1191,7 @@ async function initSupabase() {
     await loadDocs();
     await loadComments();
     await loadPending();
+    await loadJobs();
     banner.className = 'status-banner ok show';
     banner.innerHTML = '✅ Connecté à Supabase — Données en temps réel actives.';
     setTimeout(() => { banner.classList.remove('show'); }, 4000);
@@ -1051,10 +1199,12 @@ async function initSupabase() {
     sb.channel('documents').on('postgres_changes',{event:'*',schema:'public',table:'documents'},()=>loadDocs()).subscribe();
     sb.channel('comments').on('postgres_changes',{event:'*',schema:'public',table:'comments'},()=>loadComments()).subscribe();
     sb.channel('pending_documents').on('postgres_changes',{event:'*',schema:'public',table:'pending_documents'},()=>loadPending()).subscribe();
+    sb.channel('job_listings').on('postgres_changes',{event:'*',schema:'public',table:'job_listings'},()=>loadJobs()).subscribe();
   } catch(e) {
     banner.className = 'status-banner error-state show';
     banner.innerHTML = '❌ Erreur de connexion Supabase : ' + e.message;
     loadDemoData();
+    loadDemoJobs();
     updateVisitorPanel();
   }
 }
@@ -1265,6 +1415,119 @@ function updateAboutStats() {
   if(authorsEl) authorsEl.textContent = getAuthorStats().length;
 }
 
+/* ══════════════════════════════════════════════
+   OFFRES D'EMPLOI
+══════════════════════════════════════════════ */
+let jobListings = [];
+
+async function loadJobs() {
+  try {
+    if(sb) {
+      const { data, error } = await sb.from('job_listings').select('*').order('created_at',{ascending:false});
+      if(error) throw error;
+      jobListings = data || [];
+    }
+    renderJobs();
+  } catch(e) {
+    console.warn('Jobs load error (table peut-être absente):', e.message);
+    renderJobs();
+  }
+}
+
+function loadDemoJobs() {
+  jobListings = [
+    { id:'j1', title:'Ingénieur béton armé', company:'Luxury Home Burkina', type:'cdi', location:'Bobo-Dioulasso', description:'Conception et suivi de chantiers de bâtiments R+2 à R+5. Maîtrise du BAEL/Eurocode requise.', contact:'recrutement@exemple.bf', sponsored:true, created_at:new Date().toISOString() },
+    { id:'j2', title:'Stagiaire génie civil', company:'Bureau d\'études ATC', type:'stage', location:'Ouagadougou', description:'Stage de fin d\'études en dimensionnement de structures et suivi de contrôle qualité.', contact:'stages@exemple.bf', sponsored:false, created_at:new Date(Date.now()-86400000).toISOString() },
+  ];
+  renderJobs();
+}
+
+function jobTypeLabel(t){ return {cdi:'CDI',cdd:'CDD',stage:'Stage',freelance:'Freelance'}[t]||t; }
+
+function renderJobs() {
+  const grid = document.getElementById('jobsGrid');
+  if(!grid) return;
+  const sorted = [...jobListings].sort((a,b)=> (b.sponsored===a.sponsored?0:(b.sponsored?1:-1)) || new Date(b.created_at)-new Date(a.created_at));
+  if(!sorted.length) { grid.innerHTML = '<div class="job-empty">Aucune offre publiée pour le moment.</div>'; return; }
+  grid.innerHTML = sorted.map(j => `
+    <div class="job-card ${j.sponsored?'sponsored':''}">
+      ${j.sponsored?'<span class="job-sponsored-tag">⭐ Sponsorisé</span>':''}
+      <span class="job-type-tag ${j.type}">${jobTypeLabel(j.type)}</span>
+      <h4 class="job-title">${j.title}</h4>
+      <div class="job-company">${j.company}</div>
+      <div class="job-meta">📍 ${j.location||'—'} · ${timeAgo(j.created_at)}</div>
+      <p class="job-desc">${j.description||''}</p>
+      <div class="job-footer">
+        <a class="btn btn-accent" href="${/@/.test(j.contact)?'mailto:'+j.contact:j.contact}" target="_blank" rel="noopener">📨 Postuler</a>
+      </div>
+      ${isAdmin?`<div class="job-admin-bar">
+        <button class="btn btn-ghost" style="font-size:.68rem;padding:.3rem .6rem" onclick="openJobEdit('${j.id}')">✏️ Modifier</button>
+        <button class="btn btn-danger" style="font-size:.68rem;padding:.3rem .6rem" onclick="deleteJob('${j.id}')">🗑 Supprimer</button>
+      </div>`:''}
+    </div>`).join('');
+}
+
+function openJobEdit(id) {
+  const j = jobListings.find(x=>x.id===id);
+  document.getElementById('jobId').value = id || '';
+  document.getElementById('jobTitle').value = j ? j.title : '';
+  document.getElementById('jobCompany').value = j ? j.company : '';
+  document.getElementById('jobType').value = j ? j.type : 'cdi';
+  document.getElementById('jobLocation').value = j ? j.location : '';
+  document.getElementById('jobDesc').value = j ? (j.description||'') : '';
+  document.getElementById('jobContact').value = j ? j.contact : '';
+  document.getElementById('jobSponsored').checked = j ? !!j.sponsored : false;
+  openOverlay('jobOverlay');
+}
+
+async function saveJob() {
+  const id = document.getElementById('jobId').value;
+  const title = document.getElementById('jobTitle').value.trim();
+  const company = document.getElementById('jobCompany').value.trim();
+  const type = document.getElementById('jobType').value;
+  const location = document.getElementById('jobLocation').value.trim();
+  const description = document.getElementById('jobDesc').value.trim();
+  const contact = document.getElementById('jobContact').value.trim();
+  const sponsored = document.getElementById('jobSponsored').checked;
+  if(!title || !company || !contact) { showToast('⚠️ Titre, entreprise et contact requis.','error'); return; }
+
+  if(id) {
+    const j = jobListings.find(x=>x.id===id);
+    Object.assign(j, { title, company, type, location, description, contact, sponsored });
+    if(sb && !id.startsWith('local_')) { await sb.from('job_listings').update({title,company,type,location,description,contact,sponsored}).eq('id',id); }
+    logActivity('✏️','var(--orange-dim)',`<strong>${title}</strong> — Offre modifiée`,timeAgo(new Date()));
+    showToast('✅ Offre modifiée !','success');
+  } else {
+    const entry = { title, company, type, location, description, contact, sponsored, created_at:new Date().toISOString() };
+    if(sb) {
+      const { data, error } = await sb.from('job_listings').insert([entry]).select();
+      if(error){ showToast('Erreur : '+error.message,'error'); return; }
+      jobListings.unshift(data[0]);
+    } else {
+      jobListings.unshift({ ...entry, id:'local_'+Date.now() });
+    }
+    logActivity('📢','var(--green-dim)',`<strong>${title}</strong> — Offre publiée`,timeAgo(new Date()));
+    showToast(`✅ Offre "${title}" publiée !`,'success');
+  }
+  closeOverlay('jobOverlay');
+  renderJobs();
+}
+
+async function deleteJob(id) {
+  const j = jobListings.find(x=>x.id===id);
+  if(!j || !confirm(`Supprimer l'offre "${j.title}" ?`)) return;
+  if(sb && !id.startsWith('local_')) { await sb.from('job_listings').delete().eq('id',id); }
+  jobListings.splice(jobListings.findIndex(x=>x.id===id),1);
+  renderJobs();
+  logActivity('🗑','var(--red-dim)',`<strong>${j.title}</strong> — Offre supprimée`,timeAgo(new Date()));
+  showToast('🗑 Offre supprimée.','error');
+}
+
+function updatePostJobBtn() {
+  const btn = document.getElementById('postJobBtn');
+  if(btn) btn.style.display = isAdmin ? 'inline-flex' : 'none';
+}
+
 /* ══ FAQ ══ */
 function toggleFaq(el) {
   const item = el.parentElement;
@@ -1280,9 +1543,91 @@ function sendContact() {
   const subject = document.getElementById('ctSubject').value;
   const message = document.getElementById('ctMessage').value.trim();
   if(!name||!email||!message){ showToast('⚠️ Nom, email et message requis.','error'); return; }
+  const waText = `Bonjour, je suis ${name} (${email}).\nSujet : ${subject}\n\n${message}`;
+  window.open(`https://wa.me/22662478410?text=${encodeURIComponent(waText)}`, '_blank');
   document.getElementById('ctName').value=''; document.getElementById('ctEmail').value=''; document.getElementById('ctMessage').value='';
-  showToast(`✅ Message envoyé ! Nous répondrons à ${email} sous 48h.`,'success');
+  showToast('✅ Ouverture de WhatsApp pour envoyer votre message…','success');
   addNotification('✉️','var(--accent-dim)',`Nouveau message de contact : <strong>${subject}</strong>`,'À l\'instant');
+}
+
+/* ══════════════════════════════════════════════
+   ASSISTANT (base de connaissances, sans IA générative)
+══════════════════════════════════════════════ */
+const CHAT_KB = [
+  { keywords:['bonjour','salut','bonsoir','hello','coucou','bjr'], reply:"Bonjour ! 👋 Je suis l'assistant de GenieCivil Docs. Je peux vous aider avec les documents, les téléchargements, les contributions, les dons… Posez votre question !" },
+  { keywords:['télécharger','telecharger','download','récupérer'], reply:"Pour télécharger un document, il faut d'abord proposer l'un des vôtres via \"📤 Proposer un document\". Une fois validé par l'administrateur, vos téléchargements sont débloqués automatiquement." },
+  { keywords:['verrouillé','verrouille','bloqué','bloque','locked','cadenas'], reply:"Le bandeau 🔒 signifie que vous n'avez pas encore de contribution approuvée. Proposez un document — une fois validé, le cadenas passe à 🔓 et vos téléchargements sont débloqués." },
+  { keywords:['proposer','contribuer','contribution','soumettre','envoyer un document'], reply:"Cliquez sur \"📤 Proposer un document\", remplissez le formulaire (titre, catégorie, fichier) et soumettez. L'administrateur examine avant publication." },
+  { keywords:['publier','admin','administrateur'], reply:"Seul l'administrateur peut publier un document directement. Les visiteurs proposent les leurs, examinés avant publication." },
+  { keywords:['catégorie','categorie','categories'], reply:"Catégories disponibles : Structures & Béton armé, Hydraulique, Routes & VRD, Géotechnique, Topographie, Normes & DTU, Métrés & Devis, Environnement." },
+  { keywords:['format','pdf','dwg','xlsx','docx','pptx','fichier accepté','type de fichier'], reply:"Formats acceptés : PDF, DWG/DXF, Excel (XLSX), Word (DOCX), PowerPoint (PPTX), IFC (BIM), et les archives ZIP/RAR." },
+  { keywords:['gratuit','payant','prix','coût','cout','combien'], reply:"La consultation, le téléchargement (après contribution) et la publication sont entièrement gratuits." },
+  { keywords:['emploi','job','offre','recrutement','travail','stage','embauche'], reply:"La section \"💼 Emplois\" liste les offres publiées par nos partenaires. Pour publier une offre, contactez-nous via le formulaire de contact." },
+  { keywords:['don','donation','soutenir','paypal','café','aider financièrement'], reply:"Merci d'y penser ! Cliquez sur \"☕ Soutenir\" en haut du site pour faire un don via PayPal." },
+  { keywords:['contact','joindre','whatsapp','email','écrire','téléphone'], reply:"Écrivez-nous à genieciviledocs@yahoo.com, sur WhatsApp au +226 62 47 84 10, ou via le formulaire de la section Contact." },
+  { keywords:['favoris','sauvegarder','coeur'], reply:"Cliquez sur le ❤️ d'une carte de document pour l'ajouter à vos favoris, consultables via le bouton ❤️ dans la navigation." },
+  { keywords:['commentaire','avis','discussion'], reply:"Rendez-vous dans l'espace \"💬 Discussions\" en bas de page pour commenter ou répondre à d'autres utilisateurs." },
+  { keywords:['auteur','qui a publié','contributeur','profil'], reply:"Cliquez sur le nom d'un auteur sous un document pour voir son profil et tous ses documents publiés." },
+  { keywords:['note','noter','étoile','etoile'], reply:"Notez un document de 1 à 5 étoiles directement depuis sa carte, pour aider les autres utilisateurs." },
+  { keywords:['thème','theme','sombre','clair','mode nuit'], reply:"Cliquez sur l'icône 🌙/☀️ en haut à droite pour changer de thème. Votre choix est mémorisé." },
+  { keywords:['merci','thanks','cool'], reply:"Avec plaisir ! N'hésitez pas si vous avez d'autres questions. 😊" },
+  { keywords:['qui es-tu','qui êtes-vous','es-tu une ia','robot','assistant'], reply:"Je suis un assistant automatisé qui connaît bien le fonctionnement du site — pas une IA conversationnelle complète, mais je peux vous orienter ! 🙂" },
+];
+const CHAT_FALLBACK = "Je n'ai pas de réponse toute prête pour ça 🤔 Essayez de reformuler, consultez la FAQ plus bas, ou écrivez-nous sur WhatsApp au +226 62 47 84 10.";
+const CHAT_QUICK_REPLIES = ["Comment télécharger un document ?","Comment proposer un document ?","Comment faire un don ?","Comment vous contacter ?"];
+
+let chatOpened = false;
+
+function toggleChat() {
+  const win = document.getElementById('chatWindow');
+  const isOpen = win.classList.toggle('open');
+  if(isOpen && !chatOpened) {
+    chatOpened = true;
+    renderChatMsg("Bonjour ! 👋 Je suis l'assistant de GenieCivil Docs. Comment puis-je vous aider ?", 'bot');
+    renderChatQuick();
+  }
+  if(isOpen) document.getElementById('chatInput').focus();
+}
+function renderChatQuick() {
+  document.getElementById('chatQuick').innerHTML = CHAT_QUICK_REPLIES.map(q=>`<button class="chat-quick-btn" onclick="askChatQuick('${q.replace(/'/g,"\\'")}')">${q}</button>`).join('');
+}
+function askChatQuick(text) { document.getElementById('chatInput').value = text; sendChatMsg(); }
+function renderChatMsg(text, sender) {
+  const body = document.getElementById('chatBody');
+  const div = document.createElement('div');
+  div.className = 'chat-msg ' + sender;
+  div.textContent = text;
+  body.appendChild(div);
+  body.scrollTop = body.scrollHeight;
+}
+function matchChatReply(input) {
+  const q = input.toLowerCase();
+  let best = null, bestScore = 0;
+  CHAT_KB.forEach(entry => {
+    const score = entry.keywords.filter(k => q.includes(k)).length;
+    if(score > bestScore) { bestScore = score; best = entry; }
+  });
+  return best ? best.reply : CHAT_FALLBACK;
+}
+function sendChatMsg() {
+  const input = document.getElementById('chatInput');
+  const text = input.value.trim();
+  if(!text) return;
+  renderChatMsg(text, 'user');
+  input.value = '';
+  document.getElementById('chatQuick').innerHTML = '';
+  const body = document.getElementById('chatBody');
+  const typing = document.createElement('div');
+  typing.className = 'chat-typing'; typing.id = 'chatTyping';
+  typing.innerHTML = '<span></span><span></span><span></span>';
+  body.appendChild(typing);
+  body.scrollTop = body.scrollHeight;
+  setTimeout(() => {
+    const t = document.getElementById('chatTyping');
+    if(t) t.remove();
+    renderChatMsg(matchChatReply(text), 'bot');
+    renderChatQuick();
+  }, 550 + Math.random()*450);
 }
 
 /* ══ NOTIFICATIONS ══ */
@@ -1466,6 +1811,8 @@ function doLogin() {
     buildLog();
     updatePendingBadge();
     updateVisitorPanel();
+    updatePostJobBtn();
+    renderJobs();
     showToast('🎉 Bienvenue, Administrateur !','success');
   } else {
     document.getElementById('wrongPw').style.display='block';
@@ -1479,6 +1826,8 @@ function logout() {
   btn.innerHTML='🔐 Admin'; btn.style.color='';
   showDocs();
   updateVisitorPanel();
+  updatePostJobBtn();
+  renderJobs();
   showToast('Vous êtes déconnecté.');
 }
 
@@ -1825,6 +2174,7 @@ function openOverlay(id){
   if(id==='uploadOverlay'&&!isAdmin){ showToast('🔒 Réservé à l\'admin.','error'); setTimeout(()=>openOverlay('loginOverlay'),200); return; }
   if(id==='logOverlay'&&!isAdmin){ openOverlay('loginOverlay'); return; }
   if(id==='pendingOverlay'&&!isAdmin){ openOverlay('loginOverlay'); return; }
+  if(id==='jobOverlay'&&!isAdmin){ openOverlay('loginOverlay'); return; }
   if(id==='favsOverlay') updateFavSidebar();
   if(id==='logOverlay') buildLog();
   if(id==='pendingOverlay') renderPendingList();
@@ -1832,7 +2182,7 @@ function openOverlay(id){
 }
 function closeOverlay(id){ document.getElementById(id).classList.remove('open'); }
 document.querySelectorAll('.overlay').forEach(el=>el.addEventListener('click',e=>{ if(e.target===el) el.classList.remove('open'); }));
-document.addEventListener('keydown',e=>{ if(e.key==='Escape') document.querySelectorAll('.overlay.open').forEach(o=>o.classList.remove('open')); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ document.querySelectorAll('.overlay.open').forEach(o=>o.classList.remove('open')); document.getElementById('chatWindow').classList.remove('open'); } });
 
 /* ══════════════════════════════════════════════
    TOAST
