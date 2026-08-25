@@ -1,0 +1,2857 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>GenieCivil Docs — Bibliothèque gratuite de documents de génie civil</title>
+<meta name="description" content="GenieCivil Docs — bibliothèque collaborative et gratuite de documents de génie civil : notes de calcul, plans DWG, bordereaux de prix, normes BAEL/Eurocode, DTU, cours et offres d'emploi BTP, partagés par la communauté au Burkina Faso et en Afrique de l'Ouest."/>
+<meta name="keywords" content="génie civil, BTP, documents techniques, notes de calcul, béton armé, BAEL, Eurocode, plans DWG, normes DTU, métrés, devis, géotechnique, hydraulique, Burkina Faso, Afrique, ingénieur, étudiant génie civil"/>
+<meta name="author" content="GenieCivil Docs"/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://genieciviledocs.onrender.com/"/>
+
+<!-- Open Graph / réseaux sociaux -->
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="GenieCivil Docs — Bibliothèque gratuite de documents de génie civil"/>
+<meta property="og:description" content="Plans, notes de calcul, normes, tableurs et présentations techniques — partagés par et pour les professionnels du génie civil en Afrique de l'Ouest."/>
+<meta property="og:url" content="https://genieciviledocs.onrender.com/"/>
+<meta property="og:site_name" content="GenieCivil Docs"/>
+<meta property="og:locale" content="fr_FR"/>
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="GenieCivil Docs — Bibliothèque gratuite de documents de génie civil"/>
+<meta name="twitter:description" content="Plans, notes de calcul, normes, tableurs et présentations techniques pour les professionnels du génie civil."/>
+
+<!-- Données structurées (aident Google à comprendre le site) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "GenieCivil Docs",
+  "url": "https://genieciviledocs.onrender.com/",
+  "description": "Bibliothèque collaborative et gratuite de documents de génie civil : notes de calcul, plans DWG, normes, bordereaux de prix et offres d'emploi BTP.",
+  "inLanguage": "fr",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://genieciviledocs.onrender.com/?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%23e8c547'/%3E%3Cpath d='M12 4L5 9.8V19H9.5V13.5H14.5V19H19V9.8L12 4Z' stroke='%230a0c10' stroke-width='1.6' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+
+<style>
+/* ═══ VARIABLES ═══ */
+:root {
+  --bg:#0a0c10;--surface:#111418;--surface2:#181c23;--surface3:#1f232c;
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);
+  --accent:#e8c547;--accent2:#f0d870;--accent-dim:rgba(232,197,71,0.12);--accent-glow:rgba(232,197,71,0.28);
+  --text:#f0ece4;--text2:#8a8a9a;--text3:#484858;
+  --blue:#4a9eff;--green:#3ecf8e;--red:#ff6b6b;--orange:#ff9f5a;--purple:#b18cff;--pink:#ff7ac6;--teal:#3ecfcf;
+  --blue-dim:rgba(74,158,255,0.12);--green-dim:rgba(62,207,142,0.12);
+  --red-dim:rgba(255,107,107,0.12);--orange-dim:rgba(255,159,90,0.12);
+  --purple-dim:rgba(177,140,255,0.12);--pink-dim:rgba(255,122,198,0.12);--teal-dim:rgba(62,207,207,0.12);
+  --shadow:0 8px 32px rgba(0,0,0,0.5);--radius:14px;--tr:0.2s ease;
+}
+[data-theme="light"]{
+  --bg:#f4f2ee;--surface:#fff;--surface2:#f0ede8;--surface3:#e8e4dc;
+  --border:rgba(0,0,0,0.08);--border2:rgba(0,0,0,0.14);
+  --text:#1a1208;--text2:#5a5248;--text3:#9a9288;
+  --shadow:0 8px 32px rgba(0,0,0,0.1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;transition:background var(--tr),color var(--tr);position:relative}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+
+/* ═══ TOOL ICON DECORATIONS ═══ */
+.tool-icon{position:absolute;z-index:5;pointer-events:none;opacity:.28;color:var(--accent)}
+[data-theme="light"] .tool-icon{opacity:.22;color:#8b6914}
+.tool-icon svg{width:100%;height:100%;display:block;stroke-width:4}
+.tool-icon svg{width:100%;height:100%;display:block}
+
+/* ═══ BLOBS ═══ */
+.blob{position:fixed;border-radius:50%;filter:blur(140px);pointer-events:none;z-index:0}
+.blob-1{width:700px;height:700px;background:rgba(232,197,71,0.07);top:-250px;right:-150px}
+.blob-2{width:600px;height:600px;background:rgba(74,158,255,0.05);bottom:5%;left:-200px}
+.blob-3{width:520px;height:520px;background:rgba(177,140,255,0.045);top:45%;right:8%}
+[data-theme="light"] .blob{opacity:.35}
+.page{position:relative;z-index:1}
+
+/* ═══ NAV ═══ */
+nav{position:sticky;top:0;z-index:200;background:rgba(10,12,16,0.88);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);padding:0 1.5rem;transition:background var(--tr)}
+[data-theme="light"] nav{background:rgba(244,242,238,0.92)}
+.nav-inner{max-width:1440px;margin:0 auto;display:flex;align-items:center;gap:1.5rem;height:62px}
+.nav-logo{display:flex;align-items:center;gap:.7rem;flex-shrink:0}
+.logo-mark{width:34px;height:34px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:.95rem;color:#0a0c10;font-weight:700}
+.logo-text{font-size:1rem;font-weight:800;color:var(--text)}
+.logo-text span{color:var(--accent)}
+.nav-links{display:flex;gap:.1rem;flex:1}
+.nav-links a{font-size:.78rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--text2);padding:.38rem .75rem;border-radius:6px;text-decoration:none;transition:all var(--tr)}
+.nav-links a:hover,.nav-links a.active{color:var(--accent);background:var(--accent-dim)}
+.nav-right{display:flex;gap:.5rem;align-items:center;margin-left:auto;flex-shrink:0}
+.theme-btn{width:36px;height:36px;border-radius:8px;border:1px solid var(--border2);background:transparent;color:var(--text2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:all var(--tr)}
+.theme-btn:hover{background:var(--surface2);color:var(--text)}
+
+/* ═══ SEARCH AUTOCOMPLETE ═══ */
+.ac-wrap{position:relative}
+.nav-search{display:flex;align-items:center;gap:.4rem;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:.32rem .7rem;transition:all var(--tr);width:195px}
+.nav-search:focus-within{border-color:var(--accent);width:250px}
+.nav-search input{background:none;border:none;outline:none;font-size:.78rem;color:var(--text);width:100%}
+.nav-search input::placeholder{color:var(--text3)}
+.ac-dropdown{position:absolute;top:110%;left:0;right:0;background:var(--surface);border:1px solid var(--border2);border-radius:10px;overflow:hidden;display:none;box-shadow:var(--shadow);z-index:300}
+.ac-dropdown.show{display:block}
+.ac-item{padding:.58rem .9rem;font-size:.78rem;color:var(--text2);cursor:pointer;display:flex;align-items:center;gap:.5rem;border-bottom:1px solid var(--border);transition:background var(--tr)}
+.ac-item:last-child{border-bottom:none}
+.ac-item:hover{background:var(--surface2);color:var(--text)}
+
+/* ═══ BUTTONS ═══ */
+.btn{font-family:'Syne',sans-serif;font-size:.78rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:.48rem 1rem;border-radius:8px;cursor:pointer;border:none;transition:all var(--tr);display:inline-flex;align-items:center;gap:.38rem;white-space:nowrap}
+.btn-ghost{background:transparent;color:var(--text2);border:1px solid var(--border2)}
+.btn-ghost:hover{color:var(--text);background:var(--surface2)}
+.btn-accent{background:var(--accent);color:#0a0c10}
+.btn-accent:hover{background:var(--accent2);transform:translateY(-1px);box-shadow:0 8px 24px var(--accent-glow)}
+.btn-danger{background:var(--red-dim);color:var(--red);border:1px solid rgba(255,107,107,.2)}
+.btn-danger:hover{background:rgba(255,107,107,.22)}
+.btn-blue{background:var(--blue-dim);color:var(--blue);border:1px solid rgba(74,158,255,.2)}
+.btn-lg{padding:.72rem 1.5rem;font-size:.85rem;border-radius:10px}
+.btn-icon{padding:.5rem;width:36px;height:36px;justify-content:center}
+
+/* ═══ STATUS BANNER ═══ */
+.status-banner{display:none;align-items:center;gap:.75rem;padding:.6rem 1.5rem;font-size:.78rem;color:var(--text2);border-bottom:1px solid var(--border)}
+.status-banner.show{display:flex}
+.status-banner.loading{background:rgba(74,158,255,.06)}
+.status-banner.error-state{background:rgba(255,107,107,.06);color:var(--red)}
+.status-banner.ok{background:rgba(62,207,142,.06);color:var(--green)}
+.spin{display:inline-block;animation:spin .8s linear infinite}
+.status-banner:not(.loading) .spin{display:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ═══ HERO ═══ */
+.hero{padding:4rem 1.5rem 3.5rem;max-width:1440px;margin:0 auto;display:grid;grid-template-columns:1fr 400px;gap:3.5rem;align-items:center}
+.hero-tag{display:inline-flex;align-items:center;gap:.5rem;background:var(--accent-dim);border:1px solid rgba(232,197,71,.22);border-radius:100px;padding:.28rem .85rem;font-size:.7rem;font-weight:700;letter-spacing:.1em;color:var(--accent);text-transform:uppercase;margin-bottom:1.4rem}
+.hero-tag::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.hero h1{font-family:'DM Serif Display',serif;font-size:clamp(2.2rem,4.5vw,3.6rem);line-height:1.06;color:var(--text);margin-bottom:1.1rem;letter-spacing:-.02em}
+.hero h1 em{color:var(--accent);font-style:italic}
+.hero-desc{font-size:.97rem;color:var(--text2);line-height:1.78;max-width:480px;margin-bottom:2rem}
+.hero-actions{display:flex;gap:.7rem;flex-wrap:wrap}
+.hero-stats{display:flex;gap:2rem;margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--border)}
+.stat-num{font-family:'DM Serif Display',serif;font-size:1.7rem;color:var(--accent);line-height:1}
+.stat-label{font-size:.65rem;color:var(--text3);text-transform:uppercase;letter-spacing:.1em;margin-top:.2rem}
+
+/* Hero card */
+.hero-card{background:var(--surface);border:1px solid var(--border2);border-radius:18px;overflow:hidden}
+.hc-top{padding:.85rem 1.1rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.4rem}
+.dot{width:9px;height:9px;border-radius:50%}.dot-r{background:#ff5f57}.dot-y{background:#febc2e}.dot-g{background:#28c840}
+.hc-title{font-size:.68rem;color:var(--text3);margin-left:auto;font-family:'JetBrains Mono'}
+.hc-body{padding:1rem}
+.hc-doc{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:.78rem;margin-bottom:.5rem;display:flex;align-items:center;gap:.65rem;animation:slideIn .5s ease both}
+.hc-doc:nth-child(1){animation-delay:.1s}.hc-doc:nth-child(2){animation-delay:.25s}.hc-doc:nth-child(3){animation-delay:.4s}
+@keyframes slideIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.hc-icon{width:32px;height:32px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0}
+.hc-name{font-size:.78rem;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hc-meta{font-size:.65rem;color:var(--text3);font-family:'JetBrains Mono'}
+.hc-dl{font-size:.65rem;color:var(--accent);font-weight:700;flex-shrink:0}
+
+/* ═══ SEARCH ═══ */
+.search-wrap{max-width:1440px;margin:0 auto;padding:0 1.5rem 2rem}
+.big-search{background:var(--surface);border:1px solid var(--border2);border-radius:14px;padding:.5rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;transition:all var(--tr)}
+.big-search:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-dim)}
+.big-search input{flex:1;background:none;border:none;outline:none;font-size:.92rem;color:var(--text);min-width:180px;padding:.45rem 0}
+.big-search input::placeholder{color:var(--text3)}
+.filter-chip{font-size:.7rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;background:var(--surface2);border:1px solid var(--border);color:var(--text2);padding:.42rem .85rem;border-radius:7px;cursor:pointer;outline:none;transition:all var(--tr);appearance:none}
+.filter-chip:hover,.filter-chip:focus{border-color:var(--accent);color:var(--accent)}
+
+/* ═══ LAYOUT ═══ */
+.main-layout{max-width:1440px;margin:0 auto;padding:0 1.5rem 4rem;display:grid;grid-template-columns:1fr 270px;gap:1.75rem}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:1.4rem;padding-bottom:1.1rem;border-bottom:1px solid var(--border)}
+.breadcrumb{font-size:.75rem;color:var(--text3);margin-bottom:1rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap}
+.breadcrumb a{color:var(--text2);text-decoration:none;transition:color var(--tr)}
+.breadcrumb a:hover{color:var(--accent)}
+.breadcrumb .bc-sep{color:var(--text3)}
+.breadcrumb .bc-current{color:var(--accent);font-weight:600}
+.section-head h2{font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--text)}
+.section-head h2 span{color:var(--accent)}
+.doc-count{font-size:.68rem;color:var(--text3);font-family:'JetBrains Mono';margin-top:.2rem}
+.tabs-row{display:flex;gap:.2rem;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:.22rem}
+.tab{font-size:.68rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:.38rem .85rem;border-radius:7px;cursor:pointer;border:none;background:transparent;color:var(--text3);transition:all var(--tr)}
+.tab.active{background:var(--accent);color:#0a0c10}
+.tab:not(.active):hover{color:var(--text);background:var(--surface2)}
+
+/* ═══ SKELETON ═══ */
+@keyframes shimmer{0%{background-position:-700px 0}100%{background-position:700px 0}}
+.skeleton{background:linear-gradient(90deg,var(--surface2) 25%,var(--surface3) 50%,var(--surface2) 75%);background-size:700px 100%;animation:shimmer 1.5s infinite;border-radius:6px}
+
+/* ═══ ADMIN PANEL ═══ */
+.admin-panel{display:none;background:rgba(232,197,71,.05);border:1px solid rgba(232,197,71,.18);border-radius:14px;padding:1rem 1.4rem;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem;align-items:center}
+.admin-panel.visible{display:flex}
+.admin-panel p{font-size:.82rem;color:var(--text2)}
+.admin-panel p strong{color:var(--accent)}
+.admin-badge{display:inline-flex;align-items:center;gap:.3rem;background:var(--accent-dim);border:1px solid rgba(232,197,71,.25);color:var(--accent);font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.16rem .5rem;border-radius:5px}
+.admin-actions{display:flex;gap:.5rem;margin-left:auto;flex-wrap:wrap}
+
+/* ═══ DOC CARDS ═══ */
+.docs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem}
+.doc-card{background:var(--surface);border:1px solid var(--border);border-radius:15px;overflow:hidden;transition:all .25s ease;position:relative;cursor:pointer}
+.doc-card::after{content:'';position:absolute;inset:0;border-radius:15px;opacity:0;transition:opacity .25s;pointer-events:none;background:radial-gradient(500px circle at var(--mx,50%) var(--my,50%),rgba(232,197,71,.05),transparent 40%)}
+.doc-card:hover{border-color:var(--border2);transform:translateY(-3px);box-shadow:0 20px 50px rgba(0,0,0,.35)}
+.doc-card:hover::after{opacity:1}
+.dc-banner{height:104px;position:relative;display:flex;align-items:center;justify-content:flex-end;padding:1rem;overflow:hidden;background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0,rgba(255,255,255,.035) 1px,transparent 1px,transparent 22px),repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0,rgba(255,255,255,.035) 1px,transparent 1px,transparent 22px)}
+.dc-bg-icon{font-size:3.4rem;opacity:.14;line-height:1;filter:drop-shadow(0 4px 12px rgba(0,0,0,.3))}
+.dc-type-badge{position:absolute;top:.65rem;left:.65rem;font-family:'JetBrains Mono';font-size:.62rem;font-weight:600;padding:.2rem .5rem;border-radius:5px;text-transform:uppercase;letter-spacing:.08em}
+.dc-cat-pill{position:absolute;bottom:.55rem;left:.65rem;font-size:.6rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:.22rem .55rem;border-radius:5px;backdrop-filter:blur(4px)}
+.dc-fav{position:absolute;top:.6rem;right:.6rem;width:26px;height:26px;border-radius:6px;border:none;background:rgba(0,0,0,.3);color:rgba(255,255,255,.5);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.75rem;transition:all var(--tr)}
+.dc-fav.active,.dc-fav:hover{background:rgba(232,197,71,.2);color:var(--accent)}
+.dc-featured-badge{position:absolute;top:.65rem;left:3.2rem;font-size:.58rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:#0a0c10;padding:.14rem .42rem;border-radius:4px}
+[data-type="pdf"] .dc-banner{background-color:#1a0a0a;background-image:linear-gradient(135deg,#1a0a0a,#2d1010),repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0,rgba(255,255,255,.035) 1px,transparent 1px,transparent 22px),repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0,rgba(255,255,255,.035) 1px,transparent 1px,transparent 22px)}
+[data-type="pdf"] .dc-type-badge{background:var(--red-dim);color:var(--red);border:1px solid rgba(255,107,107,.2)}
+[data-type="dwg"] .dc-banner{background-color:#0a1020;background-image:linear-gradient(135deg,#0a1020,#0f1e35),repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0,rgba(255,255,255,.035) 1px,transparent 1px,transparent 22px),repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0,rgba(255,255,255,.035) 1px,transparent 1px,transparent 22px)}
+[data-type="dwg"] .dc-type-badge{background:var(--blue-dim);color:var(--blue);border:1px solid rgba(74,158,255,.2)}
+[data-type="xlsx"] .dc-banner{background-color:#081408;background-image:linear-gradient(135deg,#081408,#0f2212),repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0,rgba(255,255,255,.035) 1px,transparent 1px,transparent 22px),repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0,rgba(255,255,255,.035) 1px,transparent 1px,transparent 22px)}
+[data-type="xlsx"] .dc-type-badge{background:var(--green-dim);color:var(--green);border:1px solid rgba(62,207,142,.2)}
+[data-type="docx"] .dc-banner{background-color:#080e1a;background-image:linear-gradient(135deg,#080e1a,#0f1835),repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0,rgba(255,255,255,.035) 1px,transparent 1px,transparent 22px),repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0,rgba(255,255,255,.035) 1px,transparent 1px,transparent 22px)}
+[data-type="docx"] .dc-type-badge{background:var(--blue-dim);color:var(--blue);border:1px solid rgba(74,158,255,.2)}
+[data-type="pptx"] .dc-banner{background-color:#1a0a06;background-image:linear-gradient(135deg,#1a0a06,#2d1508),repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0,rgba(255,255,255,.035) 1px,transparent 1px,transparent 22px),repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0,rgba(255,255,255,.035) 1px,transparent 1px,transparent 22px)}
+[data-type="pptx"] .dc-type-badge{background:var(--orange-dim);color:var(--orange);border:1px solid rgba(255,159,90,.2)}
+[data-type="video"] .dc-banner{background-color:#1a0a1a;background-image:linear-gradient(135deg,#1a0a1a,#2d1030),repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0,rgba(255,255,255,.035) 1px,transparent 1px,transparent 22px),repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0,rgba(255,255,255,.035) 1px,transparent 1px,transparent 22px)}
+[data-type="video"] .dc-type-badge{background:var(--pink-dim);color:var(--pink);border:1px solid rgba(255,122,198,.2)}
+.dc-body{padding:.95rem 1rem}
+.dc-title{font-family:'DM Serif Display',serif;font-size:.97rem;color:var(--text);margin-bottom:.32rem;line-height:1.3}
+.dc-desc{font-size:.78rem;color:var(--text2);line-height:1.6;margin-bottom:.7rem}
+
+/* Category colors (badges + tag cloud) */
+[data-cat="structures"] .dc-cat-pill{background:var(--red-dim);color:var(--red)}
+[data-cat="hydraulique"] .dc-cat-pill{background:var(--blue-dim);color:var(--blue)}
+[data-cat="routes"] .dc-cat-pill{background:var(--orange-dim);color:var(--orange)}
+[data-cat="géotechnique"] .dc-cat-pill{background:var(--green-dim);color:var(--green)}
+[data-cat="topographie"] .dc-cat-pill{background:var(--purple-dim);color:var(--purple)}
+[data-cat="normes"] .dc-cat-pill{background:var(--accent-dim);color:var(--accent)}
+[data-cat="métrés"] .dc-cat-pill{background:var(--pink-dim);color:var(--pink)}
+[data-cat="environnement"] .dc-cat-pill{background:var(--teal-dim);color:var(--teal)}
+
+/* Tag cloud widget */
+.tag-cloud{display:flex;flex-wrap:wrap;gap:.4rem;padding:1rem 1.1rem}
+.tag-pill{font-size:.68rem;font-weight:600;padding:.3rem .65rem;border-radius:100px;cursor:pointer;transition:all var(--tr);border:1px solid var(--border)}
+.tag-pill:hover{transform:translateY(-1px)}
+
+/* Social widget */
+.social-widget{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;padding:1rem 1.1rem}
+.social-btn{display:flex;align-items:center;gap:.45rem;padding:.55rem .7rem;border-radius:9px;background:var(--surface2);border:1px solid var(--border);color:var(--text2);font-size:.75rem;font-weight:700;transition:all var(--tr)}
+.social-btn:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
+.social-btn .sb-icon{font-size:.95rem}
+
+/* Recent docs widget with mini thumbnail swatch */
+.rr-swatch{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0}
+.dc-meta{display:flex;gap:.65rem;flex-wrap:wrap;font-size:.65rem;color:var(--text3);font-family:'JetBrains Mono';margin-bottom:.65rem}
+.dl-badge{display:inline-flex;align-items:center;gap:.2rem;background:var(--green-dim);color:var(--green);border:1px solid rgba(62,207,142,.2);padding:.1rem .38rem;border-radius:4px;font-family:'JetBrains Mono';font-size:.62rem}
+.star-rating{display:flex;gap:.1rem;margin-bottom:.1rem}
+.star{font-size:.8rem;cursor:pointer;transition:transform var(--tr);color:var(--text3)}
+.star.filled{color:var(--accent)}
+.star:hover{transform:scale(1.15)}
+.dc-footer{padding:.7rem .95rem;border-top:1px solid var(--border);display:flex;gap:.45rem;align-items:center}
+.dc-footer .btn{flex:1;justify-content:center;font-size:.7rem;padding:.44rem .5rem}
+.btn-dl{background:var(--accent);color:#0a0c10}
+.btn-dl:hover{background:var(--accent2)}
+.btn-prev{background:var(--surface2);color:var(--text2);border:1px solid var(--border)}
+.btn-prev:hover{color:var(--text);border-color:var(--border2)}
+.btn-share-sm{width:30px;height:30px;padding:0;border-radius:6px;background:var(--surface2);border:1px solid var(--border);color:var(--text3);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.8rem;flex-shrink:0;transition:all var(--tr)}
+.btn-share-sm:hover{color:var(--accent);border-color:var(--accent)}
+.dc-admin-bar{display:none;gap:.3rem;padding:.5rem .95rem;border-top:1px solid rgba(232,197,71,.1);background:rgba(232,197,71,.03)}
+.dc-admin-bar.visible{display:flex;flex-wrap:wrap}
+
+/* ═══ EMPTY / ERROR STATES ═══ */
+.empty-state{grid-column:1/-1;text-align:center;padding:3rem;color:var(--text3);font-size:.9rem}
+.empty-icon{font-size:2.5rem;margin-bottom:.75rem;opacity:.4}
+
+/* ═══ SIDEBAR ═══ */
+.sidebar{display:flex;flex-direction:column;gap:1.1rem}
+.sidebar-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.sc-head{padding:.8rem 1.1rem;border-bottom:1px solid var(--border);font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text3)}
+.cat-row{display:flex;align-items:center;justify-content:space-between;padding:.6rem 1.1rem;font-size:.8rem;color:var(--text2);border-bottom:1px solid var(--border);cursor:pointer;transition:all var(--tr)}
+.cat-row:last-child{border-bottom:none}
+.cat-row:hover{background:var(--surface2);color:var(--text)}
+.cat-pill{font-family:'JetBrains Mono';font-size:.6rem;background:var(--surface2);color:var(--text3);padding:.1rem .42rem;border-radius:100px;border:1px solid var(--border)}
+.recent-row{padding:.6rem 1.1rem;border-bottom:1px solid var(--border);cursor:pointer;transition:background var(--tr);display:flex;align-items:center;gap:.6rem}
+.recent-row:last-child{border-bottom:none}
+.recent-row:hover{background:var(--surface2)}
+.rr-name{font-size:.78rem;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:.12rem}
+.rr-meta{font-size:.62rem;color:var(--text3);font-family:'JetBrains Mono'}
+.fav-empty{padding:1.2rem;text-align:center;font-size:.78rem;color:var(--text3)}
+
+/* ═══ COMMENTS ═══ */
+.comments-section{max-width:1440px;margin:0 auto;padding:0 1.5rem 4rem}
+.comments-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:1.4rem}
+.comment-form-card{background:var(--surface);border:1px solid var(--border);border-radius:15px;padding:1.25rem}
+.comment-form-card h3{font-family:'DM Serif Display',serif;font-size:1.1rem;margin-bottom:1rem;color:var(--text)}
+.form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+.form-group{margin-bottom:.8rem}
+label.fl{display:block;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:.32rem}
+.fc{width:100%;font-family:'Syne',sans-serif;font-size:.85rem;background:var(--surface2);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:.56rem .85rem;outline:none;transition:border-color var(--tr);appearance:none}
+.fc:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-dim)}
+.fc::placeholder{color:var(--text3)}
+textarea.fc{resize:vertical;min-height:75px}
+.comments-list{display:flex;flex-direction:column;gap:.7rem;max-height:460px;overflow-y:auto;padding-right:.3rem}
+.comment-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:.95rem 1.1rem;display:flex;gap:.75rem}
+.avatar{width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#0a0c10;font-family:'DM Serif Display',serif;display:flex;align-items:center;justify-content:center;font-size:.88rem;font-weight:700;flex-shrink:0}
+.cc-name{font-size:.82rem;font-weight:700;color:var(--text)}
+.cc-meta{font-size:.62rem;color:var(--text3);font-family:'JetBrains Mono';margin-bottom:.38rem}
+.cc-text{font-size:.8rem;color:var(--text2);line-height:1.6}
+.cc-doc-link{color:var(--accent)}
+.cc-reply-btn{font-size:.68rem;color:var(--text3);background:none;border:none;cursor:pointer;padding:.2rem .4rem;border-radius:4px;margin-top:.4rem;transition:all var(--tr)}
+.cc-reply-btn:hover{color:var(--accent);background:var(--accent-dim)}
+.cc-replies{margin-top:.6rem;padding-top:.6rem;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:.5rem}
+.reply-card{background:var(--surface2);border-radius:8px;padding:.55rem .8rem;font-size:.78rem;color:var(--text2)}
+
+/* ═══ FEATURED ═══ */
+.featured-section{max-width:1440px;margin:0 auto;padding:0 1.5rem 2rem}
+.featured-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.1rem}
+.fi{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1rem;display:flex;gap:.75rem;align-items:center;cursor:pointer;transition:all var(--tr)}
+.fi:hover{border-color:var(--accent);transform:translateY(-2px)}
+.fi-icon{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.fi-badge{display:inline-block;font-size:.58rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:#0a0c10;padding:.1rem .35rem;border-radius:4px;margin-bottom:.25rem}
+.fi-title{font-family:'DM Serif Display',serif;font-size:.9rem;color:var(--text);line-height:1.2;margin-bottom:.15rem}
+.fi-meta{font-size:.62rem;color:var(--text3);font-family:'JetBrains Mono'}
+
+/* ═══ OVERLAYS ═══ */
+.overlay{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.82);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:1rem}
+.overlay.open{display:flex}
+.modal{background:var(--surface);border:1px solid var(--border2);border-radius:18px;padding:1.75rem;width:100%;max-width:520px;position:relative;box-shadow:0 24px 80px rgba(0,0,0,.6);animation:mIn .25s ease both;max-height:90vh;overflow-y:auto}
+@keyframes mIn{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:none}}
+.modal-close{position:absolute;top:1.1rem;right:1.1rem;background:var(--surface2);border:1px solid var(--border);color:var(--text3);width:28px;height:28px;border-radius:7px;cursor:pointer;font-size:.85rem;display:flex;align-items:center;justify-content:center;transition:all var(--tr)}
+.modal-close:hover{color:var(--text);border-color:var(--border2)}
+.modal-title{font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--text);margin-bottom:1.25rem;padding-bottom:.9rem;border-bottom:1px solid var(--border)}
+.modal-title span{color:var(--accent)}
+.modal-footer{display:flex;gap:.6rem;justify-content:flex-end;margin-top:1.25rem;padding-top:1rem;border-top:1px solid var(--border)}
+.lock-head{text-align:center;margin-bottom:1rem}
+.lock-icon{font-size:2.2rem;margin-bottom:.4rem}
+.lock-hint{font-size:.72rem;color:var(--text3);background:var(--surface2);border:1px solid var(--border);border-radius:7px;padding:.55rem .85rem;margin-bottom:1rem;text-align:center;line-height:1.5}
+.wrong-pw{color:var(--red);font-size:.75rem;margin-top:.4rem;display:none}
+
+/* Upload zone */
+.upload-zone{border:2px dashed var(--border2);border-radius:11px;padding:2.2rem 1.5rem;text-align:center;background:var(--surface2);cursor:pointer;transition:all var(--tr);margin:1rem 0}
+.upload-zone:hover,.upload-zone.over{border-color:var(--accent);background:var(--accent-dim)}
+.uz-icon{font-size:2.2rem;margin-bottom:.6rem}
+.uz-text{font-size:.82rem;color:var(--text2)}
+.uz-text strong{color:var(--accent)}
+.fmt-row{display:flex;flex-wrap:wrap;gap:.28rem;justify-content:center;margin-top:.6rem}
+.fmt-tag{font-family:'JetBrains Mono';font-size:.58rem;background:var(--surface);border:1px solid var(--border);color:var(--text3);padding:.15rem .4rem;border-radius:4px}
+
+/* Multi-file list */
+.file-row{display:flex;align-items:center;gap:.55rem;padding:.5rem .65rem;background:var(--surface2);border:1px solid var(--border);border-radius:9px}
+.file-row input{flex:1;padding:.4rem .6rem;font-size:.78rem;min-width:0}
+.fr-size{font-size:.6rem;color:var(--text3);font-family:'JetBrains Mono';white-space:nowrap;flex-shrink:0}
+.fr-remove{background:none;border:none;color:var(--text3);cursor:pointer;font-size:.9rem;flex-shrink:0;padding:.2rem;border-radius:5px}
+.fr-remove:hover{color:var(--red)}
+.fr-icon{flex-shrink:0}
+
+/* Progress bar */
+.progress-wrap{margin:.75rem 0;display:none}
+.progress-wrap.show{display:block}
+.progress-bar{height:5px;background:var(--border);border-radius:3px;overflow:hidden}
+.progress-fill{height:100%;background:var(--accent);border-radius:3px;transition:width .3s ease;width:0%}
+.progress-label{font-size:.68rem;color:var(--text3);margin-bottom:.3rem;font-family:'JetBrains Mono'}
+
+/* Activity log */
+.log-entry{display:flex;align-items:flex-start;gap:.65rem;padding:.7rem;border-bottom:1px solid var(--border);font-size:.78rem}
+.log-entry:last-child{border-bottom:none}
+.log-icon{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.8rem}
+.log-text{flex:1;color:var(--text2);line-height:1.5}
+.log-text strong{color:var(--text)}
+.log-time{font-family:'JetBrains Mono';font-size:.62rem;color:var(--text3);white-space:nowrap}
+
+/* Share modal */
+.share-options{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin:1rem 0}
+.share-opt{background:var(--surface2);border:1px solid var(--border);border-radius:9px;padding:.8rem;text-align:center;cursor:pointer;transition:all var(--tr);font-size:.82rem;color:var(--text2)}
+.share-opt:hover{border-color:var(--accent);color:var(--text);background:var(--accent-dim)}
+.share-opt .so-icon{font-size:1.4rem;margin-bottom:.3rem}
+.share-link-row{display:flex;gap:.5rem}
+
+/* Preview modal */
+.preview-modal{max-width:680px}
+.preview-area{background:var(--surface2);border:1px solid var(--border);border-radius:10px;height:340px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1rem;margin-bottom:1rem}
+.pa-icon{font-size:4rem;opacity:.3}
+
+/* Pagination */
+.pagination{display:flex;align-items:center;justify-content:center;gap:1rem;margin-top:2rem;flex-wrap:wrap}
+.pg-btn{min-width:34px;height:34px;padding:0 .5rem;border-radius:7px;border:1px solid var(--border);background:var(--surface);color:var(--text2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;transition:all var(--tr)}
+.pg-btn:hover,.pg-btn.active{background:var(--accent);color:#0a0c10;border-color:var(--accent)}
+.pg-dots{color:var(--text3);font-size:.8rem;padding:0 .3rem}
+.pg-nav-btn{padding:.6rem 1.1rem;border-radius:9px;border:1px solid var(--border2);background:var(--surface);color:var(--text2);cursor:pointer;font-size:.78rem;font-weight:700;transition:all var(--tr)}
+.pg-nav-btn:hover:not(:disabled){background:var(--accent);color:#0a0c10;border-color:var(--accent);transform:translateY(-1px)}
+.pg-nav-btn:disabled{opacity:.35;cursor:not-allowed}
+.pg-indicator{font-size:.72rem;color:var(--text3);font-family:'JetBrains Mono'}
+
+/* ═══ FOOTER ═══ */
+footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem 1.5rem 2rem}
+.footer-grid{max-width:1440px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:2.5rem}
+.ft-brand p{font-size:.8rem;color:var(--text2);line-height:1.75;margin-top:.7rem}
+.ft-col h5{font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);margin-bottom:.9rem}
+.ft-col ul{list-style:none}
+.ft-col ul li{margin-bottom:.45rem}
+.ft-col ul li a{font-size:.8rem;color:var(--text2);transition:color var(--tr);text-decoration:none}
+.ft-col ul li a:hover{color:var(--accent)}
+.footer-bottom{max-width:1440px;margin:0 auto;padding-top:1.25rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:.72rem;color:var(--text3)}
+
+/* ═══ TOAST ═══ */
+.toast-wrap{position:fixed;bottom:1.5rem;right:1.5rem;z-index:9999;display:flex;flex-direction:column;gap:.5rem;align-items:flex-end}
+.toast{background:var(--surface2);border:1px solid var(--border2);border-left:3px solid var(--accent);color:var(--text);font-size:.82rem;padding:.8rem 1.1rem;border-radius:11px;box-shadow:var(--shadow);transform:translateX(200%);transition:transform .3s cubic-bezier(.22,1,.36,1);max-width:310px}
+.toast.show{transform:translateX(0)}
+.toast.error{border-left-color:var(--red)}
+.toast.info{border-left-color:var(--blue)}
+.toast.success{border-left-color:var(--green)}
+
+/* ═══ LOGO SVG ═══ */
+.logo-mark svg{width:20px;height:20px}
+
+/* ═══ NOTIFICATIONS ═══ */
+.notif-wrap{position:relative}
+.notif-btn{position:relative}
+.notif-dot{position:absolute;top:4px;right:4px;width:8px;height:8px;border-radius:50%;background:var(--red);border:2px solid var(--surface);display:none}
+.notif-dot.show{display:block}
+.notif-panel{position:absolute;top:120%;right:0;width:320px;background:var(--surface);border:1px solid var(--border2);border-radius:14px;box-shadow:var(--shadow);display:none;z-index:300;overflow:hidden}
+.notif-panel.open{display:block}
+.notif-head{padding:.8rem 1.1rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.notif-head span{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text3)}
+.notif-head button{font-size:.66rem;color:var(--accent);background:none;border:none;cursor:pointer}
+.notif-list{max-height:340px;overflow-y:auto}
+.notif-item{display:flex;gap:.6rem;padding:.75rem 1.1rem;border-bottom:1px solid var(--border);font-size:.78rem;transition:background var(--tr)}
+.notif-item:last-child{border-bottom:none}
+.notif-item:hover{background:var(--surface2)}
+.notif-item.unread{background:var(--accent-dim)}
+.notif-icon{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.8rem}
+.notif-text{flex:1;color:var(--text2);line-height:1.5}
+.notif-text strong{color:var(--text)}
+.notif-time{font-size:.62rem;color:var(--text3);font-family:'JetBrains Mono';margin-top:.15rem}
+.notif-empty{padding:1.5rem;text-align:center;font-size:.78rem;color:var(--text3)}
+
+/* ═══ SCROLL REVEAL ═══ */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* ═══ AUTHOR NAME LINK ═══ */
+.author-link{cursor:pointer;transition:color var(--tr);border-bottom:1px dotted transparent}
+.author-link:hover{color:var(--accent);border-bottom-color:var(--accent)}
+
+/* ═══ AUTHORS SECTION ═══ */
+.authors-section{max-width:1440px;margin:0 auto;padding:0 1.5rem 4rem}
+.authors-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1rem;margin-top:1.4rem}
+.author-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.2rem;text-align:center;cursor:pointer;transition:all var(--tr)}
+.author-card:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.3)}
+.author-avatar{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#0a0c10;font-family:'DM Serif Display',serif;font-weight:700;font-size:1.3rem;display:flex;align-items:center;justify-content:center;margin:0 auto .75rem}
+.author-name{font-family:'DM Serif Display',serif;font-size:1rem;color:var(--text);margin-bottom:.3rem}
+.author-stats{font-size:.68rem;color:var(--text3);font-family:'JetBrains Mono'}
+
+/* ═══ AUTHOR PROFILE MODAL ═══ */
+.author-profile-head{display:flex;align-items:center;gap:1rem;margin-bottom:1.25rem;padding-bottom:1.25rem;border-bottom:1px solid var(--border)}
+.author-profile-avatar{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#0a0c10;font-family:'DM Serif Display',serif;font-weight:700;font-size:1.5rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.author-profile-name{font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--text)}
+.author-profile-meta{font-size:.75rem;color:var(--text3);font-family:'JetBrains Mono';margin-top:.25rem}
+.author-doc-row{display:flex;align-items:center;gap:.7rem;padding:.7rem;background:var(--surface2);border-radius:9px;margin-bottom:.5rem;font-size:.82rem}
+.author-doc-row .adr-icon{width:32px;height:32px;border-radius:7px;background:var(--surface3);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+
+/* ═══ ABOUT SECTION ═══ */
+.about-section{max-width:1440px;margin:0 auto;padding:2rem 1.5rem 4rem}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;margin-top:1.4rem}
+.about-text p{font-size:.92rem;color:var(--text2);line-height:1.85;margin-bottom:1rem}
+.about-stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.5rem}
+.about-stat{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1rem;text-align:center}
+.about-stat-num{font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--accent)}
+.about-stat-label{font-size:.65rem;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;margin-top:.2rem}
+.about-visual{background:var(--surface);border:1px solid var(--border2);border-radius:18px;padding:2rem;position:relative;overflow:hidden}
+.about-visual svg{width:100%;height:auto}
+
+/* ═══ FAQ SECTION ═══ */
+.faq-section{max-width:900px;margin:0 auto;padding:0 1.5rem 4rem}
+
+/* ═══ LEGAL PAGES ═══ */
+.legal-section{max-width:820px;margin:0 auto;padding:2rem 1.5rem 4rem}
+.legal-updated{font-size:.72rem;color:var(--text3);font-family:'JetBrains Mono';margin:.5rem 0 1.5rem}
+.legal-body h3{font-family:'DM Serif Display',serif;font-size:1.15rem;color:var(--accent);margin:1.8rem 0 .7rem}
+.legal-body h3:first-child{margin-top:0}
+.legal-body p{font-size:.87rem;color:var(--text2);line-height:1.8;margin-bottom:.9rem}
+.legal-body ul{margin:0 0 .9rem 1.3rem;padding:0}
+.legal-body li{font-size:.87rem;color:var(--text2);line-height:1.75;margin-bottom:.4rem}
+.legal-body strong{color:var(--text)}
+.legal-body a{color:var(--accent)}
+.faq-list{margin-top:1.4rem;display:flex;flex-direction:column;gap:.6rem}
+.faq-item{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:border-color var(--tr)}
+.faq-item.open{border-color:var(--accent)}
+.faq-q{padding:1rem 1.2rem;display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-size:.9rem;font-weight:700;color:var(--text)}
+.faq-q .faq-arrow{transition:transform var(--tr);color:var(--accent);flex-shrink:0;margin-left:1rem}
+.faq-item.open .faq-arrow{transform:rotate(180deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.faq-item.open .faq-a{max-height:300px}
+.faq-a-inner{padding:0 1.2rem 1.1rem;font-size:.85rem;color:var(--text2);line-height:1.7}
+
+/* ═══ CONTACT SECTION ═══ */
+.contact-section{max-width:1440px;margin:0 auto;padding:0 1.5rem 4rem}
+.contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:2rem;margin-top:1.4rem}
+.contact-info-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.5rem}
+.contact-info-card h3{font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--text);margin-bottom:1.1rem}
+.contact-row{display:flex;align-items:center;gap:.75rem;padding:.7rem 0;border-bottom:1px solid var(--border);font-size:.85rem;color:var(--text2)}
+.contact-row:last-child{border-bottom:none}
+.contact-row .ci-icon{width:34px;height:34px;border-radius:8px;background:var(--accent-dim);color:var(--accent);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.contact-form-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.5rem}
+
+/* ═══ VISITOR LOCK PANEL ═══ */
+.visitor-panel{display:none;border-radius:14px;padding:1rem 1.4rem;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem;align-items:center}
+.visitor-panel.visible{display:flex}
+.visitor-panel.locked{background:rgba(255,159,90,.05);border:1px solid rgba(255,159,90,.2)}
+.visitor-panel.unlocked{background:rgba(62,207,142,.05);border:1px solid rgba(62,207,142,.2)}
+.visitor-panel p{font-size:.82rem;color:var(--text2)}
+.visitor-panel p strong{color:var(--text)}
+.lock-pill{display:inline-flex;align-items:center;gap:.3rem;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.16rem .5rem;border-radius:5px}
+.lock-pill.locked{background:var(--orange-dim);color:var(--orange);border:1px solid rgba(255,159,90,.25)}
+.lock-pill.unlocked{background:var(--green-dim);color:var(--green);border:1px solid rgba(62,207,142,.25)}
+
+/* ═══ PENDING QUEUE ═══ */
+.pending-row{display:flex;align-items:flex-start;gap:.75rem;padding:.9rem;background:var(--surface2);border:1px solid var(--border);border-radius:10px;margin-bottom:.6rem}
+.pending-icon{width:36px;height:36px;border-radius:8px;background:var(--surface3);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1rem}
+.pending-info{flex:1;min-width:0}
+.pending-title{font-size:.85rem;font-weight:700;color:var(--text)}
+.pending-meta{font-size:.68rem;color:var(--text3);font-family:'JetBrains Mono';margin-top:.15rem}
+.pending-desc{font-size:.78rem;color:var(--text2);margin-top:.35rem;line-height:1.5}
+.pending-actions{display:flex;gap:.4rem;margin-top:.6rem}
+.pending-badge{display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;padding:0 .3rem;border-radius:100px;background:var(--red);color:#fff;font-size:.62rem;font-weight:700;margin-left:.3rem}
+@media(max-width:900px){.about-grid,.contact-grid{grid-template-columns:1fr}.about-visual{order:-1}}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:1100px){.main-layout{grid-template-columns:1fr}.sidebar{display:none}.featured-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:860px){.hero{grid-template-columns:1fr}.hero-card{display:none}.footer-grid{grid-template-columns:1fr 1fr}.comments-grid{grid-template-columns:1fr}}
+@media(max-width:640px){.footer-grid{grid-template-columns:1fr}.nav-links{display:none}.featured-grid{grid-template-columns:1fr}.hero-stats{flex-wrap:wrap;gap:1.2rem}.notif-panel{width:270px;right:-50px}}
+
+/* ═══ DONATION ═══ */
+.btn-donate{background:linear-gradient(135deg,#ff9f5a,#ff6b6b);color:#fff}
+.btn-donate:hover{filter:brightness(1.08);transform:translateY(-1px);box-shadow:0 8px 24px rgba(255,107,107,.35)}
+.donate-modal{max-width:440px;text-align:center}
+.donate-icon{font-size:2.8rem;margin-bottom:.5rem}
+.donate-text{font-size:.88rem;color:var(--text2);line-height:1.7;margin-bottom:1.5rem}
+.donate-paypal-btn{display:flex;align-items:center;justify-content:center;gap:.5rem;width:100%;padding:.85rem;border-radius:10px;background:#ffc439;color:#111;font-weight:800;font-size:.95rem;text-decoration:none;transition:all var(--tr)}
+.donate-paypal-btn:hover{background:#ffb800;transform:translateY(-1px)}
+.donate-note{font-size:.7rem;color:var(--text3);margin-top:1rem}
+
+/* ═══ JOBS SECTION ═══ */
+.jobs-section{max-width:1440px;margin:0 auto;padding:0 1.5rem 4rem}
+.jobs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.1rem;margin-top:1.4rem}
+.job-card{background:var(--surface);border:1px solid var(--border);border-radius:15px;padding:1.25rem;transition:all var(--tr);position:relative}
+.job-card:hover{border-color:var(--border2);transform:translateY(-3px);box-shadow:0 16px 40px rgba(0,0,0,.3)}
+.job-card.sponsored{border-color:rgba(232,197,71,.35);background:linear-gradient(135deg,var(--surface),rgba(232,197,71,.04))}
+.job-sponsored-tag{position:absolute;top:1rem;right:1rem;font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:#0a0c10;padding:.2rem .5rem;border-radius:5px}
+.job-type-tag{display:inline-block;font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.2rem .55rem;border-radius:5px;margin-bottom:.6rem}
+.job-type-tag.cdi{background:var(--green-dim);color:var(--green)}
+.job-type-tag.stage{background:var(--blue-dim);color:var(--blue)}
+.job-type-tag.freelance{background:var(--orange-dim);color:var(--orange)}
+.job-type-tag.cdd{background:var(--red-dim);color:var(--red)}
+.job-title{font-family:'DM Serif Display',serif;font-size:1.05rem;color:var(--text);margin-bottom:.3rem;padding-right:.5rem}
+.job-company{font-size:.82rem;color:var(--accent);font-weight:700;margin-bottom:.4rem}
+.job-meta{font-size:.72rem;color:var(--text3);font-family:'JetBrains Mono';margin-bottom:.7rem}
+.job-desc{font-size:.82rem;color:var(--text2);line-height:1.6;margin-bottom:1rem}
+.job-footer{display:flex;gap:.5rem}
+.job-footer .btn{flex:1;justify-content:center;font-size:.72rem;padding:.5rem}
+.job-admin-bar{display:flex;gap:.4rem;margin-top:.7rem;padding-top:.7rem;border-top:1px solid var(--border)}
+.job-empty{grid-column:1/-1;text-align:center;padding:2.5rem;color:var(--text3);font-size:.85rem}
+.jobs-cta{background:var(--surface);border:1px dashed var(--border2);border-radius:14px;padding:1.25rem;text-align:center;margin-top:1.1rem}
+.jobs-cta p{font-size:.82rem;color:var(--text2)}
+.jobs-cta strong{color:var(--accent)}
+
+/* ═══ LOGICIELS ═══ */
+.soft-section{max-width:1440px;margin:0 auto;padding:0 1.5rem 4rem}
+.soft-cats{display:flex;gap:.5rem;flex-wrap:wrap;margin:1.2rem 0 1.4rem}
+.soft-cat-chip{font-size:.72rem;font-weight:700;letter-spacing:.03em;padding:.4rem .85rem;border-radius:20px;border:1px solid var(--border);background:var(--surface);color:var(--text2);cursor:pointer;transition:all var(--tr)}
+.soft-cat-chip:hover,.soft-cat-chip.active{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
+.soft-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.1rem}
+.soft-card{background:var(--surface);border:1px solid var(--border);border-radius:15px;padding:1.25rem;transition:all var(--tr)}
+.soft-card:hover{border-color:var(--border2);transform:translateY(-3px);box-shadow:0 16px 40px rgba(0,0,0,.3)}
+.soft-icon{width:44px;height:44px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:.7rem}
+.soft-name{font-family:'DM Serif Display',serif;font-size:1.05rem;color:var(--text);margin-bottom:.25rem}
+.soft-domain{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--accent);margin-bottom:.5rem}
+.soft-desc{font-size:.8rem;color:var(--text2);line-height:1.55;margin-bottom:.9rem;min-height:2.6em}
+.soft-meta{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.9rem}
+.soft-tag{font-size:.65rem;color:var(--text3);background:var(--surface2);padding:.15rem .5rem;border-radius:5px;font-family:'JetBrains Mono'}
+.soft-footer{display:flex;gap:.5rem}
+.soft-footer .btn{flex:1;justify-content:center;font-size:.72rem;padding:.5rem}
+.soft-note{font-size:.72rem;color:var(--text3);margin-top:1.2rem;padding:.8rem 1rem;border-radius:10px;background:var(--surface2);border-left:3px solid var(--accent)}
+
+/* ═══ PLANS ═══ */
+.plans-section{max-width:1440px;margin:0 auto;padding:0 1.5rem 4rem}
+.plans-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.1rem}
+.plan-card{background:var(--surface);border:1px solid var(--border);border-radius:15px;overflow:hidden;transition:all var(--tr)}
+.plan-card:hover{border-color:var(--border2);transform:translateY(-3px);box-shadow:0 16px 40px rgba(0,0,0,.3)}
+.plan-thumb{height:110px;display:flex;align-items:center;justify-content:center;font-size:2.1rem}
+.plan-body{padding:1.1rem}
+.plan-title{font-family:'DM Serif Display',serif;font-size:1rem;color:var(--text);margin-bottom:.3rem}
+.plan-meta{font-size:.72rem;color:var(--text3);font-family:'JetBrains Mono';margin-bottom:.8rem}
+.plan-footer{display:flex;gap:.5rem}
+.plan-footer .btn{flex:1;justify-content:center;font-size:.72rem;padding:.5rem}
+
+/* ═══ CALCULATEURS ═══ */
+.calc-section{max-width:1440px;margin:0 auto;padding:0 1.5rem 4rem}
+.calc-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.9rem;margin-bottom:1.6rem}
+.calc-pick{background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:1rem;cursor:pointer;transition:all var(--tr);text-align:center}
+.calc-pick:hover{border-color:var(--accent);transform:translateY(-2px)}
+.calc-pick.active{border-color:var(--accent);background:var(--accent-dim)}
+.calc-pick .cp-icon{font-size:1.5rem;margin-bottom:.4rem}
+.calc-pick .cp-name{font-size:.78rem;font-weight:700;color:var(--text)}
+.calc-pick .cp-soon{font-size:.62rem;color:var(--text3);margin-top:.2rem}
+.calc-box{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.6rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+@media(max-width:800px){.calc-box{grid-template-columns:1fr}}
+.calc-form-group{margin-bottom:1rem}
+.calc-form-group label{display:block;font-size:.72rem;font-weight:700;letter-spacing:.03em;color:var(--text2);margin-bottom:.35rem}
+.calc-form-row{display:flex;gap:.7rem}
+.calc-form-row .calc-form-group{flex:1}
+.calc-result-box{background:var(--surface2);border-radius:12px;padding:1.1rem 1.3rem;margin-bottom:.7rem}
+.calc-result-label{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--text3);margin-bottom:.2rem}
+.calc-result-value{font-family:'JetBrains Mono';font-size:1.15rem;font-weight:700;color:var(--accent)}
+.calc-warn{font-size:.72rem;color:var(--text3);margin-top:1rem;padding:.8rem 1rem;border-radius:10px;background:var(--surface2);border-left:3px solid var(--orange)}
+
+/* ═══ ASSISTANT CHAT WIDGET ═══ */
+.chat-fab{position:fixed;bottom:1.5rem;right:1.5rem;z-index:600;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#0a0c10;border:none;cursor:pointer;font-size:1.5rem;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 28px var(--accent-glow);transition:all .2s ease}
+.chat-fab:hover{transform:scale(1.06)}
+.chat-fab-dot{position:absolute;top:2px;right:2px;width:12px;height:12px;border-radius:50%;background:var(--green);border:2px solid var(--bg)}
+.chat-window{position:fixed;bottom:1.5rem;right:1.5rem;z-index:601;width:360px;max-width:calc(100vw - 2rem);height:500px;max-height:calc(100vh - 3rem);background:var(--surface);border:1px solid var(--border2);border-radius:18px;box-shadow:0 24px 70px rgba(0,0,0,.5);display:none;flex-direction:column;overflow:hidden;animation:mIn .22s ease both}
+.chat-window.open{display:flex}
+.chat-head{background:linear-gradient(135deg,var(--surface2),var(--surface3));padding:.9rem 1.1rem;display:flex;align-items:center;gap:.65rem;border-bottom:1px solid var(--border)}
+.chat-head-avatar{width:34px;height:34px;border-radius:9px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:1.05rem;flex-shrink:0}
+.chat-head-info{flex:1;min-width:0}
+.chat-head-title{font-size:.85rem;font-weight:800;color:var(--text)}
+.chat-head-status{font-size:.66rem;color:var(--green);display:flex;align-items:center;gap:.3rem}
+.chat-head-status::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green)}
+.chat-close{width:28px;height:28px;border-radius:7px;background:var(--surface);border:1px solid var(--border);color:var(--text3);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0}
+.chat-close:hover{color:var(--text)}
+.chat-body{flex:1;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:.7rem}
+.chat-msg{max-width:82%;font-size:.82rem;line-height:1.55;padding:.6rem .85rem;border-radius:12px;animation:slideIn .3s ease both}
+.chat-msg.bot{align-self:flex-start;background:var(--surface2);color:var(--text2);border-bottom-left-radius:4px}
+.chat-msg.user{align-self:flex-end;background:var(--accent);color:#0a0c10;border-bottom-right-radius:4px;font-weight:600}
+.chat-quick{display:flex;flex-wrap:wrap;gap:.4rem;padding:0 1rem .8rem}
+.chat-quick-btn{font-size:.7rem;background:var(--surface2);border:1px solid var(--border);color:var(--text2);padding:.35rem .7rem;border-radius:100px;cursor:pointer;transition:all var(--tr)}
+.chat-quick-btn:hover{border-color:var(--accent);color:var(--accent)}
+.chat-input-row{display:flex;gap:.5rem;padding:.8rem;border-top:1px solid var(--border)}
+.chat-input-row input{flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:9px;padding:.6rem .8rem;font-size:.82rem;color:var(--text);outline:none}
+.chat-input-row input:focus{border-color:var(--accent)}
+.chat-send{width:38px;height:38px;border-radius:9px;background:var(--accent);color:#0a0c10;border:none;cursor:pointer;font-size:.95rem;flex-shrink:0}
+.chat-send:hover{background:var(--accent2)}
+.chat-typing{align-self:flex-start;display:flex;gap:.25rem;padding:.6rem .85rem;background:var(--surface2);border-radius:12px;border-bottom-left-radius:4px}
+.chat-typing span{width:6px;height:6px;border-radius:50%;background:var(--text3);animation:typingDot 1.2s infinite}
+.chat-typing span:nth-child(2){animation-delay:.2s}.chat-typing span:nth-child(3){animation-delay:.4s}
+@keyframes typingDot{0%,60%,100%{opacity:.3;transform:translateY(0)}30%{opacity:1;transform:translateY(-3px)}}
+@media(max-width:480px){.chat-window{width:calc(100vw - 1.5rem);right:.75rem;bottom:.75rem;height:70vh}.chat-fab{right:1.25rem;bottom:1.25rem}}
+
+/* ═══ REDUCED MOTION ═══ */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:0.001ms!important;animation-iteration-count:1!important;transition-duration:0.001ms!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="blob blob-3"></div>
+<div class="page">
+
+<!-- ═══ OUTILS DE CHANTIER EN FILIGRANE ═══ -->
+<div class="tool-icon" style="top:6%;left:3%;width:130px;height:130px;transform:rotate(-12deg)" aria-hidden="true">
+  <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"><path d="M50 15 L75 55 L50 85 L25 55 Z"/><line x1="50" y1="85" x2="50" y2="95"/><ellipse cx="50" cy="95" rx="6" ry="3"/></svg>
+</div>
+<div class="tool-icon" style="top:14%;right:4%;width:150px;height:95px;transform:rotate(8deg)" aria-hidden="true">
+  <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="40" width="80" height="20" rx="4"/><circle cx="35" cy="50" r="6"/><circle cx="65" cy="50" r="6"/><line x1="35" y1="44" x2="35" y2="56"/><line x1="65" y1="44" x2="65" y2="56"/></svg>
+</div>
+<div class="tool-icon" style="top:26%;left:6%;width:135px;height:135px;transform:rotate(15deg)" aria-hidden="true">
+  <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 65 Q20 25 50 25 Q80 25 80 65"/><line x1="10" y1="65" x2="90" y2="65"/><line x1="50" y1="25" x2="50" y2="15"/><path d="M35 65 Q35 40 50 40 Q65 40 65 65"/></svg>
+</div>
+<div class="tool-icon" style="top:38%;right:5%;width:140px;height:140px;transform:rotate(-8deg)" aria-hidden="true">
+  <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 85 L15 15 L85 85 Z"/><line x1="15" y1="25" x2="22" y2="25"/><line x1="15" y1="35" x2="22" y2="35"/><line x1="15" y1="45" x2="22" y2="45"/><line x1="25" y1="85" x2="25" y2="78"/><line x1="35" y1="85" x2="35" y2="78"/></svg>
+</div>
+<div class="tool-icon" style="top:50%;left:4%;width:150px;height:150px;transform:rotate(20deg)" aria-hidden="true">
+  <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="10" width="45" height="25" rx="6" transform="rotate(-35 32 22)"/><line x1="45" y1="40" x2="85" y2="85"/></svg>
+</div>
+<div class="tool-icon" style="top:62%;right:3%;width:140px;height:140px;transform:rotate(-18deg)" aria-hidden="true">
+  <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"><path d="M65 15 Q80 15 80 30 Q80 40 70 42 L35 77 Q28 84 21 77 Q14 70 21 63 L56 28 Q58 18 65 15 Z"/><circle cx="70" cy="30" r="7"/></svg>
+</div>
+<div class="tool-icon" style="top:74%;left:5%;width:130px;height:130px;transform:rotate(10deg)" aria-hidden="true">
+  <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"><path d="M50 15 L75 55 L50 85 L25 55 Z"/><line x1="50" y1="85" x2="50" y2="95"/><ellipse cx="50" cy="95" rx="6" ry="3"/></svg>
+</div>
+<div class="tool-icon" style="top:86%;right:6%;width:145px;height:90px;transform:rotate(-6deg)" aria-hidden="true">
+  <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="40" width="80" height="20" rx="4"/><circle cx="35" cy="50" r="6"/><circle cx="65" cy="50" r="6"/><line x1="35" y1="44" x2="35" y2="56"/><line x1="65" y1="44" x2="65" y2="56"/></svg>
+</div>
+<div class="tool-icon" style="top:95%;left:4%;width:135px;height:135px;transform:rotate(-14deg)" aria-hidden="true">
+  <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 85 L15 15 L85 85 Z"/><line x1="15" y1="25" x2="22" y2="25"/><line x1="15" y1="35" x2="22" y2="35"/><line x1="15" y1="45" x2="22" y2="45"/><line x1="25" y1="85" x2="25" y2="78"/><line x1="35" y1="85" x2="35" y2="78"/></svg>
+</div>
+
+<!-- STATUS BANNER -->
+<div class="status-banner loading show" id="statusBanner">
+  <span class="spin">⏳</span> <span id="statusBannerText">Connexion à la base de données…</span>
+  <button id="statusRetryBtn" onclick="initSupabase()" style="display:none;margin-left:.75rem;background:var(--surface2);border:1px solid var(--border2);color:var(--text);padding:.3rem .8rem;border-radius:7px;cursor:pointer;font-size:.78rem;font-weight:700">🔄 Réessayer</button>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">
+      <div class="logo-mark">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 3L4 9.5V21H9V15H15V21H20V9.5L12 3Z" stroke="#0a0c10" stroke-width="1.8" stroke-linejoin="round"/>
+          <path d="M9 12H15" stroke="#0a0c10" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="logo-text">GenieCivil<span>Docs</span></div>
+    </a>
+    <div class="nav-links">
+      <a href="#" class="active">Accueil</a>
+      <a href="#docs">Documents</a>
+      <a href="#software">Logiciels</a>
+      <a href="#plans">Plans</a>
+      <a href="#calc">Calculateurs</a>
+      <a href="#jobs">Emplois</a>
+      <a href="#authors">Auteurs</a>
+      <a href="#comments">Discussions</a>
+      <a href="#about">À propos</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-right">
+      <div class="ac-wrap">
+        <div class="nav-search">
+          <span style="font-size:.9rem;color:var(--text3)">🔍</span>
+          <input id="navSearch" type="text" placeholder="Recherche…" autocomplete="off" oninput="acSearch(this.value)" onblur="setTimeout(()=>document.getElementById('acDrop').classList.remove('show'),200)"/>
+        </div>
+        <div class="ac-dropdown" id="acDrop"></div>
+      </div>
+      <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" aria-label="Changer de thème" title="Changer de thème">🌙</button>
+      <div class="notif-wrap">
+        <button class="btn btn-ghost btn-icon notif-btn" onclick="toggleNotifPanel()" title="Notifications" aria-label="Notifications">🔔<span class="notif-dot" id="notifDot"></span></button>
+        <div class="notif-panel" id="notifPanel">
+          <div class="notif-head"><span>Notifications</span><button onclick="markAllRead()">Tout marquer lu</button></div>
+          <div class="notif-list" id="notifList"><div class="notif-empty">Aucune notification pour le moment.</div></div>
+        </div>
+      </div>
+      <button class="btn btn-ghost" onclick="openOverlay('favsOverlay')" title="Mes favoris" aria-label="Mes favoris">❤️</button>
+      <button class="btn btn-donate" onclick="openOverlay('donateOverlay')">☕ Soutenir</button>
+      <button class="btn btn-ghost" id="adminNavBtn" onclick="isAdmin?openOverlay('logOverlay'):openOverlay('loginOverlay')">🔐 Admin</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <div class="hero-tag">🟡 Plateforme ouverte &amp; gratuite</div>
+    <h1>La référence en<br/><em>Génie Civil</em><br/>au bout des doigts</h1>
+    <p class="hero-desc">Plans, notes de calcul, normes, tableurs et présentations techniques — partagés par et pour les professionnels du génie civil.</p>
+    <div class="hero-actions">
+      <a href="#docs" class="btn btn-accent btn-lg">📚 Explorer</a>
+      <a href="#comments" class="btn btn-ghost btn-lg">💬 Discussions</a>
+      <button class="btn btn-ghost btn-lg" onclick="openOverlay('loginOverlay')">🔐 Admin</button>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-num" id="statTotal">—</div><div class="stat-label">Documents</div></div>
+      <div><div class="stat-num" id="statDl">—</div><div class="stat-label">Téléchargements</div></div>
+      <div><div class="stat-num">18</div><div class="stat-label">Catégories</div></div>
+    </div>
+  </div>
+  <div class="hero-card">
+    <div class="hc-top">
+      <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+      <span class="hc-title">Documents récents</span>
+    </div>
+    <div class="hc-body" id="heroRecent">
+      <div class="hc-doc"><div class="hc-icon" style="background:var(--red-dim)">📄</div><div style="flex:1"><div class="hc-name">Chargement…</div><div class="hc-meta skeleton" style="height:10px;margin-top:.2rem;width:70%"></div></div></div>
+      <div class="hc-doc"><div class="hc-icon" style="background:var(--blue-dim)">📐</div><div style="flex:1"><div class="hc-name">Chargement…</div><div class="hc-meta skeleton" style="height:10px;margin-top:.2rem;width:60%"></div></div></div>
+      <div class="hc-doc"><div class="hc-icon" style="background:var(--green-dim)">📊</div><div style="flex:1"><div class="hc-name">Chargement…</div><div class="hc-meta skeleton" style="height:10px;margin-top:.2rem;width:50%"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED -->
+<div class="featured-section reveal">
+  <div class="section-head" style="border:none;padding:0;margin-bottom:1rem"><h2>⭐ Documents <span>en vedette</span></h2></div>
+  <div class="featured-grid" id="featuredGrid">
+    <div class="fi"><div class="fi-icon skeleton" style="background:var(--surface2)"></div><div><div class="skeleton" style="height:12px;width:120px;margin-bottom:.4rem"></div><div class="skeleton" style="height:10px;width:80px"></div></div></div>
+    <div class="fi"><div class="fi-icon skeleton" style="background:var(--surface2)"></div><div><div class="skeleton" style="height:12px;width:100px;margin-bottom:.4rem"></div><div class="skeleton" style="height:10px;width:70px"></div></div></div>
+    <div class="fi"><div class="fi-icon skeleton" style="background:var(--surface2)"></div><div><div class="skeleton" style="height:12px;width:110px;margin-bottom:.4rem"></div><div class="skeleton" style="height:10px;width:75px"></div></div></div>
+  </div>
+</div>
+
+<!-- SEARCH -->
+<div class="search-wrap" id="docs">
+  <div class="big-search">
+    <span style="font-size:1.1rem;padding:0 .4rem;color:var(--text3)">🔍</span>
+    <input type="text" id="mainSearch" placeholder="Rechercher un document, auteur, norme…" oninput="filterDocs()"/>
+    <select class="filter-chip" id="filterCat" onchange="filterDocs()">
+      <option value="">Toutes catégories</option>
+      <option value="structures">Structures & BA</option>
+      <option value="hydraulique">Hydraulique</option>
+      <option value="routes">Routes & VRD</option>
+      <option value="géotechnique">Géotechnique</option>
+      <option value="topographie">Topographie</option>
+      <option value="normes">Normes & DTU</option>
+      <option value="métrés">Métrés & Devis</option>
+      <option value="environnement">Environnement</option>
+    </select>
+    <select class="filter-chip" id="filterType" onchange="filterDocs()">
+      <option value="">Tous formats</option>
+      <option value="pdf">PDF</option>
+      <option value="dwg">DWG</option>
+      <option value="xlsx">Excel</option>
+      <option value="docx">Word</option>
+      <option value="pptx">PowerPoint</option>
+      <option value="video">Vidéo</option>
+    </select>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main-layout">
+  <div>
+    <!-- ADMIN PANEL -->
+    <div class="admin-panel" id="adminPanel">
+      <div>
+        <p>Connecté en tant qu'<strong>Administrateur</strong> <span class="admin-badge">⚙️ Admin</span></p>
+        <p style="font-size:.72rem;color:var(--text3);margin-top:.18rem">Vous êtes le seul à pouvoir publier, modifier et supprimer des documents — et vous êtes exempté de la règle de téléversement obligatoire.</p>
+      </div>
+      <div class="admin-actions">
+        <button class="btn btn-accent" onclick="openOverlay('uploadOverlay')">📤 Publier</button>
+        <button class="btn btn-blue" onclick="openOverlay('pendingOverlay')">📥 Contributions<span class="pending-badge" id="pendingBadge" style="display:none">0</span></button>
+        <button class="btn btn-blue" onclick="openOverlay('logOverlay')">📋 Journal</button>
+        <button class="btn btn-danger" onclick="logout()">Déconnexion</button>
+      </div>
+    </div>
+
+    <!-- VISITOR LOCK PANEL -->
+    <div class="visitor-panel locked" id="visitorPanel">
+      <div>
+        <p><span class="lock-pill locked" id="lockPill">🔒 Verrouillé</span></p>
+        <p style="margin-top:.4rem" id="visitorPanelText">Pour télécharger un document, proposez d'abord l'un des vôtres — une fois validé par l'administrateur, vos téléchargements seront débloqués.</p>
+      </div>
+      <div style="margin-left:auto">
+        <button class="btn btn-accent" onclick="openOverlay('contributeOverlay')">📤 Proposer un document</button>
+      </div>
+    </div>
+
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb" id="breadcrumb"><a href="#" onclick="goHome();return false;">Accueil</a> <span class="bc-sep">›</span> <span id="bcDocs">Documents</span></div>
+
+    <div class="section-head">
+      <div>
+        <h2 id="docsTitle">Documents <span>publiés</span></h2>
+        <p class="doc-count" id="resultCount">Chargement…</p>
+      </div>
+      <div class="tabs-row">
+        <button class="tab active" onclick="setTab(this,'recent')">Récents</button>
+        <button class="tab" onclick="setTab(this,'popular')">Populaires</button>
+        <button class="tab" onclick="setTab(this,'rated')">Mieux notés</button>
+      </div>
+    </div>
+
+    <!-- SKELETON -->
+    <div class="docs-grid" id="skeletonGrid">
+      <div style="border-radius:15px;overflow:hidden;border:1px solid var(--border)"><div class="skeleton" style="height:88px"></div><div style="padding:1rem"><div class="skeleton" style="height:14px;margin-bottom:.5rem;width:80%"></div><div class="skeleton" style="height:11px;margin-bottom:.4rem;width:60%"></div><div class="skeleton" style="height:11px;width:40%"></div></div></div>
+      <div style="border-radius:15px;overflow:hidden;border:1px solid var(--border)"><div class="skeleton" style="height:88px"></div><div style="padding:1rem"><div class="skeleton" style="height:14px;margin-bottom:.5rem;width:75%"></div><div class="skeleton" style="height:11px;margin-bottom:.4rem;width:55%"></div><div class="skeleton" style="height:11px;width:35%"></div></div></div>
+      <div style="border-radius:15px;overflow:hidden;border:1px solid var(--border)"><div class="skeleton" style="height:88px"></div><div style="padding:1rem"><div class="skeleton" style="height:14px;margin-bottom:.5rem;width:85%"></div><div class="skeleton" style="height:11px;margin-bottom:.4rem;width:65%"></div><div class="skeleton" style="height:11px;width:45%"></div></div></div>
+    </div>
+
+    <div class="docs-grid" id="docsGrid" style="display:none"></div>
+
+    <!-- PAGINATION -->
+    <div class="pagination" id="pagination" style="display:none">
+      <button class="pg-btn active" onclick="goPage(1,this)">1</button>
+      <button class="pg-btn" onclick="goPage(2,this)">2</button>
+      <button class="pg-btn" onclick="goPage(3,this)">3</button>
+      <span class="pg-dots">…</span>
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-card">
+      <div class="sc-head">📂 Catégories</div>
+      <div class="cat-row" onclick="filterByCat('structures')"><span>🏗 Structures & BA</span><span class="cat-pill" id="cnt-structures">—</span></div>
+      <div class="cat-row" onclick="filterByCat('hydraulique')"><span>💧 Hydraulique</span><span class="cat-pill" id="cnt-hydraulique">—</span></div>
+      <div class="cat-row" onclick="filterByCat('routes')"><span>🛣 Routes & VRD</span><span class="cat-pill" id="cnt-routes">—</span></div>
+      <div class="cat-row" onclick="filterByCat('géotechnique')"><span>⛏ Géotechnique</span><span class="cat-pill" id="cnt-géotechnique">—</span></div>
+      <div class="cat-row" onclick="filterByCat('topographie')"><span>📐 Topographie</span><span class="cat-pill" id="cnt-topographie">—</span></div>
+      <div class="cat-row" onclick="filterByCat('normes')"><span>📋 Normes & DTU</span><span class="cat-pill" id="cnt-normes">—</span></div>
+      <div class="cat-row" onclick="filterByCat('métrés')"><span>💼 Métrés & Devis</span><span class="cat-pill" id="cnt-métrés">—</span></div>
+      <div class="cat-row" onclick="filterByCat('environnement')"><span>🌿 Environnement</span><span class="cat-pill" id="cnt-environnement">—</span></div>
+    </div>
+    <div class="sidebar-card">
+      <div class="sc-head">🕐 Récemment ajoutés</div>
+      <div id="recentSidebar"><div class="fav-empty">Chargement…</div></div>
+    </div>
+    <div class="sidebar-card">
+      <div class="sc-head">❤️ Mes favoris <span id="favCount" style="color:var(--accent);margin-left:.3rem"></span></div>
+      <div id="favSidebar"><div class="fav-empty">Aucun favori. Cliquez ❤️ sur une carte.</div></div>
+    </div>
+    <div class="sidebar-card">
+      <div class="sc-head">📊 Par format</div>
+      <div class="cat-row" onclick="filterByType('pdf')"><span>📄 PDF</span><span class="cat-pill" id="cnt-pdf">—</span></div>
+      <div class="cat-row" onclick="filterByType('dwg')"><span>📐 DWG / DXF</span><span class="cat-pill" id="cnt-dwg">—</span></div>
+      <div class="cat-row" onclick="filterByType('xlsx')"><span>📊 Excel</span><span class="cat-pill" id="cnt-xlsx">—</span></div>
+      <div class="cat-row" onclick="filterByType('docx')"><span>📝 Word</span><span class="cat-pill" id="cnt-docx">—</span></div>
+      <div class="cat-row" onclick="filterByType('video')"><span>🎥 Vidéo</span><span class="cat-pill" id="cnt-video">—</span></div>
+    </div>
+    <div class="sidebar-card">
+      <div class="sc-head">🏷 Tags populaires</div>
+      <div class="tag-cloud">
+        <span class="tag-pill" style="background:var(--red-dim);color:var(--red)" onclick="searchTag('béton armé')">Béton armé</span>
+        <span class="tag-pill" style="background:var(--blue-dim);color:var(--blue)" onclick="searchTag('coffrage')">Coffrage</span>
+        <span class="tag-pill" style="background:var(--green-dim);color:var(--green)" onclick="searchTag('ferraillage')">Ferraillage</span>
+        <span class="tag-pill" style="background:var(--orange-dim);color:var(--orange)" onclick="searchTag('terrassement')">Terrassement</span>
+        <span class="tag-pill" style="background:var(--purple-dim);color:var(--purple)" onclick="searchTag('VRD')">VRD</span>
+        <span class="tag-pill" style="background:var(--teal-dim);color:var(--teal)" onclick="searchTag('AutoCAD')">AutoCAD</span>
+        <span class="tag-pill" style="background:var(--pink-dim);color:var(--pink)" onclick="searchTag('Excel')">Excel</span>
+        <span class="tag-pill" style="background:var(--accent-dim);color:var(--accent)" onclick="searchTag('DTU')">Normes DTU</span>
+        <span class="tag-pill" style="background:var(--red-dim);color:var(--red)" onclick="searchTag('étude de prix')">Étude de prix</span>
+        <span class="tag-pill" style="background:var(--blue-dim);color:var(--blue)" onclick="searchTag('fondations')">Fondations</span>
+        <span class="tag-pill" style="background:var(--green-dim);color:var(--green)" onclick="searchTag('PFE')">PFE</span>
+        <span class="tag-pill" style="background:var(--orange-dim);color:var(--orange)" onclick="searchTag('rapport de stage')">Rapport de stage</span>
+        <span class="tag-pill" style="background:var(--purple-dim);color:var(--purple)" onclick="searchTag('topographie')">Topographie</span>
+        <span class="tag-pill" style="background:var(--teal-dim);color:var(--teal)" onclick="searchTag('matériaux')">Matériaux</span>
+      </div>
+    </div>
+    <div class="sidebar-card">
+      <div class="sc-head">📣 Suivez-nous</div>
+      <div class="social-widget">
+        <a class="social-btn" href="https://wa.me/22662478410" target="_blank" rel="noopener"><span class="sb-icon">💬</span> WhatsApp</a>
+        <a class="social-btn" href="#" target="_blank" rel="noopener"><span class="sb-icon">📘</span> Facebook</a>
+        <a class="social-btn" href="#" target="_blank" rel="noopener"><span class="sb-icon">📷</span> Instagram</a>
+        <a class="social-btn" href="mailto:genieciviledocs@yahoo.com"><span class="sb-icon">✉️</span> Email</a>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<!-- ═══ JOBS ═══ -->
+<!-- ═══ LOGICIELS ═══ -->
+<div class="soft-section reveal" id="software">
+  <div class="section-head">
+    <div>
+      <h2>💻 Logiciels <span>du BTP</span></h2>
+      <p class="doc-count">Fiches, tutoriels et liens officiels — pas de copies piratées</p>
+    </div>
+  </div>
+  <div class="soft-cats" id="softCats"></div>
+  <div class="soft-grid" id="softGrid"></div>
+  <div class="soft-note">ℹ️ Pour les logiciels commerciaux (ETABS, AutoCAD, Revit…), nous renvoyons uniquement vers le site officiel de l'éditeur ou vers des versions étudiantes/libres légales. GenieCivil Docs ne distribue aucune version piratée.</div>
+</div>
+
+<!-- ═══ PLANS & MODÈLES ═══ -->
+<div class="plans-section reveal" id="plans">
+  <div class="section-head">
+    <div>
+      <h2>📐 Plans <span>& modèles</span></h2>
+      <p class="doc-count">Plans architecturaux, coffrage, ferraillage et détails constructifs</p>
+    </div>
+  </div>
+  <div class="plans-grid" id="plansGrid"></div>
+</div>
+
+<!-- ═══ CALCULATEURS ═══ -->
+<div class="calc-section reveal" id="calc">
+  <div class="section-head">
+    <div>
+      <h2>🧮 Calculateurs <span>de dimensionnement</span></h2>
+      <p class="doc-count">Outils de calcul rapide pour le génie civil</p>
+    </div>
+  </div>
+  <div class="calc-list" id="calcList"></div>
+  <div id="calcBeamBox" class="calc-box">
+    <div>
+      <h3 style="font-family:'DM Serif Display',serif;font-size:1.15rem;margin-bottom:1rem">Poutre en béton armé — flexion simple</h3>
+      <div class="calc-form-group">
+        <label>Type d'appui</label>
+        <select class="fc" id="cbSupport"><option value="simple">Simplement appuyée</option><option value="console">Console (porte-à-faux)</option></select>
+      </div>
+      <div class="calc-form-row">
+        <div class="calc-form-group"><label>Portée L (m)</label><input class="fc" type="number" id="cbSpan" value="5" step="0.1"/></div>
+        <div class="calc-form-group"><label>Largeur b (m)</label><input class="fc" type="number" id="cbWidth" value="0.30" step="0.01"/></div>
+      </div>
+      <div class="calc-form-row">
+        <div class="calc-form-group"><label>Hauteur h (m)</label><input class="fc" type="number" id="cbHeight" value="0.50" step="0.01"/></div>
+        <div class="calc-form-group"><label>Enrobage d' (m)</label><input class="fc" type="number" id="cbCover" value="0.04" step="0.005"/></div>
+      </div>
+      <div class="calc-form-row">
+        <div class="calc-form-group"><label>Charge permanente G (kN/m)</label><input class="fc" type="number" id="cbG" value="10" step="0.5"/></div>
+        <div class="calc-form-group"><label>Charge d'exploitation Q (kN/m)</label><input class="fc" type="number" id="cbQ" value="6" step="0.5"/></div>
+      </div>
+      <div class="calc-form-row">
+        <div class="calc-form-group"><label>fc28 (MPa)</label><input class="fc" type="number" id="cbFc28" value="25" step="1"/></div>
+        <div class="calc-form-group"><label>fe / fyk (MPa)</label><input class="fc" type="number" id="cbFe" value="400" step="10"/></div>
+      </div>
+      <button class="btn btn-accent" style="width:100%;justify-content:center" onclick="calcBeam()">Calculer</button>
+    </div>
+    <div>
+      <div class="calc-result-box"><div class="calc-result-label">Charge pondérée ELU (1,35G + 1,5Q)</div><div class="calc-result-value" id="rQu">—</div></div>
+      <div class="calc-result-box"><div class="calc-result-label">Moment fléchissant max Mu</div><div class="calc-result-value" id="rMu">—</div></div>
+      <div class="calc-result-box"><div class="calc-result-label">Effort tranchant max Vu</div><div class="calc-result-value" id="rVu">—</div></div>
+      <div class="calc-result-box"><div class="calc-result-label">Moment réduit μu</div><div class="calc-result-value" id="rMuReduit">—</div></div>
+      <div class="calc-result-box"><div class="calc-result-label">Section d'armatures Ast estimée</div><div class="calc-result-value" id="rAst">—</div></div>
+      <div class="calc-warn">⚠️ Calcul simplifié à titre indicatif (méthode BAEL 91 / flexion simple, section rectangulaire). Ne remplace pas une note de calcul validée par un ingénieur qualifié — vérifiez toujours les hypothèses, combinaisons de charges et normes applicables à votre projet.</div>
+    </div>
+  </div>
+</div>
+
+<div class="jobs-section reveal" id="jobs">
+  <div class="section-head">
+    <div>
+      <h2>💼 Offres d'<span>emploi</span></h2>
+      <p class="doc-count">Opportunités pour la communauté du génie civil</p>
+    </div>
+    <button class="btn btn-accent" id="postJobBtn" onclick="isAdmin?openJobEdit(null):null" style="display:none">📢 Publier une offre</button>
+  </div>
+  <div class="jobs-grid" id="jobsGrid">
+    <div class="job-empty">Chargement des offres…</div>
+  </div>
+  <div class="jobs-cta">
+    <p>Vous représentez une entreprise et souhaitez publier une offre sur GenieCivil Docs ? <strong>Contactez-nous</strong> via le formulaire de contact ci-dessous.</p>
+  </div>
+</div>
+
+<!-- COMMENTS -->
+<div class="comments-section reveal" id="comments">
+  <div class="section-head" style="border:none;padding:0;margin-bottom:0"><h2>💬 Espace <span>discussions</span></h2></div>
+  <div class="comments-grid">
+    <div class="comment-form-card">
+      <h3>Laisser un commentaire</h3>
+      <div class="form-row-2">
+        <div class="form-group"><label class="fl">Nom</label><input class="fc" type="text" id="cName" placeholder="Votre nom"/></div>
+        <div class="form-group"><label class="fl">Email</label><input class="fc" type="email" id="cEmail" placeholder="votre@email.com"/></div>
+      </div>
+      <div class="form-group"><label class="fl">Document concerné</label>
+        <select class="fc" id="cDoc">
+          <option>— Choisissez —</option>
+          <option>Question générale</option>
+        </select>
+      </div>
+      <div class="form-group"><label class="fl">Message</label><textarea class="fc" id="cText" placeholder="Votre question, retour ou suggestion…"></textarea></div>
+      <button class="btn btn-accent" onclick="postComment()">✉️ Publier</button>
+    </div>
+    <div class="comments-list" id="commentsList">
+      <div class="fav-empty">Chargement des commentaires…</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ AUTHORS ═══ -->
+<div class="authors-section reveal" id="authors">
+  <div class="section-head" style="border:none;padding:0;margin-bottom:0"><h2>👷 Nos <span>contributeurs</span></h2></div>
+  <div class="authors-grid" id="authorsGrid">
+    <div class="author-card"><div class="author-avatar skeleton" style="background:var(--surface2)"></div></div>
+  </div>
+</div>
+
+<!-- ═══ ABOUT ═══ -->
+<div class="about-section reveal" id="about">
+  <div class="section-head" style="border:none;padding:0;margin-bottom:0"><h2>🏗 À <span>propos</span></h2></div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p><strong style="color:var(--text)">GenieCivil Docs</strong> est né d'un constat simple : les documents techniques de qualité — notes de calcul, plans d'exécution, bordereaux de prix, normes — restent trop souvent dispersés entre disques durs personnels et boîtes mail, au lieu de circuler entre les mains de celles et ceux qui en ont besoin.</p>
+      <p>Notre mission est de bâtir une bibliothèque ouverte et gratuite, alimentée par la communauté des ingénieurs, techniciens et étudiants en génie civil, pour que chaque projet bénéficie du savoir accumulé par les précédents.</p>
+      <p>Chaque document est partagé librement, discuté en commentaires, noté par ses utilisateurs — pour que la qualité remonte naturellement à la surface.</p>
+      <div class="about-stats-row">
+        <div class="about-stat"><div class="about-stat-num" id="aboutStatDocs">—</div><div class="about-stat-label">Documents</div></div>
+        <div class="about-stat"><div class="about-stat-num">18</div><div class="about-stat-label">Catégories</div></div>
+        <div class="about-stat"><div class="about-stat-num" id="aboutStatAuthors">—</div><div class="about-stat-label">Contributeurs</div></div>
+      </div>
+    </div>
+    <div class="about-visual">
+      <svg viewBox="0 0 400 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="0" width="400" height="320" fill="none"/>
+        <g opacity="0.5" stroke="var(--border2)" stroke-width="1">
+          <line x1="0" y1="40" x2="400" y2="40"/><line x1="0" y1="80" x2="400" y2="80"/>
+          <line x1="0" y1="120" x2="400" y2="120"/><line x1="0" y1="160" x2="400" y2="160"/>
+          <line x1="0" y1="200" x2="400" y2="200"/><line x1="0" y1="240" x2="400" y2="240"/>
+          <line x1="0" y1="280" x2="400" y2="280"/>
+          <line x1="40" y1="0" x2="40" y2="320"/><line x1="80" y1="0" x2="80" y2="320"/>
+          <line x1="120" y1="0" x2="120" y2="320"/><line x1="160" y1="0" x2="160" y2="320"/>
+          <line x1="200" y1="0" x2="200" y2="320"/><line x1="240" y1="0" x2="240" y2="320"/>
+          <line x1="280" y1="0" x2="280" y2="320"/><line x1="320" y1="0" x2="320" y2="320"/>
+          <line x1="360" y1="0" x2="360" y2="320"/>
+        </g>
+        <path d="M60 260 L60 140 L140 100 L220 140 L220 260" stroke="var(--accent)" stroke-width="2.5" fill="none" stroke-linejoin="round"/>
+        <line x1="60" y1="180" x2="220" y2="180" stroke="var(--accent)" stroke-width="2"/>
+        <line x1="60" y1="220" x2="220" y2="220" stroke="var(--accent)" stroke-width="2"/>
+        <circle cx="140" cy="100" r="5" fill="var(--accent)"/>
+        <path d="M260 260 L260 160 L340 160 L340 260" stroke="var(--blue)" stroke-width="2.5" fill="none" stroke-linejoin="round" opacity="0.7"/>
+        <line x1="260" y1="200" x2="340" y2="200" stroke="var(--blue)" stroke-width="2" opacity="0.7"/>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ FAQ ═══ -->
+<div class="faq-section reveal" id="faq">
+  <div class="section-head" style="border:none;padding:0;margin-bottom:0"><h2>❓ Questions <span>fréquentes</span></h2></div>
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Est-ce que la plateforme est vraiment gratuite ?<span class="faq-arrow">▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Oui, entièrement. La consultation, le téléchargement et la publication de documents sont gratuits pour tous les membres de la communauté.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Qui peut publier des documents ?<span class="faq-arrow">▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">La publication est actuellement réservée à l'administrateur de la plateforme, afin de garantir la qualité et la pertinence des documents partagés. Vous pouvez cependant commenter, noter et proposer vos propres documents par le formulaire de contact.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Quels formats de fichiers sont acceptés ?<span class="faq-arrow">▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">PDF, DWG, DXF, XLSX, DOCX, PPTX, IFC (BIM) ainsi que les archives ZIP et RAR.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Comment signaler une erreur dans un document ?<span class="faq-arrow">▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Utilisez l'espace commentaires sous le document concerné, ou passez par le formulaire de contact pour un signalement plus détaillé.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Puis-je utiliser ces documents pour un projet professionnel ?<span class="faq-arrow">▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Les documents sont partagés à titre informatif et pédagogique. Vérifiez toujours les calculs et hypothèses avant tout usage professionnel, et référez-vous aux normes en vigueur dans votre pays.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CONTACT ═══ -->
+<div class="contact-section reveal" id="contact">
+  <div class="section-head" style="border:none;padding:0;margin-bottom:0"><h2>📬 Nous <span>contacter</span></h2></div>
+  <div class="contact-grid">
+    <div class="contact-info-card">
+      <h3>Coordonnées</h3>
+      <div class="contact-row"><span class="ci-icon">✉️</span><a href="mailto:genieciviledocs@yahoo.com" style="color:inherit">genieciviledocs@yahoo.com</a></div>
+      <div class="contact-row"><span class="ci-icon">💬</span><a href="https://wa.me/22662478410" target="_blank" rel="noopener" style="color:inherit">WhatsApp — +226 62 47 84 10</a></div>
+      <div class="contact-row"><span class="ci-icon">📍</span><span>Ouagadougou, Burkina Faso</span></div>
+      <div class="contact-row"><span class="ci-icon">🔔</span><span>Suggestions de documents bienvenues</span></div>
+    </div>
+    <div class="contact-form-card">
+      <h3>Envoyer un message</h3>
+      <div class="form-row-2">
+        <div class="form-group"><label class="fl">Nom</label><input class="fc" type="text" id="ctName" placeholder="Votre nom"/></div>
+        <div class="form-group"><label class="fl">Email</label><input class="fc" type="email" id="ctEmail" placeholder="votre@email.com"/></div>
+      </div>
+      <div class="form-group"><label class="fl">Sujet</label>
+        <select class="fc" id="ctSubject">
+          <option>Suggestion de document</option>
+          <option>Signalement d'erreur</option>
+          <option>Question générale</option>
+          <option>Partenariat</option>
+        </select>
+      </div>
+      <div class="form-group"><label class="fl">Message</label><textarea class="fc" id="ctMessage" placeholder="Votre message…" style="min-height:100px"></textarea></div>
+      <button class="btn btn-accent" onclick="sendContact()">✉️ Envoyer le message</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ POLITIQUE DE CONFIDENTIALITÉ ═══ -->
+<div class="legal-section reveal" id="privacy">
+  <div class="section-head" style="border:none;padding:0;margin-bottom:0"><h2>🔒 Politique de <span>confidentialité</span></h2></div>
+  <p class="legal-updated">Dernière mise à jour : août 2026 — cliquez sur une section pour la déplier</p>
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">1. Qui sommes-nous<span class="faq-arrow">▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">GenieCivil Docs est une plateforme collaborative et gratuite de partage de documents techniques de génie civil, basée à Ouagadougou, Burkina Faso. Pour toute question relative à cette politique, contactez-nous à <a href="mailto:genieciviledocs@yahoo.com" style="color:var(--accent)">genieciviledocs@yahoo.com</a> ou sur WhatsApp au +226 62 47 84 10.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">2. Données que nous collectons<span class="faq-arrow">▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">
+        Selon la façon dont vous utilisez le site, nous pouvons collecter :
+        <ul style="margin:.6rem 0 .6rem 1.1rem;padding:0">
+          <li style="margin-bottom:.4rem"><strong style="color:var(--text)">Commentaires</strong> : nom, adresse email (facultative), message, et le document concerné</li>
+          <li style="margin-bottom:.4rem"><strong style="color:var(--text)">Contributions de documents</strong> : titre, description, nom de l'auteur, catégorie, et le fichier téléversé</li>
+          <li style="margin-bottom:.4rem"><strong style="color:var(--text)">Identifiant anonyme de visiteur</strong> : généré automatiquement et stocké dans votre navigateur, utilisé uniquement pour le déblocage des téléchargements</li>
+          <li style="margin-bottom:.4rem"><strong style="color:var(--text)">Préférences locales</strong> : thème, favoris — stockés uniquement dans votre navigateur, jamais transmis à nos serveurs</li>
+          <li><strong style="color:var(--text)">Statistiques d'usage</strong> : téléchargements et notes (données agrégées, non liées à votre identité)</li>
+        </ul>
+        Nous ne demandons jamais de mot de passe, de données bancaires ou d'informations sensibles pour utiliser le site.
+      </div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">3. Comment nous utilisons ces données<span class="faq-arrow">▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">
+        <ul style="margin:0 0 .6rem 1.1rem;padding:0">
+          <li style="margin-bottom:.3rem">Afficher et modérer les commentaires et contributions</li>
+          <li style="margin-bottom:.3rem">Débloquer les téléchargements après validation d'une contribution</li>
+          <li style="margin-bottom:.3rem">Améliorer le site et son contenu</li>
+          <li>Répondre à vos messages de contact</li>
+        </ul>
+        Nous ne vendons ni ne louons vos données à des tiers.
+      </div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">4. Services tiers utilisés<span class="faq-arrow">▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">
+        Le site s'appuie sur les prestataires suivants, qui peuvent traiter certaines données techniques :
+        <ul style="margin:.6rem 0 0 1.1rem;padding:0">
+          <li style="margin-bottom:.3rem"><strong style="color:var(--text)">Supabase</strong> (base de données et fichiers, serveurs dans l'Union européenne)</li>
+          <li style="margin-bottom:.3rem"><strong style="color:var(--text)">Render</strong> (hébergement du site)</li>
+          <li style="margin-bottom:.3rem"><strong style="color:var(--text)">Google Fonts</strong> (peut transmettre votre IP à Google)</li>
+          <li style="margin-bottom:.3rem"><strong style="color:var(--text)">PayPal</strong> (dons volontaires — nous ne voyons jamais vos données de paiement)</li>
+          <li><strong style="color:var(--text)">Google AdSense</strong> (publicité — voir section suivante)</li>
+        </ul>
+      </div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">5. Cookies et publicité<span class="faq-arrow">▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Notre site peut afficher des annonces publicitaires fournies par <strong style="color:var(--text)">Google AdSense</strong>. Google et ses partenaires peuvent utiliser des cookies et identifiants publicitaires pour diffuser des annonces personnalisées. Vous pouvez gérer vos préférences via <a href="https://adssettings.google.com" target="_blank" rel="noopener" style="color:var(--accent)">adssettings.google.com</a>, ou désactiver la personnalisation via <a href="https://www.aboutads.info" target="_blank" rel="noopener" style="color:var(--accent)">aboutads.info</a>.<br/><br/>Le site utilise aussi le stockage local de votre navigateur (localStorage) pour mémoriser votre thème, vos favoris et votre statut de contribution — ces informations restent sur votre appareil, ce ne sont pas des cookies traceurs.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">6. Vos droits<span class="faq-arrow">▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Vous pouvez à tout moment nous demander de consulter, corriger ou supprimer les données personnelles vous concernant (par exemple un commentaire ou une contribution) en nous contactant par email ou WhatsApp. Nous traiterons votre demande dans un délai raisonnable.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">7. Sécurité<span class="faq-arrow">▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Nous prenons des mesures raisonnables pour protéger vos données, mais aucun système n'est infaillible à 100 %. Ne partagez jamais d'informations sensibles dans un commentaire public.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">8. Enfants<span class="faq-arrow">▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Ce site s'adresse aux étudiants, techniciens et professionnels du génie civil. Il n'est pas destiné aux enfants de moins de 13 ans, et nous ne collectons pas sciemment de données les concernant.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">9. Modifications de cette politique<span class="faq-arrow">▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Cette politique peut évoluer avec le temps, notamment si de nouvelles fonctionnalités sont ajoutées au site. La date de dernière mise à jour est indiquée en haut de cette page.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="ft-brand">
+      <div style="display:inline-flex;align-items:center;gap:.65rem"><div class="logo-mark"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3L4 9.5V21H9V15H15V21H20V9.5L12 3Z" stroke="#0a0c10" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 12H15" stroke="#0a0c10" stroke-width="1.8" stroke-linecap="round"/></svg></div><div class="logo-text">GenieCivil<span>Docs</span></div></div>
+      <p>La bibliothèque collaborative de documents techniques pour les professionnels du génie civil.</p>
+    </div>
+    <div class="ft-col"><h5>Navigation</h5><ul><li><a href="#">Accueil</a></li><li><a href="#">Documents</a></li><li><a href="#">Catégories</a></li><li><a href="#">Forum</a></li></ul></div>
+    <div class="ft-col"><h5>Formats</h5><ul><li><a href="#">PDF</a></li><li><a href="#">DWG / DXF</a></li><li><a href="#">Excel (XLSX)</a></li><li><a href="#">Word / PPTX</a></li><li><a href="#">IFC / BIM</a></li></ul></div>
+    <div class="ft-col"><h5>Infos</h5><ul><li><a href="#">Conditions</a></li><li><a href="#privacy">Confidentialité</a></li><li><a href="#contact">Contact</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 GenieCivil Docs</span>
+    <span style="color:var(--accent)">Partagez le savoir · Bâtissez l'avenir 🏗</span>
+  </div>
+</footer>
+</div>
+
+<!-- ═══ MODAL : LOGIN ═══ -->
+<div class="overlay" id="loginOverlay">
+  <div class="modal" style="max-width:400px">
+    <button class="modal-close" onclick="closeOverlay('loginOverlay')">✕</button>
+    <div class="lock-head"><div class="lock-icon">🔐</div></div>
+    <h2 class="modal-title" style="text-align:center;border:none;padding:0;margin-bottom:.5rem">Espace <span>Admin</span></h2>
+    <p class="lock-hint">Accès exclusif à l'administrateur.<br/>Les visiteurs ne peuvent pas publier.</p>
+    <div class="form-group"><label class="fl">Identifiant</label><input class="fc" type="text" id="adminUser" placeholder="admin"/></div>
+    <div class="form-group"><label class="fl">Mot de passe</label><input class="fc" type="password" id="adminPw" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"/>
+    <p class="wrong-pw" id="wrongPw">❌ Identifiants incorrects.</p></div>
+    <div class="modal-footer"><button class="btn btn-ghost" onclick="closeOverlay('loginOverlay')">Annuler</button><button class="btn btn-accent" onclick="doLogin()">🔓 Connexion</button></div>
+  </div>
+</div>
+
+<!-- ═══ MODAL : UPLOAD ═══ -->
+<div class="overlay" id="uploadOverlay">
+  <div class="modal">
+    <button class="modal-close" onclick="closeOverlay('uploadOverlay')">✕</button>
+    <h2 class="modal-title">📤 Publier des <span>documents</span></h2>
+    <p class="lock-hint" style="text-align:left">Sélectionnez un ou plusieurs fichiers. La catégorie, l'auteur et la description s'appliquent à tous ; le titre de chacun reste modifiable individuellement.</p>
+
+    <div class="upload-zone" id="uzRoot" onclick="document.getElementById('fileInput').click()" ondragover="event.preventDefault();this.classList.add('over')" ondragleave="this.classList.remove('over')" ondrop="dropFile(event)">
+      <div class="uz-icon" id="uzIcon">📁</div>
+      <p class="uz-text" id="uzText">Glissez vos fichiers ici ou <strong>cliquez pour parcourir</strong> (plusieurs fichiers possibles)</p>
+      <div class="fmt-row"><span class="fmt-tag">PDF</span><span class="fmt-tag">DWG</span><span class="fmt-tag">DXF</span><span class="fmt-tag">XLSX</span><span class="fmt-tag">DOCX</span><span class="fmt-tag">PPTX</span><span class="fmt-tag">IFC</span><span class="fmt-tag">ZIP</span><span class="fmt-tag">MP4</span></div>
+    </div>
+    <input type="file" id="fileInput" multiple style="display:none" accept=".pdf,.dwg,.dxf,.xlsx,.xls,.docx,.doc,.pptx,.ppt,.ifc,.zip,.rar,.mp4,.mov,.avi,.mkv,.webm" onchange="pickFiles(this.files);this.value=''"/>
+
+    <div id="fileListWrap" style="display:none;margin:.9rem 0">
+      <label class="fl" style="margin-bottom:.5rem;display:block">Fichiers sélectionnés (<span id="fileCount">0</span>)</label>
+      <div id="fileList" style="max-height:190px;overflow-y:auto;display:flex;flex-direction:column;gap:.4rem"></div>
+    </div>
+
+    <div class="form-row-2" style="margin-top:.9rem">
+      <div class="form-group" style="margin:0"><label class="fl">Catégorie *</label>
+        <select class="fc" id="upCat">
+          <option value="structures">Structures & Béton armé</option>
+          <option value="hydraulique">Hydraulique & Assainissement</option>
+          <option value="routes">Routes & VRD</option>
+          <option value="géotechnique">Géotechnique</option>
+          <option value="topographie">Topographie</option>
+          <option value="normes">Normes & DTU</option>
+          <option value="métrés">Métrés & Devis</option>
+          <option value="environnement">Environnement</option>
+        </select>
+      </div>
+      <div class="form-group" style="margin:0"><label class="fl">Auteur</label><input class="fc" type="text" id="upAuthor" placeholder="Nom de l'auteur"/></div>
+    </div>
+    <div class="form-group" style="margin-top:.8rem"><label class="fl">Description (appliquée à tous)</label><textarea class="fc" id="upDesc" placeholder="Décrivez le contenu…" style="min-height:55px"></textarea></div>
+    <label style="display:flex;align-items:center;gap:.5rem;font-size:.78rem;color:var(--text2);margin:.9rem 0;cursor:pointer"><input type="checkbox" id="upFeatured" style="accent-color:var(--accent)"/> Mettre en vedette ces documents</label>
+
+    <!-- Upload progress -->
+    <div class="progress-wrap" id="progWrap">
+      <p class="progress-label" id="progLabel">Envoi en cours…</p>
+      <div class="progress-bar"><div class="progress-fill" id="progFill"></div></div>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" onclick="closeOverlay('uploadOverlay')">Annuler</button><button class="btn btn-accent" id="publishBtn" onclick="publishDoc()">🚀 Publier</button></div>
+  </div>
+</div>
+
+<!-- ═══ MODAL : CONTRIBUTE (visitors) ═══ -->
+<div class="overlay" id="contributeOverlay">
+  <div class="modal">
+    <button class="modal-close" onclick="closeOverlay('contributeOverlay')">✕</button>
+    <h2 class="modal-title">📤 Proposer un <span>document</span></h2>
+    <p class="lock-hint" style="text-align:left">Votre document sera d'abord examiné par l'administrateur. Une fois validé, vos téléchargements seront débloqués automatiquement.</p>
+    <div class="form-row-2">
+      <div class="form-group" style="margin:0"><label class="fl">Titre *</label><input class="fc" type="text" id="ctbTitle" placeholder="Titre du document"/></div>
+      <div class="form-group" style="margin:0"><label class="fl">Catégorie *</label>
+        <select class="fc" id="ctbCat">
+          <option value="structures">Structures & Béton armé</option>
+          <option value="hydraulique">Hydraulique & Assainissement</option>
+          <option value="routes">Routes & VRD</option>
+          <option value="géotechnique">Géotechnique</option>
+          <option value="topographie">Topographie</option>
+          <option value="normes">Normes & DTU</option>
+          <option value="métrés">Métrés & Devis</option>
+          <option value="environnement">Environnement</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group" style="margin-top:.8rem"><label class="fl">Description</label><textarea class="fc" id="ctbDesc" placeholder="Décrivez le contenu…" style="min-height:60px"></textarea></div>
+    <div class="form-row-2">
+      <div class="form-group" style="margin:0"><label class="fl">Votre nom *</label><input class="fc" type="text" id="ctbAuthor" placeholder="Nom et prénom"/></div>
+      <div class="form-group" style="margin:0"><label class="fl">Format</label>
+        <select class="fc" id="ctbType">
+          <option value="pdf">PDF</option><option value="dwg">DWG / DXF</option>
+          <option value="xlsx">Excel (XLSX)</option><option value="docx">Word (DOCX)</option>
+          <option value="pptx">PowerPoint</option><option value="ifc">IFC / BIM</option><option value="zip">ZIP / RAR</option>
+          <option value="video">Vidéo (MP4)</option>
+        </select>
+      </div>
+    </div>
+    <div class="upload-zone" id="ctbUzRoot" onclick="document.getElementById('ctbFileInput').click()" ondragover="event.preventDefault();this.classList.add('over')" ondragleave="this.classList.remove('over')" ondrop="ctbDropFile(event)">
+      <div class="uz-icon" id="ctbUzIcon">📁</div>
+      <p class="uz-text" id="ctbUzText">Glissez votre fichier ici ou <strong>cliquez pour parcourir</strong></p>
+      <div class="fmt-row"><span class="fmt-tag">PDF</span><span class="fmt-tag">DWG</span><span class="fmt-tag">DXF</span><span class="fmt-tag">XLSX</span><span class="fmt-tag">DOCX</span><span class="fmt-tag">PPTX</span><span class="fmt-tag">IFC</span><span class="fmt-tag">ZIP</span><span class="fmt-tag">MP4</span></div>
+    </div>
+    <input type="file" id="ctbFileInput" style="display:none" accept=".pdf,.dwg,.dxf,.xlsx,.xls,.docx,.doc,.pptx,.ppt,.ifc,.zip,.rar,.mp4,.mov,.avi,.mkv,.webm" onchange="ctbPickFile(this.files[0])"/>
+    <div class="progress-wrap" id="ctbProgWrap">
+      <p class="progress-label" id="ctbProgLabel">Envoi en cours…</p>
+      <div class="progress-bar"><div class="progress-fill" id="ctbProgFill"></div></div>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" onclick="closeOverlay('contributeOverlay')">Annuler</button><button class="btn btn-accent" id="contributeBtn" onclick="submitContribution()">📨 Soumettre à validation</button></div>
+  </div>
+</div>
+
+<!-- ═══ MODAL : PENDING REVIEW (admin) ═══ -->
+<div class="overlay" id="pendingOverlay">
+  <div class="modal" style="max-width:600px">
+    <button class="modal-close" onclick="closeOverlay('pendingOverlay')">✕</button>
+    <h2 class="modal-title">📥 Contributions en <span>attente</span></h2>
+    <div id="pendingList" style="max-height:460px;overflow-y:auto"></div>
+  </div>
+</div>
+
+<!-- ═══ MODAL : EDIT ═══ -->
+<div class="overlay" id="editOverlay">
+  <div class="modal">
+    <button class="modal-close" onclick="closeOverlay('editOverlay')">✕</button>
+    <h2 class="modal-title">✏️ Modifier le <span>document</span></h2>
+    <input type="hidden" id="editId"/>
+    <div class="form-group"><label class="fl">Titre</label><input class="fc" type="text" id="editTitle"/></div>
+    <div class="form-group"><label class="fl">Description</label><textarea class="fc" id="editDesc" style="min-height:70px"></textarea></div>
+    <div class="form-group"><label class="fl">Auteur</label><input class="fc" type="text" id="editAuthor"/></div>
+    <label style="display:flex;align-items:center;gap:.5rem;font-size:.78rem;color:var(--text2);cursor:pointer;margin-bottom:.8rem"><input type="checkbox" id="editFeatured" style="accent-color:var(--accent)"/> Mettre en vedette</label>
+    <div class="modal-footer"><button class="btn btn-ghost" onclick="closeOverlay('editOverlay')">Annuler</button><button class="btn btn-accent" onclick="saveEdit()">💾 Enregistrer</button></div>
+  </div>
+</div>
+
+<!-- ═══ MODAL : ACTIVITY LOG ═══ -->
+<div class="overlay" id="logOverlay">
+  <div class="modal" style="max-width:580px">
+    <button class="modal-close" onclick="closeOverlay('logOverlay')">✕</button>
+    <h2 class="modal-title">📋 Journal d'<span>activité</span></h2>
+    <div id="activityLog" style="max-height:420px;overflow-y:auto"></div>
+  </div>
+</div>
+
+<!-- ═══ MODAL : SHARE ═══ -->
+<div class="overlay" id="shareOverlay">
+  <div class="modal" style="max-width:400px">
+    <button class="modal-close" onclick="closeOverlay('shareOverlay')">✕</button>
+    <h2 class="modal-title">🔗 Partager le <span>document</span></h2>
+    <div class="share-options">
+      <div class="share-opt" onclick="shareVia('whatsapp')"><div class="so-icon">💬</div>WhatsApp</div>
+      <div class="share-opt" onclick="shareVia('email')"><div class="so-icon">✉️</div>Email</div>
+      <div class="share-opt" onclick="shareVia('linkedin')"><div class="so-icon">💼</div>LinkedIn</div>
+      <div class="share-opt" onclick="shareVia('copy')"><div class="so-icon">📋</div>Copier</div>
+    </div>
+    <div class="form-group"><label class="fl">Lien direct</label>
+      <div class="share-link-row">
+        <input class="fc" type="text" id="shareLink" readonly/>
+        <button class="btn btn-accent" onclick="copyLink()">Copier</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ MODAL : PREVIEW ═══ -->
+<div class="overlay" id="previewOverlay">
+  <div class="modal preview-modal">
+    <button class="modal-close" onclick="closeOverlay('previewOverlay')">✕</button>
+    <h2 class="modal-title" id="prevTitle">Aperçu du <span>document</span></h2>
+    <div class="preview-area"><div class="pa-icon" id="prevIcon">📄</div><p id="prevMsg" style="font-size:.85rem;color:var(--text3);text-align:center"></p></div>
+    <div style="display:flex;gap:.6rem;justify-content:flex-end">
+      <button class="btn btn-ghost" onclick="closeOverlay('previewOverlay')">Fermer</button>
+      <button class="btn btn-accent" id="prevDlBtn">⬇️ Télécharger</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ MODAL : FAVORITES ═══ -->
+<div class="overlay" id="favsOverlay">
+  <div class="modal" style="max-width:460px">
+    <button class="modal-close" onclick="closeOverlay('favsOverlay')">✕</button>
+    <h2 class="modal-title">❤️ Mes <span>favoris</span></h2>
+    <div id="favsModal" style="max-height:380px;overflow-y:auto"></div>
+  </div>
+</div>
+
+<!-- ═══ MODAL : AUTHOR PROFILE ═══ -->
+<div class="overlay" id="authorOverlay">
+  <div class="modal" style="max-width:520px">
+    <button class="modal-close" onclick="closeOverlay('authorOverlay')">✕</button>
+    <div class="author-profile-head">
+      <div class="author-profile-avatar" id="apAvatar">—</div>
+      <div>
+        <div class="author-profile-name" id="apName">—</div>
+        <div class="author-profile-meta" id="apMeta">—</div>
+      </div>
+    </div>
+    <p style="font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:.7rem">Documents publiés</p>
+    <div id="apDocs" style="max-height:320px;overflow-y:auto"></div>
+  </div>
+</div>
+
+<!-- ═══ MODAL : DONATE ═══ -->
+<div class="overlay" id="donateOverlay">
+  <div class="modal donate-modal">
+    <button class="modal-close" onclick="closeOverlay('donateOverlay')">✕</button>
+    <div class="donate-icon">☕</div>
+    <h2 class="modal-title" style="border:none;padding:0;margin-bottom:.6rem">Soutenir <span>GenieCivil Docs</span></h2>
+    <p class="donate-text">Ce site est gratuit et le restera. Si les documents vous ont aidé dans vos études ou vos projets, un petit don aide à couvrir l'hébergement et à faire grandir la bibliothèque. Merci ! 🙏</p>
+    <a class="donate-paypal-btn" href="https://paypal.me/ramd420" target="_blank" rel="noopener">💛 Faire un don via PayPal</a>
+    <p class="donate-note">Vous quittez GenieCivil Docs pour PayPal, un site sécurisé.</p>
+  </div>
+</div>
+
+<!-- ═══ MODAL : POST / EDIT JOB (admin) ═══ -->
+<div class="overlay" id="jobOverlay">
+  <div class="modal">
+    <button class="modal-close" onclick="closeOverlay('jobOverlay')">✕</button>
+    <h2 class="modal-title">📢 Publier une <span>offre d'emploi</span></h2>
+    <input type="hidden" id="jobId"/>
+    <div class="form-row-2">
+      <div class="form-group" style="margin:0"><label class="fl">Intitulé du poste *</label><input class="fc" type="text" id="jobTitle" placeholder="Ex: Ingénieur béton armé"/></div>
+      <div class="form-group" style="margin:0"><label class="fl">Entreprise *</label><input class="fc" type="text" id="jobCompany" placeholder="Nom de l'entreprise"/></div>
+    </div>
+    <div class="form-row-2" style="margin-top:.8rem">
+      <div class="form-group" style="margin:0"><label class="fl">Type de contrat</label>
+        <select class="fc" id="jobType">
+          <option value="cdi">CDI</option>
+          <option value="cdd">CDD</option>
+          <option value="stage">Stage</option>
+          <option value="freelance">Freelance</option>
+        </select>
+      </div>
+      <div class="form-group" style="margin:0"><label class="fl">Lieu</label><input class="fc" type="text" id="jobLocation" placeholder="Ex: Bobo-Dioulasso"/></div>
+    </div>
+    <div class="form-group" style="margin-top:.8rem"><label class="fl">Description</label><textarea class="fc" id="jobDesc" placeholder="Description du poste, profil recherché…" style="min-height:70px"></textarea></div>
+    <div class="form-group"><label class="fl">Contact / lien pour postuler *</label><input class="fc" type="text" id="jobContact" placeholder="Email ou lien de candidature"/></div>
+    <label style="display:flex;align-items:center;gap:.5rem;font-size:.78rem;color:var(--text2);margin-bottom:.8rem;cursor:pointer"><input type="checkbox" id="jobSponsored" style="accent-color:var(--accent)"/> Offre sponsorisée (mise en avant)</label>
+    <div class="modal-footer"><button class="btn btn-ghost" onclick="closeOverlay('jobOverlay')">Annuler</button><button class="btn btn-accent" onclick="saveJob()">🚀 Publier l'offre</button></div>
+  </div>
+</div>
+
+<!-- ═══ ASSISTANT CHAT WIDGET ═══ -->
+<button class="chat-fab" id="chatFab" onclick="toggleChat()" aria-label="Ouvrir l'assistant" title="Assistant GenieCivil Docs">
+  💬<span class="chat-fab-dot"></span>
+</button>
+<div class="chat-window" id="chatWindow">
+  <div class="chat-head">
+    <div class="chat-head-avatar">🤖</div>
+    <div class="chat-head-info">
+      <div class="chat-head-title">Assistant GenieCivil Docs</div>
+      <div class="chat-head-status">En ligne</div>
+    </div>
+    <button class="chat-close" onclick="toggleChat()" aria-label="Fermer">✕</button>
+  </div>
+  <div class="chat-body" id="chatBody"></div>
+  <div class="chat-quick" id="chatQuick"></div>
+  <div class="chat-input-row">
+    <input type="text" id="chatInput" placeholder="Posez votre question…" onkeydown="if(event.key==='Enter')sendChatMsg()"/>
+    <button class="chat-send" onclick="sendChatMsg()" aria-label="Envoyer">➤</button>
+  </div>
+</div>
+
+<div class="toast-wrap" id="toastWrap"></div>
+
+<!-- ═══════════════════════ JAVASCRIPT ═══════════════════════ -->
+<script>
+/* ══════════════════════════════════════════════
+   ⚙️  CONFIGURATION SUPABASE
+   Remplacez les deux valeurs ci-dessous après
+   avoir créé votre projet sur supabase.com
+══════════════════════════════════════════════ */
+const SUPABASE_URL  = 'https://gckswhsblnbkkuffcjea.supabase.co';        // ex: https://abcdef.supabase.co
+const SUPABASE_ANON = 'sb_publishable_glmbLR6euzg6vtL-sK98GQ_mh8zJBve';   // clé publique anon
+
+/* ══ ADMIN LOCAL (changez ces valeurs !) ══ */
+const ADMIN_USER = 'admin';
+const ADMIN_PW   = 'Bitou@7';   // 🔑 Changez ce mot de passe !
+
+/* ══════════════════════════════════════════════
+   INITIALISATION
+══════════════════════════════════════════════ */
+let sb = null;
+let isAdmin = false;
+let allDocs = [];
+let filteredDocs = [];
+let currentPage = 1;
+const PER_PAGE = 9;
+let activityLogs = [];
+let selectedFiles = [];
+let sharingDoc = null;
+let currentSort = 'recent';
+let pendingDocs = [];
+let ctbFile = null;
+const VISITOR_ID = getVisitorId();
+
+function getVisitorId() {
+  let id = localStorage.getItem('gcd_visitor_id');
+  if(!id) { id = 'v_' + Math.random().toString(36).slice(2) + Date.now().toString(36); localStorage.setItem('gcd_visitor_id', id); }
+  return id;
+}
+
+function loadScriptOnce(src) {
+  return new Promise((resolve, reject) => {
+    const existing = document.querySelector(`script[data-src="${src}"]`);
+    if (existing) { existing.addEventListener('load', resolve); existing.addEventListener('error', reject); return; }
+    const s = document.createElement('script');
+    s.src = src; s.dataset.src = src;
+    s.onload = resolve;
+    s.onerror = () => reject(new Error('échec: ' + src));
+    document.head.appendChild(s);
+  });
+}
+
+const SUPABASE_CDN_SOURCES = [
+  'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2',
+  'https://unpkg.com/@supabase/supabase-js@2',
+];
+
+async function ensureSupabaseLib(banner, textEl) {
+  if (typeof supabase !== 'undefined') return;
+  for (let i = 0; i < SUPABASE_CDN_SOURCES.length; i++) {
+    try {
+      textEl.textContent = `Chargement de la bibliothèque de connexion… (${i+1}/${SUPABASE_CDN_SOURCES.length})`;
+      await loadScriptOnce(SUPABASE_CDN_SOURCES[i]);
+      if (typeof supabase !== 'undefined') return;
+    } catch(e) { /* essaie la source suivante */ }
+  }
+  throw new Error('Impossible de charger la bibliothèque Supabase — vérifiez votre connexion Internet.');
+}
+
+async function initSupabase() {
+  const banner = document.getElementById('statusBanner');
+  const textEl = document.getElementById('statusBannerText');
+  const retryBtn = document.getElementById('statusRetryBtn');
+  banner.className = 'status-banner loading show';
+  retryBtn.style.display = 'none';
+  textEl.textContent = 'Connexion à la base de données…';
+  presetHashFilter();
+  try {
+    await ensureSupabaseLib(banner, textEl);
+
+    if (SUPABASE_URL === 'VOTRE_URL_SUPABASE') {
+      // Mode démo — Supabase non configuré
+      banner.className = 'status-banner error-state show';
+      textEl.textContent = '⚠️ Supabase non configuré — Mode démo activé. Suivez le guide GUIDE_DEPLOIEMENT.md pour connecter la base de données.';
+      loadDemoData();
+      loadDemoJobs();
+      updateVisitorPanel();
+      return;
+    }
+    sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+    await loadDocs();
+    await loadComments();
+    await loadPending();
+    await loadJobs();
+    banner.className = 'status-banner ok show';
+    textEl.textContent = '✅ Connecté à Supabase — Données en temps réel actives.';
+    setTimeout(() => { banner.classList.remove('show'); }, 4000);
+    // Realtime subscription
+    sb.channel('documents').on('postgres_changes',{event:'*',schema:'public',table:'documents'},()=>loadDocs()).subscribe();
+    sb.channel('comments').on('postgres_changes',{event:'*',schema:'public',table:'comments'},()=>loadComments()).subscribe();
+    sb.channel('pending_documents').on('postgres_changes',{event:'*',schema:'public',table:'pending_documents'},()=>loadPending()).subscribe();
+    sb.channel('job_listings').on('postgres_changes',{event:'*',schema:'public',table:'job_listings'},()=>loadJobs()).subscribe();
+  } catch(e) {
+    banner.className = 'status-banner error-state show';
+    textEl.textContent = '❌ Connexion impossible : ' + e.message;
+    retryBtn.style.display = 'inline-block';
+    loadDemoData();
+    loadDemoJobs();
+    updateVisitorPanel();
+  }
+}
+
+/* ══════════════════════════════════════════════
+   CHARGEMENT DES DONNÉES
+══════════════════════════════════════════════ */
+async function loadDocs() {
+  try {
+    const { data, error } = await sb.from('documents').select('*').order('created_at', { ascending: false });
+    if (error) throw error;
+    allDocs = data.map(d => ({ ...d, fav: getFavs().includes(d.id), userRating: 0 }));
+    renderAll();
+    updateStats();
+    updateSidebarCounts();
+    updateFeatured();
+    updateRecentSidebar();
+    updateHeroRecent();
+    updateAuthorsGrid();
+    updateAboutStats();
+  } catch(e) { showToast('Erreur chargement documents : ' + e.message, 'error'); }
+}
+
+async function loadComments() {
+  try {
+    const { data, error } = await sb.from('comments').select('*').order('created_at', { ascending: false });
+    if (error) throw error;
+    renderComments(data || []);
+  } catch(e) { console.warn('Erreur commentaires:', e.message); }
+}
+
+/* ══ DEMO DATA (quand Supabase non configuré) ══ */
+function loadDemoData() {
+  allDocs = [
+    {id:'d1',type:'pdf',cat:'structures',title:'Note de calcul béton armé — RDC+3',description:'Calcul des poteaux, poutres et dalles selon BAEL91 pour un immeuble R+3.',author:'A. Traoré',file_size:'2.4 Mo',download_count:348,rating:4.7,featured:true,fav:false,userRating:0,created_at:new Date().toISOString()},
+    {id:'d2',type:'dwg',cat:'routes',title:'Plan de masse — Voirie résidentielle',description:'Plan AutoCAD complet d\'un projet de voirie urbaine avec réseaux EP, EU.',author:'M. Ouédraogo',file_size:'8.1 Mo',download_count:512,rating:4.9,featured:false,fav:false,userRating:0,created_at:new Date(Date.now()-3600000).toISOString()},
+    {id:'d3',type:'xlsx',cat:'métrés',title:'Bordereau de prix unitaire BTP 2024',description:'Tableur Excel avec formules automatiques pour le chiffrage de projets.',author:'F. Coulibaly',file_size:'540 Ko',download_count:921,rating:4.8,featured:true,fav:false,userRating:0,created_at:new Date(Date.now()-7200000).toISOString()},
+    {id:'d4',type:'pdf',cat:'hydraulique',title:'Dimensionnement réseau d\'assainissement',description:'Note de calcul hydraulique : débit, profils en long, ouvrages de visite.',author:'I. Zongo',file_size:'1.8 Mo',download_count:275,rating:4.5,featured:false,fav:false,userRating:0,created_at:new Date(Date.now()-86400000).toISOString()},
+    {id:'d5',type:'xlsx',cat:'structures',title:'Calcul semelle isolée — Eurocode 7',description:'Outil Excel automatisé pour le dimensionnement des semelles isolées EC7.',author:'D. Sawadogo',file_size:'320 Ko',download_count:688,rating:4.6,featured:false,fav:false,userRating:0,created_at:new Date(Date.now()-172800000).toISOString()},
+    {id:'d6',type:'docx',cat:'normes',title:'Guide DTU 13.3 — Dallages industriels',description:'Document de référence sur les dallages sur sol : conception, épaisseur, joints.',author:'R. Kaboré',file_size:'1.1 Mo',download_count:198,rating:4.4,featured:false,fav:false,userRating:0,created_at:new Date(Date.now()-259200000).toISOString()},
+    {id:'d7',type:'dwg',cat:'structures',title:'Plans d\'exécution — Pont-route type',description:'Dossier AutoCAD complet : coffrage, ferraillage, appuis néoprène.',author:'B. Compaoré',file_size:'14.2 Mo',download_count:432,rating:4.9,featured:true,fav:false,userRating:0,created_at:new Date(Date.now()-345600000).toISOString()},
+    {id:'d8',type:'pptx',cat:'géotechnique',title:'Cours — Fondations profondes (pieux)',description:'Présentation complète sur le dimensionnement des pieux et micropieux.',author:'Prof. N. Barry',file_size:'5.6 Mo',download_count:310,rating:4.7,featured:false,fav:false,userRating:0,created_at:new Date(Date.now()-432000000).toISOString()},
+  ];
+  renderAll(); updateStats(); updateSidebarCounts(); updateFeatured(); updateRecentSidebar(); updateHeroRecent(); updateAuthorsGrid(); updateAboutStats();
+  const cl = document.getElementById('commentsList');
+  cl.innerHTML = `
+    <div class="comment-card"><div class="avatar">AT</div><div style="flex:1"><div class="cc-name">Ahmed Traoré</div><div class="cc-meta">il y a 3h · <span class="cc-doc-link">📄 Note calcul BA R+3</span></div><p class="cc-text">Excellent document ! Les formules sont bien expliquées et conformes au BAEL91.</p><button class="cc-reply-btn" onclick="showReplyForm(this)">↩ Répondre</button></div></div>
+    <div class="comment-card"><div class="avatar">MO</div><div style="flex:1"><div class="cc-name">Moussa Ouédraogo</div><div class="cc-meta">Hier · <span class="cc-doc-link">📊 BPU 2024</span></div><p class="cc-text">Le bordereau est très complet. Une version adaptée aux prix locaux serait idéale.</p><button class="cc-reply-btn" onclick="showReplyForm(this)">↩ Répondre</button></div></div>`;
+  populateDocSelect();
+}
+
+/* ══════════════════════════════════════════════
+   RENDER
+══════════════════════════════════════════════ */
+function renderAll() {
+  filteredDocs = getFiltered();
+  applySort();
+  showDocs();
+}
+
+function showDocs() {
+  const skeleton = document.getElementById('skeletonGrid');
+  const grid = document.getElementById('docsGrid');
+  const pag = document.getElementById('pagination');
+  skeleton.style.display = 'none';
+  grid.style.display = 'grid';
+
+  const start = (currentPage - 1) * PER_PAGE;
+  const page = filteredDocs.slice(start, start + PER_PAGE);
+  document.getElementById('resultCount').textContent = `${filteredDocs.length} / ${allDocs.length} documents`;
+
+  if (!page.length) {
+    grid.innerHTML = `<div class="empty-state"><div class="empty-icon">🔍</div>Aucun document trouvé.</div>`;
+    pag.style.display = 'none';
+    return;
+  }
+
+  grid.innerHTML = page.map(d => `
+    <div class="doc-card" data-id="${d.id}" data-cat="${d.cat||''}" onmousemove="cardGlow(event,this)">
+      <div class="dc-banner" data-type="${d.type}">
+        <span class="dc-type-badge">${d.type.toUpperCase()}</span>
+        ${d.featured ? '<span class="dc-featured-badge">⭐ Vedette</span>' : ''}
+        <span class="dc-bg-icon">${tIcon(d.type)}</span>
+        <span class="dc-cat-pill" onclick="event.stopPropagation();goToCategoryPage('${d.cat||''}')" style="cursor:pointer">${(d.cat||'').toUpperCase()}</span>
+        <button class="dc-fav ${d.fav?'active':''}" onclick="toggleFav(event,'${d.id}')">${d.fav?'❤️':'🤍'}</button>
+      </div>
+      <div class="dc-body">
+        <h4 class="dc-title">${d.title}</h4>
+        <p class="dc-desc">${d.description||''}</p>
+        <div class="dc-meta">
+          <span>👤 <span class="author-link" onclick="event.stopPropagation();openAuthorProfile('${(d.author||'Inconnu').replace(/'/g,"\\'")}')">${d.author||'Inconnu'}</span></span>
+          <span>📁 ${d.file_size||'—'}</span>
+          <span class="dl-badge">⬇ ${d.download_count||0}</span>
+        </div>
+        <div class="star-rating">${renderStars(d.userRating||d.rating||0, d.id)}</div>
+      </div>
+      <div class="dc-footer">
+        <button class="btn btn-prev" onclick="openPreview('${d.id}')">👁 Aperçu</button>
+        <button class="btn btn-dl" onclick="dlDoc('${d.id}')">⬇ Télécharger</button>
+        <button class="btn-share-sm" onclick="openShare('${d.id}')" title="Partager">🔗</button>
+      </div>
+      ${isAdmin ? `<div class="dc-admin-bar visible">
+        <button class="btn btn-ghost" style="font-size:.68rem;padding:.3rem .6rem" onclick="openEdit('${d.id}')">✏️ Modifier</button>
+        <button class="btn btn-danger" style="font-size:.68rem;padding:.3rem .6rem" onclick="delDoc('${d.id}')">🗑 Supprimer</button>
+        <button class="btn btn-ghost" style="font-size:.68rem;padding:.3rem .6rem;margin-left:auto" onclick="toggleFeatured('${d.id}')">${d.featured?'★ Retirer':'⭐ Vedette'}</button>
+      </div>` : ''}
+    </div>
+  `).join('');
+
+  // Pagination — style "Plus récents / Plus anciens"
+  const pages = Math.ceil(filteredDocs.length / PER_PAGE);
+  if (pages > 1) {
+    pag.style.display = 'flex';
+    const prevDisabled = currentPage <= 1;
+    const nextDisabled = currentPage >= pages;
+    pag.innerHTML = `
+      <button class="pg-nav-btn" ${prevDisabled?'disabled':''} onclick="goPage(${currentPage-1})">← Plus récents</button>
+      <span class="pg-indicator">Page ${currentPage} / ${pages}</span>
+      <button class="pg-nav-btn" ${nextDisabled?'disabled':''} onclick="goPage(${currentPage+1})">Plus anciens →</button>`;
+  } else { pag.style.display = 'none'; }
+
+  updateBreadcrumb();
+}
+
+function tIcon(t){return{pdf:'📄',dwg:'📐',xlsx:'📊',docx:'📝',pptx:'📊',ifc:'🏗',zip:'📦',video:'🎥'}[t]||'📁'}
+function renderStars(r,id){let s='';for(let i=1;i<=5;i++)s+=`<span class="star ${i<=Math.round(r)?'filled':''}" onclick="rateDoc('${id}',${i})">${i<=Math.round(r)?'★':'☆'}</span>`;return s;}
+function cardGlow(e,c){const r=c.getBoundingClientRect();c.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');c.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%');}
+
+/* ══ STATS ══ */
+function updateStats() {
+  document.getElementById('statTotal').textContent = allDocs.length.toLocaleString();
+  const total = allDocs.reduce((s,d)=>s+(d.download_count||0),0);
+  document.getElementById('statDl').textContent = total > 999 ? Math.round(total/1000)+'K' : total;
+}
+function updateSidebarCounts() {
+  ['structures','hydraulique','routes','géotechnique','topographie','normes','métrés','environnement','pdf','dwg','xlsx','docx','video'].forEach(k=>{
+    const el = document.getElementById('cnt-'+k);
+    if(el) el.textContent = allDocs.filter(d=>d.cat===k||d.type===k).length;
+  });
+}
+function updateFeatured() {
+  const featDocs = allDocs.filter(d=>d.featured).slice(0,3);
+  const colors = ['var(--red-dim)','var(--blue-dim)','var(--green-dim)'];
+  const badges = ['Populaire','Nouveau','Recommandé'];
+  document.getElementById('featuredGrid').innerHTML = featDocs.length ? featDocs.map((d,i)=>`
+    <div class="fi" onclick=""><div class="fi-icon" style="background:${colors[i%3]}">${tIcon(d.type)}</div>
+    <div><div class="fi-badge">${badges[i%3]}</div><div class="fi-title">${d.title}</div><div class="fi-meta">${d.type.toUpperCase()} · ⬇ ${d.download_count||0} · ⭐ ${d.rating||0}</div></div></div>`).join('') : '<p style="color:var(--text3);font-size:.8rem;padding:1rem">Aucun document en vedette.</p>';
+}
+function updateRecentSidebar() {
+  const recent = [...allDocs].sort((a,b)=>new Date(b.created_at)-new Date(a.created_at)).slice(0,4);
+  const swatchColors = {pdf:'var(--red-dim)',dwg:'var(--blue-dim)',xlsx:'var(--green-dim)',docx:'var(--blue-dim)',pptx:'var(--orange-dim)',ifc:'var(--purple-dim)',zip:'var(--teal-dim)'};
+  document.getElementById('recentSidebar').innerHTML = recent.map(d=>`<div class="recent-row"><div class="rr-swatch" style="background:${swatchColors[d.type]||'var(--surface3)'}">${tIcon(d.type)}</div><div style="flex:1;min-width:0"><div class="rr-name">${d.title}</div><div class="rr-meta">${d.type.toUpperCase()} · ${timeAgo(d.created_at)}</div></div></div>`).join('');
+}
+function updateHeroRecent() {
+  const recent = [...allDocs].sort((a,b)=>new Date(b.created_at)-new Date(a.created_at)).slice(0,3);
+  const colors = ['var(--red-dim)','var(--blue-dim)','var(--green-dim)'];
+  document.getElementById('heroRecent').innerHTML = recent.map((d,i)=>`
+    <div class="hc-doc"><div class="hc-icon" style="background:${colors[i]}">${tIcon(d.type)}</div>
+    <div style="flex:1;min-width:0"><div class="hc-name">${d.title}</div><div class="hc-meta">${d.type.toUpperCase()} · ${d.file_size||'—'} · ${timeAgo(d.created_at)}</div></div>
+    <div class="hc-dl">⬇ ${d.download_count||0}</div></div>`).join('');
+}
+function populateDocSelect() {
+  const sel = document.getElementById('cDoc');
+  sel.innerHTML = '<option>— Choisissez —</option><option>Question générale</option>';
+  allDocs.forEach(d=>{ const o=document.createElement('option');o.textContent=d.title;sel.appendChild(o); });
+}
+
+/* ══ AUTHORS ══ */
+function getAuthorStats() {
+  const map = {};
+  allDocs.forEach(d=>{
+    const name = d.author || 'Inconnu';
+    if(!map[name]) map[name] = { name, count:0, downloads:0, ratingSum:0, ratingN:0 };
+    map[name].count++;
+    map[name].downloads += (d.download_count||0);
+    if(d.rating){ map[name].ratingSum += d.rating; map[name].ratingN++; }
+  });
+  return Object.values(map).sort((a,b)=>b.downloads-a.downloads);
+}
+function initials(name){ return (name||'?').split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2); }
+function updateAuthorsGrid() {
+  const authors = getAuthorStats();
+  document.getElementById('authorsGrid').innerHTML = authors.length ? authors.map(a=>`
+    <div class="author-card" onclick="openAuthorProfile('${a.name.replace(/'/g,"\\'")}')">
+      <div class="author-avatar">${initials(a.name)}</div>
+      <div class="author-name">${a.name}</div>
+      <div class="author-stats">${a.count} document${a.count>1?'s':''} · ⬇ ${a.downloads}</div>
+    </div>`).join('') : '<p style="color:var(--text3);font-size:.8rem">Aucun contributeur pour le moment.</p>';
+}
+function openAuthorProfile(name) {
+  const stats = getAuthorStats().find(a=>a.name===name);
+  const docs = allDocs.filter(d=>d.author===name);
+  document.getElementById('apAvatar').textContent = initials(name);
+  document.getElementById('apName').textContent = name;
+  const avgRating = stats && stats.ratingN ? (stats.ratingSum/stats.ratingN).toFixed(1) : '—';
+  document.getElementById('apMeta').textContent = `${docs.length} document${docs.length>1?'s':''} · ⬇ ${stats?stats.downloads:0} téléchargements · ⭐ ${avgRating}`;
+  document.getElementById('apDocs').innerHTML = docs.length ? docs.map(d=>`
+    <div class="author-doc-row"><div class="adr-icon">${tIcon(d.type)}</div>
+      <div style="flex:1"><div style="font-weight:600;color:var(--text)">${d.title}</div><div style="font-size:.65rem;color:var(--text3);font-family:'JetBrains Mono'">${d.type.toUpperCase()} · ⬇ ${d.download_count||0}</div></div>
+      <button class="btn btn-dl" style="font-size:.68rem;padding:.35rem .65rem" onclick="dlDoc('${d.id}')">⬇</button>
+    </div>`).join('') : '<p style="color:var(--text3);font-size:.8rem">Aucun document.</p>';
+  openOverlay('authorOverlay');
+}
+
+/* ══ ABOUT STATS ══ */
+function updateAboutStats() {
+  const total = document.getElementById('aboutStatDocs');
+  const authorsEl = document.getElementById('aboutStatAuthors');
+  if(total) total.textContent = allDocs.length;
+  if(authorsEl) authorsEl.textContent = getAuthorStats().length;
+}
+
+/* ══════════════════════════════════════════════
+   OFFRES D'EMPLOI
+══════════════════════════════════════════════ */
+let jobListings = [];
+
+async function loadJobs() {
+  try {
+    if(sb) {
+      const { data, error } = await sb.from('job_listings').select('*').order('created_at',{ascending:false});
+      if(error) throw error;
+      jobListings = data || [];
+    }
+    renderJobs();
+  } catch(e) {
+    console.warn('Jobs load error (table peut-être absente):', e.message);
+    renderJobs();
+  }
+}
+
+function loadDemoJobs() {
+  jobListings = [
+    { id:'j1', title:'Ingénieur béton armé', company:'Luxury Home Burkina', type:'cdi', location:'Bobo-Dioulasso', description:'Conception et suivi de chantiers de bâtiments R+2 à R+5. Maîtrise du BAEL/Eurocode requise.', contact:'recrutement@exemple.bf', sponsored:true, created_at:new Date().toISOString() },
+    { id:'j2', title:'Stagiaire génie civil', company:'Bureau d\'études ATC', type:'stage', location:'Ouagadougou', description:'Stage de fin d\'études en dimensionnement de structures et suivi de contrôle qualité.', contact:'stages@exemple.bf', sponsored:false, created_at:new Date(Date.now()-86400000).toISOString() },
+  ];
+  renderJobs();
+}
+
+function jobTypeLabel(t){ return {cdi:'CDI',cdd:'CDD',stage:'Stage',freelance:'Freelance'}[t]||t; }
+
+function renderJobs() {
+  const grid = document.getElementById('jobsGrid');
+  if(!grid) return;
+  const sorted = [...jobListings].sort((a,b)=> (b.sponsored===a.sponsored?0:(b.sponsored?1:-1)) || new Date(b.created_at)-new Date(a.created_at));
+  if(!sorted.length) { grid.innerHTML = '<div class="job-empty">Aucune offre publiée pour le moment.</div>'; return; }
+  grid.innerHTML = sorted.map(j => `
+    <div class="job-card ${j.sponsored?'sponsored':''}">
+      ${j.sponsored?'<span class="job-sponsored-tag">⭐ Sponsorisé</span>':''}
+      <span class="job-type-tag ${j.type}">${jobTypeLabel(j.type)}</span>
+      <h4 class="job-title">${j.title}</h4>
+      <div class="job-company">${j.company}</div>
+      <div class="job-meta">📍 ${j.location||'—'} · ${timeAgo(j.created_at)}</div>
+      <p class="job-desc">${j.description||''}</p>
+      <div class="job-footer">
+        <a class="btn btn-accent" href="${/@/.test(j.contact)?'mailto:'+j.contact:j.contact}" target="_blank" rel="noopener">📨 Postuler</a>
+      </div>
+      ${isAdmin?`<div class="job-admin-bar">
+        <button class="btn btn-ghost" style="font-size:.68rem;padding:.3rem .6rem" onclick="openJobEdit('${j.id}')">✏️ Modifier</button>
+        <button class="btn btn-danger" style="font-size:.68rem;padding:.3rem .6rem" onclick="deleteJob('${j.id}')">🗑 Supprimer</button>
+      </div>`:''}
+    </div>`).join('');
+}
+
+function openJobEdit(id) {
+  const j = jobListings.find(x=>x.id===id);
+  document.getElementById('jobId').value = id || '';
+  document.getElementById('jobTitle').value = j ? j.title : '';
+  document.getElementById('jobCompany').value = j ? j.company : '';
+  document.getElementById('jobType').value = j ? j.type : 'cdi';
+  document.getElementById('jobLocation').value = j ? j.location : '';
+  document.getElementById('jobDesc').value = j ? (j.description||'') : '';
+  document.getElementById('jobContact').value = j ? j.contact : '';
+  document.getElementById('jobSponsored').checked = j ? !!j.sponsored : false;
+  openOverlay('jobOverlay');
+}
+
+async function saveJob() {
+  const id = document.getElementById('jobId').value;
+  const title = document.getElementById('jobTitle').value.trim();
+  const company = document.getElementById('jobCompany').value.trim();
+  const type = document.getElementById('jobType').value;
+  const location = document.getElementById('jobLocation').value.trim();
+  const description = document.getElementById('jobDesc').value.trim();
+  const contact = document.getElementById('jobContact').value.trim();
+  const sponsored = document.getElementById('jobSponsored').checked;
+  if(!title || !company || !contact) { showToast('⚠️ Titre, entreprise et contact requis.','error'); return; }
+
+  if(id) {
+    const j = jobListings.find(x=>x.id===id);
+    Object.assign(j, { title, company, type, location, description, contact, sponsored });
+    if(sb && !id.startsWith('local_')) { await sb.from('job_listings').update({title,company,type,location,description,contact,sponsored}).eq('id',id); }
+    logActivity('✏️','var(--orange-dim)',`<strong>${title}</strong> — Offre modifiée`,timeAgo(new Date()));
+    showToast('✅ Offre modifiée !','success');
+  } else {
+    const entry = { title, company, type, location, description, contact, sponsored, created_at:new Date().toISOString() };
+    if(sb) {
+      const { data, error } = await sb.from('job_listings').insert([entry]).select();
+      if(error){ showToast('Erreur : '+error.message,'error'); return; }
+      jobListings.unshift(data[0]);
+    } else {
+      jobListings.unshift({ ...entry, id:'local_'+Date.now() });
+    }
+    logActivity('📢','var(--green-dim)',`<strong>${title}</strong> — Offre publiée`,timeAgo(new Date()));
+    showToast(`✅ Offre "${title}" publiée !`,'success');
+  }
+  closeOverlay('jobOverlay');
+  renderJobs();
+}
+
+async function deleteJob(id) {
+  const j = jobListings.find(x=>x.id===id);
+  if(!j || !confirm(`Supprimer l'offre "${j.title}" ?`)) return;
+  if(sb && !id.startsWith('local_')) { await sb.from('job_listings').delete().eq('id',id); }
+  jobListings.splice(jobListings.findIndex(x=>x.id===id),1);
+  renderJobs();
+  logActivity('🗑','var(--red-dim)',`<strong>${j.title}</strong> — Offre supprimée`,timeAgo(new Date()));
+  showToast('🗑 Offre supprimée.','error');
+}
+
+function updatePostJobBtn() {
+  const btn = document.getElementById('postJobBtn');
+  if(btn) btn.style.display = isAdmin ? 'inline-flex' : 'none';
+}
+
+/* ══ FAQ ══ */
+function toggleFaq(el) {
+  const item = el.parentElement;
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(f=>f.classList.remove('open'));
+  if(!wasOpen) item.classList.add('open');
+}
+
+/* ══ CONTACT FORM ══ */
+function sendContact() {
+  const name = document.getElementById('ctName').value.trim();
+  const email = document.getElementById('ctEmail').value.trim();
+  const subject = document.getElementById('ctSubject').value;
+  const message = document.getElementById('ctMessage').value.trim();
+  if(!name||!email||!message){ showToast('⚠️ Nom, email et message requis.','error'); return; }
+  const waText = `Bonjour, je suis ${name} (${email}).\nSujet : ${subject}\n\n${message}`;
+  window.open(`https://wa.me/22662478410?text=${encodeURIComponent(waText)}`, '_blank');
+  document.getElementById('ctName').value=''; document.getElementById('ctEmail').value=''; document.getElementById('ctMessage').value='';
+  showToast('✅ Ouverture de WhatsApp pour envoyer votre message…','success');
+  addNotification('✉️','var(--accent-dim)',`Nouveau message de contact : <strong>${subject}</strong>`,'À l\'instant');
+}
+
+/* ══════════════════════════════════════════════
+   ASSISTANT (base de connaissances, sans IA générative)
+══════════════════════════════════════════════ */
+const CHAT_KB = [
+  { keywords:['bonjour','salut','bonsoir','hello','coucou','bjr'], reply:"Bonjour ! 👋 Je suis l'assistant de GenieCivil Docs. Je peux vous aider avec les documents, les téléchargements, les contributions, les dons… Posez votre question !" },
+  { keywords:['télécharger','telecharger','download','récupérer'], reply:"Pour télécharger un document, il faut d'abord proposer l'un des vôtres via \"📤 Proposer un document\". Une fois validé par l'administrateur, vos téléchargements sont débloqués automatiquement." },
+  { keywords:['verrouillé','verrouille','bloqué','bloque','locked','cadenas'], reply:"Le bandeau 🔒 signifie que vous n'avez pas encore de contribution approuvée. Proposez un document — une fois validé, le cadenas passe à 🔓 et vos téléchargements sont débloqués." },
+  { keywords:['proposer','contribuer','contribution','soumettre','envoyer un document'], reply:"Cliquez sur \"📤 Proposer un document\", remplissez le formulaire (titre, catégorie, fichier) et soumettez. L'administrateur examine avant publication." },
+  { keywords:['publier','admin','administrateur'], reply:"Seul l'administrateur peut publier un document directement. Les visiteurs proposent les leurs, examinés avant publication." },
+  { keywords:['catégorie','categorie','categories'], reply:"Catégories disponibles : Structures & Béton armé, Hydraulique, Routes & VRD, Géotechnique, Topographie, Normes & DTU, Métrés & Devis, Environnement." },
+  { keywords:['format','pdf','dwg','xlsx','docx','pptx','fichier accepté','type de fichier'], reply:"Formats acceptés : PDF, DWG/DXF, Excel (XLSX), Word (DOCX), PowerPoint (PPTX), IFC (BIM), et les archives ZIP/RAR." },
+  { keywords:['gratuit','payant','prix','coût','cout','combien'], reply:"La consultation, le téléchargement (après contribution) et la publication sont entièrement gratuits." },
+  { keywords:['emploi','job','offre','recrutement','travail','stage','embauche'], reply:"La section \"💼 Emplois\" liste les offres publiées par nos partenaires. Pour publier une offre, contactez-nous via le formulaire de contact." },
+  { keywords:['don','donation','soutenir','paypal','café','aider financièrement'], reply:"Merci d'y penser ! Cliquez sur \"☕ Soutenir\" en haut du site pour faire un don via PayPal." },
+  { keywords:['contact','joindre','whatsapp','email','écrire','téléphone'], reply:"Écrivez-nous à genieciviledocs@yahoo.com, sur WhatsApp au +226 62 47 84 10, ou via le formulaire de la section Contact." },
+  { keywords:['favoris','sauvegarder','coeur'], reply:"Cliquez sur le ❤️ d'une carte de document pour l'ajouter à vos favoris, consultables via le bouton ❤️ dans la navigation." },
+  { keywords:['commentaire','avis','discussion'], reply:"Rendez-vous dans l'espace \"💬 Discussions\" en bas de page pour commenter ou répondre à d'autres utilisateurs." },
+  { keywords:['auteur','qui a publié','contributeur','profil'], reply:"Cliquez sur le nom d'un auteur sous un document pour voir son profil et tous ses documents publiés." },
+  { keywords:['note','noter','étoile','etoile'], reply:"Notez un document de 1 à 5 étoiles directement depuis sa carte, pour aider les autres utilisateurs." },
+  { keywords:['thème','theme','sombre','clair','mode nuit'], reply:"Cliquez sur l'icône 🌙/☀️ en haut à droite pour changer de thème. Votre choix est mémorisé." },
+  { keywords:['merci','thanks','cool'], reply:"Avec plaisir ! N'hésitez pas si vous avez d'autres questions. 😊" },
+  { keywords:['qui es-tu','qui êtes-vous','es-tu une ia','robot','assistant'], reply:"Je suis un assistant automatisé qui connaît bien le fonctionnement du site — pas une IA conversationnelle complète, mais je peux vous orienter ! 🙂" },
+];
+const CHAT_FALLBACK = "Je n'ai pas de réponse toute prête pour ça 🤔 Essayez de reformuler, consultez la FAQ plus bas, ou écrivez-nous sur WhatsApp au +226 62 47 84 10.";
+const CHAT_QUICK_REPLIES = ["Comment télécharger un document ?","Comment proposer un document ?","Comment faire un don ?","Comment vous contacter ?"];
+
+let chatOpened = false;
+
+function toggleChat() {
+  const win = document.getElementById('chatWindow');
+  const isOpen = win.classList.toggle('open');
+  if(isOpen && !chatOpened) {
+    chatOpened = true;
+    renderChatMsg("Bonjour ! 👋 Je suis l'assistant de GenieCivil Docs. Comment puis-je vous aider ?", 'bot');
+    renderChatQuick();
+  }
+  if(isOpen) document.getElementById('chatInput').focus();
+}
+function renderChatQuick() {
+  document.getElementById('chatQuick').innerHTML = CHAT_QUICK_REPLIES.map(q=>`<button class="chat-quick-btn" onclick="askChatQuick('${q.replace(/'/g,"\\'")}')">${q}</button>`).join('');
+}
+function askChatQuick(text) { document.getElementById('chatInput').value = text; sendChatMsg(); }
+function renderChatMsg(text, sender) {
+  const body = document.getElementById('chatBody');
+  const div = document.createElement('div');
+  div.className = 'chat-msg ' + sender;
+  div.textContent = text;
+  body.appendChild(div);
+  body.scrollTop = body.scrollHeight;
+}
+function matchChatReply(input) {
+  const q = input.toLowerCase();
+  let best = null, bestScore = 0;
+  CHAT_KB.forEach(entry => {
+    const score = entry.keywords.filter(k => q.includes(k)).length;
+    if(score > bestScore) { bestScore = score; best = entry; }
+  });
+  return best ? best.reply : CHAT_FALLBACK;
+}
+function sendChatMsg() {
+  const input = document.getElementById('chatInput');
+  const text = input.value.trim();
+  if(!text) return;
+  renderChatMsg(text, 'user');
+  input.value = '';
+  document.getElementById('chatQuick').innerHTML = '';
+  const body = document.getElementById('chatBody');
+  const typing = document.createElement('div');
+  typing.className = 'chat-typing'; typing.id = 'chatTyping';
+  typing.innerHTML = '<span></span><span></span><span></span>';
+  body.appendChild(typing);
+  body.scrollTop = body.scrollHeight;
+  setTimeout(() => {
+    const t = document.getElementById('chatTyping');
+    if(t) t.remove();
+    renderChatMsg(matchChatReply(text), 'bot');
+    renderChatQuick();
+  }, 550 + Math.random()*450);
+}
+
+/* ══ NOTIFICATIONS ══ */
+let notifications = [];
+function addNotification(icon,bg,msg,time) {
+  notifications.unshift({icon,bg,msg,time,unread:true});
+  if(notifications.length>20) notifications.pop();
+  renderNotifications();
+}
+function renderNotifications() {
+  const list = document.getElementById('notifList');
+  const dot = document.getElementById('notifDot');
+  const unread = notifications.filter(n=>n.unread).length;
+  dot.classList.toggle('show', unread>0);
+  list.innerHTML = notifications.length ? notifications.map(n=>`
+    <div class="notif-item ${n.unread?'unread':''}">
+      <div class="notif-icon" style="background:${n.bg}">${n.icon}</div>
+      <div><div class="notif-text">${n.msg}</div><div class="notif-time">${n.time}</div></div>
+    </div>`).join('') : '<div class="notif-empty">Aucune notification pour le moment.</div>';
+}
+function toggleNotifPanel() {
+  const panel = document.getElementById('notifPanel');
+  panel.classList.toggle('open');
+  if(panel.classList.contains('open')) setTimeout(markAllRead, 1200);
+}
+function markAllRead() {
+  notifications.forEach(n=>n.unread=false);
+  document.getElementById('notifDot').classList.remove('show');
+  renderNotifications();
+}
+document.addEventListener('click', e=>{
+  const wrap = document.querySelector('.notif-wrap');
+  if(wrap && !wrap.contains(e.target)) document.getElementById('notifPanel').classList.remove('open');
+});
+
+/* ══ SCROLL REVEAL ══ */
+function initReveal() {
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+}
+function timeAgo(iso) {
+  const diff = Date.now() - new Date(iso).getTime();
+  const m = Math.floor(diff/60000), h = Math.floor(diff/3600000), d = Math.floor(diff/86400000);
+  if(m<60) return m<=1?'À l\'instant':`il y a ${m}min`;
+  if(h<24) return `il y a ${h}h`;
+  return `il y a ${d}j`;
+}
+
+/* ══════════════════════════════════════════════
+   FILTER & SORT
+══════════════════════════════════════════════ */
+function getFiltered() {
+  const q = document.getElementById('mainSearch').value.toLowerCase();
+  const cat = document.getElementById('filterCat').value.toLowerCase();
+  const type = document.getElementById('filterType').value.toLowerCase();
+  return allDocs.filter(d =>
+    (!q || d.title.toLowerCase().includes(q) || (d.author||'').toLowerCase().includes(q)) &&
+    (!cat || (d.cat||'').toLowerCase().includes(cat.split(' ')[0])) &&
+    (!type || d.type === type)
+  );
+}
+function filterDocs(){ currentPage=1; renderAll(); }
+function applySort(){
+  if(currentSort==='popular') filteredDocs.sort((a,b)=>(b.download_count||0)-(a.download_count||0));
+  else if(currentSort==='rated') filteredDocs.sort((a,b)=>(b.rating||0)-(a.rating||0));
+}
+function setTab(btn,sort){ currentSort=sort; document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active')); btn.classList.add('active'); currentPage=1; renderAll(); }
+function goPage(p){ const pages=Math.max(1,Math.ceil(filteredDocs.length/PER_PAGE)); currentPage=Math.min(Math.max(1,p),pages); showDocs(); window.scrollTo({top:document.getElementById('docs').offsetTop-80,behavior:'smooth'}); }
+const CAT_LABELS = {
+  structures:'Structures & Béton armé', hydraulique:'Hydraulique & Assainissement', routes:'Routes & VRD',
+  géotechnique:'Géotechnique', topographie:'Topographie', normes:'Normes & DTU',
+  métrés:'Métrés & Devis', environnement:'Environnement'
+};
+
+function filterByCat(v){ document.getElementById('filterCat').value=v; setHashForCat(v); filterDocs(); }
+function filterByType(v){ document.getElementById('filterType').value=v; filterDocs(); }
+function searchTag(text){ document.getElementById('mainSearch').value=text; document.getElementById('filterCat').value=''; document.getElementById('filterType').value=''; setHashForCat(''); filterDocs(); document.getElementById('docs').scrollIntoView({behavior:'smooth'}); }
+
+function setHashForCat(cat){
+  if(cat) history.replaceState(null,'','#categorie='+encodeURIComponent(cat));
+  else history.replaceState(null,'','#');
+}
+function goToCategoryPage(cat){
+  document.getElementById('filterCat').value = cat;
+  setHashForCat(cat);
+  currentPage = 1;
+  renderAll();
+  document.getElementById('docs').scrollIntoView({behavior:'smooth'});
+}
+function goHome(){
+  document.getElementById('filterCat').value='';
+  document.getElementById('filterType').value='';
+  document.getElementById('mainSearch').value='';
+  setHashForCat('');
+  currentPage = 1;
+  renderAll();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function applyHashRoute(){
+  const m = location.hash.match(/categorie=([^&]+)/);
+  if(m){
+    const cat = decodeURIComponent(m[1]);
+    document.getElementById('filterCat').value = cat;
+    currentPage = 1;
+    renderAll();
+  }
+}
+function presetHashFilter(){
+  const m = location.hash.match(/categorie=([^&]+)/);
+  if(m) document.getElementById('filterCat').value = decodeURIComponent(m[1]);
+}
+window.addEventListener('hashchange', applyHashRoute);
+
+function updateBreadcrumb(){
+  const cat = document.getElementById('filterCat').value;
+  const q = document.getElementById('mainSearch').value.trim();
+  const bc = document.getElementById('bcDocs');
+  const titleEl = document.getElementById('docsTitle');
+  if(cat && CAT_LABELS[cat]){
+    bc.innerHTML = `<a href="#" onclick="goHome();return false;">Documents</a> <span class="bc-sep">›</span> <span class="bc-current">${CAT_LABELS[cat]}</span>`;
+    titleEl.innerHTML = `${CAT_LABELS[cat]} <span>— documents</span>`;
+    document.title = `${CAT_LABELS[cat]} — GenieCivil Docs`;
+  } else if(q){
+    bc.innerHTML = `<a href="#" onclick="goHome();return false;">Documents</a> <span class="bc-sep">›</span> <span class="bc-current">Recherche : "${q}"</span>`;
+    titleEl.innerHTML = `Résultats <span>de recherche</span>`;
+    document.title = `Recherche : ${q} — GenieCivil Docs`;
+  } else {
+    bc.textContent = 'Documents';
+    titleEl.innerHTML = `Documents <span>publiés</span>`;
+    document.title = 'GenieCivil Docs — Bibliothèque du Génie Civil';
+  }
+}
+
+/* ══ AUTOCOMPLETE ══ */
+function acSearch(q){
+  const drop = document.getElementById('acDrop');
+  if(!q||q.length<2){drop.classList.remove('show');return;}
+  const res = allDocs.filter(d=>d.title.toLowerCase().includes(q.toLowerCase())).slice(0,5);
+  if(!res.length){drop.classList.remove('show');return;}
+  drop.innerHTML = res.map(d=>`<div class="ac-item" onmousedown="selectAc('${d.title.replace(/'/g,"\\'")}')">${tIcon(d.type)} ${d.title}</div>`).join('');
+  drop.classList.add('show');
+}
+function selectAc(title){ document.getElementById('navSearch').value=title; document.getElementById('mainSearch').value=title; document.getElementById('acDrop').classList.remove('show'); filterDocs(); document.getElementById('docs').scrollIntoView({behavior:'smooth'}); }
+
+/* ══════════════════════════════════════════════
+   ACTIONS DOCS
+══════════════════════════════════════════════ */
+function toggleFav(e, id) {
+  e.stopPropagation();
+  const doc = allDocs.find(d=>d.id===id);
+  doc.fav = !doc.fav;
+  const favs = getFavs();
+  if(doc.fav) favs.push(id); else favs.splice(favs.indexOf(id),1);
+  localStorage.setItem('gcd_favs', JSON.stringify(favs));
+  showDocs(); updateFavSidebar();
+  showToast(doc.fav?`❤️ Ajouté aux favoris`:`Retiré des favoris`,'info');
+}
+function getFavs(){ try{ return JSON.parse(localStorage.getItem('gcd_favs')||'[]'); }catch(e){ return []; } }
+function updateFavSidebar() {
+  const favs = allDocs.filter(d=>d.fav);
+  const cnt = document.getElementById('favCount');
+  if(cnt) cnt.textContent = favs.length||'';
+  const swatchColors = {pdf:'var(--red-dim)',dwg:'var(--blue-dim)',xlsx:'var(--green-dim)',docx:'var(--blue-dim)',pptx:'var(--orange-dim)',ifc:'var(--purple-dim)',zip:'var(--teal-dim)'};
+  const favSb = document.getElementById('favSidebar');
+  favSb.innerHTML = favs.length ? favs.map(d=>`<div class="recent-row"><div class="rr-swatch" style="background:${swatchColors[d.type]||'var(--surface3)'}">${tIcon(d.type)}</div><div style="flex:1;min-width:0"><div class="rr-name">${d.title}</div><div class="rr-meta">${d.type.toUpperCase()} · ⬇ ${d.download_count||0}</div></div></div>`).join('') : '<div class="fav-empty">Aucun favori.</div>';
+  const fm = document.getElementById('favsModal');
+  if(fm) fm.innerHTML = favs.length ? favs.map(d=>`<div class="comment-card" style="margin-bottom:.5rem"><div style="width:36px;height:36px;border-radius:8px;background:var(--surface2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.1rem">${tIcon(d.type)}</div><div style="flex:1;padding-left:.65rem"><div style="font-size:.82rem;font-weight:700;color:var(--text)">${d.title}</div><div style="font-size:.62rem;color:var(--text3);font-family:JetBrains Mono">${d.type.toUpperCase()} · ${d.file_size||'—'} · ⬇ ${d.download_count||0}</div></div><button class="btn btn-accent" style="font-size:.68rem;padding:.32rem .65rem" onclick="dlDoc('${d.id}')">⬇</button></div>`).join('') : '<div class="fav-empty">Aucun favori enregistré.</div>';
+}
+
+async function dlDoc(id) {
+  const doc = allDocs.find(d=>d.id===id);
+  if(!doc) return;
+  if(!isAdmin && !isUnlocked()) {
+    showToast('🔒 Proposez d\'abord un document pour débloquer les téléchargements.','error');
+    openOverlay('contributeOverlay');
+    return;
+  }
+  if(doc.file_url && /^https?:\/\//i.test(doc.file_url)) {
+    // Lien externe (ex: document en licence ouverte hébergé à sa source officielle)
+    window.open(doc.file_url, '_blank', 'noopener');
+  } else if(sb && doc.file_url) {
+    const url = sb.storage.from('documents').getPublicUrl(doc.file_url).data.publicUrl;
+    const a = document.createElement('a'); a.href=url; a.download=doc.title; a.click();
+  } else { showToast('⬇️ Téléchargement démarré (démo)','success'); }
+  doc.download_count = (doc.download_count||0)+1;
+  if(sb){ await sb.from('documents').update({download_count: doc.download_count}).eq('id',id); }
+  showDocs(); updateStats();
+  logActivity('⬇️','var(--blue-dim)',`<strong>${doc.title}</strong> téléchargé`,timeAgo(new Date()));
+}
+
+function rateDoc(id, stars) {
+  const doc = allDocs.find(d=>d.id===id);
+  if(!doc) return;
+  doc.userRating = stars;
+  doc.rating = +((doc.rating||0)*0.7+stars*0.3).toFixed(1);
+  showDocs();
+  showToast(`⭐ Note ${stars}/5 enregistrée !`,'success');
+}
+
+function openPreview(id) {
+  const doc = allDocs.find(d=>d.id===id);
+  if(!doc) return;
+  document.getElementById('prevTitle').innerHTML = `Aperçu — <span>${doc.title}</span>`;
+  document.getElementById('prevIcon').textContent = tIcon(doc.type);
+  document.getElementById('prevMsg').innerHTML = doc.type==='pdf' ? 'Aperçu PDF disponible.<br/>Cliquez Télécharger pour l\'ouvrir.' : `Format ${doc.type.toUpperCase()} — Téléchargez pour visualiser.`;
+  document.getElementById('prevDlBtn').onclick = ()=>{ dlDoc(id); closeOverlay('previewOverlay'); };
+  openOverlay('previewOverlay');
+}
+
+function openShare(id) {
+  const doc = allDocs.find(d=>d.id===id);
+  if(!doc) return;
+  sharingDoc = doc;
+  const link = `${location.origin}${location.pathname}?doc=${id}`;
+  document.getElementById('shareLink').value = link;
+  openOverlay('shareOverlay');
+}
+function shareVia(via) {
+  if(!sharingDoc) return;
+  const link = document.getElementById('shareLink').value;
+  const msg = `Découvrez ce document de Génie Civil : ${sharingDoc.title} — ${link}`;
+  if(via==='whatsapp') window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`,'_blank');
+  else if(via==='email') window.location.href=`mailto:?subject=${encodeURIComponent(sharingDoc.title)}&body=${encodeURIComponent(msg)}`;
+  else if(via==='linkedin') window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(link)}`,'_blank');
+  else copyLink();
+}
+function copyLink() { navigator.clipboard.writeText(document.getElementById('shareLink').value).then(()=>showToast('📋 Lien copié !','success')); closeOverlay('shareOverlay'); }
+
+/* ══════════════════════════════════════════════
+   ADMIN
+══════════════════════════════════════════════ */
+function doLogin() {
+  const u = document.getElementById('adminUser').value.trim();
+  const p = document.getElementById('adminPw').value;
+  if(u.toLowerCase()===ADMIN_USER && p===ADMIN_PW) {
+    isAdmin = true;
+    closeOverlay('loginOverlay');
+    document.getElementById('adminPanel').classList.add('visible');
+    const btn = document.getElementById('adminNavBtn');
+    btn.innerHTML = '📋 Activité'; btn.style.color='var(--accent)';
+    document.getElementById('adminPw').value='';
+    document.getElementById('adminUser').value='';
+    document.getElementById('wrongPw').style.display='none';
+    showDocs();
+    buildLog();
+    updatePendingBadge();
+    updateVisitorPanel();
+    updatePostJobBtn();
+    renderJobs();
+    showToast('🎉 Bienvenue, Administrateur !','success');
+  } else {
+    document.getElementById('wrongPw').style.display='block';
+    document.getElementById('adminPw').value='';
+  }
+}
+function logout() {
+  isAdmin = false;
+  document.getElementById('adminPanel').classList.remove('visible');
+  const btn = document.getElementById('adminNavBtn');
+  btn.innerHTML='🔐 Admin'; btn.style.color='';
+  showDocs();
+  updateVisitorPanel();
+  updatePostJobBtn();
+  renderJobs();
+  showToast('Vous êtes déconnecté.');
+}
+
+/* Upload */
+function detectFileType(filename) {
+  const ext = (filename.split('.').pop()||'').toLowerCase();
+  const map = {pdf:'pdf', dwg:'dwg', dxf:'dwg', xlsx:'xlsx', xls:'xlsx', docx:'docx', doc:'docx', pptx:'pptx', ppt:'pptx', ifc:'ifc', zip:'zip', rar:'zip', mp4:'video', mov:'video', avi:'video', mkv:'video', webm:'video'};
+  return map[ext] || 'pdf';
+}
+function cleanTitleFromFilename(filename) {
+  return filename.replace(/\.[^/.]+$/, '').replace(/[_-]+/g,' ').trim();
+}
+
+function pickFiles(fileList) {
+  const files = Array.from(fileList);
+  if(!files.length) return;
+  files.forEach(f => selectedFiles.push({ file:f, title: cleanTitleFromFilename(f.name) }));
+  renderFileList();
+}
+function dropFile(e){ e.preventDefault(); document.getElementById('uzRoot').classList.remove('over'); if(e.dataTransfer.files.length) pickFiles(e.dataTransfer.files); }
+function removeFile(idx){ selectedFiles.splice(idx,1); renderFileList(); }
+function updateFileTitle(idx,val){ if(selectedFiles[idx]) selectedFiles[idx].title = val; }
+
+function renderFileList() {
+  const wrap = document.getElementById('fileListWrap');
+  const list = document.getElementById('fileList');
+  document.getElementById('fileCount').textContent = selectedFiles.length;
+  if(!selectedFiles.length) {
+    wrap.style.display='none'; list.innerHTML='';
+    document.getElementById('uzIcon').textContent='📁';
+    document.getElementById('uzText').innerHTML='Glissez vos fichiers ici ou <strong>cliquez pour parcourir</strong> (plusieurs fichiers possibles)';
+    return;
+  }
+  wrap.style.display='block';
+  document.getElementById('uzIcon').textContent='✅';
+  document.getElementById('uzText').innerHTML = `<strong style="color:var(--accent)">${selectedFiles.length} fichier${selectedFiles.length>1?'s':''}</strong> sélectionné${selectedFiles.length>1?'s':''} — cliquez pour en ajouter d'autres`;
+  list.innerHTML = selectedFiles.map((sf,idx)=>`
+    <div class="file-row">
+      <span class="fr-icon">${tIcon(detectFileType(sf.file.name))}</span>
+      <input class="fc" value="${sf.title.replace(/"/g,'&quot;')}" oninput="updateFileTitle(${idx},this.value)" placeholder="Titre du document"/>
+      <span class="fr-size">${(sf.file.size/1024/1024).toFixed(2)} Mo</span>
+      <button class="fr-remove" onclick="removeFile(${idx})" title="Retirer">✕</button>
+    </div>`).join('');
+}
+
+async function publishDoc() {
+  if(!selectedFiles.length) { showToast('⚠️ Sélectionnez au moins un fichier.','error'); return; }
+  if(selectedFiles.some(sf=>!sf.title.trim())) { showToast('⚠️ Chaque fichier doit avoir un titre.','error'); return; }
+  const cat = document.getElementById('upCat').value;
+  const desc = document.getElementById('upDesc').value.trim();
+  const author = document.getElementById('upAuthor').value.trim()||'Admin';
+  const featured = document.getElementById('upFeatured').checked;
+
+  const btn = document.getElementById('publishBtn');
+  btn.disabled = true;
+  const total = selectedFiles.length;
+  const prog = document.getElementById('progWrap');
+  prog.classList.add('show');
+  let successCount = 0, lastTitle = '';
+
+  for (let i = 0; i < total; i++) {
+    const sf = selectedFiles[i];
+    const type = detectFileType(sf.file.name);
+    btn.textContent = `⏳ Publication ${i+1}/${total}…`;
+    document.getElementById('progLabel').textContent = `Envoi ${i+1}/${total} — ${sf.file.name}`;
+    try {
+      let file_url = null, file_size = (sf.file.size/1024/1024).toFixed(2)+' Mo';
+      if (sb) {
+        const path = `${Date.now()}_${i}_${sf.file.name.replace(/\s/g,'_')}`;
+        const { error: upErr } = await sb.storage.from('documents').upload(path, sf.file, {
+          onUploadProgress: (p) => {
+            const filePct = p.total ? (p.loaded/p.total) : 0;
+            document.getElementById('progFill').style.width = Math.round(((i+filePct)/total)*100)+'%';
+          }
+        });
+        if (upErr) throw upErr;
+        file_url = path;
+      }
+      const newDoc = { title: sf.title, cat, description:desc, author, type, featured, file_url, file_size, download_count:0, rating:0, created_at: new Date().toISOString() };
+      if (sb) {
+        const { data, error } = await sb.from('documents').insert([newDoc]).select();
+        if (error) throw error;
+        allDocs.unshift({ ...data[0], fav:false, userRating:0 });
+      } else {
+        allDocs.unshift({ ...newDoc, id:'local_'+Date.now()+'_'+i, fav:false, userRating:0 });
+      }
+      logActivity('📤','var(--green-dim)',`<strong>${sf.title}</strong> — Document publié`,timeAgo(new Date()));
+      successCount++; lastTitle = sf.title;
+      document.getElementById('progFill').style.width = Math.round(((i+1)/total)*100)+'%';
+    } catch(e) {
+      showToast(`Erreur sur "${sf.file.name}" : ${e.message}`,'error');
+    }
+  }
+
+  closeOverlay('uploadOverlay');
+  resetUploadForm();
+  renderAll(); updateStats(); updateSidebarCounts(); updateFeatured(); updateRecentSidebar(); updateHeroRecent(); populateDocSelect(); updateAuthorsGrid(); updateAboutStats();
+  if(successCount === 1) addNotification('📤','var(--green-dim)',`Nouveau document : <strong>${lastTitle}</strong>`,'À l\'instant');
+  else if(successCount > 1) addNotification('📤','var(--green-dim)',`<strong>${successCount} documents</strong> publiés`,'À l\'instant');
+  showToast(successCount===total ? `✅ ${successCount} document${successCount>1?'s':''} publié${successCount>1?'s':''} avec succès !` : `⚠️ ${successCount}/${total} document(s) publié(s) — voir erreurs ci-dessus.`, successCount===total?'success':'error');
+  btn.disabled = false; btn.textContent = '🚀 Publier';
+}
+function resetUploadForm(){ selectedFiles=[]; renderFileList(); document.getElementById('upDesc').value=''; document.getElementById('upAuthor').value=''; document.getElementById('progFill').style.width='0'; document.getElementById('progWrap').classList.remove('show'); }
+
+/* ══════════════════════════════════════════════
+   TÉLÉVERSEMENT SOUS VALIDATION (visiteurs)
+   Règle : un visiteur doit voir l'un de ses documents
+   approuvé par l'admin avant de pouvoir télécharger.
+   L'admin (isAdmin) est exempté de cette règle.
+══════════════════════════════════════════════ */
+function isUnlocked() {
+  if(isAdmin) return true;
+  if(localStorage.getItem('gcd_unlocked_'+VISITOR_ID)==='true') return true;
+  return pendingDocs.some(p=>p.contributor_id===VISITOR_ID && p.status==='approved');
+}
+function updateVisitorPanel() {
+  const panel = document.getElementById('visitorPanel');
+  if(!panel) return;
+  if(isAdmin) { panel.classList.remove('visible'); return; }
+  panel.classList.add('visible');
+  const unlocked = isUnlocked();
+  panel.classList.toggle('locked', !unlocked);
+  panel.classList.toggle('unlocked', unlocked);
+  document.getElementById('lockPill').className = 'lock-pill ' + (unlocked?'unlocked':'locked');
+  document.getElementById('lockPill').textContent = unlocked ? '🔓 Débloqué' : '🔒 Verrouillé';
+  document.getElementById('visitorPanelText').textContent = unlocked
+    ? 'Merci pour votre contribution ! Vos téléchargements sont débloqués.'
+    : 'Pour télécharger un document, proposez d\'abord l\'un des vôtres — une fois validé par l\'administrateur, vos téléchargements seront débloqués.';
+}
+
+async function loadPending() {
+  try {
+    if(sb) {
+      const { data, error } = await sb.from('pending_documents').select('*').order('created_at',{ascending:false});
+      if(error) throw error;
+      pendingDocs = data || [];
+    }
+    updatePendingBadge();
+    if(isAdmin) renderPendingList();
+    updateVisitorPanel();
+  } catch(e) { console.warn('Pending load error (table peut-être absente):', e.message); }
+}
+function updatePendingBadge() {
+  const badge = document.getElementById('pendingBadge');
+  if(!badge) return;
+  const n = pendingDocs.filter(p=>p.status==='pending').length;
+  badge.style.display = n>0 ? 'inline-flex' : 'none';
+  badge.textContent = n;
+}
+function renderPendingList() {
+  const el = document.getElementById('pendingList');
+  if(!el) return;
+  const pending = pendingDocs.filter(p=>p.status==='pending');
+  el.innerHTML = pending.length ? pending.map(p=>`
+    <div class="pending-row">
+      <div class="pending-icon">${tIcon(p.type)}</div>
+      <div class="pending-info">
+        <div class="pending-title">${p.title}</div>
+        <div class="pending-meta">👤 ${p.author} · ${(p.cat||'').toUpperCase()} · ${p.type.toUpperCase()} · ${timeAgo(p.created_at)}</div>
+        <div class="pending-desc">${p.description||''}</div>
+        <div class="pending-actions">
+          <button class="btn btn-accent" style="font-size:.7rem;padding:.4rem .75rem" onclick="approvePending('${p.id}')">✅ Approuver</button>
+          <button class="btn btn-danger" style="font-size:.7rem;padding:.4rem .75rem" onclick="rejectPending('${p.id}')">❌ Rejeter</button>
+        </div>
+      </div>
+    </div>`).join('') : '<div class="fav-empty">Aucune contribution en attente.</div>';
+}
+
+async function approvePending(id) {
+  const p = pendingDocs.find(x=>x.id===id);
+  if(!p) return;
+  const newDoc = { title:p.title, cat:p.cat, description:p.description, author:p.author, type:p.type, featured:false, file_url:p.file_url, file_size:p.file_size, download_count:0, rating:0, created_at:new Date().toISOString() };
+  if(sb) {
+    const { data, error } = await sb.from('documents').insert([newDoc]).select();
+    if(error){ showToast('Erreur : '+error.message,'error'); return; }
+    allDocs.unshift({ ...data[0], fav:false, userRating:0 });
+    await sb.from('pending_documents').update({status:'approved'}).eq('id',id);
+  } else {
+    allDocs.unshift({ ...newDoc, id:'local_'+Date.now(), fav:false, userRating:0 });
+  }
+  p.status='approved';
+  if(p.contributor_id===VISITOR_ID) localStorage.setItem('gcd_unlocked_'+VISITOR_ID,'true');
+  renderAll(); updateStats(); updateSidebarCounts(); updateFeatured(); updateRecentSidebar(); updateHeroRecent(); populateDocSelect(); updateAuthorsGrid(); updateAboutStats();
+  updatePendingBadge(); renderPendingList(); updateVisitorPanel();
+  logActivity('✅','var(--green-dim)',`<strong>${p.title}</strong> — Contribution approuvée et publiée`,timeAgo(new Date()));
+  showToast(`✅ "${p.title}" approuvé et publié !`,'success');
+}
+async function rejectPending(id) {
+  const p = pendingDocs.find(x=>x.id===id);
+  if(!p || !confirm(`Rejeter la contribution "${p.title}" ?`)) return;
+  if(sb) { await sb.from('pending_documents').update({status:'rejected'}).eq('id',id); }
+  p.status='rejected';
+  updatePendingBadge(); renderPendingList();
+  logActivity('❌','var(--red-dim)',`<strong>${p.title}</strong> — Contribution rejetée`,timeAgo(new Date()));
+  showToast(`Contribution rejetée.`,'info');
+}
+
+function ctbPickFile(f){ if(!f)return; ctbFile=f; document.getElementById('ctbUzIcon').textContent='✅'; document.getElementById('ctbUzText').innerHTML=`<strong style="color:var(--accent)">${f.name}</strong> — ${(f.size/1024/1024).toFixed(2)} Mo`; }
+function ctbDropFile(e){ e.preventDefault(); document.getElementById('ctbUzRoot').classList.remove('over'); if(e.dataTransfer.files[0]) ctbPickFile(e.dataTransfer.files[0]); }
+function resetContributeForm(){ document.getElementById('ctbTitle').value=''; document.getElementById('ctbDesc').value=''; document.getElementById('ctbAuthor').value=''; document.getElementById('ctbUzIcon').textContent='📁'; document.getElementById('ctbUzText').innerHTML='Glissez votre fichier ici ou <strong>cliquez pour parcourir</strong>'; ctbFile=null; document.getElementById('ctbProgFill').style.width='0'; document.getElementById('ctbProgWrap').classList.remove('show'); }
+
+async function submitContribution() {
+  const title = document.getElementById('ctbTitle').value.trim();
+  const cat = document.getElementById('ctbCat').value;
+  const desc = document.getElementById('ctbDesc').value.trim();
+  const author = document.getElementById('ctbAuthor').value.trim();
+  const type = document.getElementById('ctbType').value;
+  if(!title || !author) { showToast('⚠️ Titre et nom requis.','error'); return; }
+  if(!ctbFile) { showToast('⚠️ Veuillez joindre un fichier.','error'); return; }
+
+  const btn = document.getElementById('contributeBtn');
+  btn.disabled=true; btn.textContent='⏳ Envoi…';
+  try {
+    let file_url=null, file_size=(ctbFile.size/1024/1024).toFixed(2)+' Mo';
+    if(sb) {
+      const prog=document.getElementById('ctbProgWrap'); prog.classList.add('show');
+      const path=`pending_${Date.now()}_${ctbFile.name.replace(/\s/g,'_')}`;
+      const { error: upErr } = await sb.storage.from('documents').upload(path, ctbFile, {
+        onUploadProgress:(p)=>{ const pct=Math.round((p.loaded/p.total)*100); document.getElementById('ctbProgFill').style.width=pct+'%'; document.getElementById('ctbProgLabel').textContent=`Envoi en cours… ${pct}%`; }
+      });
+      if(upErr) throw upErr;
+      file_url=path; prog.classList.remove('show');
+    }
+    const entry = { title, cat, description:desc, author, type, file_url, file_size, contributor_id:VISITOR_ID, status:'pending', created_at:new Date().toISOString() };
+    if(sb) {
+      const { data, error } = await sb.from('pending_documents').insert([entry]).select();
+      if(error) throw error;
+      pendingDocs.unshift(data[0]);
+    } else {
+      pendingDocs.unshift({ ...entry, id:'pend_'+Date.now() });
+    }
+    closeOverlay('contributeOverlay');
+    resetContributeForm();
+    updatePendingBadge();
+    showToast(`📨 "${title}" soumis à validation ! Vous serez débloqué une fois approuvé.`,'success');
+  } catch(e) {
+    showToast('Erreur : '+e.message,'error');
+  } finally {
+    btn.disabled=false; btn.textContent='📨 Soumettre à validation';
+  }
+}
+
+/* Edit */
+function openEdit(id) {
+  const d = allDocs.find(x=>x.id===id);
+  if(!d) return;
+  document.getElementById('editId').value=id;
+  document.getElementById('editTitle').value=d.title;
+  document.getElementById('editDesc').value=d.description||'';
+  document.getElementById('editAuthor').value=d.author||'';
+  document.getElementById('editFeatured').checked=d.featured||false;
+  openOverlay('editOverlay');
+}
+async function saveEdit() {
+  const id = document.getElementById('editId').value;
+  const title = document.getElementById('editTitle').value;
+  const description = document.getElementById('editDesc').value;
+  const author = document.getElementById('editAuthor').value;
+  const featured = document.getElementById('editFeatured').checked;
+  const doc = allDocs.find(d=>d.id===id);
+  if(!doc) return;
+  Object.assign(doc, { title, description, author, featured });
+  if(sb && !id.startsWith('local_')) { await sb.from('documents').update({title,description,author,featured}).eq('id',id); }
+  closeOverlay('editOverlay');
+  renderAll(); updateFeatured();
+  logActivity('✏️','var(--orange-dim)',`<strong>${title}</strong> — Modifié`,timeAgo(new Date()));
+  showToast(`✅ Document modifié !`,'success');
+}
+
+/* Delete */
+async function delDoc(id) {
+  const doc = allDocs.find(d=>d.id===id);
+  if(!doc || !confirm(`Supprimer "${doc.title}" ? Action irréversible.`)) return;
+  if(sb && !id.startsWith('local_')) { await sb.from('documents').delete().eq('id',id); }
+  allDocs.splice(allDocs.findIndex(d=>d.id===id),1);
+  renderAll(); updateStats(); updateSidebarCounts(); updateFeatured();
+  logActivity('🗑','var(--red-dim)',`<strong>${doc.title}</strong> — Supprimé`,timeAgo(new Date()));
+  showToast(`🗑 Document supprimé.`,'error');
+}
+
+/* Featured toggle */
+async function toggleFeatured(id) {
+  const doc = allDocs.find(d=>d.id===id);
+  if(!doc) return;
+  doc.featured = !doc.featured;
+  if(sb && !id.startsWith('local_')) { await sb.from('documents').update({featured:doc.featured}).eq('id',id); }
+  showDocs(); updateFeatured();
+  showToast(doc.featured?`⭐ Mis en vedette`:`Retiré de la vedette`,'info');
+}
+
+/* ══════════════════════════════════════════════
+   COMMENTS
+══════════════════════════════════════════════ */
+function renderComments(data) {
+  const list = document.getElementById('commentsList');
+  list.innerHTML = data.length ? data.map(c=>`
+    <div class="comment-card">
+      <div class="avatar">${(c.name||'?').split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2)}</div>
+      <div style="flex:1">
+        <div class="cc-name">${c.name||'Anonyme'}</div>
+        <div class="cc-meta">${timeAgo(c.created_at)} · <span class="cc-doc-link">📄 ${c.doc_ref||'Général'}</span></div>
+        <p class="cc-text">${c.message||''}</p>
+        <button class="cc-reply-btn" onclick="showReplyForm(this)">↩ Répondre</button>
+      </div>
+    </div>`).join('') : '<div class="fav-empty">Aucun commentaire. Soyez le premier !</div>';
+}
+
+async function postComment() {
+  const name = document.getElementById('cName').value.trim();
+  const email = document.getElementById('cEmail').value.trim();
+  const doc_ref = document.getElementById('cDoc').value;
+  const message = document.getElementById('cText').value.trim();
+  if(!name||!message){ showToast('⚠️ Nom et message requis.','error'); return; }
+
+  const entry = { name, email, doc_ref, message, created_at: new Date().toISOString() };
+  if(sb) {
+    const { error } = await sb.from('comments').insert([entry]);
+    if(error){ showToast('Erreur : '+error.message,'error'); return; }
+  } else {
+    const list = document.getElementById('commentsList');
+    const fav_empty = list.querySelector('.fav-empty');
+    if(fav_empty) fav_empty.remove();
+    const card = document.createElement('div');
+    card.className='comment-card';
+    card.style.animation='slideIn .3s ease';
+    const initials=(name).split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
+    card.innerHTML=`<div class="avatar">${initials}</div><div style="flex:1"><div class="cc-name">${name}</div><div class="cc-meta">À l'instant · <span class="cc-doc-link">📄 ${doc_ref}</span></div><p class="cc-text">${message}</p><button class="cc-reply-btn" onclick="showReplyForm(this)">↩ Répondre</button></div>`;
+    list.prepend(card);
+  }
+  document.getElementById('cName').value=''; document.getElementById('cText').value='';
+  logActivity('💬','var(--accent-dim)',`Commentaire de <strong>${name}</strong>`,timeAgo(new Date()));
+  addNotification('💬','var(--accent-dim)',`Nouveau commentaire de <strong>${name}</strong>`,'À l\'instant');
+  showToast('✅ Commentaire publié !','success');
+}
+function showReplyForm(btn){
+  if(btn.parentElement.querySelector('.reply-form')) return;
+  const div=document.createElement('div');
+  div.className='reply-form';
+  div.innerHTML=`<div class="cc-replies"><div style="display:flex;gap:.5rem;margin-top:.3rem"><input class="fc" type="text" placeholder="Votre réponse…" style="flex:1;font-size:.8rem;padding:.42rem .7rem"/><button class="btn btn-accent" style="font-size:.68rem;padding:.38rem .65rem" onclick="postReply(this)">↩</button></div></div>`;
+  btn.parentElement.appendChild(div);
+}
+function postReply(btn){
+  const inp=btn.previousElementSibling;
+  const text=inp.value.trim();
+  if(!text) return;
+  const replies=btn.closest('.cc-replies');
+  const d=document.createElement('div');
+  d.className='reply-card';
+  d.innerHTML=`<strong style="color:var(--text);font-size:.78rem">Vous</strong> — ${text}`;
+  replies.insertBefore(d,inp.parentElement);
+  inp.parentElement.remove();
+  showToast('↩ Réponse publiée !','success');
+}
+
+/* ══════════════════════════════════════════════
+   THEME
+══════════════════════════════════════════════ */
+function toggleTheme(){
+  const t = document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',t);
+  document.getElementById('themeBtn').textContent=t==='dark'?'🌙':'☀️';
+  localStorage.setItem('gcd_theme', t);
+  showToast(`Thème ${t==='dark'?'sombre':'clair'} activé`,'info');
+}
+(function restoreTheme(){
+  const saved = localStorage.getItem('gcd_theme');
+  if(saved){ document.documentElement.setAttribute('data-theme', saved); }
+  const btn = document.getElementById('themeBtn');
+  if(btn) btn.textContent = (saved||'dark')==='dark' ? '🌙' : '☀️';
+})();
+
+/* ══════════════════════════════════════════════
+   ACTIVITY LOG
+══════════════════════════════════════════════ */
+function logActivity(icon,bg,msg,time){ activityLogs.unshift({icon,bg,msg,time}); if(document.getElementById('activityLog').parentElement?.closest('.overlay.open')) buildLog(); }
+function buildLog(){
+  const el=document.getElementById('activityLog');
+  el.innerHTML = activityLogs.length ? activityLogs.map(e=>`<div class="log-entry"><div class="log-icon" style="background:${e.bg}">${e.icon}</div><div class="log-text">${e.msg}</div><div class="log-time">${e.time}</div></div>`).join('') : '<div class="fav-empty">Aucune activité.</div>';
+}
+
+/* ══════════════════════════════════════════════
+   OVERLAYS
+══════════════════════════════════════════════ */
+function openOverlay(id){
+  if(id==='uploadOverlay'&&!isAdmin){ showToast('🔒 Réservé à l\'admin.','error'); setTimeout(()=>openOverlay('loginOverlay'),200); return; }
+  if(id==='logOverlay'&&!isAdmin){ openOverlay('loginOverlay'); return; }
+  if(id==='pendingOverlay'&&!isAdmin){ openOverlay('loginOverlay'); return; }
+  if(id==='jobOverlay'&&!isAdmin){ openOverlay('loginOverlay'); return; }
+  if(id==='favsOverlay') updateFavSidebar();
+  if(id==='logOverlay') buildLog();
+  if(id==='pendingOverlay') renderPendingList();
+  document.getElementById(id).classList.add('open');
+}
+function closeOverlay(id){ document.getElementById(id).classList.remove('open'); }
+document.querySelectorAll('.overlay').forEach(el=>el.addEventListener('click',e=>{ if(e.target===el) el.classList.remove('open'); }));
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ document.querySelectorAll('.overlay.open').forEach(o=>o.classList.remove('open')); document.getElementById('chatWindow').classList.remove('open'); } });
+
+/* ══════════════════════════════════════════════
+   TOAST
+══════════════════════════════════════════════ */
+function showToast(msg,type=''){
+  const t=document.createElement('div');
+  t.className='toast '+(type||'');
+  t.textContent=msg;
+  document.getElementById('toastWrap').appendChild(t);
+  requestAnimationFrame(()=>requestAnimationFrame(()=>t.classList.add('show')));
+  setTimeout(()=>{ t.classList.remove('show'); setTimeout(()=>t.remove(),400); }, 3500);
+}
+
+/* ══════════════════════════════════════════════
+   LOGICIELS
+══════════════════════════════════════════════ */
+const SOFTWARE_LIST = [
+  {name:'AutoCAD',domain:'BIM / CAO',icon:'📐',color:'red',desc:"Dessin technique 2D/3D de référence : plans, coupes, détails d'exécution.",tags:['Autodesk','Payant · essai gratuit'],url:'https://www.autodesk.com/products/autocad/'},
+  {name:'Revit',domain:'BIM / CAO',icon:'🏢',color:'blue',desc:'Modélisation BIM du bâtiment : structure, architecture, MEP en maquette unique.',tags:['Autodesk','Payant · essai gratuit'],url:'https://www.autodesk.com/products/revit/'},
+  {name:'Civil 3D',domain:'BIM / CAO',icon:'🛣',color:'orange',desc:'Conception routière, terrassements, réseaux et projets VRD.',tags:['Autodesk','Payant · essai gratuit'],url:'https://www.autodesk.com/products/civil-3d/'},
+  {name:'ETABS',domain:'Structures',icon:'🏗',color:'purple',desc:'Analyse et dimensionnement des structures de bâtiments (statique/sismique).',tags:['CSI','Payant'],url:'https://www.csiamerica.com/products/etabs'},
+  {name:'SAP2000',domain:'Structures',icon:'🌉',color:'green',desc:'Analyse par éléments finis pour structures générales (bâtiments, ponts, ouvrages).',tags:['CSI','Payant'],url:'https://www.csiamerica.com/products/sap2000'},
+  {name:'SAFE',domain:'Structures',icon:'🧱',color:'teal',desc:'Dimensionnement de dalles et fondations en béton armé.',tags:['CSI','Payant'],url:'https://www.csiamerica.com/products/safe'},
+  {name:'Robot Structural Analysis',domain:'Structures',icon:'🤖',color:'pink',desc:'Analyse structurelle avancée intégrée à l\'écosystème Autodesk.',tags:['Autodesk','Payant'],url:'https://www.autodesk.com/products/robot-structural-analysis/'},
+  {name:'PLAXIS',domain:'Géotechnique',icon:'⛏',color:'orange',desc:'Modélisation géotechnique par éléments finis (sols, fondations, soutènements).',tags:['Bentley','Payant'],url:'https://www.bentley.com/software/plaxis/'},
+  {name:'GeoStudio',domain:'Géotechnique',icon:'🌍',color:'green',desc:'Suite de logiciels pour la stabilité des pentes, infiltration, contraintes.',tags:['Seequent','Payant'],url:'https://www.seequent.com/products-solutions/geostudio/'},
+  {name:'MS Project',domain:'Gestion de projet',icon:'📊',color:'blue',desc:'Planification et suivi de projets de construction (plannings, ressources).',tags:['Microsoft','Payant'],url:'https://www.microsoft.com/microsoft-365/project/project-management-software'},
+  {name:'QGIS',domain:'Topographie',icon:'🗺',color:'teal',desc:'Système d\'information géographique libre et gratuit pour la topographie.',tags:['Open source','Gratuit'],url:'https://qgis.org/'},
+  {name:'FreeCAD',domain:'BIM / CAO',icon:'⚙️',color:'purple',desc:'Alternative libre et gratuite pour la modélisation 3D paramétrique.',tags:['Open source','Gratuit'],url:'https://www.freecad.org/'}
+];
+function renderSoftware(filterDomain){
+  const cats=[...new Set(SOFTWARE_LIST.map(s=>s.domain))];
+  const catsWrap=document.getElementById('softCats');
+  if(catsWrap && !catsWrap.dataset.built){
+    catsWrap.innerHTML='<span class="soft-cat-chip active" onclick="renderSoftware(null,this)">Tous</span>'+
+      cats.map(c=>`<span class="soft-cat-chip" onclick="renderSoftware('${c}',this)">${c}</span>`).join('');
+    catsWrap.dataset.built='1';
+  }
+  const list = filterDomain ? SOFTWARE_LIST.filter(s=>s.domain===filterDomain) : SOFTWARE_LIST;
+  document.getElementById('softGrid').innerHTML = list.map(s=>`
+    <div class="soft-card">
+      <div class="soft-icon" style="background:var(--${s.color}-dim)">${s.icon}</div>
+      <div class="soft-domain">${s.domain}</div>
+      <div class="soft-name">${s.name}</div>
+      <div class="soft-desc">${s.desc}</div>
+      <div class="soft-meta">${s.tags.map(t=>`<span class="soft-tag">${t}</span>`).join('')}</div>
+      <div class="soft-footer">
+        <a class="btn btn-accent" href="${s.url}" target="_blank" rel="noopener">🔗 Site officiel</a>
+      </div>
+    </div>`).join('');
+}
+// wrap to also handle active-class toggling on the category chips
+renderSoftware = (function(orig){
+  return function(filterDomain, el){
+    orig(filterDomain);
+    document.querySelectorAll('#softCats .soft-cat-chip').forEach(c=>c.classList.remove('active'));
+    if(el) el.classList.add('active');
+    else if(!filterDomain) { const first=document.querySelector('#softCats .soft-cat-chip'); if(first) first.classList.add('active'); }
+  };
+})(renderSoftware);
+
+/* ══════════════════════════════════════════════
+   PLANS & MODÈLES
+══════════════════════════════════════════════ */
+const PLANS_LIST = [
+  {title:'Villa R+0 — 3 chambres, 200m²',cat:'Plans de maisons',fmt:'DWG/PDF',icon:'🏠',color:'blue'},
+  {title:'Duplex R+1 sur parcelle 15×20',cat:'Plans de maisons',fmt:'DWG/PDF',icon:'🏡',color:'green'},
+  {title:'Plan de coffrage — plancher haut',cat:'Plans de coffrage',fmt:'DWG',icon:'🧱',color:'orange'},
+  {title:'Plan de ferraillage — dalle pleine',cat:'Plans de ferraillage',fmt:'DWG/PDF',icon:'📐',color:'red'},
+  {title:'Plan de fondations — semelles isolées',cat:'Plans de fondations',fmt:'DWG',icon:'🏗',color:'purple'},
+  {title:'Immeuble R+3 — logements collectifs',cat:"Plans d'immeubles",fmt:'DWG/PDF',icon:'🏢',color:'teal'},
+  {title:'Détail constructif — jonction poteau-poutre',cat:'Détails constructifs',fmt:'PDF',icon:'🔩',color:'pink'},
+  {title:'Profil en travers — voirie urbaine',cat:'Plans routiers',fmt:'DWG',icon:'🛣',color:'orange'}
+];
+function renderPlans(){
+  document.getElementById('plansGrid').innerHTML = PLANS_LIST.map(p=>`
+    <div class="plan-card">
+      <div class="plan-thumb" style="background:var(--${p.color}-dim)">${p.icon}</div>
+      <div class="plan-body">
+        <div class="plan-title">${p.title}</div>
+        <div class="plan-meta">${p.cat} · ${p.fmt}</div>
+        <div class="plan-footer">
+          <button class="btn btn-ghost" onclick="showToast('Ajoutez ce plan via le panneau admin (📤 Publier) pour le rendre téléchargeable.','')">👁 Voir</button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+/* ══════════════════════════════════════════════
+   CALCULATEURS
+══════════════════════════════════════════════ */
+const CALC_LIST = [
+  {id:'beam',icon:'🏗',name:'Poutre',ready:true},
+  {id:'slab',icon:'⬜',name:'Dalle',ready:false},
+  {id:'column',icon:'🏛',name:'Poteau',ready:false},
+  {id:'footing',icon:'🧱',name:'Semelle',ready:false},
+  {id:'retaining',icon:'🧭',name:'Mur de soutènement',ready:false},
+  {id:'concrete',icon:'🪨',name:'Volume de béton',ready:false},
+  {id:'earthwork',icon:'⛏',name:'Terrassement',ready:false},
+  {id:'units',icon:'🔁',name:"Conversion d'unités",ready:false}
+];
+function renderCalcList(){
+  document.getElementById('calcList').innerHTML = CALC_LIST.map(c=>`
+    <div class="calc-pick ${c.id==='beam'?'active':''}" onclick="pickCalc('${c.id}',this)">
+      <div class="cp-icon">${c.icon}</div>
+      <div class="cp-name">${c.name}</div>
+      ${c.ready?'':'<div class="cp-soon">Bientôt</div>'}
+    </div>`).join('');
+}
+function pickCalc(id,el){
+  document.querySelectorAll('.calc-pick').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+  if(id!=='beam'){
+    showToast('Ce calculateur arrive bientôt — commencez par celui de la poutre.','');
+    document.querySelectorAll('.calc-pick').forEach(c=>c.classList.remove('active'));
+    document.querySelector('.calc-pick').classList.add('active');
+    return;
+  }
+  document.getElementById('calcBeamBox').style.display='grid';
+}
+function calcBeam(){
+  const L=parseFloat(document.getElementById('cbSpan').value)||0;
+  const b=parseFloat(document.getElementById('cbWidth').value)||0;
+  const h=parseFloat(document.getElementById('cbHeight').value)||0;
+  const d0=parseFloat(document.getElementById('cbCover').value)||0.04;
+  const G=parseFloat(document.getElementById('cbG').value)||0;
+  const Q=parseFloat(document.getElementById('cbQ').value)||0;
+  const fc28=parseFloat(document.getElementById('cbFc28').value)||25;
+  const fe=parseFloat(document.getElementById('cbFe').value)||400;
+  const support=document.getElementById('cbSupport').value;
+  if(L<=0||b<=0||h<=0){ showToast('Merci de renseigner des dimensions valides.','error'); return; }
+
+  const d = h - d0; // hauteur utile
+  const qu = 1.35*G + 1.5*Q; // kN/m, ELU
+  let Mu, Vu;
+  if(support==='console'){
+    Mu = qu*L*L/2; // kN.m
+    Vu = qu*L;
+  } else {
+    Mu = qu*L*L/8; // kN.m
+    Vu = qu*L/2;
+  }
+  const fbu = 0.85*fc28/1.5; // MPa, résistance de calcul du béton
+  const MuNm = Mu*1000; // N.m -> converti plus bas en N.mm pour mu
+  const muReduit = (MuNm*1000) / (b*1000*Math.pow(d*1000,2)*fbu); // sans dimension
+  let Ast;
+  if(muReduit < 0.186){
+    // pivot A approx, bras de levier simplifié
+    const zb = d*(1-0.6*muReduit);
+    const fsu = fe/1.15;
+    Ast = (MuNm) / (zb*fsu*1e6) * 1e6; // mm² — calcul simplifié
+  } else {
+    Ast = null;
+  }
+
+  document.getElementById('rQu').textContent = qu.toFixed(2)+' kN/m';
+  document.getElementById('rMu').textContent = Mu.toFixed(2)+' kN·m';
+  document.getElementById('rVu').textContent = Vu.toFixed(2)+' kN';
+  document.getElementById('rMuReduit').textContent = muReduit.toFixed(3);
+  document.getElementById('rAst').textContent = Ast!==null ? Math.max(Ast,0).toFixed(0)+' mm² (≈ '+(Ast/100).toFixed(2)+' cm²)' : 'Section à revoir (μu > μl) — augmenter h ou b';
+}
+
+/* ══════════════════════════════════════════════
+   INIT
+══════════════════════════════════════════════ */
+renderSoftware();
+renderPlans();
+renderCalcList();
+initSupabase();
+initReveal();
+</script>
+</body>
+</html>
