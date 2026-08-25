@@ -993,6 +993,195 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
       <div class="calc-warn">⚠️ Calcul simplifié à titre indicatif (méthode BAEL 91 / flexion simple, section rectangulaire). Ne remplace pas une note de calcul validée par un ingénieur qualifié — vérifiez toujours les hypothèses, combinaisons de charges et normes applicables à votre projet.</div>
     </div>
   </div>
+
+  <!-- DALLE -->
+  <div id="calcSlabBox" class="calc-box" style="display:none">
+    <div>
+      <h3 style="font-family:'DM Serif Display',serif;font-size:1.15rem;margin-bottom:1rem">Dalle pleine — portée sur 2 appuis (par bande de 1 m)</h3>
+      <div class="calc-form-row">
+        <div class="calc-form-group"><label>Petite portée Lx (m)</label><input class="fc" type="number" id="slLx" value="4" step="0.1"/></div>
+        <div class="calc-form-group"><label>Grande portée Ly (m)</label><input class="fc" type="number" id="slLy" value="5" step="0.1"/></div>
+      </div>
+      <div class="calc-form-row">
+        <div class="calc-form-group"><label>Épaisseur h (m)</label><input class="fc" type="number" id="slH" value="0.15" step="0.01"/></div>
+        <div class="calc-form-group"><label>Enrobage d' (m)</label><input class="fc" type="number" id="slCover" value="0.03" step="0.005"/></div>
+      </div>
+      <div class="calc-form-row">
+        <div class="calc-form-group"><label>Charge permanente G (kN/m²)</label><input class="fc" type="number" id="slG" value="5" step="0.5"/></div>
+        <div class="calc-form-group"><label>Charge d'exploitation Q (kN/m²)</label><input class="fc" type="number" id="slQ" value="2.5" step="0.5"/></div>
+      </div>
+      <div class="calc-form-row">
+        <div class="calc-form-group"><label>fc28 (MPa)</label><input class="fc" type="number" id="slFc28" value="25" step="1"/></div>
+        <div class="calc-form-group"><label>fe / fyk (MPa)</label><input class="fc" type="number" id="slFe" value="400" step="10"/></div>
+      </div>
+      <button class="btn btn-accent" style="width:100%;justify-content:center" onclick="calcSlab()">Calculer</button>
+    </div>
+    <div>
+      <div class="calc-result-box"><div class="calc-result-label">Élancement α = Lx/Ly</div><div class="calc-result-value" id="slAlpha">—</div></div>
+      <div class="calc-result-box"><div class="calc-result-label">Charge pondérée ELU pu</div><div class="calc-result-value" id="slPu">—</div></div>
+      <div class="calc-result-box"><div class="calc-result-label">Moment Mx (sens porteur)</div><div class="calc-result-value" id="slMx">—</div></div>
+      <div class="calc-result-box"><div class="calc-result-label">Moment My (sens secondaire)</div><div class="calc-result-value" id="slMy">—</div></div>
+      <div class="calc-result-box"><div class="calc-result-label">Armatures Ax estimées</div><div class="calc-result-value" id="slAx">—</div></div>
+      <div class="calc-warn">⚠️ Méthode simplifiée BAEL (dalle rectangulaire, appuis simples, coefficients forfaitaires μx/μy). Vérifier le mode d'appui réel et le poinçonnement avant exécution.</div>
+    </div>
+  </div>
+
+  <!-- POTEAU -->
+  <div id="calcColumnBox" class="calc-box" style="display:none">
+    <div>
+      <h3 style="font-family:'DM Serif Display',serif;font-size:1.15rem;margin-bottom:1rem">Poteau en béton armé — compression centrée</h3>
+      <div class="calc-form-row">
+        <div class="calc-form-group"><label>Largeur a (m)</label><input class="fc" type="number" id="coA" value="0.25" step="0.01"/></div>
+        <div class="calc-form-group"><label>Longueur b (m)</label><input class="fc" type="number" id="coB" value="0.25" step="0.01"/></div>
+      </div>
+      <div class="calc-form-row">
+        <div class="calc-form-group"><label>Hauteur libre L0 (m)</label><input class="fc" type="number" id="coL0" value="3" step="0.1"/></div>
+        <div class="calc-form-group"><label>Type de liaison</label><select class="fc" id="coFix"><option value="1">Articulé-articulé (lf=L0)</option><option value="0.7">Encastré-articulé (lf=0,7L0)</option><option value="0.5">Encastré-encastré (lf=0,5L0)</option></select></div>
+      </div>
+      <div class="calc-form-row">
+        <div class="calc-form-group"><label>Charge permanente G (kN)</label><input class="fc" type="number" id="coG" value="250" step="10"/></div>
+        <div class="calc-form-group"><label>Charge d'exploitation Q (kN)</label><input class="fc" type="number" id="coQ" value="150" step="10"/></div>
+      </div>
+      <div class="calc-form-row">
+        <div class="calc-form-group"><label>fc28 (MPa)</label><input class="fc" type="number" id="coFc28" value="25" step="1"/></div>
+        <div class="calc-form-group"><label>fe / fyk (MPa)</label><input class="fc" type="number" id="coFe" value="400" step="10"/></div>
+      </div>
+      <button class="btn btn-accent" style="width:100%;justify-content:center" onclick="calcColumn()">Calculer</button>
+    </div>
+    <div>
+      <div class="calc-result-box"><div class="calc-result-label">Charge pondérée Nu (1,35G+1,5Q)</div><div class="calc-result-value" id="coNu">—</div></div>
+      <div class="calc-result-box"><div class="calc-result-label">Longueur de flambement lf</div><div class="calc-result-value" id="coLf">—</div></div>
+      <div class="calc-result-box"><div class="calc-result-label">Élancement λ</div><div class="calc-result-value" id="coLambda">—</div></div>
+      <div class="calc-result-box"><div class="calc-result-label">Section béton Br nécessaire (indicative)</div><div class="calc-result-value" id="coBr">—</div></div>
+      <div class="calc-result-box"><div class="calc-result-label">Armatures théoriques (indicatives)</div><div class="calc-result-value" id="coAst">—</div></div>
+      <div class="calc-warn">⚠️ Calcul simplifié de compression centrée (BAEL). Ne tient pas compte de l'excentricité, du flambement biaxial ni des dispositions constructives minimales complètes.</div>
+    </div>
+  </div>
+
+  <!-- SEMELLE -->
+  <div id="calcFootingBox" class="calc-box" style="display:none">
+    <div>
+      <h3 style="font-family:'DM Serif Display',serif;font-size:1.15rem;margin-bottom:1rem">Semelle isolée sous poteau</h3>
+      <div class="calc-form-row">
+        <div class="calc-form-group"><label>Charge de service N (kN)</label><input class="fc" type="number" id="foN" value="400" step="10"/></div>
+        <div class="calc-form-group"><label>Contrainte admissible sol σsol (bar / 100 kPa)</label><input class="fc" type="number" id="foSigma" value="2" step="0.1"/></div>
+      </div>
+      <div class="calc-form-row">
+        <div class="calc-form-group"><label>Côté poteau a (m)</label><input class="fc" type="number" id="foA" value="0.30" step="0.01"/></div>
+        <div class="calc-form-group"><label>Côté poteau b (m)</label><input class="fc" type="number" id="foB" value="0.30" step="0.01"/></div>
+      </div>
+      <div class="calc-form-row">
+        <div class="calc-form-group"><label>fc28 (MPa)</label><input class="fc" type="number" id="foFc28" value="25" step="1"/></div>
+        <div class="calc-form-group"><label>fe / fyk (MPa)</label><input class="fc" type="number" id="foFe" value="400" step="10"/></div>
+      </div>
+      <button class="btn btn-accent" style="width:100%;justify-content:center" onclick="calcFooting()">Calculer</button>
+    </div>
+    <div>
+      <div class="calc-result-box"><div class="calc-result-label">Surface de semelle nécessaire</div><div class="calc-result-value" id="foSurf">—</div></div>
+      <div class="calc-result-box"><div class="calc-result-label">Dimensions proposées A × B</div><div class="calc-result-value" id="foDims">—</div></div>
+      <div class="calc-result-box"><div class="calc-result-label">Hauteur utile minimale d</div><div class="calc-result-value" id="foD">—</div></div>
+      <div class="calc-result-box"><div class="calc-result-label">Armatures inférieures estimées (par nappe)</div><div class="calc-result-value" id="foAst">—</div></div>
+      <div class="calc-warn">⚠️ Dimensionnement simplifié par la méthode des bielles (BAEL), semelle carrée/rectangulaire homothétique au poteau. Une étude géotechnique reste indispensable pour valider σsol.</div>
+    </div>
+  </div>
+
+  <!-- MUR DE SOUTÈNEMENT -->
+  <div id="calcRetainingBox" class="calc-box" style="display:none">
+    <div>
+      <h3 style="font-family:'DM Serif Display',serif;font-size:1.15rem;margin-bottom:1rem">Mur de soutènement — poussée des terres (Rankine)</h3>
+      <div class="calc-form-row">
+        <div class="calc-form-group"><label>Hauteur du mur H (m)</label><input class="fc" type="number" id="rwH" value="3" step="0.1"/></div>
+        <div class="calc-form-group"><label>Poids volumique sol γ (kN/m³)</label><input class="fc" type="number" id="rwGamma" value="18" step="0.5"/></div>
+      </div>
+      <div class="calc-form-row">
+        <div class="calc-form-group"><label>Angle de frottement φ (°)</label><input class="fc" type="number" id="rwPhi" value="30" step="1"/></div>
+        <div class="calc-form-group"><label>Surcharge en tête q (kN/m²)</label><input class="fc" type="number" id="rwQ" value="10" step="1"/></div>
+      </div>
+      <button class="btn btn-accent" style="width:100%;justify-content:center" onclick="calcRetaining()">Calculer</button>
+    </div>
+    <div>
+      <div class="calc-result-box"><div class="calc-result-label">Coefficient de poussée Ka</div><div class="calc-result-value" id="rwKa">—</div></div>
+      <div class="calc-result-box"><div class="calc-result-label">Poussée due au sol Pa (par m linéaire)</div><div class="calc-result-value" id="rwPa">—</div></div>
+      <div class="calc-result-box"><div class="calc-result-label">Poussée due à la surcharge Pq</div><div class="calc-result-value" id="rwPq">—</div></div>
+      <div class="calc-result-box"><div class="calc-result-label">Poussée totale en pied de mur</div><div class="calc-result-value" id="rwPtot">—</div></div>
+      <div class="calc-result-box"><div class="calc-result-label">Moment de renversement en pied</div><div class="calc-result-value" id="rwMren">—</div></div>
+      <div class="calc-warn">⚠️ Poussée active de Rankine, sol pulvérulent sans cohésion, remblai horizontal. Le dimensionnement complet (stabilité au renversement, glissement, poinçonnement) nécessite une vérification géotechnique complète.</div>
+    </div>
+  </div>
+
+  <!-- VOLUME DE BÉTON -->
+  <div id="calcConcreteBox" class="calc-box" style="display:none">
+    <div>
+      <h3 style="font-family:'DM Serif Display',serif;font-size:1.15rem;margin-bottom:1rem">Volume de béton & dosage (dosage à 350 kg/m³)</h3>
+      <div class="calc-form-row">
+        <div class="calc-form-group"><label>Longueur (m)</label><input class="fc" type="number" id="cvL" value="10" step="0.1"/></div>
+        <div class="calc-form-group"><label>Largeur (m)</label><input class="fc" type="number" id="cvW" value="5" step="0.1"/></div>
+      </div>
+      <div class="calc-form-group"><label>Épaisseur (m)</label><input class="fc" type="number" id="cvH" value="0.15" step="0.01"/></div>
+      <div class="calc-form-row">
+        <div class="calc-form-group"><label>Dosage ciment (kg/m³)</label><input class="fc" type="number" id="cvDosage" value="350" step="10"/></div>
+        <div class="calc-form-group"><label>Perte / foisonnement (%)</label><input class="fc" type="number" id="cvWaste" value="5" step="1"/></div>
+      </div>
+      <button class="btn btn-accent" style="width:100%;justify-content:center" onclick="calcConcrete()">Calculer</button>
+    </div>
+    <div>
+      <div class="calc-result-box"><div class="calc-result-label">Volume net</div><div class="calc-result-value" id="cvVol">—</div></div>
+      <div class="calc-result-box"><div class="calc-result-label">Volume avec pertes</div><div class="calc-result-value" id="cvVolWaste">—</div></div>
+      <div class="calc-result-box"><div class="calc-result-label">Ciment (sacs de 50 kg)</div><div class="calc-result-value" id="cvCiment">—</div></div>
+      <div class="calc-result-box"><div class="calc-result-label">Sable (≈ 400 kg/m³)</div><div class="calc-result-value" id="cvSable">—</div></div>
+      <div class="calc-result-box"><div class="calc-result-label">Gravier (≈ 800 kg/m³)</div><div class="calc-result-value" id="cvGravier">—</div></div>
+      <div class="calc-warn">⚠️ Ratios de dosage indicatifs (béton dosé à 350 kg/m³ courant). Adapter selon la formulation réelle, la granulométrie locale et la classe de résistance visée.</div>
+    </div>
+  </div>
+
+  <!-- TERRASSEMENT -->
+  <div id="calcEarthworkBox" class="calc-box" style="display:none">
+    <div>
+      <h3 style="font-family:'DM Serif Display',serif;font-size:1.15rem;margin-bottom:1rem">Terrassement — volume de fouille / remblai</h3>
+      <div class="calc-form-row">
+        <div class="calc-form-group"><label>Longueur (m)</label><input class="fc" type="number" id="ewL" value="20" step="0.5"/></div>
+        <div class="calc-form-group"><label>Largeur (m)</label><input class="fc" type="number" id="ewW" value="10" step="0.5"/></div>
+      </div>
+      <div class="calc-form-row">
+        <div class="calc-form-group"><label>Profondeur moyenne (m)</label><input class="fc" type="number" id="ewD" value="1.2" step="0.1"/></div>
+        <div class="calc-form-group"><label>Coefficient de foisonnement</label><input class="fc" type="number" id="ewFois" value="1.25" step="0.05"/></div>
+      </div>
+      <button class="btn btn-accent" style="width:100%;justify-content:center" onclick="calcEarthwork()">Calculer</button>
+    </div>
+    <div>
+      <div class="calc-result-box"><div class="calc-result-label">Volume en place (déblai)</div><div class="calc-result-value" id="ewVolPlace">—</div></div>
+      <div class="calc-result-box"><div class="calc-result-label">Volume foisonné (à évacuer)</div><div class="calc-result-value" id="ewVolFois">—</div></div>
+      <div class="calc-result-box"><div class="calc-result-label">Nombre de camions (bennes 10 m³)</div><div class="calc-result-value" id="ewCamions">—</div></div>
+      <div class="calc-warn">⚠️ Volume géométrique simplifié (fouille prismatique). Ne tient pas compte des talus, sur-largeurs de travail ni de la nature du sol.</div>
+    </div>
+  </div>
+
+  <!-- CONVERSION D'UNITÉS -->
+  <div id="calcUnitsBox" class="calc-box" style="display:none">
+    <div>
+      <h3 style="font-family:'DM Serif Display',serif;font-size:1.15rem;margin-bottom:1rem">Conversion d'unités — génie civil</h3>
+      <div class="calc-form-group">
+        <label>Grandeur</label>
+        <select class="fc" id="unKind" onchange="fillUnitOptions()">
+          <option value="length">Longueur</option>
+          <option value="area">Surface</option>
+          <option value="volume">Volume</option>
+          <option value="force">Force / charge</option>
+          <option value="pressure">Pression / contrainte</option>
+        </select>
+      </div>
+      <div class="calc-form-row">
+        <div class="calc-form-group"><label>Valeur</label><input class="fc" type="number" id="unValue" value="1" step="0.01"/></div>
+        <div class="calc-form-group"><label>De</label><select class="fc" id="unFrom"></select></div>
+      </div>
+      <div class="calc-form-group"><label>Vers</label><select class="fc" id="unTo"></select></div>
+      <button class="btn btn-accent" style="width:100%;justify-content:center" onclick="calcUnits()">Convertir</button>
+    </div>
+    <div>
+      <div class="calc-result-box"><div class="calc-result-label">Résultat</div><div class="calc-result-value" id="unResult">—</div></div>
+      <div class="calc-warn">ℹ️ Conversions courantes utilisées en génie civil (SI et unités usuelles de chantier).</div>
+    </div>
+  </div>
 </div>
 
 <div class="jobs-section reveal" id="jobs">
@@ -2774,33 +2963,27 @@ function renderPlans(){
    CALCULATEURS
 ══════════════════════════════════════════════ */
 const CALC_LIST = [
-  {id:'beam',icon:'🏗',name:'Poutre',ready:true},
-  {id:'slab',icon:'⬜',name:'Dalle',ready:false},
-  {id:'column',icon:'🏛',name:'Poteau',ready:false},
-  {id:'footing',icon:'🧱',name:'Semelle',ready:false},
-  {id:'retaining',icon:'🧭',name:'Mur de soutènement',ready:false},
-  {id:'concrete',icon:'🪨',name:'Volume de béton',ready:false},
-  {id:'earthwork',icon:'⛏',name:'Terrassement',ready:false},
-  {id:'units',icon:'🔁',name:"Conversion d'unités",ready:false}
+  {id:'beam',icon:'🏗',name:'Poutre',box:'calcBeamBox'},
+  {id:'slab',icon:'⬜',name:'Dalle',box:'calcSlabBox'},
+  {id:'column',icon:'🏛',name:'Poteau',box:'calcColumnBox'},
+  {id:'footing',icon:'🧱',name:'Semelle',box:'calcFootingBox'},
+  {id:'retaining',icon:'🧭',name:'Mur de soutènement',box:'calcRetainingBox'},
+  {id:'concrete',icon:'🪨',name:'Volume de béton',box:'calcConcreteBox'},
+  {id:'earthwork',icon:'⛏',name:'Terrassement',box:'calcEarthworkBox'},
+  {id:'units',icon:'🔁',name:"Conversion d'unités",box:'calcUnitsBox'}
 ];
 function renderCalcList(){
   document.getElementById('calcList').innerHTML = CALC_LIST.map(c=>`
     <div class="calc-pick ${c.id==='beam'?'active':''}" onclick="pickCalc('${c.id}',this)">
       <div class="cp-icon">${c.icon}</div>
       <div class="cp-name">${c.name}</div>
-      ${c.ready?'':'<div class="cp-soon">Bientôt</div>'}
     </div>`).join('');
+  fillUnitOptions();
 }
 function pickCalc(id,el){
   document.querySelectorAll('.calc-pick').forEach(c=>c.classList.remove('active'));
   el.classList.add('active');
-  if(id!=='beam'){
-    showToast('Ce calculateur arrive bientôt — commencez par celui de la poutre.','');
-    document.querySelectorAll('.calc-pick').forEach(c=>c.classList.remove('active'));
-    document.querySelector('.calc-pick').classList.add('active');
-    return;
-  }
-  document.getElementById('calcBeamBox').style.display='grid';
+  CALC_LIST.forEach(c=>{ const box=document.getElementById(c.box); if(box) box.style.display = (c.id===id) ? 'grid' : 'none'; });
 }
 function calcBeam(){
   const L=parseFloat(document.getElementById('cbSpan').value)||0;
@@ -2842,6 +3025,196 @@ function calcBeam(){
   document.getElementById('rVu').textContent = Vu.toFixed(2)+' kN';
   document.getElementById('rMuReduit').textContent = muReduit.toFixed(3);
   document.getElementById('rAst').textContent = Ast!==null ? Math.max(Ast,0).toFixed(0)+' mm² (≈ '+(Ast/100).toFixed(2)+' cm²)' : 'Section à revoir (μu > μl) — augmenter h ou b';
+}
+
+/* ---- DALLE ---- */
+function calcSlab(){
+  const Lx=parseFloat(document.getElementById('slLx').value)||0;
+  const Ly=parseFloat(document.getElementById('slLy').value)||0;
+  const h=parseFloat(document.getElementById('slH').value)||0;
+  const d0=parseFloat(document.getElementById('slCover').value)||0.03;
+  const G=parseFloat(document.getElementById('slG').value)||0;
+  const Q=parseFloat(document.getElementById('slQ').value)||0;
+  const fc28=parseFloat(document.getElementById('slFc28').value)||25;
+  const fe=parseFloat(document.getElementById('slFe').value)||400;
+  if(Lx<=0||Ly<=0||h<=0||Lx>Ly){ showToast('Vérifiez que Lx ≤ Ly et que les dimensions sont valides.','error'); return; }
+
+  const alpha = Lx/Ly;
+  const pu = 1.35*G + 1.5*Q; // kN/m²
+  const d = h - d0;
+  let mux, muy;
+  if(alpha < 0.4){
+    mux = 1/8; muy = 0; // porteur dans un seul sens
+  } else {
+    mux = 1/(8*(1+2.4*Math.pow(alpha,3)));
+    muy = Math.pow(alpha,2)*(1.9-0.9*alpha);
+  }
+  const Mx = mux*pu*Lx*Lx; // kN.m par mètre de largeur
+  const My = muy*Mx;
+  const fbu = 0.85*fc28/1.5;
+  const MxNm = Mx*1000;
+  const muReduit = (MxNm*1000)/(1000*Math.pow(d*1000,2)*fbu);
+  let Ax = null;
+  if(muReduit < 0.186){
+    const zb = d*(1-0.6*muReduit);
+    const fsu = fe/1.15;
+    Ax = MxNm/(zb*fsu);
+  }
+  document.getElementById('slAlpha').textContent = alpha.toFixed(2);
+  document.getElementById('slPu').textContent = pu.toFixed(2)+' kN/m²';
+  document.getElementById('slMx').textContent = Mx.toFixed(2)+' kN·m/m';
+  document.getElementById('slMy').textContent = My.toFixed(2)+' kN·m/m';
+  document.getElementById('slAx').textContent = Ax!==null ? Math.max(Ax,0).toFixed(0)+' mm²/m (≈ '+(Ax/100).toFixed(2)+' cm²/m)' : 'Épaisseur à revoir (μu élevé)';
+}
+
+/* ---- POTEAU ---- */
+function calcColumn(){
+  const a=parseFloat(document.getElementById('coA').value)||0;
+  const b=parseFloat(document.getElementById('coB').value)||0;
+  const L0=parseFloat(document.getElementById('coL0').value)||0;
+  const fixCoef=parseFloat(document.getElementById('coFix').value)||1;
+  const G=parseFloat(document.getElementById('coG').value)||0;
+  const Q=parseFloat(document.getElementById('coQ').value)||0;
+  const fc28=parseFloat(document.getElementById('coFc28').value)||25;
+  const fe=parseFloat(document.getElementById('coFe').value)||400;
+  if(a<=0||b<=0||L0<=0){ showToast('Merci de renseigner des dimensions valides.','error'); return; }
+
+  const Nu = 1.35*G + 1.5*Q; // kN
+  const lf = fixCoef*L0;
+  const hmin = Math.min(a,b);
+  const lambda = lf*Math.sqrt(12)/hmin;
+  let alphaR;
+  if(lambda<=50) alphaR = 0.85/(1+0.2*Math.pow(lambda/35,2));
+  else alphaR = 0.6*Math.pow(50/lambda,2);
+
+  const Br = (a-0.02)*(b-0.02); // m², section réduite BAEL (enrobage 1cm de chaque côté)
+  const sigmaBeton = fc28*1000/(0.9*1.5); // kN/m²
+  const fsu = fe/1.15*1000; // kN/m²
+  let Ast = (Nu/alphaR - Br*sigmaBeton) / fsu; // m²
+  if(Ast<0) Ast=0;
+  const BrMin = Nu/(alphaR*sigmaBeton); // m² — béton seul, sans acier
+
+  document.getElementById('coNu').textContent = Nu.toFixed(1)+' kN';
+  document.getElementById('coLf').textContent = lf.toFixed(2)+' m';
+  document.getElementById('coLambda').textContent = lambda.toFixed(1)+(lambda>70?' (élancé — vérifier le flambement)':'');
+  document.getElementById('coBr').textContent = (BrMin*10000).toFixed(0)+' cm² (section réduite mini, béton seul)';
+  document.getElementById('coAst').textContent = Ast>0 ? (Ast*1e6).toFixed(0)+' mm² (≈ '+(Ast*1e4).toFixed(2)+' cm²)' : 'Section béton suffisante — ferraillage minimal réglementaire à appliquer';
+}
+
+/* ---- SEMELLE ---- */
+function calcFooting(){
+  const N=parseFloat(document.getElementById('foN').value)||0;
+  const sigmaBar=parseFloat(document.getElementById('foSigma').value)||0;
+  const a=parseFloat(document.getElementById('foA').value)||0;
+  const b=parseFloat(document.getElementById('foB').value)||0;
+  const fe=parseFloat(document.getElementById('foFe').value)||400;
+  if(N<=0||sigmaBar<=0||a<=0||b<=0){ showToast('Merci de renseigner des valeurs valides.','error'); return; }
+
+  const sigmaSol = sigmaBar*100; // kN/m²
+  const S = N/sigmaSol; // m²
+  const A = Math.sqrt(S*(a/b)); // dimensions homothétiques au poteau
+  const B = S/A;
+  const dmin = Math.max((A-a)/4,(B-b)/4);
+  const Nu = 1.4*N; // approximation ELU si G/Q non détaillées
+  const fsu = fe/1.15*1000; // kN/m²
+  const AstA = (Nu*(A-a)) / (8*dmin*fsu); // m², méthode des bielles
+
+  document.getElementById('foSurf').textContent = S.toFixed(2)+' m²';
+  document.getElementById('foDims').textContent = A.toFixed(2)+' m × '+B.toFixed(2)+' m (à arrondir au multiple de 5 cm supérieur)';
+  document.getElementById('foD').textContent = dmin.toFixed(2)+' m';
+  document.getElementById('foAst').textContent = (AstA*1e6).toFixed(0)+' mm² (≈ '+(AstA*1e4).toFixed(2)+' cm²)';
+}
+
+/* ---- MUR DE SOUTÈNEMENT ---- */
+function calcRetaining(){
+  const H=parseFloat(document.getElementById('rwH').value)||0;
+  const gamma=parseFloat(document.getElementById('rwGamma').value)||0;
+  const phiDeg=parseFloat(document.getElementById('rwPhi').value)||30;
+  const q=parseFloat(document.getElementById('rwQ').value)||0;
+  if(H<=0||gamma<=0){ showToast('Merci de renseigner des valeurs valides.','error'); return; }
+
+  const phi = phiDeg*Math.PI/180;
+  const Ka = Math.pow(Math.tan(Math.PI/4 - phi/2),2);
+  const Pa = 0.5*Ka*gamma*H*H; // kN/m
+  const Pq = Ka*q*H; // kN/m
+  const Ptot = Pa+Pq;
+  const Mren = Pa*(H/3) + Pq*(H/2);
+
+  document.getElementById('rwKa').textContent = Ka.toFixed(3);
+  document.getElementById('rwPa').textContent = Pa.toFixed(2)+' kN/m';
+  document.getElementById('rwPq').textContent = Pq.toFixed(2)+' kN/m';
+  document.getElementById('rwPtot').textContent = Ptot.toFixed(2)+' kN/m';
+  document.getElementById('rwMren').textContent = Mren.toFixed(2)+' kN·m/m';
+}
+
+/* ---- VOLUME DE BÉTON ---- */
+function calcConcrete(){
+  const L=parseFloat(document.getElementById('cvL').value)||0;
+  const W=parseFloat(document.getElementById('cvW').value)||0;
+  const H=parseFloat(document.getElementById('cvH').value)||0;
+  const dosage=parseFloat(document.getElementById('cvDosage').value)||350;
+  const waste=parseFloat(document.getElementById('cvWaste').value)||0;
+  if(L<=0||W<=0||H<=0){ showToast('Merci de renseigner des dimensions valides.','error'); return; }
+
+  const vol = L*W*H;
+  const volW = vol*(1+waste/100);
+  const cimentKg = volW*dosage;
+  const sacs = cimentKg/50;
+  const sableKg = volW*400;
+  const gravierKg = volW*800;
+
+  document.getElementById('cvVol').textContent = vol.toFixed(2)+' m³';
+  document.getElementById('cvVolWaste').textContent = volW.toFixed(2)+' m³';
+  document.getElementById('cvCiment').textContent = sacs.toFixed(1)+' sacs (≈ '+cimentKg.toFixed(0)+' kg)';
+  document.getElementById('cvSable').textContent = (sableKg/1000).toFixed(2)+' t';
+  document.getElementById('cvGravier').textContent = (gravierKg/1000).toFixed(2)+' t';
+}
+
+/* ---- TERRASSEMENT ---- */
+function calcEarthwork(){
+  const L=parseFloat(document.getElementById('ewL').value)||0;
+  const W=parseFloat(document.getElementById('ewW').value)||0;
+  const D=parseFloat(document.getElementById('ewD').value)||0;
+  const fois=parseFloat(document.getElementById('ewFois').value)||1.25;
+  if(L<=0||W<=0||D<=0){ showToast('Merci de renseigner des dimensions valides.','error'); return; }
+
+  const volPlace = L*W*D;
+  const volFois = volPlace*fois;
+  const camions = Math.ceil(volFois/10);
+
+  document.getElementById('ewVolPlace').textContent = volPlace.toFixed(2)+' m³';
+  document.getElementById('ewVolFois').textContent = volFois.toFixed(2)+' m³';
+  document.getElementById('ewCamions').textContent = camions+' camions (≈10 m³)';
+}
+
+/* ---- CONVERSION D'UNITÉS ---- */
+const UNIT_DEFS = {
+  length:[{k:'m',l:'Mètre (m)',f:1},{k:'cm',l:'Centimètre (cm)',f:0.01},{k:'mm',l:'Millimètre (mm)',f:0.001},{k:'km',l:'Kilomètre (km)',f:1000},{k:'in',l:'Pouce (in)',f:0.0254},{k:'ft',l:'Pied (ft)',f:0.3048}],
+  area:[{k:'m2',l:'Mètre carré (m²)',f:1},{k:'cm2',l:'Centimètre carré (cm²)',f:0.0001},{k:'ha',l:'Hectare (ha)',f:10000},{k:'km2',l:'Kilomètre carré (km²)',f:1e6},{k:'ft2',l:'Pied carré (ft²)',f:0.092903}],
+  volume:[{k:'m3',l:'Mètre cube (m³)',f:1},{k:'l',l:'Litre (l)',f:0.001},{k:'cm3',l:'Centimètre cube (cm³)',f:1e-6},{k:'ft3',l:'Pied cube (ft³)',f:0.0283168}],
+  force:[{k:'kN',l:'Kilonewton (kN)',f:1},{k:'N',l:'Newton (N)',f:0.001},{k:'tf',l:'Tonne-force (tf)',f:9.80665},{k:'kgf',l:'Kilogramme-force (kgf)',f:0.00980665}],
+  pressure:[{k:'kPa',l:'Kilopascal (kPa)',f:1},{k:'MPa',l:'Mégapascal (MPa)',f:1000},{k:'Nmm2',l:'N/mm² (= MPa)',f:1000},{k:'bar',l:'Bar',f:100},{k:'kgfcm2',l:'kgf/cm²',f:98.0665},{k:'psi',l:'PSI',f:6.89476}]
+};
+function fillUnitOptions(){
+  const kind = document.getElementById('unKind').value;
+  const defs = UNIT_DEFS[kind];
+  const from = document.getElementById('unFrom');
+  const to = document.getElementById('unTo');
+  from.innerHTML = defs.map(d=>`<option value="${d.k}">${d.l}</option>`).join('');
+  to.innerHTML = defs.map(d=>`<option value="${d.k}">${d.l}</option>`).join('');
+  if(defs.length>1) to.selectedIndex = 1;
+}
+function calcUnits(){
+  const kind = document.getElementById('unKind').value;
+  const value = parseFloat(document.getElementById('unValue').value)||0;
+  const fromKey = document.getElementById('unFrom').value;
+  const toKey = document.getElementById('unTo').value;
+  const defs = UNIT_DEFS[kind];
+  const fromDef = defs.find(d=>d.k===fromKey);
+  const toDef = defs.find(d=>d.k===toKey);
+  if(!fromDef||!toDef) return;
+  const result = value*fromDef.f/toDef.f;
+  document.getElementById('unResult').textContent = result.toLocaleString('fr-FR',{maximumFractionDigits:6})+' '+toDef.k;
 }
 
 /* ══════════════════════════════════════════════
