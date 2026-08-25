@@ -266,6 +266,14 @@ textarea.fc{resize:vertical;min-height:75px}
 .fmt-row{display:flex;flex-wrap:wrap;gap:.28rem;justify-content:center;margin-top:.6rem}
 .fmt-tag{font-family:'JetBrains Mono';font-size:.58rem;background:var(--surface);border:1px solid var(--border);color:var(--text3);padding:.15rem .4rem;border-radius:4px}
 
+/* Multi-file list */
+.file-row{display:flex;align-items:center;gap:.55rem;padding:.5rem .65rem;background:var(--surface2);border:1px solid var(--border);border-radius:9px}
+.file-row input{flex:1;padding:.4rem .6rem;font-size:.78rem;min-width:0}
+.fr-size{font-size:.6rem;color:var(--text3);font-family:'JetBrains Mono';white-space:nowrap;flex-shrink:0}
+.fr-remove{background:none;border:none;color:var(--text3);cursor:pointer;font-size:.9rem;flex-shrink:0;padding:.2rem;border-radius:5px}
+.fr-remove:hover{color:var(--red)}
+.fr-icon{flex-shrink:0}
+
 /* Progress bar */
 .progress-wrap{margin:.75rem 0;display:none}
 .progress-wrap.show{display:block}
@@ -895,9 +903,22 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
 <div class="overlay" id="uploadOverlay">
   <div class="modal">
     <button class="modal-close" onclick="closeOverlay('uploadOverlay')">✕</button>
-    <h2 class="modal-title">📤 Publier un <span>document</span></h2>
-    <div class="form-row-2">
-      <div class="form-group" style="margin:0"><label class="fl">Titre *</label><input class="fc" type="text" id="upTitle" placeholder="Titre du document"/></div>
+    <h2 class="modal-title">📤 Publier des <span>documents</span></h2>
+    <p class="lock-hint" style="text-align:left">Sélectionnez un ou plusieurs fichiers. La catégorie, l'auteur et la description s'appliquent à tous ; le titre de chacun reste modifiable individuellement.</p>
+
+    <div class="upload-zone" id="uzRoot" onclick="document.getElementById('fileInput').click()" ondragover="event.preventDefault();this.classList.add('over')" ondragleave="this.classList.remove('over')" ondrop="dropFile(event)">
+      <div class="uz-icon" id="uzIcon">📁</div>
+      <p class="uz-text" id="uzText">Glissez vos fichiers ici ou <strong>cliquez pour parcourir</strong> (plusieurs fichiers possibles)</p>
+      <div class="fmt-row"><span class="fmt-tag">PDF</span><span class="fmt-tag">DWG</span><span class="fmt-tag">DXF</span><span class="fmt-tag">XLSX</span><span class="fmt-tag">DOCX</span><span class="fmt-tag">PPTX</span><span class="fmt-tag">IFC</span><span class="fmt-tag">ZIP</span></div>
+    </div>
+    <input type="file" id="fileInput" multiple style="display:none" accept=".pdf,.dwg,.dxf,.xlsx,.xls,.docx,.doc,.pptx,.ppt,.ifc,.zip,.rar" onchange="pickFiles(this.files);this.value=''"/>
+
+    <div id="fileListWrap" style="display:none;margin:.9rem 0">
+      <label class="fl" style="margin-bottom:.5rem;display:block">Fichiers sélectionnés (<span id="fileCount">0</span>)</label>
+      <div id="fileList" style="max-height:190px;overflow-y:auto;display:flex;flex-direction:column;gap:.4rem"></div>
+    </div>
+
+    <div class="form-row-2" style="margin-top:.9rem">
       <div class="form-group" style="margin:0"><label class="fl">Catégorie *</label>
         <select class="fc" id="upCat">
           <option value="structures">Structures & Béton armé</option>
@@ -910,25 +931,11 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
           <option value="environnement">Environnement</option>
         </select>
       </div>
-    </div>
-    <div class="form-group" style="margin-top:.8rem"><label class="fl">Description</label><textarea class="fc" id="upDesc" placeholder="Décrivez le contenu…" style="min-height:60px"></textarea></div>
-    <div class="form-row-2">
       <div class="form-group" style="margin:0"><label class="fl">Auteur</label><input class="fc" type="text" id="upAuthor" placeholder="Nom de l'auteur"/></div>
-      <div class="form-group" style="margin:0"><label class="fl">Format</label>
-        <select class="fc" id="upType">
-          <option value="pdf">PDF</option><option value="dwg">DWG / DXF</option>
-          <option value="xlsx">Excel (XLSX)</option><option value="docx">Word (DOCX)</option>
-          <option value="pptx">PowerPoint</option><option value="ifc">IFC / BIM</option><option value="zip">ZIP / RAR</option>
-        </select>
-      </div>
     </div>
-    <label style="display:flex;align-items:center;gap:.5rem;font-size:.78rem;color:var(--text2);margin:.9rem 0;cursor:pointer"><input type="checkbox" id="upFeatured" style="accent-color:var(--accent)"/> Mettre en vedette ce document</label>
-    <div class="upload-zone" id="uzRoot" onclick="document.getElementById('fileInput').click()" ondragover="event.preventDefault();this.classList.add('over')" ondragleave="this.classList.remove('over')" ondrop="dropFile(event)">
-      <div class="uz-icon" id="uzIcon">📁</div>
-      <p class="uz-text" id="uzText">Glissez votre fichier ici ou <strong>cliquez pour parcourir</strong></p>
-      <div class="fmt-row"><span class="fmt-tag">PDF</span><span class="fmt-tag">DWG</span><span class="fmt-tag">DXF</span><span class="fmt-tag">XLSX</span><span class="fmt-tag">DOCX</span><span class="fmt-tag">PPTX</span><span class="fmt-tag">IFC</span><span class="fmt-tag">ZIP</span></div>
-    </div>
-    <input type="file" id="fileInput" style="display:none" accept=".pdf,.dwg,.dxf,.xlsx,.xls,.docx,.doc,.pptx,.ppt,.ifc,.zip,.rar" onchange="pickFile(this.files[0])"/>
+    <div class="form-group" style="margin-top:.8rem"><label class="fl">Description (appliquée à tous)</label><textarea class="fc" id="upDesc" placeholder="Décrivez le contenu…" style="min-height:55px"></textarea></div>
+    <label style="display:flex;align-items:center;gap:.5rem;font-size:.78rem;color:var(--text2);margin:.9rem 0;cursor:pointer"><input type="checkbox" id="upFeatured" style="accent-color:var(--accent)"/> Mettre en vedette ces documents</label>
+
     <!-- Upload progress -->
     <div class="progress-wrap" id="progWrap">
       <p class="progress-label" id="progLabel">Envoi en cours…</p>
@@ -1161,7 +1168,7 @@ let filteredDocs = [];
 let currentPage = 1;
 const PER_PAGE = 9;
 let activityLogs = [];
-let selectedFile = null;
+let selectedFiles = [];
 let sharingDoc = null;
 let currentSort = 'recent';
 let pendingDocs = [];
@@ -1780,7 +1787,10 @@ async function dlDoc(id) {
     openOverlay('contributeOverlay');
     return;
   }
-  if(sb && doc.file_url) {
+  if(doc.file_url && /^https?:\/\//i.test(doc.file_url)) {
+    // Lien externe (ex: document en licence ouverte hébergé à sa source officielle)
+    window.open(doc.file_url, '_blank', 'noopener');
+  } else if(sb && doc.file_url) {
     const url = sb.storage.from('documents').getPublicUrl(doc.file_url).data.publicUrl;
     const a = document.createElement('a'); a.href=url; a.download=doc.title; a.click();
   } else { showToast('⬇️ Téléchargement démarré (démo)','success'); }
@@ -1868,64 +1878,105 @@ function logout() {
 }
 
 /* Upload */
-function pickFile(f){ if(!f)return; selectedFile=f; document.getElementById('uzIcon').textContent='✅'; document.getElementById('uzText').innerHTML=`<strong style="color:var(--accent)">${f.name}</strong> — ${(f.size/1024/1024).toFixed(2)} Mo`; }
-function dropFile(e){ e.preventDefault(); document.getElementById('uzRoot').classList.remove('over'); if(e.dataTransfer.files[0]) pickFile(e.dataTransfer.files[0]); }
+function detectFileType(filename) {
+  const ext = (filename.split('.').pop()||'').toLowerCase();
+  const map = {pdf:'pdf', dwg:'dwg', dxf:'dwg', xlsx:'xlsx', xls:'xlsx', docx:'docx', doc:'docx', pptx:'pptx', ppt:'pptx', ifc:'ifc', zip:'zip', rar:'zip'};
+  return map[ext] || 'pdf';
+}
+function cleanTitleFromFilename(filename) {
+  return filename.replace(/\.[^/.]+$/, '').replace(/[_-]+/g,' ').trim();
+}
+
+function pickFiles(fileList) {
+  const files = Array.from(fileList);
+  if(!files.length) return;
+  files.forEach(f => selectedFiles.push({ file:f, title: cleanTitleFromFilename(f.name) }));
+  renderFileList();
+}
+function dropFile(e){ e.preventDefault(); document.getElementById('uzRoot').classList.remove('over'); if(e.dataTransfer.files.length) pickFiles(e.dataTransfer.files); }
+function removeFile(idx){ selectedFiles.splice(idx,1); renderFileList(); }
+function updateFileTitle(idx,val){ if(selectedFiles[idx]) selectedFiles[idx].title = val; }
+
+function renderFileList() {
+  const wrap = document.getElementById('fileListWrap');
+  const list = document.getElementById('fileList');
+  document.getElementById('fileCount').textContent = selectedFiles.length;
+  if(!selectedFiles.length) {
+    wrap.style.display='none'; list.innerHTML='';
+    document.getElementById('uzIcon').textContent='📁';
+    document.getElementById('uzText').innerHTML='Glissez vos fichiers ici ou <strong>cliquez pour parcourir</strong> (plusieurs fichiers possibles)';
+    return;
+  }
+  wrap.style.display='block';
+  document.getElementById('uzIcon').textContent='✅';
+  document.getElementById('uzText').innerHTML = `<strong style="color:var(--accent)">${selectedFiles.length} fichier${selectedFiles.length>1?'s':''}</strong> sélectionné${selectedFiles.length>1?'s':''} — cliquez pour en ajouter d'autres`;
+  list.innerHTML = selectedFiles.map((sf,idx)=>`
+    <div class="file-row">
+      <span class="fr-icon">${tIcon(detectFileType(sf.file.name))}</span>
+      <input class="fc" value="${sf.title.replace(/"/g,'&quot;')}" oninput="updateFileTitle(${idx},this.value)" placeholder="Titre du document"/>
+      <span class="fr-size">${(sf.file.size/1024/1024).toFixed(2)} Mo</span>
+      <button class="fr-remove" onclick="removeFile(${idx})" title="Retirer">✕</button>
+    </div>`).join('');
+}
 
 async function publishDoc() {
-  const title = document.getElementById('upTitle').value.trim();
-  const cat   = document.getElementById('upCat').value;
-  const desc  = document.getElementById('upDesc').value.trim();
-  const author= document.getElementById('upAuthor').value.trim()||'Admin';
-  const type  = document.getElementById('upType').value;
+  if(!selectedFiles.length) { showToast('⚠️ Sélectionnez au moins un fichier.','error'); return; }
+  if(selectedFiles.some(sf=>!sf.title.trim())) { showToast('⚠️ Chaque fichier doit avoir un titre.','error'); return; }
+  const cat = document.getElementById('upCat').value;
+  const desc = document.getElementById('upDesc').value.trim();
+  const author = document.getElementById('upAuthor').value.trim()||'Admin';
   const featured = document.getElementById('upFeatured').checked;
-  if(!title){ showToast('⚠️ Titre requis.','error'); return; }
 
   const btn = document.getElementById('publishBtn');
-  btn.disabled=true; btn.textContent='⏳ Publication…';
+  btn.disabled = true;
+  const total = selectedFiles.length;
+  const prog = document.getElementById('progWrap');
+  prog.classList.add('show');
+  let successCount = 0, lastTitle = '';
 
-  try {
-    let file_url = null, file_size = selectedFile ? (selectedFile.size/1024/1024).toFixed(2)+' Mo' : '—';
-
-    if(sb && selectedFile) {
-      // Upload file to Supabase Storage
-      const prog = document.getElementById('progWrap');
-      prog.classList.add('show');
-      const path = `${Date.now()}_${selectedFile.name.replace(/\s/g,'_')}`;
-      const { error: upErr } = await sb.storage.from('documents').upload(path, selectedFile, {
-        onUploadProgress: (p) => {
-          const pct = Math.round((p.loaded/p.total)*100);
-          document.getElementById('progFill').style.width = pct+'%';
-          document.getElementById('progLabel').textContent = `Envoi en cours… ${pct}%`;
-        }
-      });
-      if(upErr) throw upErr;
-      file_url = path;
-      prog.classList.remove('show');
+  for (let i = 0; i < total; i++) {
+    const sf = selectedFiles[i];
+    const type = detectFileType(sf.file.name);
+    btn.textContent = `⏳ Publication ${i+1}/${total}…`;
+    document.getElementById('progLabel').textContent = `Envoi ${i+1}/${total} — ${sf.file.name}`;
+    try {
+      let file_url = null, file_size = (sf.file.size/1024/1024).toFixed(2)+' Mo';
+      if (sb) {
+        const path = `${Date.now()}_${i}_${sf.file.name.replace(/\s/g,'_')}`;
+        const { error: upErr } = await sb.storage.from('documents').upload(path, sf.file, {
+          onUploadProgress: (p) => {
+            const filePct = p.total ? (p.loaded/p.total) : 0;
+            document.getElementById('progFill').style.width = Math.round(((i+filePct)/total)*100)+'%';
+          }
+        });
+        if (upErr) throw upErr;
+        file_url = path;
+      }
+      const newDoc = { title: sf.title, cat, description:desc, author, type, featured, file_url, file_size, download_count:0, rating:0, created_at: new Date().toISOString() };
+      if (sb) {
+        const { data, error } = await sb.from('documents').insert([newDoc]).select();
+        if (error) throw error;
+        allDocs.unshift({ ...data[0], fav:false, userRating:0 });
+      } else {
+        allDocs.unshift({ ...newDoc, id:'local_'+Date.now()+'_'+i, fav:false, userRating:0 });
+      }
+      logActivity('📤','var(--green-dim)',`<strong>${sf.title}</strong> — Document publié`,timeAgo(new Date()));
+      successCount++; lastTitle = sf.title;
+      document.getElementById('progFill').style.width = Math.round(((i+1)/total)*100)+'%';
+    } catch(e) {
+      showToast(`Erreur sur "${sf.file.name}" : ${e.message}`,'error');
     }
-
-    const newDoc = { title, cat, description:desc, author, type, featured, file_url, file_size, download_count:0, rating:0, created_at: new Date().toISOString() };
-
-    if(sb) {
-      const { data, error } = await sb.from('documents').insert([newDoc]).select();
-      if(error) throw error;
-      allDocs.unshift({ ...data[0], fav:false, userRating:0 });
-    } else {
-      allDocs.unshift({ ...newDoc, id:'local_'+Date.now(), fav:false, userRating:0 });
-    }
-
-    closeOverlay('uploadOverlay');
-    resetUploadForm();
-    renderAll(); updateStats(); updateSidebarCounts(); updateFeatured(); updateRecentSidebar(); updateHeroRecent(); populateDocSelect(); updateAuthorsGrid(); updateAboutStats();
-    logActivity('📤','var(--green-dim)',`<strong>${title}</strong> — Document publié`,timeAgo(new Date()));
-    addNotification('📤','var(--green-dim)',`Nouveau document : <strong>${title}</strong>`,'À l\'instant');
-    showToast(`✅ "${title}" publié avec succès !`,'success');
-  } catch(e) {
-    showToast('Erreur publication : '+e.message,'error');
-  } finally {
-    btn.disabled=false; btn.textContent='🚀 Publier';
   }
+
+  closeOverlay('uploadOverlay');
+  resetUploadForm();
+  renderAll(); updateStats(); updateSidebarCounts(); updateFeatured(); updateRecentSidebar(); updateHeroRecent(); populateDocSelect(); updateAuthorsGrid(); updateAboutStats();
+  if(successCount === 1) addNotification('📤','var(--green-dim)',`Nouveau document : <strong>${lastTitle}</strong>`,'À l\'instant');
+  else if(successCount > 1) addNotification('📤','var(--green-dim)',`<strong>${successCount} documents</strong> publiés`,'À l\'instant');
+  showToast(successCount===total ? `✅ ${successCount} document${successCount>1?'s':''} publié${successCount>1?'s':''} avec succès !` : `⚠️ ${successCount}/${total} document(s) publié(s) — voir erreurs ci-dessus.`, successCount===total?'success':'error');
+  btn.disabled = false; btn.textContent = '🚀 Publier';
 }
-function resetUploadForm(){ document.getElementById('upTitle').value=''; document.getElementById('upDesc').value=''; document.getElementById('upAuthor').value=''; document.getElementById('uzIcon').textContent='📁'; document.getElementById('uzText').innerHTML='Glissez votre fichier ici ou <strong>cliquez pour parcourir</strong>'; selectedFile=null; document.getElementById('progFill').style.width='0'; document.getElementById('progWrap').classList.remove('show'); }
+function resetUploadForm(){ selectedFiles=[]; renderFileList(); document.getElementById('upDesc').value=''; document.getElementById('upAuthor').value=''; document.getElementById('progFill').style.width='0'; document.getElementById('progWrap').classList.remove('show'); }
 
 /* ══════════════════════════════════════════════
    TÉLÉVERSEMENT SOUS VALIDATION (visiteurs)
