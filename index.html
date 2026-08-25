@@ -3,8 +3,43 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>GenieCivil Docs — Bibliothèque du Génie Civil</title>
-<meta name="description" content="GenieCivil Docs — bibliothèque collaborative et gratuite de documents de génie civil : notes de calcul, plans DWG, bordereaux de prix, normes et DTU, partagés par la communauté."/>
+<title>GenieCivil Docs — Bibliothèque gratuite de documents de génie civil</title>
+<meta name="description" content="GenieCivil Docs — bibliothèque collaborative et gratuite de documents de génie civil : notes de calcul, plans DWG, bordereaux de prix, normes BAEL/Eurocode, DTU, cours et offres d'emploi BTP, partagés par la communauté au Burkina Faso et en Afrique de l'Ouest."/>
+<meta name="keywords" content="génie civil, BTP, documents techniques, notes de calcul, béton armé, BAEL, Eurocode, plans DWG, normes DTU, métrés, devis, géotechnique, hydraulique, Burkina Faso, Afrique, ingénieur, étudiant génie civil"/>
+<meta name="author" content="GenieCivil Docs"/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://genieciviledocs.onrender.com/"/>
+
+<!-- Open Graph / réseaux sociaux -->
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="GenieCivil Docs — Bibliothèque gratuite de documents de génie civil"/>
+<meta property="og:description" content="Plans, notes de calcul, normes, tableurs et présentations techniques — partagés par et pour les professionnels du génie civil en Afrique de l'Ouest."/>
+<meta property="og:url" content="https://genieciviledocs.onrender.com/"/>
+<meta property="og:site_name" content="GenieCivil Docs"/>
+<meta property="og:locale" content="fr_FR"/>
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="GenieCivil Docs — Bibliothèque gratuite de documents de génie civil"/>
+<meta name="twitter:description" content="Plans, notes de calcul, normes, tableurs et présentations techniques pour les professionnels du génie civil."/>
+
+<!-- Données structurées (aident Google à comprendre le site) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "GenieCivil Docs",
+  "url": "https://genieciviledocs.onrender.com/",
+  "description": "Bibliothèque collaborative et gratuite de documents de génie civil : notes de calcul, plans DWG, normes, bordereaux de prix et offres d'emploi BTP.",
+  "inLanguage": "fr",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://genieciviledocs.onrender.com/?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%23e8c547'/%3E%3Cpath d='M12 4L5 9.8V19H9.5V13.5H14.5V19H19V9.8L12 4Z' stroke='%230a0c10' stroke-width='1.6' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E"/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
 
@@ -15,9 +50,10 @@
   --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);
   --accent:#e8c547;--accent2:#f0d870;--accent-dim:rgba(232,197,71,0.12);--accent-glow:rgba(232,197,71,0.28);
   --text:#f0ece4;--text2:#8a8a9a;--text3:#484858;
-  --blue:#4a9eff;--green:#3ecf8e;--red:#ff6b6b;--orange:#ff9f5a;
+  --blue:#4a9eff;--green:#3ecf8e;--red:#ff6b6b;--orange:#ff9f5a;--purple:#b18cff;--pink:#ff7ac6;--teal:#3ecfcf;
   --blue-dim:rgba(74,158,255,0.12);--green-dim:rgba(62,207,142,0.12);
   --red-dim:rgba(255,107,107,0.12);--orange-dim:rgba(255,159,90,0.12);
+  --purple-dim:rgba(177,140,255,0.12);--pink-dim:rgba(255,122,198,0.12);--teal-dim:rgba(62,207,207,0.12);
   --shadow:0 8px 32px rgba(0,0,0,0.5);--radius:14px;--tr:0.2s ease;
 }
 [data-theme="light"]{
@@ -126,6 +162,11 @@ nav{position:sticky;top:0;z-index:200;background:rgba(10,12,16,0.88);backdrop-fi
 /* ═══ LAYOUT ═══ */
 .main-layout{max-width:1440px;margin:0 auto;padding:0 1.5rem 4rem;display:grid;grid-template-columns:1fr 270px;gap:1.75rem}
 .section-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:1.4rem;padding-bottom:1.1rem;border-bottom:1px solid var(--border)}
+.breadcrumb{font-size:.75rem;color:var(--text3);margin-bottom:1rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap}
+.breadcrumb a{color:var(--text2);text-decoration:none;transition:color var(--tr)}
+.breadcrumb a:hover{color:var(--accent)}
+.breadcrumb .bc-sep{color:var(--text3)}
+.breadcrumb .bc-current{color:var(--accent);font-weight:600}
 .section-head h2{font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--text)}
 .section-head h2 span{color:var(--accent)}
 .doc-count{font-size:.68rem;color:var(--text3);font-family:'JetBrains Mono';margin-top:.2rem}
@@ -152,26 +193,52 @@ nav{position:sticky;top:0;z-index:200;background:rgba(10,12,16,0.88);backdrop-fi
 .doc-card::after{content:'';position:absolute;inset:0;border-radius:15px;opacity:0;transition:opacity .25s;pointer-events:none;background:radial-gradient(500px circle at var(--mx,50%) var(--my,50%),rgba(232,197,71,.05),transparent 40%)}
 .doc-card:hover{border-color:var(--border2);transform:translateY(-3px);box-shadow:0 20px 50px rgba(0,0,0,.35)}
 .doc-card:hover::after{opacity:1}
-.dc-banner{height:88px;position:relative;display:flex;align-items:center;justify-content:flex-end;padding:1rem}
-.dc-bg-icon{font-size:3.2rem;opacity:.1;line-height:1}
+.dc-banner{height:104px;position:relative;display:flex;align-items:center;justify-content:flex-end;padding:1rem;overflow:hidden;background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0,rgba(255,255,255,.035) 1px,transparent 1px,transparent 22px),repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0,rgba(255,255,255,.035) 1px,transparent 1px,transparent 22px)}
+.dc-bg-icon{font-size:3.4rem;opacity:.14;line-height:1;filter:drop-shadow(0 4px 12px rgba(0,0,0,.3))}
 .dc-type-badge{position:absolute;top:.65rem;left:.65rem;font-family:'JetBrains Mono';font-size:.62rem;font-weight:600;padding:.2rem .5rem;border-radius:5px;text-transform:uppercase;letter-spacing:.08em}
-.dc-cat{position:absolute;bottom:.55rem;left:.7rem;font-size:.62rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.38)}
+.dc-cat-pill{position:absolute;bottom:.55rem;left:.65rem;font-size:.6rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:.22rem .55rem;border-radius:5px;backdrop-filter:blur(4px)}
 .dc-fav{position:absolute;top:.6rem;right:.6rem;width:26px;height:26px;border-radius:6px;border:none;background:rgba(0,0,0,.3);color:rgba(255,255,255,.5);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.75rem;transition:all var(--tr)}
 .dc-fav.active,.dc-fav:hover{background:rgba(232,197,71,.2);color:var(--accent)}
 .dc-featured-badge{position:absolute;top:.65rem;left:3.2rem;font-size:.58rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:#0a0c10;padding:.14rem .42rem;border-radius:4px}
-[data-type="pdf"] .dc-banner{background:linear-gradient(135deg,#1a0a0a,#2d1010)}
+[data-type="pdf"] .dc-banner{background-color:#1a0a0a;background-image:linear-gradient(135deg,#1a0a0a,#2d1010),repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0,rgba(255,255,255,.035) 1px,transparent 1px,transparent 22px),repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0,rgba(255,255,255,.035) 1px,transparent 1px,transparent 22px)}
 [data-type="pdf"] .dc-type-badge{background:var(--red-dim);color:var(--red);border:1px solid rgba(255,107,107,.2)}
-[data-type="dwg"] .dc-banner{background:linear-gradient(135deg,#0a1020,#0f1e35)}
+[data-type="dwg"] .dc-banner{background-color:#0a1020;background-image:linear-gradient(135deg,#0a1020,#0f1e35),repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0,rgba(255,255,255,.035) 1px,transparent 1px,transparent 22px),repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0,rgba(255,255,255,.035) 1px,transparent 1px,transparent 22px)}
 [data-type="dwg"] .dc-type-badge{background:var(--blue-dim);color:var(--blue);border:1px solid rgba(74,158,255,.2)}
-[data-type="xlsx"] .dc-banner{background:linear-gradient(135deg,#081408,#0f2212)}
+[data-type="xlsx"] .dc-banner{background-color:#081408;background-image:linear-gradient(135deg,#081408,#0f2212),repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0,rgba(255,255,255,.035) 1px,transparent 1px,transparent 22px),repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0,rgba(255,255,255,.035) 1px,transparent 1px,transparent 22px)}
 [data-type="xlsx"] .dc-type-badge{background:var(--green-dim);color:var(--green);border:1px solid rgba(62,207,142,.2)}
-[data-type="docx"] .dc-banner{background:linear-gradient(135deg,#080e1a,#0f1835)}
+[data-type="docx"] .dc-banner{background-color:#080e1a;background-image:linear-gradient(135deg,#080e1a,#0f1835),repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0,rgba(255,255,255,.035) 1px,transparent 1px,transparent 22px),repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0,rgba(255,255,255,.035) 1px,transparent 1px,transparent 22px)}
 [data-type="docx"] .dc-type-badge{background:var(--blue-dim);color:var(--blue);border:1px solid rgba(74,158,255,.2)}
-[data-type="pptx"] .dc-banner{background:linear-gradient(135deg,#1a0a06,#2d1508)}
+[data-type="pptx"] .dc-banner{background-color:#1a0a06;background-image:linear-gradient(135deg,#1a0a06,#2d1508),repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0,rgba(255,255,255,.035) 1px,transparent 1px,transparent 22px),repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0,rgba(255,255,255,.035) 1px,transparent 1px,transparent 22px)}
 [data-type="pptx"] .dc-type-badge{background:var(--orange-dim);color:var(--orange);border:1px solid rgba(255,159,90,.2)}
+[data-type="video"] .dc-banner{background-color:#1a0a1a;background-image:linear-gradient(135deg,#1a0a1a,#2d1030),repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0,rgba(255,255,255,.035) 1px,transparent 1px,transparent 22px),repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0,rgba(255,255,255,.035) 1px,transparent 1px,transparent 22px)}
+[data-type="video"] .dc-type-badge{background:var(--pink-dim);color:var(--pink);border:1px solid rgba(255,122,198,.2)}
 .dc-body{padding:.95rem 1rem}
 .dc-title{font-family:'DM Serif Display',serif;font-size:.97rem;color:var(--text);margin-bottom:.32rem;line-height:1.3}
 .dc-desc{font-size:.78rem;color:var(--text2);line-height:1.6;margin-bottom:.7rem}
+
+/* Category colors (badges + tag cloud) */
+[data-cat="structures"] .dc-cat-pill{background:var(--red-dim);color:var(--red)}
+[data-cat="hydraulique"] .dc-cat-pill{background:var(--blue-dim);color:var(--blue)}
+[data-cat="routes"] .dc-cat-pill{background:var(--orange-dim);color:var(--orange)}
+[data-cat="géotechnique"] .dc-cat-pill{background:var(--green-dim);color:var(--green)}
+[data-cat="topographie"] .dc-cat-pill{background:var(--purple-dim);color:var(--purple)}
+[data-cat="normes"] .dc-cat-pill{background:var(--accent-dim);color:var(--accent)}
+[data-cat="métrés"] .dc-cat-pill{background:var(--pink-dim);color:var(--pink)}
+[data-cat="environnement"] .dc-cat-pill{background:var(--teal-dim);color:var(--teal)}
+
+/* Tag cloud widget */
+.tag-cloud{display:flex;flex-wrap:wrap;gap:.4rem;padding:1rem 1.1rem}
+.tag-pill{font-size:.68rem;font-weight:600;padding:.3rem .65rem;border-radius:100px;cursor:pointer;transition:all var(--tr);border:1px solid var(--border)}
+.tag-pill:hover{transform:translateY(-1px)}
+
+/* Social widget */
+.social-widget{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;padding:1rem 1.1rem}
+.social-btn{display:flex;align-items:center;gap:.45rem;padding:.55rem .7rem;border-radius:9px;background:var(--surface2);border:1px solid var(--border);color:var(--text2);font-size:.75rem;font-weight:700;transition:all var(--tr)}
+.social-btn:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
+.social-btn .sb-icon{font-size:.95rem}
+
+/* Recent docs widget with mini thumbnail swatch */
+.rr-swatch{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0}
 .dc-meta{display:flex;gap:.65rem;flex-wrap:wrap;font-size:.65rem;color:var(--text3);font-family:'JetBrains Mono';margin-bottom:.65rem}
 .dl-badge{display:inline-flex;align-items:center;gap:.2rem;background:var(--green-dim);color:var(--green);border:1px solid rgba(62,207,142,.2);padding:.1rem .38rem;border-radius:4px;font-family:'JetBrains Mono';font-size:.62rem}
 .star-rating{display:flex;gap:.1rem;margin-bottom:.1rem}
@@ -201,7 +268,7 @@ nav{position:sticky;top:0;z-index:200;background:rgba(10,12,16,0.88);backdrop-fi
 .cat-row:last-child{border-bottom:none}
 .cat-row:hover{background:var(--surface2);color:var(--text)}
 .cat-pill{font-family:'JetBrains Mono';font-size:.6rem;background:var(--surface2);color:var(--text3);padding:.1rem .42rem;border-radius:100px;border:1px solid var(--border)}
-.recent-row{padding:.72rem 1.1rem;border-bottom:1px solid var(--border);cursor:pointer;transition:background var(--tr)}
+.recent-row{padding:.6rem 1.1rem;border-bottom:1px solid var(--border);cursor:pointer;transition:background var(--tr);display:flex;align-items:center;gap:.6rem}
 .recent-row:last-child{border-bottom:none}
 .recent-row:hover{background:var(--surface2)}
 .rr-name{font-size:.78rem;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:.12rem}
@@ -302,10 +369,14 @@ textarea.fc{resize:vertical;min-height:75px}
 .pa-icon{font-size:4rem;opacity:.3}
 
 /* Pagination */
-.pagination{display:flex;align-items:center;justify-content:center;gap:.4rem;margin-top:2rem;flex-wrap:wrap}
+.pagination{display:flex;align-items:center;justify-content:center;gap:1rem;margin-top:2rem;flex-wrap:wrap}
 .pg-btn{min-width:34px;height:34px;padding:0 .5rem;border-radius:7px;border:1px solid var(--border);background:var(--surface);color:var(--text2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;transition:all var(--tr)}
 .pg-btn:hover,.pg-btn.active{background:var(--accent);color:#0a0c10;border-color:var(--accent)}
 .pg-dots{color:var(--text3);font-size:.8rem;padding:0 .3rem}
+.pg-nav-btn{padding:.6rem 1.1rem;border-radius:9px;border:1px solid var(--border2);background:var(--surface);color:var(--text2);cursor:pointer;font-size:.78rem;font-weight:700;transition:all var(--tr)}
+.pg-nav-btn:hover:not(:disabled){background:var(--accent);color:#0a0c10;border-color:var(--accent);transform:translateY(-1px)}
+.pg-nav-btn:disabled{opacity:.35;cursor:not-allowed}
+.pg-indicator{font-size:.72rem;color:var(--text3);font-family:'JetBrains Mono'}
 
 /* ═══ FOOTER ═══ */
 footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem 1.5rem 2rem}
@@ -627,6 +698,7 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
       <option value="xlsx">Excel</option>
       <option value="docx">Word</option>
       <option value="pptx">PowerPoint</option>
+      <option value="video">Vidéo</option>
     </select>
   </div>
 </div>
@@ -659,9 +731,12 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
       </div>
     </div>
 
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb" id="breadcrumb"><a href="#" onclick="goHome();return false;">Accueil</a> <span class="bc-sep">›</span> <span id="bcDocs">Documents</span></div>
+
     <div class="section-head">
       <div>
-        <h2>Documents <span>publiés</span></h2>
+        <h2 id="docsTitle">Documents <span>publiés</span></h2>
         <p class="doc-count" id="resultCount">Chargement…</p>
       </div>
       <div class="tabs-row">
@@ -716,6 +791,35 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
       <div class="cat-row" onclick="filterByType('dwg')"><span>📐 DWG / DXF</span><span class="cat-pill" id="cnt-dwg">—</span></div>
       <div class="cat-row" onclick="filterByType('xlsx')"><span>📊 Excel</span><span class="cat-pill" id="cnt-xlsx">—</span></div>
       <div class="cat-row" onclick="filterByType('docx')"><span>📝 Word</span><span class="cat-pill" id="cnt-docx">—</span></div>
+      <div class="cat-row" onclick="filterByType('video')"><span>🎥 Vidéo</span><span class="cat-pill" id="cnt-video">—</span></div>
+    </div>
+    <div class="sidebar-card">
+      <div class="sc-head">🏷 Tags populaires</div>
+      <div class="tag-cloud">
+        <span class="tag-pill" style="background:var(--red-dim);color:var(--red)" onclick="searchTag('béton armé')">Béton armé</span>
+        <span class="tag-pill" style="background:var(--blue-dim);color:var(--blue)" onclick="searchTag('coffrage')">Coffrage</span>
+        <span class="tag-pill" style="background:var(--green-dim);color:var(--green)" onclick="searchTag('ferraillage')">Ferraillage</span>
+        <span class="tag-pill" style="background:var(--orange-dim);color:var(--orange)" onclick="searchTag('terrassement')">Terrassement</span>
+        <span class="tag-pill" style="background:var(--purple-dim);color:var(--purple)" onclick="searchTag('VRD')">VRD</span>
+        <span class="tag-pill" style="background:var(--teal-dim);color:var(--teal)" onclick="searchTag('AutoCAD')">AutoCAD</span>
+        <span class="tag-pill" style="background:var(--pink-dim);color:var(--pink)" onclick="searchTag('Excel')">Excel</span>
+        <span class="tag-pill" style="background:var(--accent-dim);color:var(--accent)" onclick="searchTag('DTU')">Normes DTU</span>
+        <span class="tag-pill" style="background:var(--red-dim);color:var(--red)" onclick="searchTag('étude de prix')">Étude de prix</span>
+        <span class="tag-pill" style="background:var(--blue-dim);color:var(--blue)" onclick="searchTag('fondations')">Fondations</span>
+        <span class="tag-pill" style="background:var(--green-dim);color:var(--green)" onclick="searchTag('PFE')">PFE</span>
+        <span class="tag-pill" style="background:var(--orange-dim);color:var(--orange)" onclick="searchTag('rapport de stage')">Rapport de stage</span>
+        <span class="tag-pill" style="background:var(--purple-dim);color:var(--purple)" onclick="searchTag('topographie')">Topographie</span>
+        <span class="tag-pill" style="background:var(--teal-dim);color:var(--teal)" onclick="searchTag('matériaux')">Matériaux</span>
+      </div>
+    </div>
+    <div class="sidebar-card">
+      <div class="sc-head">📣 Suivez-nous</div>
+      <div class="social-widget">
+        <a class="social-btn" href="https://wa.me/22662478410" target="_blank" rel="noopener"><span class="sb-icon">💬</span> WhatsApp</a>
+        <a class="social-btn" href="#" target="_blank" rel="noopener"><span class="sb-icon">📘</span> Facebook</a>
+        <a class="social-btn" href="#" target="_blank" rel="noopener"><span class="sb-icon">📷</span> Instagram</a>
+        <a class="social-btn" href="mailto:genieciviledocs@yahoo.com"><span class="sb-icon">✉️</span> Email</a>
+      </div>
     </div>
   </aside>
 </div>
@@ -909,9 +1013,9 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
     <div class="upload-zone" id="uzRoot" onclick="document.getElementById('fileInput').click()" ondragover="event.preventDefault();this.classList.add('over')" ondragleave="this.classList.remove('over')" ondrop="dropFile(event)">
       <div class="uz-icon" id="uzIcon">📁</div>
       <p class="uz-text" id="uzText">Glissez vos fichiers ici ou <strong>cliquez pour parcourir</strong> (plusieurs fichiers possibles)</p>
-      <div class="fmt-row"><span class="fmt-tag">PDF</span><span class="fmt-tag">DWG</span><span class="fmt-tag">DXF</span><span class="fmt-tag">XLSX</span><span class="fmt-tag">DOCX</span><span class="fmt-tag">PPTX</span><span class="fmt-tag">IFC</span><span class="fmt-tag">ZIP</span></div>
+      <div class="fmt-row"><span class="fmt-tag">PDF</span><span class="fmt-tag">DWG</span><span class="fmt-tag">DXF</span><span class="fmt-tag">XLSX</span><span class="fmt-tag">DOCX</span><span class="fmt-tag">PPTX</span><span class="fmt-tag">IFC</span><span class="fmt-tag">ZIP</span><span class="fmt-tag">MP4</span></div>
     </div>
-    <input type="file" id="fileInput" multiple style="display:none" accept=".pdf,.dwg,.dxf,.xlsx,.xls,.docx,.doc,.pptx,.ppt,.ifc,.zip,.rar" onchange="pickFiles(this.files);this.value=''"/>
+    <input type="file" id="fileInput" multiple style="display:none" accept=".pdf,.dwg,.dxf,.xlsx,.xls,.docx,.doc,.pptx,.ppt,.ifc,.zip,.rar,.mp4,.mov,.avi,.mkv,.webm" onchange="pickFiles(this.files);this.value=''"/>
 
     <div id="fileListWrap" style="display:none;margin:.9rem 0">
       <label class="fl" style="margin-bottom:.5rem;display:block">Fichiers sélectionnés (<span id="fileCount">0</span>)</label>
@@ -974,15 +1078,16 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
           <option value="pdf">PDF</option><option value="dwg">DWG / DXF</option>
           <option value="xlsx">Excel (XLSX)</option><option value="docx">Word (DOCX)</option>
           <option value="pptx">PowerPoint</option><option value="ifc">IFC / BIM</option><option value="zip">ZIP / RAR</option>
+          <option value="video">Vidéo (MP4)</option>
         </select>
       </div>
     </div>
     <div class="upload-zone" id="ctbUzRoot" onclick="document.getElementById('ctbFileInput').click()" ondragover="event.preventDefault();this.classList.add('over')" ondragleave="this.classList.remove('over')" ondrop="ctbDropFile(event)">
       <div class="uz-icon" id="ctbUzIcon">📁</div>
       <p class="uz-text" id="ctbUzText">Glissez votre fichier ici ou <strong>cliquez pour parcourir</strong></p>
-      <div class="fmt-row"><span class="fmt-tag">PDF</span><span class="fmt-tag">DWG</span><span class="fmt-tag">DXF</span><span class="fmt-tag">XLSX</span><span class="fmt-tag">DOCX</span><span class="fmt-tag">PPTX</span><span class="fmt-tag">IFC</span><span class="fmt-tag">ZIP</span></div>
+      <div class="fmt-row"><span class="fmt-tag">PDF</span><span class="fmt-tag">DWG</span><span class="fmt-tag">DXF</span><span class="fmt-tag">XLSX</span><span class="fmt-tag">DOCX</span><span class="fmt-tag">PPTX</span><span class="fmt-tag">IFC</span><span class="fmt-tag">ZIP</span><span class="fmt-tag">MP4</span></div>
     </div>
-    <input type="file" id="ctbFileInput" style="display:none" accept=".pdf,.dwg,.dxf,.xlsx,.xls,.docx,.doc,.pptx,.ppt,.ifc,.zip,.rar" onchange="ctbPickFile(this.files[0])"/>
+    <input type="file" id="ctbFileInput" style="display:none" accept=".pdf,.dwg,.dxf,.xlsx,.xls,.docx,.doc,.pptx,.ppt,.ifc,.zip,.rar,.mp4,.mov,.avi,.mkv,.webm" onchange="ctbPickFile(this.files[0])"/>
     <div class="progress-wrap" id="ctbProgWrap">
       <p class="progress-label" id="ctbProgLabel">Envoi en cours…</p>
       <div class="progress-bar"><div class="progress-fill" id="ctbProgFill"></div></div>
@@ -1217,6 +1322,7 @@ async function initSupabase() {
   banner.className = 'status-banner loading show';
   retryBtn.style.display = 'none';
   textEl.textContent = 'Connexion à la base de données…';
+  presetHashFilter();
   try {
     await ensureSupabaseLib(banner, textEl);
 
@@ -1326,12 +1432,12 @@ function showDocs() {
   }
 
   grid.innerHTML = page.map(d => `
-    <div class="doc-card" data-id="${d.id}" onmousemove="cardGlow(event,this)">
+    <div class="doc-card" data-id="${d.id}" data-cat="${d.cat||''}" onmousemove="cardGlow(event,this)">
       <div class="dc-banner" data-type="${d.type}">
         <span class="dc-type-badge">${d.type.toUpperCase()}</span>
         ${d.featured ? '<span class="dc-featured-badge">⭐ Vedette</span>' : ''}
         <span class="dc-bg-icon">${tIcon(d.type)}</span>
-        <span class="dc-cat">${(d.cat||'').toUpperCase()}</span>
+        <span class="dc-cat-pill" onclick="event.stopPropagation();goToCategoryPage('${d.cat||''}')" style="cursor:pointer">${(d.cat||'').toUpperCase()}</span>
         <button class="dc-fav ${d.fav?'active':''}" onclick="toggleFav(event,'${d.id}')">${d.fav?'❤️':'🤍'}</button>
       </div>
       <div class="dc-body">
@@ -1357,21 +1463,22 @@ function showDocs() {
     </div>
   `).join('');
 
-  // Apply banner background inline
-  grid.querySelectorAll('.dc-banner').forEach(b => {
-    const styles = {pdf:'linear-gradient(135deg,#1a0a0a,#2d1010)',dwg:'linear-gradient(135deg,#0a1020,#0f1e35)',xlsx:'linear-gradient(135deg,#081408,#0f2212)',docx:'linear-gradient(135deg,#080e1a,#0f1835)',pptx:'linear-gradient(135deg,#1a0a06,#2d1508)'};
-    b.style.background = styles[b.dataset.type] || 'var(--surface2)';
-  });
-
-  // Pagination
+  // Pagination — style "Plus récents / Plus anciens"
   const pages = Math.ceil(filteredDocs.length / PER_PAGE);
   if (pages > 1) {
     pag.style.display = 'flex';
-    pag.innerHTML = Array.from({length:Math.min(pages,5)},(_,i)=>i+1).map(p=>`<button class="pg-btn ${p===currentPage?'active':''}" onclick="goPage(${p},this)">${p}</button>`).join('') + (pages>5?`<span class="pg-dots">…</span><button class="pg-btn" onclick="goPage(${pages},this)">${pages}</button>`:'');
+    const prevDisabled = currentPage <= 1;
+    const nextDisabled = currentPage >= pages;
+    pag.innerHTML = `
+      <button class="pg-nav-btn" ${prevDisabled?'disabled':''} onclick="goPage(${currentPage-1})">← Plus récents</button>
+      <span class="pg-indicator">Page ${currentPage} / ${pages}</span>
+      <button class="pg-nav-btn" ${nextDisabled?'disabled':''} onclick="goPage(${currentPage+1})">Plus anciens →</button>`;
   } else { pag.style.display = 'none'; }
+
+  updateBreadcrumb();
 }
 
-function tIcon(t){return{pdf:'📄',dwg:'📐',xlsx:'📊',docx:'📝',pptx:'📊',ifc:'🏗',zip:'📦'}[t]||'📁'}
+function tIcon(t){return{pdf:'📄',dwg:'📐',xlsx:'📊',docx:'📝',pptx:'📊',ifc:'🏗',zip:'📦',video:'🎥'}[t]||'📁'}
 function renderStars(r,id){let s='';for(let i=1;i<=5;i++)s+=`<span class="star ${i<=Math.round(r)?'filled':''}" onclick="rateDoc('${id}',${i})">${i<=Math.round(r)?'★':'☆'}</span>`;return s;}
 function cardGlow(e,c){const r=c.getBoundingClientRect();c.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');c.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%');}
 
@@ -1382,7 +1489,7 @@ function updateStats() {
   document.getElementById('statDl').textContent = total > 999 ? Math.round(total/1000)+'K' : total;
 }
 function updateSidebarCounts() {
-  ['structures','hydraulique','routes','géotechnique','topographie','normes','métrés','environnement','pdf','dwg','xlsx','docx'].forEach(k=>{
+  ['structures','hydraulique','routes','géotechnique','topographie','normes','métrés','environnement','pdf','dwg','xlsx','docx','video'].forEach(k=>{
     const el = document.getElementById('cnt-'+k);
     if(el) el.textContent = allDocs.filter(d=>d.cat===k||d.type===k).length;
   });
@@ -1397,7 +1504,8 @@ function updateFeatured() {
 }
 function updateRecentSidebar() {
   const recent = [...allDocs].sort((a,b)=>new Date(b.created_at)-new Date(a.created_at)).slice(0,4);
-  document.getElementById('recentSidebar').innerHTML = recent.map(d=>`<div class="recent-row"><div class="rr-name">${d.title}</div><div class="rr-meta">${d.type.toUpperCase()} · ${timeAgo(d.created_at)}</div></div>`).join('');
+  const swatchColors = {pdf:'var(--red-dim)',dwg:'var(--blue-dim)',xlsx:'var(--green-dim)',docx:'var(--blue-dim)',pptx:'var(--orange-dim)',ifc:'var(--purple-dim)',zip:'var(--teal-dim)'};
+  document.getElementById('recentSidebar').innerHTML = recent.map(d=>`<div class="recent-row"><div class="rr-swatch" style="background:${swatchColors[d.type]||'var(--surface3)'}">${tIcon(d.type)}</div><div style="flex:1;min-width:0"><div class="rr-name">${d.title}</div><div class="rr-meta">${d.type.toUpperCase()} · ${timeAgo(d.created_at)}</div></div></div>`).join('');
 }
 function updateHeroRecent() {
   const recent = [...allDocs].sort((a,b)=>new Date(b.created_at)-new Date(a.created_at)).slice(0,3);
@@ -1740,9 +1848,71 @@ function applySort(){
   else if(currentSort==='rated') filteredDocs.sort((a,b)=>(b.rating||0)-(a.rating||0));
 }
 function setTab(btn,sort){ currentSort=sort; document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active')); btn.classList.add('active'); currentPage=1; renderAll(); }
-function goPage(p,btn){ currentPage=p; document.querySelectorAll('.pg-btn').forEach(b=>b.classList.remove('active')); if(btn) btn.classList.add('active'); showDocs(); window.scrollTo({top:document.getElementById('docs').offsetTop-80,behavior:'smooth'}); }
-function filterByCat(v){ document.getElementById('filterCat').value=v; filterDocs(); }
+function goPage(p){ const pages=Math.max(1,Math.ceil(filteredDocs.length/PER_PAGE)); currentPage=Math.min(Math.max(1,p),pages); showDocs(); window.scrollTo({top:document.getElementById('docs').offsetTop-80,behavior:'smooth'}); }
+const CAT_LABELS = {
+  structures:'Structures & Béton armé', hydraulique:'Hydraulique & Assainissement', routes:'Routes & VRD',
+  géotechnique:'Géotechnique', topographie:'Topographie', normes:'Normes & DTU',
+  métrés:'Métrés & Devis', environnement:'Environnement'
+};
+
+function filterByCat(v){ document.getElementById('filterCat').value=v; setHashForCat(v); filterDocs(); }
 function filterByType(v){ document.getElementById('filterType').value=v; filterDocs(); }
+function searchTag(text){ document.getElementById('mainSearch').value=text; document.getElementById('filterCat').value=''; document.getElementById('filterType').value=''; setHashForCat(''); filterDocs(); document.getElementById('docs').scrollIntoView({behavior:'smooth'}); }
+
+function setHashForCat(cat){
+  if(cat) history.replaceState(null,'','#categorie='+encodeURIComponent(cat));
+  else history.replaceState(null,'','#');
+}
+function goToCategoryPage(cat){
+  document.getElementById('filterCat').value = cat;
+  setHashForCat(cat);
+  currentPage = 1;
+  renderAll();
+  document.getElementById('docs').scrollIntoView({behavior:'smooth'});
+}
+function goHome(){
+  document.getElementById('filterCat').value='';
+  document.getElementById('filterType').value='';
+  document.getElementById('mainSearch').value='';
+  setHashForCat('');
+  currentPage = 1;
+  renderAll();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function applyHashRoute(){
+  const m = location.hash.match(/categorie=([^&]+)/);
+  if(m){
+    const cat = decodeURIComponent(m[1]);
+    document.getElementById('filterCat').value = cat;
+    currentPage = 1;
+    renderAll();
+  }
+}
+function presetHashFilter(){
+  const m = location.hash.match(/categorie=([^&]+)/);
+  if(m) document.getElementById('filterCat').value = decodeURIComponent(m[1]);
+}
+window.addEventListener('hashchange', applyHashRoute);
+
+function updateBreadcrumb(){
+  const cat = document.getElementById('filterCat').value;
+  const q = document.getElementById('mainSearch').value.trim();
+  const bc = document.getElementById('bcDocs');
+  const titleEl = document.getElementById('docsTitle');
+  if(cat && CAT_LABELS[cat]){
+    bc.innerHTML = `<a href="#" onclick="goHome();return false;">Documents</a> <span class="bc-sep">›</span> <span class="bc-current">${CAT_LABELS[cat]}</span>`;
+    titleEl.innerHTML = `${CAT_LABELS[cat]} <span>— documents</span>`;
+    document.title = `${CAT_LABELS[cat]} — GenieCivil Docs`;
+  } else if(q){
+    bc.innerHTML = `<a href="#" onclick="goHome();return false;">Documents</a> <span class="bc-sep">›</span> <span class="bc-current">Recherche : "${q}"</span>`;
+    titleEl.innerHTML = `Résultats <span>de recherche</span>`;
+    document.title = `Recherche : ${q} — GenieCivil Docs`;
+  } else {
+    bc.textContent = 'Documents';
+    titleEl.innerHTML = `Documents <span>publiés</span>`;
+    document.title = 'GenieCivil Docs — Bibliothèque du Génie Civil';
+  }
+}
 
 /* ══ AUTOCOMPLETE ══ */
 function acSearch(q){
@@ -1773,8 +1943,9 @@ function updateFavSidebar() {
   const favs = allDocs.filter(d=>d.fav);
   const cnt = document.getElementById('favCount');
   if(cnt) cnt.textContent = favs.length||'';
+  const swatchColors = {pdf:'var(--red-dim)',dwg:'var(--blue-dim)',xlsx:'var(--green-dim)',docx:'var(--blue-dim)',pptx:'var(--orange-dim)',ifc:'var(--purple-dim)',zip:'var(--teal-dim)'};
   const favSb = document.getElementById('favSidebar');
-  favSb.innerHTML = favs.length ? favs.map(d=>`<div class="recent-row"><div class="rr-name">${d.title}</div><div class="rr-meta">${d.type.toUpperCase()} · ⬇ ${d.download_count||0}</div></div>`).join('') : '<div class="fav-empty">Aucun favori.</div>';
+  favSb.innerHTML = favs.length ? favs.map(d=>`<div class="recent-row"><div class="rr-swatch" style="background:${swatchColors[d.type]||'var(--surface3)'}">${tIcon(d.type)}</div><div style="flex:1;min-width:0"><div class="rr-name">${d.title}</div><div class="rr-meta">${d.type.toUpperCase()} · ⬇ ${d.download_count||0}</div></div></div>`).join('') : '<div class="fav-empty">Aucun favori.</div>';
   const fm = document.getElementById('favsModal');
   if(fm) fm.innerHTML = favs.length ? favs.map(d=>`<div class="comment-card" style="margin-bottom:.5rem"><div style="width:36px;height:36px;border-radius:8px;background:var(--surface2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.1rem">${tIcon(d.type)}</div><div style="flex:1;padding-left:.65rem"><div style="font-size:.82rem;font-weight:700;color:var(--text)">${d.title}</div><div style="font-size:.62rem;color:var(--text3);font-family:JetBrains Mono">${d.type.toUpperCase()} · ${d.file_size||'—'} · ⬇ ${d.download_count||0}</div></div><button class="btn btn-accent" style="font-size:.68rem;padding:.32rem .65rem" onclick="dlDoc('${d.id}')">⬇</button></div>`).join('') : '<div class="fav-empty">Aucun favori enregistré.</div>';
 }
@@ -1880,7 +2051,7 @@ function logout() {
 /* Upload */
 function detectFileType(filename) {
   const ext = (filename.split('.').pop()||'').toLowerCase();
-  const map = {pdf:'pdf', dwg:'dwg', dxf:'dwg', xlsx:'xlsx', xls:'xlsx', docx:'docx', doc:'docx', pptx:'pptx', ppt:'pptx', ifc:'ifc', zip:'zip', rar:'zip'};
+  const map = {pdf:'pdf', dwg:'dwg', dxf:'dwg', xlsx:'xlsx', xls:'xlsx', docx:'docx', doc:'docx', pptx:'pptx', ppt:'pptx', ifc:'ifc', zip:'zip', rar:'zip', mp4:'video', mov:'video', avi:'video', mkv:'video', webm:'video'};
   return map[ext] || 'pdf';
 }
 function cleanTitleFromFilename(filename) {
