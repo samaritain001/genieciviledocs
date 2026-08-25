@@ -8,9 +8,6 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%23e8c547'/%3E%3Cpath d='M12 4L5 9.8V19H9.5V13.5H14.5V19H19V9.8L12 4Z' stroke='%230a0c10' stroke-width='1.6' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E"/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
 
-<!-- ═══ SUPABASE SDK ═══ -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <style>
 /* ═══ VARIABLES ═══ */
 :root {
@@ -87,6 +84,7 @@ nav{position:sticky;top:0;z-index:200;background:rgba(10,12,16,0.88);backdrop-fi
 .status-banner.error-state{background:rgba(255,107,107,.06);color:var(--red)}
 .status-banner.ok{background:rgba(62,207,142,.06);color:var(--green)}
 .spin{display:inline-block;animation:spin .8s linear infinite}
+.status-banner:not(.loading) .spin{display:none}
 @keyframes spin{to{transform:rotate(360deg)}}
 
 /* ═══ HERO ═══ */
@@ -509,7 +507,8 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
 
 <!-- STATUS BANNER -->
 <div class="status-banner loading show" id="statusBanner">
-  <span class="spin">⏳</span> Connexion à la base de données…
+  <span class="spin">⏳</span> <span id="statusBannerText">Connexion à la base de données…</span>
+  <button id="statusRetryBtn" onclick="initSupabase()" style="display:none;margin-left:.75rem;background:var(--surface2);border:1px solid var(--border2);color:var(--text);padding:.3rem .8rem;border-radius:7px;cursor:pointer;font-size:.78rem;font-weight:700">🔄 Réessayer</button>
 </div>
 
 <!-- NAV -->
@@ -1175,13 +1174,49 @@ function getVisitorId() {
   return id;
 }
 
+function loadScriptOnce(src) {
+  return new Promise((resolve, reject) => {
+    const existing = document.querySelector(`script[data-src="${src}"]`);
+    if (existing) { existing.addEventListener('load', resolve); existing.addEventListener('error', reject); return; }
+    const s = document.createElement('script');
+    s.src = src; s.dataset.src = src;
+    s.onload = resolve;
+    s.onerror = () => reject(new Error('échec: ' + src));
+    document.head.appendChild(s);
+  });
+}
+
+const SUPABASE_CDN_SOURCES = [
+  'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2',
+  'https://unpkg.com/@supabase/supabase-js@2',
+];
+
+async function ensureSupabaseLib(banner, textEl) {
+  if (typeof supabase !== 'undefined') return;
+  for (let i = 0; i < SUPABASE_CDN_SOURCES.length; i++) {
+    try {
+      textEl.textContent = `Chargement de la bibliothèque de connexion… (${i+1}/${SUPABASE_CDN_SOURCES.length})`;
+      await loadScriptOnce(SUPABASE_CDN_SOURCES[i]);
+      if (typeof supabase !== 'undefined') return;
+    } catch(e) { /* essaie la source suivante */ }
+  }
+  throw new Error('Impossible de charger la bibliothèque Supabase — vérifiez votre connexion Internet.');
+}
+
 async function initSupabase() {
   const banner = document.getElementById('statusBanner');
+  const textEl = document.getElementById('statusBannerText');
+  const retryBtn = document.getElementById('statusRetryBtn');
+  banner.className = 'status-banner loading show';
+  retryBtn.style.display = 'none';
+  textEl.textContent = 'Connexion à la base de données…';
   try {
+    await ensureSupabaseLib(banner, textEl);
+
     if (SUPABASE_URL === 'VOTRE_URL_SUPABASE') {
       // Mode démo — Supabase non configuré
       banner.className = 'status-banner error-state show';
-      banner.innerHTML = '⚠️ Supabase non configuré — Mode démo activé. Suivez le guide GUIDE_DEPLOIEMENT.md pour connecter la base de données.';
+      textEl.textContent = '⚠️ Supabase non configuré — Mode démo activé. Suivez le guide GUIDE_DEPLOIEMENT.md pour connecter la base de données.';
       loadDemoData();
       loadDemoJobs();
       updateVisitorPanel();
@@ -1193,7 +1228,7 @@ async function initSupabase() {
     await loadPending();
     await loadJobs();
     banner.className = 'status-banner ok show';
-    banner.innerHTML = '✅ Connecté à Supabase — Données en temps réel actives.';
+    textEl.textContent = '✅ Connecté à Supabase — Données en temps réel actives.';
     setTimeout(() => { banner.classList.remove('show'); }, 4000);
     // Realtime subscription
     sb.channel('documents').on('postgres_changes',{event:'*',schema:'public',table:'documents'},()=>loadDocs()).subscribe();
@@ -1202,7 +1237,8 @@ async function initSupabase() {
     sb.channel('job_listings').on('postgres_changes',{event:'*',schema:'public',table:'job_listings'},()=>loadJobs()).subscribe();
   } catch(e) {
     banner.className = 'status-banner error-state show';
-    banner.innerHTML = '❌ Erreur de connexion Supabase : ' + e.message;
+    textEl.textContent = '❌ Connexion impossible : ' + e.message;
+    retryBtn.style.display = 'inline-block';
     loadDemoData();
     loadDemoJobs();
     updateVisitorPanel();
