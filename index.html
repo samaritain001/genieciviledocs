@@ -68,8 +68,9 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-he
 ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
 
 /* ═══ TOOL ICON DECORATIONS ═══ */
-.tool-icon{position:absolute;z-index:0;pointer-events:none;opacity:.09;color:var(--accent)}
-[data-theme="light"] .tool-icon{opacity:.14}
+.tool-icon{position:absolute;z-index:5;pointer-events:none;opacity:.28;color:var(--accent)}
+[data-theme="light"] .tool-icon{opacity:.22;color:#8b6914}
+.tool-icon svg{width:100%;height:100%;display:block;stroke-width:4}
 .tool-icon svg{width:100%;height:100%;display:block}
 
 /* ═══ BLOBS ═══ */
@@ -603,32 +604,32 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
 <div class="page">
 
 <!-- ═══ OUTILS DE CHANTIER EN FILIGRANE ═══ -->
-<div class="tool-icon" style="top:6%;left:3%;width:90px;height:90px;transform:rotate(-12deg)" aria-hidden="true">
-  <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M50 15 L75 55 L50 85 L25 55 Z"/><line x1="50" y1="85" x2="50" y2="95"/><ellipse cx="50" cy="95" rx="6" ry="3"/></svg>
+<div class="tool-icon" style="top:6%;left:3%;width:130px;height:130px;transform:rotate(-12deg)" aria-hidden="true">
+  <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"><path d="M50 15 L75 55 L50 85 L25 55 Z"/><line x1="50" y1="85" x2="50" y2="95"/><ellipse cx="50" cy="95" rx="6" ry="3"/></svg>
 </div>
-<div class="tool-icon" style="top:14%;right:4%;width:110px;height:70px;transform:rotate(8deg)" aria-hidden="true">
-  <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="40" width="80" height="20" rx="4"/><circle cx="35" cy="50" r="6"/><circle cx="65" cy="50" r="6"/><line x1="35" y1="44" x2="35" y2="56"/><line x1="65" y1="44" x2="65" y2="56"/></svg>
+<div class="tool-icon" style="top:14%;right:4%;width:150px;height:95px;transform:rotate(8deg)" aria-hidden="true">
+  <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="40" width="80" height="20" rx="4"/><circle cx="35" cy="50" r="6"/><circle cx="65" cy="50" r="6"/><line x1="35" y1="44" x2="35" y2="56"/><line x1="65" y1="44" x2="65" y2="56"/></svg>
 </div>
-<div class="tool-icon" style="top:26%;left:6%;width:95px;height:95px;transform:rotate(15deg)" aria-hidden="true">
-  <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 65 Q20 25 50 25 Q80 25 80 65"/><line x1="10" y1="65" x2="90" y2="65"/><line x1="50" y1="25" x2="50" y2="15"/><path d="M35 65 Q35 40 50 40 Q65 40 65 65"/></svg>
+<div class="tool-icon" style="top:26%;left:6%;width:135px;height:135px;transform:rotate(15deg)" aria-hidden="true">
+  <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 65 Q20 25 50 25 Q80 25 80 65"/><line x1="10" y1="65" x2="90" y2="65"/><line x1="50" y1="25" x2="50" y2="15"/><path d="M35 65 Q35 40 50 40 Q65 40 65 65"/></svg>
 </div>
-<div class="tool-icon" style="top:38%;right:5%;width:100px;height:100px;transform:rotate(-8deg)" aria-hidden="true">
-  <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 85 L15 15 L85 85 Z"/><line x1="15" y1="25" x2="22" y2="25"/><line x1="15" y1="35" x2="22" y2="35"/><line x1="15" y1="45" x2="22" y2="45"/><line x1="25" y1="85" x2="25" y2="78"/><line x1="35" y1="85" x2="35" y2="78"/></svg>
+<div class="tool-icon" style="top:38%;right:5%;width:140px;height:140px;transform:rotate(-8deg)" aria-hidden="true">
+  <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 85 L15 15 L85 85 Z"/><line x1="15" y1="25" x2="22" y2="25"/><line x1="15" y1="35" x2="22" y2="35"/><line x1="15" y1="45" x2="22" y2="45"/><line x1="25" y1="85" x2="25" y2="78"/><line x1="35" y1="85" x2="35" y2="78"/></svg>
 </div>
-<div class="tool-icon" style="top:50%;left:4%;width:110px;height:110px;transform:rotate(20deg)" aria-hidden="true">
-  <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="10" width="45" height="25" rx="6" transform="rotate(-35 32 22)"/><line x1="45" y1="40" x2="85" y2="85"/></svg>
+<div class="tool-icon" style="top:50%;left:4%;width:150px;height:150px;transform:rotate(20deg)" aria-hidden="true">
+  <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="10" width="45" height="25" rx="6" transform="rotate(-35 32 22)"/><line x1="45" y1="40" x2="85" y2="85"/></svg>
 </div>
-<div class="tool-icon" style="top:62%;right:3%;width:100px;height:100px;transform:rotate(-18deg)" aria-hidden="true">
-  <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M65 15 Q80 15 80 30 Q80 40 70 42 L35 77 Q28 84 21 77 Q14 70 21 63 L56 28 Q58 18 65 15 Z"/><circle cx="70" cy="30" r="7"/></svg>
+<div class="tool-icon" style="top:62%;right:3%;width:140px;height:140px;transform:rotate(-18deg)" aria-hidden="true">
+  <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"><path d="M65 15 Q80 15 80 30 Q80 40 70 42 L35 77 Q28 84 21 77 Q14 70 21 63 L56 28 Q58 18 65 15 Z"/><circle cx="70" cy="30" r="7"/></svg>
 </div>
-<div class="tool-icon" style="top:74%;left:5%;width:90px;height:90px;transform:rotate(10deg)" aria-hidden="true">
-  <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M50 15 L75 55 L50 85 L25 55 Z"/><line x1="50" y1="85" x2="50" y2="95"/><ellipse cx="50" cy="95" rx="6" ry="3"/></svg>
+<div class="tool-icon" style="top:74%;left:5%;width:130px;height:130px;transform:rotate(10deg)" aria-hidden="true">
+  <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"><path d="M50 15 L75 55 L50 85 L25 55 Z"/><line x1="50" y1="85" x2="50" y2="95"/><ellipse cx="50" cy="95" rx="6" ry="3"/></svg>
 </div>
-<div class="tool-icon" style="top:86%;right:6%;width:105px;height:65px;transform:rotate(-6deg)" aria-hidden="true">
-  <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="40" width="80" height="20" rx="4"/><circle cx="35" cy="50" r="6"/><circle cx="65" cy="50" r="6"/><line x1="35" y1="44" x2="35" y2="56"/><line x1="65" y1="44" x2="65" y2="56"/></svg>
+<div class="tool-icon" style="top:86%;right:6%;width:145px;height:90px;transform:rotate(-6deg)" aria-hidden="true">
+  <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="40" width="80" height="20" rx="4"/><circle cx="35" cy="50" r="6"/><circle cx="65" cy="50" r="6"/><line x1="35" y1="44" x2="35" y2="56"/><line x1="65" y1="44" x2="65" y2="56"/></svg>
 </div>
-<div class="tool-icon" style="top:95%;left:4%;width:95px;height:95px;transform:rotate(-14deg)" aria-hidden="true">
-  <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 85 L15 15 L85 85 Z"/><line x1="15" y1="25" x2="22" y2="25"/><line x1="15" y1="35" x2="22" y2="35"/><line x1="15" y1="45" x2="22" y2="45"/><line x1="25" y1="85" x2="25" y2="78"/><line x1="35" y1="85" x2="35" y2="78"/></svg>
+<div class="tool-icon" style="top:95%;left:4%;width:135px;height:135px;transform:rotate(-14deg)" aria-hidden="true">
+  <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 85 L15 15 L85 85 Z"/><line x1="15" y1="25" x2="22" y2="25"/><line x1="15" y1="35" x2="22" y2="35"/><line x1="15" y1="45" x2="22" y2="45"/><line x1="25" y1="85" x2="25" y2="78"/><line x1="35" y1="85" x2="35" y2="78"/></svg>
 </div>
 
 <!-- STATUS BANNER -->
@@ -1021,56 +1022,71 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
 <!-- ═══ POLITIQUE DE CONFIDENTIALITÉ ═══ -->
 <div class="legal-section reveal" id="privacy">
   <div class="section-head" style="border:none;padding:0;margin-bottom:0"><h2>🔒 Politique de <span>confidentialité</span></h2></div>
-  <p class="legal-updated">Dernière mise à jour : août 2026</p>
-  <div class="legal-body">
-    <h3>1. Qui sommes-nous</h3>
-    <p>GenieCivil Docs est une plateforme collaborative et gratuite de partage de documents techniques de génie civil, basée à Ouagadougou, Burkina Faso. Pour toute question relative à cette politique, contactez-nous à <a href="mailto:genieciviledocs@yahoo.com">genieciviledocs@yahoo.com</a> ou sur WhatsApp au +226 62 47 84 10.</p>
-
-    <h3>2. Données que nous collectons</h3>
-    <p>Selon la façon dont vous utilisez le site, nous pouvons collecter :</p>
-    <ul>
-      <li><strong>Commentaires</strong> : nom, adresse email (facultative), message, et le document concerné</li>
-      <li><strong>Contributions de documents</strong> : titre, description, nom de l'auteur, catégorie, et le fichier téléversé</li>
-      <li><strong>Identifiant anonyme de visiteur</strong> : un identifiant technique généré automatiquement et stocké dans votre navigateur, utilisé uniquement pour savoir si l'une de vos contributions a été validée (système de déblocage des téléchargements)</li>
-      <li><strong>Préférences locales</strong> : thème clair/sombre, documents favoris — stockés uniquement dans votre navigateur, jamais transmis à nos serveurs</li>
-      <li><strong>Statistiques d'usage</strong> : nombre de téléchargements et notes attribuées aux documents (données agrégées, non liées à votre identité)</li>
-    </ul>
-    <p>Nous ne demandons jamais de mot de passe, de données bancaires ou d'informations sensibles pour utiliser le site.</p>
-
-    <h3>3. Comment nous utilisons ces données</h3>
-    <ul>
-      <li>Afficher et modérer les commentaires et contributions</li>
-      <li>Débloquer les téléchargements après validation d'une contribution</li>
-      <li>Améliorer le site et son contenu</li>
-      <li>Répondre à vos messages de contact</li>
-    </ul>
-    <p>Nous ne vendons ni ne louons vos données à des tiers.</p>
-
-    <h3>4. Services tiers utilisés</h3>
-    <p>Le site s'appuie sur les prestataires suivants, qui peuvent traiter certaines données techniques :</p>
-    <ul>
-      <li><strong>Supabase</strong> (hébergement de la base de données et des fichiers, serveurs situés dans l'Union européenne)</li>
-      <li><strong>Render</strong> (hébergement du site web)</li>
-      <li><strong>Google Fonts</strong> (polices de caractères, peut transmettre votre adresse IP à Google lors du chargement de la page)</li>
-      <li><strong>PayPal</strong> (traitement des dons volontaires — nous ne voyons ni ne stockons vos informations de paiement)</li>
-      <li><strong>Google AdSense</strong> (annonces publicitaires — voir section suivante)</li>
-    </ul>
-
-    <h3>5. Cookies et publicité</h3>
-    <p>Notre site peut afficher des annonces publicitaires fournies par <strong>Google AdSense</strong>. Google et ses partenaires peuvent utiliser des cookies et identifiants publicitaires pour diffuser des annonces personnalisées en fonction de votre navigation, sur ce site et d'autres. Vous pouvez consulter et gérer vos préférences publicitaires directement via <a href="https://adssettings.google.com" target="_blank" rel="noopener">adssettings.google.com</a>, ou désactiver la personnalisation des annonces via <a href="https://www.aboutads.info" target="_blank" rel="noopener">aboutads.info</a>.</p>
-    <p>Le site utilise également le stockage local de votre navigateur (localStorage) pour mémoriser votre thème préféré, vos favoris et votre statut de contribution — ces informations restent sur votre appareil et ne sont pas des cookies traceurs.</p>
-
-    <h3>6. Vos droits</h3>
-    <p>Vous pouvez à tout moment nous demander de consulter, corriger ou supprimer les données personnelles vous concernant (par exemple un commentaire ou une contribution) en nous contactant par email ou WhatsApp. Nous traiterons votre demande dans un délai raisonnable.</p>
-
-    <h3>7. Sécurité</h3>
-    <p>Nous prenons des mesures raisonnables pour protéger vos données, mais aucun système n'est infaillible à 100 %. Ne partagez jamais d'informations sensibles dans un commentaire public.</p>
-
-    <h3>8. Enfants</h3>
-    <p>Ce site s'adresse aux étudiants, techniciens et professionnels du génie civil. Il n'est pas destiné aux enfants de moins de 13 ans, et nous ne collectons pas sciemment de données les concernant.</p>
-
-    <h3>9. Modifications de cette politique</h3>
-    <p>Cette politique peut évoluer avec le temps, notamment si de nouvelles fonctionnalités sont ajoutées au site. La date de dernière mise à jour est indiquée en haut de cette page.</p>
+  <p class="legal-updated">Dernière mise à jour : août 2026 — cliquez sur une section pour la déplier</p>
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">1. Qui sommes-nous<span class="faq-arrow">▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">GenieCivil Docs est une plateforme collaborative et gratuite de partage de documents techniques de génie civil, basée à Ouagadougou, Burkina Faso. Pour toute question relative à cette politique, contactez-nous à <a href="mailto:genieciviledocs@yahoo.com" style="color:var(--accent)">genieciviledocs@yahoo.com</a> ou sur WhatsApp au +226 62 47 84 10.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">2. Données que nous collectons<span class="faq-arrow">▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">
+        Selon la façon dont vous utilisez le site, nous pouvons collecter :
+        <ul style="margin:.6rem 0 .6rem 1.1rem;padding:0">
+          <li style="margin-bottom:.4rem"><strong style="color:var(--text)">Commentaires</strong> : nom, adresse email (facultative), message, et le document concerné</li>
+          <li style="margin-bottom:.4rem"><strong style="color:var(--text)">Contributions de documents</strong> : titre, description, nom de l'auteur, catégorie, et le fichier téléversé</li>
+          <li style="margin-bottom:.4rem"><strong style="color:var(--text)">Identifiant anonyme de visiteur</strong> : généré automatiquement et stocké dans votre navigateur, utilisé uniquement pour le déblocage des téléchargements</li>
+          <li style="margin-bottom:.4rem"><strong style="color:var(--text)">Préférences locales</strong> : thème, favoris — stockés uniquement dans votre navigateur, jamais transmis à nos serveurs</li>
+          <li><strong style="color:var(--text)">Statistiques d'usage</strong> : téléchargements et notes (données agrégées, non liées à votre identité)</li>
+        </ul>
+        Nous ne demandons jamais de mot de passe, de données bancaires ou d'informations sensibles pour utiliser le site.
+      </div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">3. Comment nous utilisons ces données<span class="faq-arrow">▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">
+        <ul style="margin:0 0 .6rem 1.1rem;padding:0">
+          <li style="margin-bottom:.3rem">Afficher et modérer les commentaires et contributions</li>
+          <li style="margin-bottom:.3rem">Débloquer les téléchargements après validation d'une contribution</li>
+          <li style="margin-bottom:.3rem">Améliorer le site et son contenu</li>
+          <li>Répondre à vos messages de contact</li>
+        </ul>
+        Nous ne vendons ni ne louons vos données à des tiers.
+      </div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">4. Services tiers utilisés<span class="faq-arrow">▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">
+        Le site s'appuie sur les prestataires suivants, qui peuvent traiter certaines données techniques :
+        <ul style="margin:.6rem 0 0 1.1rem;padding:0">
+          <li style="margin-bottom:.3rem"><strong style="color:var(--text)">Supabase</strong> (base de données et fichiers, serveurs dans l'Union européenne)</li>
+          <li style="margin-bottom:.3rem"><strong style="color:var(--text)">Render</strong> (hébergement du site)</li>
+          <li style="margin-bottom:.3rem"><strong style="color:var(--text)">Google Fonts</strong> (peut transmettre votre IP à Google)</li>
+          <li style="margin-bottom:.3rem"><strong style="color:var(--text)">PayPal</strong> (dons volontaires — nous ne voyons jamais vos données de paiement)</li>
+          <li><strong style="color:var(--text)">Google AdSense</strong> (publicité — voir section suivante)</li>
+        </ul>
+      </div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">5. Cookies et publicité<span class="faq-arrow">▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Notre site peut afficher des annonces publicitaires fournies par <strong style="color:var(--text)">Google AdSense</strong>. Google et ses partenaires peuvent utiliser des cookies et identifiants publicitaires pour diffuser des annonces personnalisées. Vous pouvez gérer vos préférences via <a href="https://adssettings.google.com" target="_blank" rel="noopener" style="color:var(--accent)">adssettings.google.com</a>, ou désactiver la personnalisation via <a href="https://www.aboutads.info" target="_blank" rel="noopener" style="color:var(--accent)">aboutads.info</a>.<br/><br/>Le site utilise aussi le stockage local de votre navigateur (localStorage) pour mémoriser votre thème, vos favoris et votre statut de contribution — ces informations restent sur votre appareil, ce ne sont pas des cookies traceurs.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">6. Vos droits<span class="faq-arrow">▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Vous pouvez à tout moment nous demander de consulter, corriger ou supprimer les données personnelles vous concernant (par exemple un commentaire ou une contribution) en nous contactant par email ou WhatsApp. Nous traiterons votre demande dans un délai raisonnable.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">7. Sécurité<span class="faq-arrow">▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Nous prenons des mesures raisonnables pour protéger vos données, mais aucun système n'est infaillible à 100 %. Ne partagez jamais d'informations sensibles dans un commentaire public.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">8. Enfants<span class="faq-arrow">▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Ce site s'adresse aux étudiants, techniciens et professionnels du génie civil. Il n'est pas destiné aux enfants de moins de 13 ans, et nous ne collectons pas sciemment de données les concernant.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">9. Modifications de cette politique<span class="faq-arrow">▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Cette politique peut évoluer avec le temps, notamment si de nouvelles fonctionnalités sont ajoutées au site. La date de dernière mise à jour est indiquée en haut de cette page.</div></div>
+    </div>
   </div>
 </div>
 
