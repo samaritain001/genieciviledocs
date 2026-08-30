@@ -1426,10 +1426,10 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
     <div class="lock-head"><div class="lock-icon">🔐</div></div>
     <h2 class="modal-title" style="text-align:center;border:none;padding:0;margin-bottom:.5rem">Espace <span>Admin</span></h2>
     <p class="lock-hint">Accès exclusif à l'administrateur.<br/>Les visiteurs ne peuvent pas publier.</p>
-    <div class="form-group"><label class="fl">Identifiant</label><input class="fc" type="text" id="adminUser" placeholder="admin"/></div>
-    <div class="form-group"><label class="fl">Mot de passe</label><input class="fc" type="password" id="adminPw" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"/>
+    <div class="form-group"><label class="fl">Email</label><input class="fc" type="email" id="adminUser" placeholder="admin@exemple.com" autocomplete="username" onkeydown="if(event.key==='Enter')doLogin()"/></div>
+    <div class="form-group"><label class="fl">Mot de passe</label><input class="fc" type="password" id="adminPw" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()"/>
     <p class="wrong-pw" id="wrongPw">❌ Identifiants incorrects.</p></div>
-    <div class="modal-footer"><button class="btn btn-ghost" onclick="closeOverlay('loginOverlay')">Annuler</button><button class="btn btn-accent" onclick="doLogin()">🔓 Connexion</button></div>
+    <div class="modal-footer"><button class="btn btn-ghost" onclick="closeOverlay('loginOverlay')">Annuler</button><button class="btn btn-accent" id="loginBtn" onclick="doLogin()">🔓 Connexion</button></div>
   </div>
 </div>
 
@@ -1689,9 +1689,12 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
 const SUPABASE_URL  = 'https://gckswhsblnbkkuffcjea.supabase.co';        // ex: https://abcdef.supabase.co
 const SUPABASE_ANON = 'sb_publishable_glmbLR6euzg6vtL-sK98GQ_mh8zJBve';   // clé publique anon
 
-/* ══ ADMIN LOCAL (changez ces valeurs !) ══ */
-const ADMIN_USER = 'admin';
-const ADMIN_PW   = 'Bitou@7';   // 🔑 Changez ce mot de passe !
+/* ══ ADMIN ══
+   L'identité admin est vérifiée par Supabase Auth (connexion email/mot de
+   passe) + la table public.admins protégée par RLS — aucun identifiant
+   n'est stocké dans ce fichier. Pour créer un administrateur : ajoutez son
+   compte dans Supabase (Authentication → Users), puis ajoutez son email
+   dans la table public.admins. */
 
 /* ══════════════════════════════════════════════
    INITIALISATION
@@ -1773,10 +1776,15 @@ async function initSupabase() {
       return;
     }
     sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+    isAdmin = await checkAdminStatus();
+    sb.auth.onAuthStateChange((event) => {
+      if(event === 'SIGNED_OUT' && isAdmin) { isAdmin = false; applyAdminUI(); }
+    });
     await loadDocs();
     await loadComments();
     await loadPending();
     await loadJobs();
+    applyAdminUI();
     banner.className = 'status-banner ok show';
     textEl.textContent = '✅ Connecté à Supabase — Données en temps réel actives.';
     setTimeout(() => { banner.classList.remove('show'); }, 4000);
@@ -2449,39 +2457,74 @@ function copyLink() { navigator.clipboard.writeText(document.getElementById('sha
 /* ══════════════════════════════════════════════
    ADMIN
 ══════════════════════════════════════════════ */
-function doLogin() {
-  const u = document.getElementById('adminUser').value.trim();
-  const p = document.getElementById('adminPw').value;
-  if(u.toLowerCase()===ADMIN_USER && p===ADMIN_PW) {
-    isAdmin = true;
-    closeOverlay('loginOverlay');
-    document.getElementById('adminPanel').classList.add('visible');
-    const btn = document.getElementById('adminNavBtn');
-    btn.innerHTML = '📋 Activité'; btn.style.color='var(--accent)';
-    document.getElementById('adminPw').value='';
-    document.getElementById('adminUser').value='';
-    document.getElementById('wrongPw').style.display='none';
-    showDocs();
-    buildLog();
-    updatePendingBadge();
-    updateVisitorPanel();
-    updatePostJobBtn();
-    renderJobs();
-    showToast('🎉 Bienvenue, Administrateur !','success');
-  } else {
-    document.getElementById('wrongPw').style.display='block';
-    document.getElementById('adminPw').value='';
-  }
+/* Interroge public.admins (protégée par RLS : chacun ne peut lire que sa
+   propre ligne) pour savoir si l'utilisateur Supabase Auth connecté est
+   administrateur. */
+async function checkAdminStatus() {
+  if(!sb) return false;
+  const { data: { user } } = await sb.auth.getUser();
+  if(!user) return false;
+  const { data } = await sb.from('admins').select('user_id').eq('user_id', user.id).maybeSingle();
+  return !!data;
 }
-function logout() {
-  isAdmin = false;
-  document.getElementById('adminPanel').classList.remove('visible');
+
+function applyAdminUI() {
+  document.getElementById('adminPanel').classList.toggle('visible', isAdmin);
   const btn = document.getElementById('adminNavBtn');
-  btn.innerHTML='🔐 Admin'; btn.style.color='';
+  btn.innerHTML = isAdmin ? '📋 Activité' : '🔐 Admin';
+  btn.style.color = isAdmin ? 'var(--accent)' : '';
   showDocs();
+  updatePendingBadge();
   updateVisitorPanel();
   updatePostJobBtn();
   renderJobs();
+  if(isAdmin) buildLog();
+}
+
+function setWrongPw(msg) {
+  const el = document.getElementById('wrongPw');
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+
+async function doLogin() {
+  if(!sb) { showToast('⚠️ Connexion à la base de données indisponible.','error'); return; }
+  const email = document.getElementById('adminUser').value.trim();
+  const pw = document.getElementById('adminPw').value;
+  if(!email || !pw) { setWrongPw('❌ Email et mot de passe requis.'); return; }
+
+  const btn = document.getElementById('loginBtn');
+  btn.disabled = true; btn.textContent = '⏳ Connexion…';
+
+  const { error } = await sb.auth.signInWithPassword({ email, password: pw });
+  if(error) {
+    setWrongPw('❌ ' + (error.message==='Invalid login credentials' ? 'Identifiants incorrects.' : error.message));
+    document.getElementById('adminPw').value='';
+    btn.disabled = false; btn.textContent = '🔓 Connexion';
+    return;
+  }
+  if(!await checkAdminStatus()) {
+    await sb.auth.signOut();
+    setWrongPw("❌ Ce compte n'a pas les droits administrateur.");
+    document.getElementById('adminPw').value='';
+    btn.disabled = false; btn.textContent = '🔓 Connexion';
+    return;
+  }
+
+  isAdmin = true;
+  closeOverlay('loginOverlay');
+  document.getElementById('adminPw').value='';
+  document.getElementById('adminUser').value='';
+  document.getElementById('wrongPw').style.display='none';
+  applyAdminUI();
+  btn.disabled = false; btn.textContent = '🔓 Connexion';
+  showToast('🎉 Bienvenue, Administrateur !','success');
+}
+
+async function logout() {
+  if(sb) await sb.auth.signOut();
+  isAdmin = false;
+  applyAdminUI();
   showToast('Vous êtes déconnecté.');
 }
 
