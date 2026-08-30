@@ -62,16 +62,20 @@
   --text:#1a1208;--text2:#5a5248;--text3:#9a9288;
   --shadow:0 8px 32px rgba(0,0,0,0.1);
 }
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;min-width:0}
 html{scroll-behavior:smooth}
 body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;transition:background var(--tr),color var(--tr);position:relative}
 ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
 
 /* ═══ TOOL ICON DECORATIONS ═══ */
-.tool-icon{position:absolute;z-index:5;pointer-events:none;opacity:.28;color:var(--accent)}
+/* Ces icônes décoratives sont positionnées en % de la hauteur totale de la
+   page (très variable selon le contenu chargé) : en dessous de 1900px il
+   n'y a plus de marge vide pour les accueillir sans qu'elles chevauchent
+   la sidebar ou le contenu, donc on ne les affiche que sur très grand écran. */
+.tool-icon{position:absolute;z-index:5;pointer-events:none;opacity:.28;color:var(--accent);display:none}
 [data-theme="light"] .tool-icon{opacity:.22;color:#8b6914}
 .tool-icon svg{width:100%;height:100%;display:block;stroke-width:4}
-.tool-icon svg{width:100%;height:100%;display:block}
+@media(min-width:1900px){ .tool-icon{display:block} }
 
 /* ═══ BLOBS ═══ */
 .blob{position:fixed;border-radius:50%;filter:blur(140px);pointer-events:none;z-index:0}
@@ -84,15 +88,25 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-he
 /* ═══ NAV ═══ */
 nav{position:sticky;top:0;z-index:200;background:rgba(10,12,16,0.88);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);padding:0 1.5rem;transition:background var(--tr)}
 [data-theme="light"] nav{background:rgba(244,242,238,0.92)}
-.nav-inner{max-width:1440px;margin:0 auto;display:flex;align-items:center;gap:1.5rem;height:62px}
+.nav-inner{max-width:1440px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:.75rem 1.5rem;min-height:62px;padding:.4rem 0}
 .nav-logo{display:flex;align-items:center;gap:.7rem;flex-shrink:0}
 .logo-mark{width:34px;height:34px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:.95rem;color:#0a0c10;font-weight:700}
 .logo-text{font-size:1rem;font-weight:800;color:var(--text)}
 .logo-text span{color:var(--accent)}
 .nav-links{display:flex;gap:.1rem;flex:1}
-.nav-links a{font-size:.78rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--text2);padding:.38rem .75rem;border-radius:6px;text-decoration:none;transition:all var(--tr)}
+.nav-links a{font-size:.78rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--text2);padding:.38rem .75rem;border-radius:6px;text-decoration:none;transition:all var(--tr);white-space:nowrap}
 .nav-links a:hover,.nav-links a.active{color:var(--accent);background:var(--accent-dim)}
-.nav-right{display:flex;gap:.5rem;align-items:center;margin-left:auto;flex-shrink:0}
+.nav-right{display:flex;flex-wrap:wrap;justify-content:flex-end;row-gap:.5rem;gap:.5rem;align-items:center;margin-left:auto;max-width:100%}
+.nav-toggle{display:flex;width:36px;height:36px;border-radius:8px;border:1px solid var(--border2);background:transparent;color:var(--text);cursor:pointer;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.nav-toggle:hover{background:var(--surface2)}
+/* .nav-inner reste plafonné à 1440px (comme le reste du site) alors que les
+   11 liens + la recherche + les icônes ont besoin d'environ 1820px sur une
+   seule ligne — ça déborderait donc à n'importe quelle largeur d'écran.
+   Le menu déroulant déclenché par le hamburger est donc permanent, pas une
+   simple adaptation mobile. */
+.nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:var(--surface);border-bottom:1px solid var(--border);padding:.5rem 1rem;max-height:75vh;overflow-y:auto;box-shadow:var(--shadow)}
+.nav-links.open{display:flex}
+.nav-links a{width:100%;padding:.7rem .6rem}
 .theme-btn{width:36px;height:36px;border-radius:8px;border:1px solid var(--border2);background:transparent;color:var(--text2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:all var(--tr)}
 .theme-btn:hover{background:var(--surface2);color:var(--text)}
 
@@ -168,7 +182,7 @@ nav{position:sticky;top:0;z-index:200;background:rgba(10,12,16,0.88);backdrop-fi
 
 /* ═══ LAYOUT ═══ */
 .main-layout{max-width:1440px;margin:0 auto;padding:0 1.5rem 4rem;display:grid;grid-template-columns:1fr 270px;gap:1.75rem}
-.section-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:1.4rem;padding-bottom:1.1rem;border-bottom:1px solid var(--border)}
+.section-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:.6rem;margin-bottom:1.4rem;padding-bottom:1.1rem;border-bottom:1px solid var(--border)}
 .breadcrumb{font-size:.75rem;color:var(--text3);margin-bottom:1rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap}
 .breadcrumb a{color:var(--text2);text-decoration:none;transition:color var(--tr)}
 .breadcrumb a:hover{color:var(--accent)}
@@ -460,7 +474,7 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
 .about-stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.5rem}
 .about-stat{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1rem;text-align:center}
 .about-stat-num{font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--accent)}
-.about-stat-label{font-size:.65rem;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;margin-top:.2rem}
+.about-stat-label{font-size:.65rem;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;margin-top:.2rem;overflow-wrap:break-word}
 .about-visual{background:var(--surface);border:1px solid var(--border2);border-radius:18px;padding:2rem;position:relative;overflow:hidden}
 .about-visual svg{width:100%;height:auto}
 
@@ -522,7 +536,12 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
 /* ═══ RESPONSIVE ═══ */
 @media(max-width:1100px){.main-layout{grid-template-columns:1fr}.sidebar{display:none}.featured-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:860px){.hero{grid-template-columns:1fr}.hero-card{display:none}.footer-grid{grid-template-columns:1fr 1fr}.comments-grid{grid-template-columns:1fr}}
-@media(max-width:640px){.footer-grid{grid-template-columns:1fr}.nav-links{display:none}.featured-grid{grid-template-columns:1fr}.hero-stats{flex-wrap:wrap;gap:1.2rem}.notif-panel{width:270px;right:-50px}}
+@media(max-width:640px){.footer-grid{grid-template-columns:1fr}.nav-links{display:none}.featured-grid{grid-template-columns:1fr}.hero-stats{flex-wrap:wrap;gap:1.2rem}.notif-panel{width:270px;right:-50px}
+  /* Sur très petit écran, la recherche compacte de la nav est redondante
+     avec la grande barre de recherche juste sous le hero — on la masque
+     pour laisser plus de place aux boutons (thème, notifications, admin…). */
+  .ac-wrap{display:none}
+}
 
 /* ═══ DONATION ═══ */
 .btn-donate{background:linear-gradient(135deg,#ff9f5a,#ff6b6b);color:#fff}
@@ -537,6 +556,7 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
 /* ═══ JOBS SECTION ═══ */
 .jobs-section{max-width:1440px;margin:0 auto;padding:0 1.5rem 4rem}
 .jobs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.1rem;margin-top:1.4rem}
+@media(max-width:640px){.jobs-grid{grid-template-columns:1fr}}
 .job-card{background:var(--surface);border:1px solid var(--border);border-radius:15px;padding:1.25rem;transition:all var(--tr);position:relative}
 .job-card:hover{border-color:var(--border2);transform:translateY(-3px);box-shadow:0 16px 40px rgba(0,0,0,.3)}
 .job-card.sponsored{border-color:rgba(232,197,71,.35);background:linear-gradient(135deg,var(--surface),rgba(232,197,71,.04))}
@@ -713,6 +733,7 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
       <a href="#faq">FAQ</a>
       <a href="#contact">Contact</a>
     </div>
+    <button class="nav-toggle" id="navToggle" onclick="toggleNavMenu()" aria-label="Ouvrir le menu" aria-expanded="false">☰</button>
     <div class="nav-right">
       <div class="ac-wrap">
         <div class="nav-search">
@@ -2259,6 +2280,18 @@ document.addEventListener('click', e=>{
   if(wrap && !wrap.contains(e.target)) document.getElementById('notifPanel').classList.remove('open');
 });
 
+/* ══ MENU MOBILE (hamburger) ══ */
+function toggleNavMenu() {
+  const links = document.querySelector('.nav-links');
+  const open = links.classList.toggle('open');
+  document.getElementById('navToggle').setAttribute('aria-expanded', open);
+}
+function closeNavMenu() {
+  document.querySelector('.nav-links').classList.remove('open');
+  document.getElementById('navToggle').setAttribute('aria-expanded', 'false');
+}
+document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click', closeNavMenu));
+
 /* ══ SCROLL REVEAL ══ */
 function initReveal() {
   const obs = new IntersectionObserver((entries)=>{
@@ -2920,7 +2953,7 @@ function openOverlay(id){
 }
 function closeOverlay(id){ document.getElementById(id).classList.remove('open'); }
 document.querySelectorAll('.overlay').forEach(el=>el.addEventListener('click',e=>{ if(e.target===el) el.classList.remove('open'); }));
-document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ document.querySelectorAll('.overlay.open').forEach(o=>o.classList.remove('open')); document.getElementById('chatWindow').classList.remove('open'); } });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ document.querySelectorAll('.overlay.open').forEach(o=>o.classList.remove('open')); document.getElementById('chatWindow').classList.remove('open'); closeNavMenu(); } });
 
 /* ══════════════════════════════════════════════
    TOAST
