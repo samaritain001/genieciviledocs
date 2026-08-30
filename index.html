@@ -1422,7 +1422,7 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
 <!-- ═══ MODAL : LOGIN ═══ -->
 <div class="overlay" id="loginOverlay">
   <div class="modal" style="max-width:400px">
-    <button class="modal-close" onclick="closeOverlay('loginOverlay')">✕</button>
+    <button class="modal-close" onclick="closeOverlay('loginOverlay')" aria-label="Fermer">✕</button>
     <div class="lock-head"><div class="lock-icon">🔐</div></div>
     <h2 class="modal-title" style="text-align:center;border:none;padding:0;margin-bottom:.5rem">Espace <span>Admin</span></h2>
     <p class="lock-hint">Accès exclusif à l'administrateur.<br/>Les visiteurs ne peuvent pas publier.</p>
@@ -1436,7 +1436,7 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
 <!-- ═══ MODAL : UPLOAD ═══ -->
 <div class="overlay" id="uploadOverlay">
   <div class="modal">
-    <button class="modal-close" onclick="closeOverlay('uploadOverlay')">✕</button>
+    <button class="modal-close" onclick="closeOverlay('uploadOverlay')" aria-label="Fermer">✕</button>
     <h2 class="modal-title">📤 Publier des <span>documents</span></h2>
     <p class="lock-hint" style="text-align:left">Sélectionnez un ou plusieurs fichiers. La catégorie, l'auteur et la description s'appliquent à tous ; le titre de chacun reste modifiable individuellement.</p>
 
@@ -1482,7 +1482,7 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
 <!-- ═══ MODAL : CONTRIBUTE (visitors) ═══ -->
 <div class="overlay" id="contributeOverlay">
   <div class="modal">
-    <button class="modal-close" onclick="closeOverlay('contributeOverlay')">✕</button>
+    <button class="modal-close" onclick="closeOverlay('contributeOverlay')" aria-label="Fermer">✕</button>
     <h2 class="modal-title">📤 Proposer un <span>document</span></h2>
     <p class="lock-hint" style="text-align:left">Votre document sera d'abord examiné par l'administrateur. Une fois validé, vos téléchargements seront débloqués automatiquement.</p>
     <div class="form-row-2">
@@ -1529,7 +1529,7 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
 <!-- ═══ MODAL : PENDING REVIEW (admin) ═══ -->
 <div class="overlay" id="pendingOverlay">
   <div class="modal" style="max-width:600px">
-    <button class="modal-close" onclick="closeOverlay('pendingOverlay')">✕</button>
+    <button class="modal-close" onclick="closeOverlay('pendingOverlay')" aria-label="Fermer">✕</button>
     <h2 class="modal-title">📥 Contributions en <span>attente</span></h2>
     <div id="pendingList" style="max-height:460px;overflow-y:auto"></div>
   </div>
@@ -1538,7 +1538,7 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
 <!-- ═══ MODAL : EDIT ═══ -->
 <div class="overlay" id="editOverlay">
   <div class="modal">
-    <button class="modal-close" onclick="closeOverlay('editOverlay')">✕</button>
+    <button class="modal-close" onclick="closeOverlay('editOverlay')" aria-label="Fermer">✕</button>
     <h2 class="modal-title">✏️ Modifier le <span>document</span></h2>
     <input type="hidden" id="editId"/>
     <div class="form-group"><label class="fl">Titre</label><input class="fc" type="text" id="editTitle"/></div>
@@ -1552,7 +1552,7 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
 <!-- ═══ MODAL : ACTIVITY LOG ═══ -->
 <div class="overlay" id="logOverlay">
   <div class="modal" style="max-width:580px">
-    <button class="modal-close" onclick="closeOverlay('logOverlay')">✕</button>
+    <button class="modal-close" onclick="closeOverlay('logOverlay')" aria-label="Fermer">✕</button>
     <h2 class="modal-title">📋 Journal d'<span>activité</span></h2>
     <div id="activityLog" style="max-height:420px;overflow-y:auto"></div>
   </div>
@@ -1561,7 +1561,7 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
 <!-- ═══ MODAL : SHARE ═══ -->
 <div class="overlay" id="shareOverlay">
   <div class="modal" style="max-width:400px">
-    <button class="modal-close" onclick="closeOverlay('shareOverlay')">✕</button>
+    <button class="modal-close" onclick="closeOverlay('shareOverlay')" aria-label="Fermer">✕</button>
     <h2 class="modal-title">🔗 Partager le <span>document</span></h2>
     <div class="share-options">
       <div class="share-opt" onclick="shareVia('whatsapp')"><div class="so-icon">💬</div>WhatsApp</div>
@@ -1581,7 +1581,7 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
 <!-- ═══ MODAL : PREVIEW ═══ -->
 <div class="overlay" id="previewOverlay">
   <div class="modal preview-modal">
-    <button class="modal-close" onclick="closeOverlay('previewOverlay')">✕</button>
+    <button class="modal-close" onclick="closeOverlay('previewOverlay')" aria-label="Fermer">✕</button>
     <h2 class="modal-title" id="prevTitle">Aperçu du <span>document</span></h2>
     <div class="preview-area"><div class="pa-icon" id="prevIcon">📄</div><p id="prevMsg" style="font-size:.85rem;color:var(--text3);text-align:center"></p></div>
     <div style="display:flex;gap:.6rem;justify-content:flex-end">
@@ -1594,7 +1594,7 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
 <!-- ═══ MODAL : FAVORITES ═══ -->
 <div class="overlay" id="favsOverlay">
   <div class="modal" style="max-width:460px">
-    <button class="modal-close" onclick="closeOverlay('favsOverlay')">✕</button>
+    <button class="modal-close" onclick="closeOverlay('favsOverlay')" aria-label="Fermer">✕</button>
     <h2 class="modal-title">❤️ Mes <span>favoris</span></h2>
     <div id="favsModal" style="max-height:380px;overflow-y:auto"></div>
   </div>
@@ -1603,7 +1603,7 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
 <!-- ═══ MODAL : AUTHOR PROFILE ═══ -->
 <div class="overlay" id="authorOverlay">
   <div class="modal" style="max-width:520px">
-    <button class="modal-close" onclick="closeOverlay('authorOverlay')">✕</button>
+    <button class="modal-close" onclick="closeOverlay('authorOverlay')" aria-label="Fermer">✕</button>
     <div class="author-profile-head">
       <div class="author-profile-avatar" id="apAvatar">—</div>
       <div>
@@ -1619,7 +1619,7 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
 <!-- ═══ MODAL : DONATE ═══ -->
 <div class="overlay" id="donateOverlay">
   <div class="modal donate-modal">
-    <button class="modal-close" onclick="closeOverlay('donateOverlay')">✕</button>
+    <button class="modal-close" onclick="closeOverlay('donateOverlay')" aria-label="Fermer">✕</button>
     <div class="donate-icon">☕</div>
     <h2 class="modal-title" style="border:none;padding:0;margin-bottom:.6rem">Soutenir <span>GenieCivil Docs</span></h2>
     <p class="donate-text">Ce site est gratuit et le restera. Si les documents vous ont aidé dans vos études ou vos projets, un petit don aide à couvrir l'hébergement et à faire grandir la bibliothèque. Merci ! 🙏</p>
@@ -1631,7 +1631,7 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
 <!-- ═══ MODAL : POST / EDIT JOB (admin) ═══ -->
 <div class="overlay" id="jobOverlay">
   <div class="modal">
-    <button class="modal-close" onclick="closeOverlay('jobOverlay')">✕</button>
+    <button class="modal-close" onclick="closeOverlay('jobOverlay')" aria-label="Fermer">✕</button>
     <h2 class="modal-title">📢 Publier une <span>offre d'emploi</span></h2>
     <input type="hidden" id="jobId"/>
     <div class="form-row-2">
@@ -1714,6 +1714,13 @@ function getVisitorId() {
   let id = localStorage.getItem('gcd_visitor_id');
   if(!id) { id = 'v_' + Math.random().toString(36).slice(2) + Date.now().toString(36); localStorage.setItem('gcd_visitor_id', id); }
   return id;
+}
+
+/* Échappe le HTML pour tout contenu fourni par un utilisateur (titres, noms,
+   commentaires, offres…) avant insertion via innerHTML, afin d'éviter les
+   failles XSS stockées. */
+function esc(s) {
+  return String(s==null?'':s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
 
 function loadScriptOnce(src) {
@@ -1868,13 +1875,13 @@ function showDocs() {
         ${d.featured ? '<span class="dc-featured-badge">⭐ Vedette</span>' : ''}
         <span class="dc-bg-icon">${tIcon(d.type)}</span>
         <span class="dc-cat-pill" onclick="event.stopPropagation();goToCategoryPage('${d.cat||''}')" style="cursor:pointer">${(d.cat||'').toUpperCase()}</span>
-        <button class="dc-fav ${d.fav?'active':''}" onclick="toggleFav(event,'${d.id}')">${d.fav?'❤️':'🤍'}</button>
+        <button class="dc-fav ${d.fav?'active':''}" onclick="toggleFav(event,'${d.id}')" aria-label="${d.fav?'Retirer des favoris':'Ajouter aux favoris'}">${d.fav?'❤️':'🤍'}</button>
       </div>
       <div class="dc-body">
-        <h4 class="dc-title">${d.title}</h4>
-        <p class="dc-desc">${d.description||''}</p>
+        <h4 class="dc-title">${esc(d.title)}</h4>
+        <p class="dc-desc">${esc(d.description)}</p>
         <div class="dc-meta">
-          <span>👤 <span class="author-link" onclick="event.stopPropagation();openAuthorProfile('${(d.author||'Inconnu').replace(/'/g,"\\'")}')">${d.author||'Inconnu'}</span></span>
+          <span>👤 <span class="author-link" onclick="event.stopPropagation();openAuthorProfile('${(d.author||'Inconnu').replace(/'/g,"\\'")}')">${esc(d.author||'Inconnu')}</span></span>
           <span>📁 ${d.file_size||'—'}</span>
           <span class="dl-badge">⬇ ${d.download_count||0}</span>
         </div>
@@ -1930,19 +1937,19 @@ function updateFeatured() {
   const badges = ['Populaire','Nouveau','Recommandé'];
   document.getElementById('featuredGrid').innerHTML = featDocs.length ? featDocs.map((d,i)=>`
     <div class="fi" onclick=""><div class="fi-icon" style="background:${colors[i%3]}">${tIcon(d.type)}</div>
-    <div><div class="fi-badge">${badges[i%3]}</div><div class="fi-title">${d.title}</div><div class="fi-meta">${d.type.toUpperCase()} · ⬇ ${d.download_count||0} · ⭐ ${d.rating||0}</div></div></div>`).join('') : '<p style="color:var(--text3);font-size:.8rem;padding:1rem">Aucun document en vedette.</p>';
+    <div><div class="fi-badge">${badges[i%3]}</div><div class="fi-title">${esc(d.title)}</div><div class="fi-meta">${d.type.toUpperCase()} · ⬇ ${d.download_count||0} · ⭐ ${d.rating||0}</div></div></div>`).join('') : '<p style="color:var(--text3);font-size:.8rem;padding:1rem">Aucun document en vedette.</p>';
 }
 function updateRecentSidebar() {
   const recent = [...allDocs].sort((a,b)=>new Date(b.created_at)-new Date(a.created_at)).slice(0,4);
   const swatchColors = {pdf:'var(--red-dim)',dwg:'var(--blue-dim)',xlsx:'var(--green-dim)',docx:'var(--blue-dim)',pptx:'var(--orange-dim)',ifc:'var(--purple-dim)',zip:'var(--teal-dim)'};
-  document.getElementById('recentSidebar').innerHTML = recent.map(d=>`<div class="recent-row"><div class="rr-swatch" style="background:${swatchColors[d.type]||'var(--surface3)'}">${tIcon(d.type)}</div><div style="flex:1;min-width:0"><div class="rr-name">${d.title}</div><div class="rr-meta">${d.type.toUpperCase()} · ${timeAgo(d.created_at)}</div></div></div>`).join('');
+  document.getElementById('recentSidebar').innerHTML = recent.map(d=>`<div class="recent-row"><div class="rr-swatch" style="background:${swatchColors[d.type]||'var(--surface3)'}">${tIcon(d.type)}</div><div style="flex:1;min-width:0"><div class="rr-name">${esc(d.title)}</div><div class="rr-meta">${d.type.toUpperCase()} · ${timeAgo(d.created_at)}</div></div></div>`).join('');
 }
 function updateHeroRecent() {
   const recent = [...allDocs].sort((a,b)=>new Date(b.created_at)-new Date(a.created_at)).slice(0,3);
   const colors = ['var(--red-dim)','var(--blue-dim)','var(--green-dim)'];
   document.getElementById('heroRecent').innerHTML = recent.map((d,i)=>`
     <div class="hc-doc"><div class="hc-icon" style="background:${colors[i]}">${tIcon(d.type)}</div>
-    <div style="flex:1;min-width:0"><div class="hc-name">${d.title}</div><div class="hc-meta">${d.type.toUpperCase()} · ${d.file_size||'—'} · ${timeAgo(d.created_at)}</div></div>
+    <div style="flex:1;min-width:0"><div class="hc-name">${esc(d.title)}</div><div class="hc-meta">${d.type.toUpperCase()} · ${d.file_size||'—'} · ${timeAgo(d.created_at)}</div></div>
     <div class="hc-dl">⬇ ${d.download_count||0}</div></div>`).join('');
 }
 function populateDocSelect() {
@@ -1969,7 +1976,7 @@ function updateAuthorsGrid() {
   document.getElementById('authorsGrid').innerHTML = authors.length ? authors.map(a=>`
     <div class="author-card" onclick="openAuthorProfile('${a.name.replace(/'/g,"\\'")}')">
       <div class="author-avatar">${initials(a.name)}</div>
-      <div class="author-name">${a.name}</div>
+      <div class="author-name">${esc(a.name)}</div>
       <div class="author-stats">${a.count} document${a.count>1?'s':''} · ⬇ ${a.downloads}</div>
     </div>`).join('') : '<p style="color:var(--text3);font-size:.8rem">Aucun contributeur pour le moment.</p>';
 }
@@ -1982,7 +1989,7 @@ function openAuthorProfile(name) {
   document.getElementById('apMeta').textContent = `${docs.length} document${docs.length>1?'s':''} · ⬇ ${stats?stats.downloads:0} téléchargements · ⭐ ${avgRating}`;
   document.getElementById('apDocs').innerHTML = docs.length ? docs.map(d=>`
     <div class="author-doc-row"><div class="adr-icon">${tIcon(d.type)}</div>
-      <div style="flex:1"><div style="font-weight:600;color:var(--text)">${d.title}</div><div style="font-size:.65rem;color:var(--text3);font-family:'JetBrains Mono'">${d.type.toUpperCase()} · ⬇ ${d.download_count||0}</div></div>
+      <div style="flex:1"><div style="font-weight:600;color:var(--text)">${esc(d.title)}</div><div style="font-size:.65rem;color:var(--text3);font-family:'JetBrains Mono'">${d.type.toUpperCase()} · ⬇ ${d.download_count||0}</div></div>
       <button class="btn btn-dl" style="font-size:.68rem;padding:.35rem .65rem" onclick="dlDoc('${d.id}')">⬇</button>
     </div>`).join('') : '<p style="color:var(--text3);font-size:.8rem">Aucun document.</p>';
   openOverlay('authorOverlay');
@@ -2034,12 +2041,12 @@ function renderJobs() {
     <div class="job-card ${j.sponsored?'sponsored':''}">
       ${j.sponsored?'<span class="job-sponsored-tag">⭐ Sponsorisé</span>':''}
       <span class="job-type-tag ${j.type}">${jobTypeLabel(j.type)}</span>
-      <h4 class="job-title">${j.title}</h4>
-      <div class="job-company">${j.company}</div>
-      <div class="job-meta">📍 ${j.location||'—'} · ${timeAgo(j.created_at)}</div>
-      <p class="job-desc">${j.description||''}</p>
+      <h4 class="job-title">${esc(j.title)}</h4>
+      <div class="job-company">${esc(j.company)}</div>
+      <div class="job-meta">📍 ${esc(j.location||'—')} · ${timeAgo(j.created_at)}</div>
+      <p class="job-desc">${esc(j.description)}</p>
       <div class="job-footer">
-        <a class="btn btn-accent" href="${/@/.test(j.contact)?'mailto:'+j.contact:j.contact}" target="_blank" rel="noopener">📨 Postuler</a>
+        <a class="btn btn-accent" href="${esc(/@/.test(j.contact)?'mailto:'+j.contact:j.contact)}" target="_blank" rel="noopener">📨 Postuler</a>
       </div>
       ${isAdmin?`<div class="job-admin-bar">
         <button class="btn btn-ghost" style="font-size:.68rem;padding:.3rem .6rem" onclick="openJobEdit('${j.id}')">✏️ Modifier</button>
@@ -2076,7 +2083,7 @@ async function saveJob() {
     const j = jobListings.find(x=>x.id===id);
     Object.assign(j, { title, company, type, location, description, contact, sponsored });
     if(sb && !id.startsWith('local_')) { await sb.from('job_listings').update({title,company,type,location,description,contact,sponsored}).eq('id',id); }
-    logActivity('✏️','var(--orange-dim)',`<strong>${title}</strong> — Offre modifiée`,timeAgo(new Date()));
+    logActivity('✏️','var(--orange-dim)',`<strong>${esc(title)}</strong> — Offre modifiée`,timeAgo(new Date()));
     showToast('✅ Offre modifiée !','success');
   } else {
     const entry = { title, company, type, location, description, contact, sponsored, created_at:new Date().toISOString() };
@@ -2087,7 +2094,7 @@ async function saveJob() {
     } else {
       jobListings.unshift({ ...entry, id:'local_'+Date.now() });
     }
-    logActivity('📢','var(--green-dim)',`<strong>${title}</strong> — Offre publiée`,timeAgo(new Date()));
+    logActivity('📢','var(--green-dim)',`<strong>${esc(title)}</strong> — Offre publiée`,timeAgo(new Date()));
     showToast(`✅ Offre "${title}" publiée !`,'success');
   }
   closeOverlay('jobOverlay');
@@ -2100,7 +2107,7 @@ async function deleteJob(id) {
   if(sb && !id.startsWith('local_')) { await sb.from('job_listings').delete().eq('id',id); }
   jobListings.splice(jobListings.findIndex(x=>x.id===id),1);
   renderJobs();
-  logActivity('🗑','var(--red-dim)',`<strong>${j.title}</strong> — Offre supprimée`,timeAgo(new Date()));
+  logActivity('🗑','var(--red-dim)',`<strong>${esc(j.title)}</strong> — Offre supprimée`,timeAgo(new Date()));
   showToast('🗑 Offre supprimée.','error');
 }
 
@@ -2128,7 +2135,7 @@ function sendContact() {
   window.open(`https://wa.me/22662478410?text=${encodeURIComponent(waText)}`, '_blank');
   document.getElementById('ctName').value=''; document.getElementById('ctEmail').value=''; document.getElementById('ctMessage').value='';
   showToast('✅ Ouverture de WhatsApp pour envoyer votre message…','success');
-  addNotification('✉️','var(--accent-dim)',`Nouveau message de contact : <strong>${subject}</strong>`,'À l\'instant');
+  addNotification('✉️','var(--accent-dim)',`Nouveau message de contact : <strong>${esc(subject)}</strong>`,'À l\'instant');
 }
 
 /* ══════════════════════════════════════════════
@@ -2350,7 +2357,7 @@ function acSearch(q){
   if(!q||q.length<2){drop.classList.remove('show');return;}
   const res = allDocs.filter(d=>d.title.toLowerCase().includes(q.toLowerCase())).slice(0,5);
   if(!res.length){drop.classList.remove('show');return;}
-  drop.innerHTML = res.map(d=>`<div class="ac-item" onmousedown="selectAc('${d.title.replace(/'/g,"\\'")}')">${tIcon(d.type)} ${d.title}</div>`).join('');
+  drop.innerHTML = res.map(d=>`<div class="ac-item" onmousedown="selectAc('${d.title.replace(/'/g,"\\'")}')">${tIcon(d.type)} ${esc(d.title)}</div>`).join('');
   drop.classList.add('show');
 }
 function selectAc(title){ document.getElementById('navSearch').value=title; document.getElementById('mainSearch').value=title; document.getElementById('acDrop').classList.remove('show'); filterDocs(); document.getElementById('docs').scrollIntoView({behavior:'smooth'}); }
@@ -2375,9 +2382,9 @@ function updateFavSidebar() {
   if(cnt) cnt.textContent = favs.length||'';
   const swatchColors = {pdf:'var(--red-dim)',dwg:'var(--blue-dim)',xlsx:'var(--green-dim)',docx:'var(--blue-dim)',pptx:'var(--orange-dim)',ifc:'var(--purple-dim)',zip:'var(--teal-dim)'};
   const favSb = document.getElementById('favSidebar');
-  favSb.innerHTML = favs.length ? favs.map(d=>`<div class="recent-row"><div class="rr-swatch" style="background:${swatchColors[d.type]||'var(--surface3)'}">${tIcon(d.type)}</div><div style="flex:1;min-width:0"><div class="rr-name">${d.title}</div><div class="rr-meta">${d.type.toUpperCase()} · ⬇ ${d.download_count||0}</div></div></div>`).join('') : '<div class="fav-empty">Aucun favori.</div>';
+  favSb.innerHTML = favs.length ? favs.map(d=>`<div class="recent-row"><div class="rr-swatch" style="background:${swatchColors[d.type]||'var(--surface3)'}">${tIcon(d.type)}</div><div style="flex:1;min-width:0"><div class="rr-name">${esc(d.title)}</div><div class="rr-meta">${d.type.toUpperCase()} · ⬇ ${d.download_count||0}</div></div></div>`).join('') : '<div class="fav-empty">Aucun favori.</div>';
   const fm = document.getElementById('favsModal');
-  if(fm) fm.innerHTML = favs.length ? favs.map(d=>`<div class="comment-card" style="margin-bottom:.5rem"><div style="width:36px;height:36px;border-radius:8px;background:var(--surface2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.1rem">${tIcon(d.type)}</div><div style="flex:1;padding-left:.65rem"><div style="font-size:.82rem;font-weight:700;color:var(--text)">${d.title}</div><div style="font-size:.62rem;color:var(--text3);font-family:JetBrains Mono">${d.type.toUpperCase()} · ${d.file_size||'—'} · ⬇ ${d.download_count||0}</div></div><button class="btn btn-accent" style="font-size:.68rem;padding:.32rem .65rem" onclick="dlDoc('${d.id}')">⬇</button></div>`).join('') : '<div class="fav-empty">Aucun favori enregistré.</div>';
+  if(fm) fm.innerHTML = favs.length ? favs.map(d=>`<div class="comment-card" style="margin-bottom:.5rem"><div style="width:36px;height:36px;border-radius:8px;background:var(--surface2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.1rem">${tIcon(d.type)}</div><div style="flex:1;padding-left:.65rem"><div style="font-size:.82rem;font-weight:700;color:var(--text)">${esc(d.title)}</div><div style="font-size:.62rem;color:var(--text3);font-family:JetBrains Mono">${d.type.toUpperCase()} · ${d.file_size||'—'} · ⬇ ${d.download_count||0}</div></div><button class="btn btn-accent" style="font-size:.68rem;padding:.32rem .65rem" onclick="dlDoc('${d.id}')">⬇</button></div>`).join('') : '<div class="fav-empty">Aucun favori enregistré.</div>';
 }
 
 async function dlDoc(id) {
@@ -2398,7 +2405,7 @@ async function dlDoc(id) {
   doc.download_count = (doc.download_count||0)+1;
   if(sb){ await sb.from('documents').update({download_count: doc.download_count}).eq('id',id); }
   showDocs(); updateStats();
-  logActivity('⬇️','var(--blue-dim)',`<strong>${doc.title}</strong> téléchargé`,timeAgo(new Date()));
+  logActivity('⬇️','var(--blue-dim)',`<strong>${esc(doc.title)}</strong> téléchargé`,timeAgo(new Date()));
 }
 
 function rateDoc(id, stars) {
@@ -2413,7 +2420,7 @@ function rateDoc(id, stars) {
 function openPreview(id) {
   const doc = allDocs.find(d=>d.id===id);
   if(!doc) return;
-  document.getElementById('prevTitle').innerHTML = `Aperçu — <span>${doc.title}</span>`;
+  document.getElementById('prevTitle').innerHTML = `Aperçu — <span>${esc(doc.title)}</span>`;
   document.getElementById('prevIcon').textContent = tIcon(doc.type);
   document.getElementById('prevMsg').innerHTML = doc.type==='pdf' ? 'Aperçu PDF disponible.<br/>Cliquez Télécharger pour l\'ouvrir.' : `Format ${doc.type.toUpperCase()} — Téléchargez pour visualiser.`;
   document.getElementById('prevDlBtn').onclick = ()=>{ dlDoc(id); closeOverlay('previewOverlay'); };
@@ -2514,7 +2521,7 @@ function renderFileList() {
   list.innerHTML = selectedFiles.map((sf,idx)=>`
     <div class="file-row">
       <span class="fr-icon">${tIcon(detectFileType(sf.file.name))}</span>
-      <input class="fc" value="${sf.title.replace(/"/g,'&quot;')}" oninput="updateFileTitle(${idx},this.value)" placeholder="Titre du document"/>
+      <input class="fc" value="${esc(sf.title)}" oninput="updateFileTitle(${idx},this.value)" placeholder="Titre du document"/>
       <span class="fr-size">${(sf.file.size/1024/1024).toFixed(2)} Mo</span>
       <button class="fr-remove" onclick="removeFile(${idx})" title="Retirer">✕</button>
     </div>`).join('');
@@ -2561,7 +2568,7 @@ async function publishDoc() {
       } else {
         allDocs.unshift({ ...newDoc, id:'local_'+Date.now()+'_'+i, fav:false, userRating:0 });
       }
-      logActivity('📤','var(--green-dim)',`<strong>${sf.title}</strong> — Document publié`,timeAgo(new Date()));
+      logActivity('📤','var(--green-dim)',`<strong>${esc(sf.title)}</strong> — Document publié`,timeAgo(new Date()));
       successCount++; lastTitle = sf.title;
       document.getElementById('progFill').style.width = Math.round(((i+1)/total)*100)+'%';
     } catch(e) {
@@ -2572,7 +2579,7 @@ async function publishDoc() {
   closeOverlay('uploadOverlay');
   resetUploadForm();
   renderAll(); updateStats(); updateSidebarCounts(); updateFeatured(); updateRecentSidebar(); updateHeroRecent(); populateDocSelect(); updateAuthorsGrid(); updateAboutStats();
-  if(successCount === 1) addNotification('📤','var(--green-dim)',`Nouveau document : <strong>${lastTitle}</strong>`,'À l\'instant');
+  if(successCount === 1) addNotification('📤','var(--green-dim)',`Nouveau document : <strong>${esc(lastTitle)}</strong>`,'À l\'instant');
   else if(successCount > 1) addNotification('📤','var(--green-dim)',`<strong>${successCount} documents</strong> publiés`,'À l\'instant');
   showToast(successCount===total ? `✅ ${successCount} document${successCount>1?'s':''} publié${successCount>1?'s':''} avec succès !` : `⚠️ ${successCount}/${total} document(s) publié(s) — voir erreurs ci-dessus.`, successCount===total?'success':'error');
   btn.disabled = false; btn.textContent = '🚀 Publier';
@@ -2632,9 +2639,9 @@ function renderPendingList() {
     <div class="pending-row">
       <div class="pending-icon">${tIcon(p.type)}</div>
       <div class="pending-info">
-        <div class="pending-title">${p.title}</div>
-        <div class="pending-meta">👤 ${p.author} · ${(p.cat||'').toUpperCase()} · ${p.type.toUpperCase()} · ${timeAgo(p.created_at)}</div>
-        <div class="pending-desc">${p.description||''}</div>
+        <div class="pending-title">${esc(p.title)}</div>
+        <div class="pending-meta">👤 ${esc(p.author)} · ${(p.cat||'').toUpperCase()} · ${p.type.toUpperCase()} · ${timeAgo(p.created_at)}</div>
+        <div class="pending-desc">${esc(p.description)}</div>
         <div class="pending-actions">
           <button class="btn btn-accent" style="font-size:.7rem;padding:.4rem .75rem" onclick="approvePending('${p.id}')">✅ Approuver</button>
           <button class="btn btn-danger" style="font-size:.7rem;padding:.4rem .75rem" onclick="rejectPending('${p.id}')">❌ Rejeter</button>
@@ -2659,7 +2666,7 @@ async function approvePending(id) {
   if(p.contributor_id===VISITOR_ID) localStorage.setItem('gcd_unlocked_'+VISITOR_ID,'true');
   renderAll(); updateStats(); updateSidebarCounts(); updateFeatured(); updateRecentSidebar(); updateHeroRecent(); populateDocSelect(); updateAuthorsGrid(); updateAboutStats();
   updatePendingBadge(); renderPendingList(); updateVisitorPanel();
-  logActivity('✅','var(--green-dim)',`<strong>${p.title}</strong> — Contribution approuvée et publiée`,timeAgo(new Date()));
+  logActivity('✅','var(--green-dim)',`<strong>${esc(p.title)}</strong> — Contribution approuvée et publiée`,timeAgo(new Date()));
   showToast(`✅ "${p.title}" approuvé et publié !`,'success');
 }
 async function rejectPending(id) {
@@ -2668,11 +2675,11 @@ async function rejectPending(id) {
   if(sb) { await sb.from('pending_documents').update({status:'rejected'}).eq('id',id); }
   p.status='rejected';
   updatePendingBadge(); renderPendingList();
-  logActivity('❌','var(--red-dim)',`<strong>${p.title}</strong> — Contribution rejetée`,timeAgo(new Date()));
+  logActivity('❌','var(--red-dim)',`<strong>${esc(p.title)}</strong> — Contribution rejetée`,timeAgo(new Date()));
   showToast(`Contribution rejetée.`,'info');
 }
 
-function ctbPickFile(f){ if(!f)return; ctbFile=f; document.getElementById('ctbUzIcon').textContent='✅'; document.getElementById('ctbUzText').innerHTML=`<strong style="color:var(--accent)">${f.name}</strong> — ${(f.size/1024/1024).toFixed(2)} Mo`; }
+function ctbPickFile(f){ if(!f)return; ctbFile=f; document.getElementById('ctbUzIcon').textContent='✅'; document.getElementById('ctbUzText').innerHTML=`<strong style="color:var(--accent)">${esc(f.name)}</strong> — ${(f.size/1024/1024).toFixed(2)} Mo`; }
 function ctbDropFile(e){ e.preventDefault(); document.getElementById('ctbUzRoot').classList.remove('over'); if(e.dataTransfer.files[0]) ctbPickFile(e.dataTransfer.files[0]); }
 function resetContributeForm(){ document.getElementById('ctbTitle').value=''; document.getElementById('ctbDesc').value=''; document.getElementById('ctbAuthor').value=''; document.getElementById('ctbUzIcon').textContent='📁'; document.getElementById('ctbUzText').innerHTML='Glissez votre fichier ici ou <strong>cliquez pour parcourir</strong>'; ctbFile=null; document.getElementById('ctbProgFill').style.width='0'; document.getElementById('ctbProgWrap').classList.remove('show'); }
 
@@ -2740,7 +2747,7 @@ async function saveEdit() {
   if(sb && !id.startsWith('local_')) { await sb.from('documents').update({title,description,author,featured}).eq('id',id); }
   closeOverlay('editOverlay');
   renderAll(); updateFeatured();
-  logActivity('✏️','var(--orange-dim)',`<strong>${title}</strong> — Modifié`,timeAgo(new Date()));
+  logActivity('✏️','var(--orange-dim)',`<strong>${esc(title)}</strong> — Modifié`,timeAgo(new Date()));
   showToast(`✅ Document modifié !`,'success');
 }
 
@@ -2751,7 +2758,7 @@ async function delDoc(id) {
   if(sb && !id.startsWith('local_')) { await sb.from('documents').delete().eq('id',id); }
   allDocs.splice(allDocs.findIndex(d=>d.id===id),1);
   renderAll(); updateStats(); updateSidebarCounts(); updateFeatured();
-  logActivity('🗑','var(--red-dim)',`<strong>${doc.title}</strong> — Supprimé`,timeAgo(new Date()));
+  logActivity('🗑','var(--red-dim)',`<strong>${esc(doc.title)}</strong> — Supprimé`,timeAgo(new Date()));
   showToast(`🗑 Document supprimé.`,'error');
 }
 
@@ -2774,9 +2781,9 @@ function renderComments(data) {
     <div class="comment-card">
       <div class="avatar">${(c.name||'?').split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2)}</div>
       <div style="flex:1">
-        <div class="cc-name">${c.name||'Anonyme'}</div>
-        <div class="cc-meta">${timeAgo(c.created_at)} · <span class="cc-doc-link">📄 ${c.doc_ref||'Général'}</span></div>
-        <p class="cc-text">${c.message||''}</p>
+        <div class="cc-name">${esc(c.name||'Anonyme')}</div>
+        <div class="cc-meta">${timeAgo(c.created_at)} · <span class="cc-doc-link">📄 ${esc(c.doc_ref||'Général')}</span></div>
+        <p class="cc-text">${esc(c.message)}</p>
         <button class="cc-reply-btn" onclick="showReplyForm(this)">↩ Répondre</button>
       </div>
     </div>`).join('') : '<div class="fav-empty">Aucun commentaire. Soyez le premier !</div>';
@@ -2801,12 +2808,12 @@ async function postComment() {
     card.className='comment-card';
     card.style.animation='slideIn .3s ease';
     const initials=(name).split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
-    card.innerHTML=`<div class="avatar">${initials}</div><div style="flex:1"><div class="cc-name">${name}</div><div class="cc-meta">À l'instant · <span class="cc-doc-link">📄 ${doc_ref}</span></div><p class="cc-text">${message}</p><button class="cc-reply-btn" onclick="showReplyForm(this)">↩ Répondre</button></div>`;
+    card.innerHTML=`<div class="avatar">${initials}</div><div style="flex:1"><div class="cc-name">${esc(name)}</div><div class="cc-meta">À l'instant · <span class="cc-doc-link">📄 ${esc(doc_ref)}</span></div><p class="cc-text">${esc(message)}</p><button class="cc-reply-btn" onclick="showReplyForm(this)">↩ Répondre</button></div>`;
     list.prepend(card);
   }
   document.getElementById('cName').value=''; document.getElementById('cText').value='';
-  logActivity('💬','var(--accent-dim)',`Commentaire de <strong>${name}</strong>`,timeAgo(new Date()));
-  addNotification('💬','var(--accent-dim)',`Nouveau commentaire de <strong>${name}</strong>`,'À l\'instant');
+  logActivity('💬','var(--accent-dim)',`Commentaire de <strong>${esc(name)}</strong>`,timeAgo(new Date()));
+  addNotification('💬','var(--accent-dim)',`Nouveau commentaire de <strong>${esc(name)}</strong>`,'À l\'instant');
   showToast('✅ Commentaire publié !','success');
 }
 function showReplyForm(btn){
@@ -2823,7 +2830,7 @@ function postReply(btn){
   const replies=btn.closest('.cc-replies');
   const d=document.createElement('div');
   d.className='reply-card';
-  d.innerHTML=`<strong style="color:var(--text);font-size:.78rem">Vous</strong> — ${text}`;
+  d.innerHTML=`<strong style="color:var(--text);font-size:.78rem">Vous</strong> — ${esc(text)}`;
   replies.insertBefore(d,inp.parentElement);
   inp.parentElement.remove();
   showToast('↩ Réponse publiée !','success');
