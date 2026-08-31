@@ -2055,7 +2055,7 @@ function showDocs() {
   }
 
   grid.innerHTML = page.map(d => `
-    <div class="doc-card" data-id="${d.id}" data-cat="${d.cat||''}" onmousemove="cardGlow(event,this)">
+    <div class="doc-card" data-id="${d.id}" data-cat="${d.cat||''}" onmousemove="cardGlow(event,this)" onclick="cardOpen(event,'${d.id}')">
       <div class="dc-banner" data-type="${d.type}">
         <span class="dc-type-badge">${d.type.toUpperCase()}</span>
         ${d.featured ? '<span class="dc-featured-badge">⭐ Vedette</span>' : ''}
@@ -2104,6 +2104,10 @@ function showDocs() {
 function tIcon(t){return{pdf:'📄',dwg:'📐',xlsx:'📊',docx:'📝',pptx:'📊',ifc:'🏗',zip:'📦',video:'🎥'}[t]||'📁'}
 function renderStars(r,id){let s='';for(let i=1;i<=5;i++)s+=`<span class="star ${i<=Math.round(r)?'filled':''}" role="button" tabindex="0" aria-label="Noter ${i} sur 5" onclick="rateDoc('${id}',${i})">${i<=Math.round(r)?'★':'☆'}</span>`;return s;}
 function cardGlow(e,c){const r=c.getBoundingClientRect();c.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');c.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%');}
+/* La carte entière est cliquable (elle affiche déjà un curseur main), mais on
+   ignore les clics venant d'un contrôle interne — télécharger, partager,
+   favori, étoiles, actions admin — pour ne pas déclencher deux actions. */
+function cardOpen(e,id){ if(e.target.closest('button,a,[role="button"]')) return; openPreview(id); }
 
 /* ══ STATS ══ */
 function updateStats() {
@@ -3122,11 +3126,66 @@ function openOverlay(id){
   if(id==='favsOverlay') updateFavSidebar();
   if(id==='logOverlay') buildLog();
   if(id==='pendingOverlay') renderPendingList();
-  document.getElementById(id).classList.add('open');
+  const ov = document.getElementById(id);
+  overlayReturnFocus = document.activeElement;
+  ov.classList.add('open');
+  focusInsideOverlay(ov);
 }
-function closeOverlay(id){ document.getElementById(id).classList.remove('open'); }
-document.querySelectorAll('.overlay').forEach(el=>el.addEventListener('click',e=>{ if(e.target===el) el.classList.remove('open'); }));
-document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ document.querySelectorAll('.overlay.open').forEach(o=>o.classList.remove('open')); document.getElementById('chatWindow').classList.remove('open'); closeNavMenu(); } });
+function closeOverlay(id){
+  const ov = document.getElementById(id);
+  if(!ov || !ov.classList.contains('open')) return;
+  ov.classList.remove('open');
+  // Rend le focus au bouton qui avait ouvert la fenêtre, sinon l'utilisateur
+  // au clavier se retrouve renvoyé au début de la page.
+  if(overlayReturnFocus && document.contains(overlayReturnFocus)) overlayReturnFocus.focus();
+  overlayReturnFocus = null;
+}
+
+/* ══ ACCESSIBILITÉ DES FENÊTRES MODALES ══
+   Sans ça, ouvrir une fenêtre laisse le focus derrière elle : on tabule dans
+   la page du dessous sans jamais atteindre le formulaire, et un lecteur
+   d'écran n'annonce pas qu'une boîte de dialogue s'est ouverte. */
+let overlayReturnFocus = null;
+const OV_FOCUSABLE = 'a[href],button:not([disabled]),input:not([type=hidden]),select,textarea,[tabindex]:not([tabindex="-1"])';
+
+function overlayFocusables(ov){
+  return Array.from(ov.querySelectorAll(OV_FOCUSABLE)).filter(el => el.offsetParent !== null);
+}
+function focusInsideOverlay(ov){
+  // Un formulaire : on va droit au premier champ. Sinon on donne le focus au
+  // conteneur, pour que le lecteur d'écran annonce d'abord le titre du dialogue.
+  const field = ov.querySelector('input:not([type=hidden]),textarea,select');
+  (field || ov.querySelector('.modal') || ov).focus();
+}
+(function initOverlayA11y(){
+  document.querySelectorAll('.overlay').forEach((ov, i) => {
+    const modal = ov.querySelector('.modal');
+    if(!modal) return;
+    modal.setAttribute('role','dialog');
+    modal.setAttribute('aria-modal','true');
+    modal.setAttribute('tabindex','-1');
+    const title = modal.querySelector('.modal-title, h2, h3');
+    if(title){
+      if(!title.id) title.id = 'ov-title-' + (ov.id || i);
+      modal.setAttribute('aria-labelledby', title.id);
+    }
+  });
+})();
+
+/* Piège la tabulation à l'intérieur de la fenêtre ouverte. */
+document.addEventListener('keydown', e => {
+  if(e.key !== 'Tab') return;
+  const ov = document.querySelector('.overlay.open');
+  if(!ov) return;
+  const items = overlayFocusables(ov);
+  if(!items.length) return;
+  const first = items[0], last = items[items.length-1];
+  if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+  else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+});
+
+document.querySelectorAll('.overlay').forEach(el=>el.addEventListener('click',e=>{ if(e.target===el) closeOverlay(el.id); }));
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ document.querySelectorAll('.overlay.open').forEach(o=>closeOverlay(o.id)); document.getElementById('chatWindow').classList.remove('open'); closeNavMenu(); } });
 
 /* ══════════════════════════════════════════════
    TOAST
