@@ -17,11 +17,16 @@
 <meta property="og:url" content="https://genieciviledocs.onrender.com/"/>
 <meta property="og:site_name" content="GenieCivil Docs"/>
 <meta property="og:locale" content="fr_FR"/>
+<meta property="og:image" content="https://genieciviledocs.onrender.com/og-image.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:image:alt" content="GenieCivil Docs — la référence en génie civil au bout des doigts"/>
 
 <!-- Twitter Card -->
-<meta name="twitter:card" content="summary"/>
+<meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="GenieCivil Docs — Bibliothèque gratuite de documents de génie civil"/>
 <meta name="twitter:description" content="Plans, notes de calcul, normes, tableurs et présentations techniques pour les professionnels du génie civil."/>
+<meta name="twitter:image" content="https://genieciviledocs.onrender.com/og-image.png"/>
 
 <!-- Données structurées (aident Google à comprendre le site) -->
 <script type="application/ld+json">
@@ -40,7 +45,73 @@
 }
 </script>
 
+<!-- FAQ structurée — doit rester identique au texte visible de la section FAQ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "fr",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Est-ce que la plateforme est vraiment gratuite ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui, entièrement. La consultation, le téléchargement et la publication de documents sont gratuits, sans abonnement ni frais cachés. Pour débloquer les téléchargements, il vous est simplement demandé de proposer d'abord l'un de vos propres documents : c'est ce partage mutuel qui fait vivre la bibliothèque."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Pourquoi mes téléchargements sont-ils verrouillés ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Le cadenas signifie que vous n'avez pas encore de contribution approuvée. Proposez un document via le bouton « Proposer un document » : dès qu'il est validé par l'administrateur, vos téléchargements sont débloqués automatiquement."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Qui peut publier des documents ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tout le monde peut proposer un document via le bouton « Proposer un document ». Chaque contribution est examinée par l'administrateur avant d'être publiée, afin de garantir la qualité et la pertinence des documents partagés."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quels formats de fichiers sont acceptés ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PDF, DWG, DXF, XLSX, DOCX, PPTX, IFC (BIM) ainsi que les archives ZIP et RAR."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Comment signaler une erreur dans un document ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Utilisez l'espace commentaires sous le document concerné, ou passez par le formulaire de contact pour un signalement plus détaillé."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Puis-je utiliser ces documents pour un projet professionnel ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Les documents sont partagés à titre informatif et pédagogique. Vérifiez toujours les calculs et hypothèses avant tout usage professionnel, et référez-vous aux normes en vigueur dans votre pays."
+      }
+    }
+  ]
+}
+</script>
+
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%23e8c547'/%3E%3Cpath d='M12 4L5 9.8V19H9.5V13.5H14.5V19H19V9.8L12 4Z' stroke='%230a0c10' stroke-width='1.6' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E"/>
+<!-- Ouvre les connexions vers les domaines critiques en avance : sur une
+     connexion mobile lente, ça évite d'attendre DNS + TLS au moment où les
+     polices, la bibliothèque Supabase et les données sont réellement demandées. -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="preconnect" href="https://cdn.jsdelivr.net"/>
+<link rel="preconnect" href="https://gckswhsblnbkkuffcjea.supabase.co"/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
 
 <style>
@@ -1302,11 +1373,15 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
   <div class="faq-list">
     <div class="faq-item">
       <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">Est-ce que la plateforme est vraiment gratuite ?<span class="faq-arrow">▾</span></div>
-      <div class="faq-a"><div class="faq-a-inner">Oui, entièrement. La consultation, le téléchargement et la publication de documents sont gratuits pour tous les membres de la communauté.</div></div>
+      <div class="faq-a"><div class="faq-a-inner">Oui, entièrement. La consultation, le téléchargement et la publication de documents sont gratuits, sans abonnement ni frais cachés. Pour débloquer les téléchargements, il vous est simplement demandé de proposer d'abord l'un de vos propres documents : c'est ce partage mutuel qui fait vivre la bibliothèque.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">Pourquoi mes téléchargements sont-ils verrouillés ?<span class="faq-arrow">▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Le cadenas 🔒 signifie que vous n'avez pas encore de contribution approuvée. Proposez un document via le bouton « 📤 Proposer un document » : dès qu'il est validé par l'administrateur, le cadenas passe à 🔓 et vos téléchargements sont débloqués automatiquement.</div></div>
     </div>
     <div class="faq-item">
       <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">Qui peut publier des documents ?<span class="faq-arrow">▾</span></div>
-      <div class="faq-a"><div class="faq-a-inner">La publication est actuellement réservée à l'administrateur de la plateforme, afin de garantir la qualité et la pertinence des documents partagés. Vous pouvez cependant commenter, noter et proposer vos propres documents par le formulaire de contact.</div></div>
+      <div class="faq-a"><div class="faq-a-inner">Tout le monde peut proposer un document via le bouton « 📤 Proposer un document ». Chaque contribution est examinée par l'administrateur avant d'être publiée, afin de garantir la qualité et la pertinence des documents partagés.</div></div>
     </div>
     <div class="faq-item">
       <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">Quels formats de fichiers sont acceptés ?<span class="faq-arrow">▾</span></div>
