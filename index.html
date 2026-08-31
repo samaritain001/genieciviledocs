@@ -17,11 +17,16 @@
 <meta property="og:url" content="https://genieciviledocs.onrender.com/"/>
 <meta property="og:site_name" content="GenieCivil Docs"/>
 <meta property="og:locale" content="fr_FR"/>
+<meta property="og:image" content="https://genieciviledocs.onrender.com/og-image.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:image:alt" content="GenieCivil Docs — la référence en génie civil au bout des doigts"/>
 
 <!-- Twitter Card -->
-<meta name="twitter:card" content="summary"/>
+<meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="GenieCivil Docs — Bibliothèque gratuite de documents de génie civil"/>
 <meta name="twitter:description" content="Plans, notes de calcul, normes, tableurs et présentations techniques pour les professionnels du génie civil."/>
+<meta name="twitter:image" content="https://genieciviledocs.onrender.com/og-image.png"/>
 
 <!-- Données structurées (aident Google à comprendre le site) -->
 <script type="application/ld+json">
@@ -40,7 +45,73 @@
 }
 </script>
 
+<!-- FAQ structurée — doit rester identique au texte visible de la section FAQ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "fr",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Est-ce que la plateforme est vraiment gratuite ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui, entièrement. La consultation, le téléchargement et la publication de documents sont gratuits, sans abonnement ni frais cachés. Pour débloquer les téléchargements, il vous est simplement demandé de proposer d'abord l'un de vos propres documents : c'est ce partage mutuel qui fait vivre la bibliothèque."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Pourquoi mes téléchargements sont-ils verrouillés ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Le cadenas signifie que vous n'avez pas encore de contribution approuvée. Proposez un document via le bouton « Proposer un document » : dès qu'il est validé par l'administrateur, vos téléchargements sont débloqués automatiquement."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Qui peut publier des documents ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tout le monde peut proposer un document via le bouton « Proposer un document ». Chaque contribution est examinée par l'administrateur avant d'être publiée, afin de garantir la qualité et la pertinence des documents partagés."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quels formats de fichiers sont acceptés ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PDF, DWG, DXF, XLSX, DOCX, PPTX, IFC (BIM) ainsi que les archives ZIP et RAR."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Comment signaler une erreur dans un document ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Utilisez l'espace commentaires sous le document concerné, ou passez par le formulaire de contact pour un signalement plus détaillé."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Puis-je utiliser ces documents pour un projet professionnel ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Les documents sont partagés à titre informatif et pédagogique. Vérifiez toujours les calculs et hypothèses avant tout usage professionnel, et référez-vous aux normes en vigueur dans votre pays."
+      }
+    }
+  ]
+}
+</script>
+
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%23e8c547'/%3E%3Cpath d='M12 4L5 9.8V19H9.5V13.5H14.5V19H19V9.8L12 4Z' stroke='%230a0c10' stroke-width='1.6' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E"/>
+<!-- Ouvre les connexions vers les domaines critiques en avance : sur une
+     connexion mobile lente, ça évite d'attendre DNS + TLS au moment où les
+     polices, la bibliothèque Supabase et les données sont réellement demandées. -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="preconnect" href="https://cdn.jsdelivr.net"/>
+<link rel="preconnect" href="https://gckswhsblnbkkuffcjea.supabase.co"/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
 
 <style>
@@ -62,16 +133,23 @@
   --text:#1a1208;--text2:#5a5248;--text3:#9a9288;
   --shadow:0 8px 32px rgba(0,0,0,0.1);
 }
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;min-width:0}
 html{scroll-behavior:smooth}
+a{color:inherit;text-decoration:none}
+/* Sans repère visible, un utilisateur au clavier ne sait pas où il se trouve. */
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
 body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;transition:background var(--tr),color var(--tr);position:relative}
 ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
 
 /* ═══ TOOL ICON DECORATIONS ═══ */
-.tool-icon{position:absolute;z-index:5;pointer-events:none;opacity:.28;color:var(--accent)}
+/* Ces icônes décoratives sont positionnées en % de la hauteur totale de la
+   page (très variable selon le contenu chargé) : en dessous de 1900px il
+   n'y a plus de marge vide pour les accueillir sans qu'elles chevauchent
+   la sidebar ou le contenu, donc on ne les affiche que sur très grand écran. */
+.tool-icon{position:absolute;z-index:5;pointer-events:none;opacity:.28;color:var(--accent);display:none}
 [data-theme="light"] .tool-icon{opacity:.22;color:#8b6914}
 .tool-icon svg{width:100%;height:100%;display:block;stroke-width:4}
-.tool-icon svg{width:100%;height:100%;display:block}
+@media(min-width:1900px){ .tool-icon{display:block} }
 
 /* ═══ BLOBS ═══ */
 .blob{position:fixed;border-radius:50%;filter:blur(140px);pointer-events:none;z-index:0}
@@ -84,15 +162,25 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-he
 /* ═══ NAV ═══ */
 nav{position:sticky;top:0;z-index:200;background:rgba(10,12,16,0.88);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);padding:0 1.5rem;transition:background var(--tr)}
 [data-theme="light"] nav{background:rgba(244,242,238,0.92)}
-.nav-inner{max-width:1440px;margin:0 auto;display:flex;align-items:center;gap:1.5rem;height:62px}
+.nav-inner{max-width:1440px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:.75rem 1.5rem;min-height:62px;padding:.4rem 0}
 .nav-logo{display:flex;align-items:center;gap:.7rem;flex-shrink:0}
 .logo-mark{width:34px;height:34px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:.95rem;color:#0a0c10;font-weight:700}
 .logo-text{font-size:1rem;font-weight:800;color:var(--text)}
 .logo-text span{color:var(--accent)}
 .nav-links{display:flex;gap:.1rem;flex:1}
-.nav-links a{font-size:.78rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--text2);padding:.38rem .75rem;border-radius:6px;text-decoration:none;transition:all var(--tr)}
+.nav-links a{font-size:.78rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--text2);padding:.38rem .75rem;border-radius:6px;text-decoration:none;transition:all var(--tr);white-space:nowrap}
 .nav-links a:hover,.nav-links a.active{color:var(--accent);background:var(--accent-dim)}
-.nav-right{display:flex;gap:.5rem;align-items:center;margin-left:auto;flex-shrink:0}
+.nav-right{display:flex;flex-wrap:wrap;justify-content:flex-end;row-gap:.5rem;gap:.5rem;align-items:center;margin-left:auto;max-width:100%}
+.nav-toggle{display:flex;width:36px;height:36px;border-radius:8px;border:1px solid var(--border2);background:transparent;color:var(--text);cursor:pointer;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.nav-toggle:hover{background:var(--surface2)}
+/* .nav-inner reste plafonné à 1440px (comme le reste du site) alors que les
+   11 liens + la recherche + les icônes ont besoin d'environ 1820px sur une
+   seule ligne — ça déborderait donc à n'importe quelle largeur d'écran.
+   Le menu déroulant déclenché par le hamburger est donc permanent, pas une
+   simple adaptation mobile. */
+.nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:var(--surface);border-bottom:1px solid var(--border);padding:.5rem 1rem;max-height:75vh;overflow-y:auto;box-shadow:var(--shadow)}
+.nav-links.open{display:flex}
+.nav-links a{width:100%;padding:.7rem .6rem}
 .theme-btn{width:36px;height:36px;border-radius:8px;border:1px solid var(--border2);background:transparent;color:var(--text2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:all var(--tr)}
 .theme-btn:hover{background:var(--surface2);color:var(--text)}
 
@@ -168,7 +256,7 @@ nav{position:sticky;top:0;z-index:200;background:rgba(10,12,16,0.88);backdrop-fi
 
 /* ═══ LAYOUT ═══ */
 .main-layout{max-width:1440px;margin:0 auto;padding:0 1.5rem 4rem;display:grid;grid-template-columns:1fr 270px;gap:1.75rem}
-.section-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:1.4rem;padding-bottom:1.1rem;border-bottom:1px solid var(--border)}
+.section-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:.6rem;margin-bottom:1.4rem;padding-bottom:1.1rem;border-bottom:1px solid var(--border)}
 .breadcrumb{font-size:.75rem;color:var(--text3);margin-bottom:1rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap}
 .breadcrumb a{color:var(--text2);text-decoration:none;transition:color var(--tr)}
 .breadcrumb a:hover{color:var(--accent)}
@@ -460,7 +548,7 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
 .about-stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.5rem}
 .about-stat{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1rem;text-align:center}
 .about-stat-num{font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--accent)}
-.about-stat-label{font-size:.65rem;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;margin-top:.2rem}
+.about-stat-label{font-size:.65rem;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;margin-top:.2rem;overflow-wrap:break-word}
 .about-visual{background:var(--surface);border:1px solid var(--border2);border-radius:18px;padding:2rem;position:relative;overflow:hidden}
 .about-visual svg{width:100%;height:auto}
 
@@ -522,7 +610,12 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
 /* ═══ RESPONSIVE ═══ */
 @media(max-width:1100px){.main-layout{grid-template-columns:1fr}.sidebar{display:none}.featured-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:860px){.hero{grid-template-columns:1fr}.hero-card{display:none}.footer-grid{grid-template-columns:1fr 1fr}.comments-grid{grid-template-columns:1fr}}
-@media(max-width:640px){.footer-grid{grid-template-columns:1fr}.nav-links{display:none}.featured-grid{grid-template-columns:1fr}.hero-stats{flex-wrap:wrap;gap:1.2rem}.notif-panel{width:270px;right:-50px}}
+@media(max-width:640px){.footer-grid{grid-template-columns:1fr}.nav-links{display:none}.featured-grid{grid-template-columns:1fr}.hero-stats{flex-wrap:wrap;gap:1.2rem}.notif-panel{width:270px;right:-50px}
+  /* Sur très petit écran, la recherche compacte de la nav est redondante
+     avec la grande barre de recherche juste sous le hero — on la masque
+     pour laisser plus de place aux boutons (thème, notifications, admin…). */
+  .ac-wrap{display:none}
+}
 
 /* ═══ DONATION ═══ */
 .btn-donate{background:linear-gradient(135deg,#ff9f5a,#ff6b6b);color:#fff}
@@ -537,6 +630,7 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
 /* ═══ JOBS SECTION ═══ */
 .jobs-section{max-width:1440px;margin:0 auto;padding:0 1.5rem 4rem}
 .jobs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.1rem;margin-top:1.4rem}
+@media(max-width:640px){.jobs-grid{grid-template-columns:1fr}}
 .job-card{background:var(--surface);border:1px solid var(--border);border-radius:15px;padding:1.25rem;transition:all var(--tr);position:relative}
 .job-card:hover{border-color:var(--border2);transform:translateY(-3px);box-shadow:0 16px 40px rgba(0,0,0,.3)}
 .job-card.sponsored{border-color:rgba(232,197,71,.35);background:linear-gradient(135deg,var(--surface),rgba(232,197,71,.04))}
@@ -713,6 +807,7 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
       <a href="#faq">FAQ</a>
       <a href="#contact">Contact</a>
     </div>
+    <button class="nav-toggle" id="navToggle" onclick="toggleNavMenu()" aria-label="Ouvrir le menu" aria-expanded="false">☰</button>
     <div class="nav-right">
       <div class="ac-wrap">
         <div class="nav-search">
@@ -869,14 +964,14 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
   <aside class="sidebar">
     <div class="sidebar-card">
       <div class="sc-head">📂 Catégories</div>
-      <div class="cat-row" onclick="filterByCat('structures')"><span>🏗 Structures & BA</span><span class="cat-pill" id="cnt-structures">—</span></div>
-      <div class="cat-row" onclick="filterByCat('hydraulique')"><span>💧 Hydraulique</span><span class="cat-pill" id="cnt-hydraulique">—</span></div>
-      <div class="cat-row" onclick="filterByCat('routes')"><span>🛣 Routes & VRD</span><span class="cat-pill" id="cnt-routes">—</span></div>
-      <div class="cat-row" onclick="filterByCat('géotechnique')"><span>⛏ Géotechnique</span><span class="cat-pill" id="cnt-géotechnique">—</span></div>
-      <div class="cat-row" onclick="filterByCat('topographie')"><span>📐 Topographie</span><span class="cat-pill" id="cnt-topographie">—</span></div>
-      <div class="cat-row" onclick="filterByCat('normes')"><span>📋 Normes & DTU</span><span class="cat-pill" id="cnt-normes">—</span></div>
-      <div class="cat-row" onclick="filterByCat('métrés')"><span>💼 Métrés & Devis</span><span class="cat-pill" id="cnt-métrés">—</span></div>
-      <div class="cat-row" onclick="filterByCat('environnement')"><span>🌿 Environnement</span><span class="cat-pill" id="cnt-environnement">—</span></div>
+      <div class="cat-row" role="button" tabindex="0" onclick="filterByCat('structures')"><span>🏗 Structures & BA</span><span class="cat-pill" id="cnt-structures">—</span></div>
+      <div class="cat-row" role="button" tabindex="0" onclick="filterByCat('hydraulique')"><span>💧 Hydraulique</span><span class="cat-pill" id="cnt-hydraulique">—</span></div>
+      <div class="cat-row" role="button" tabindex="0" onclick="filterByCat('routes')"><span>🛣 Routes & VRD</span><span class="cat-pill" id="cnt-routes">—</span></div>
+      <div class="cat-row" role="button" tabindex="0" onclick="filterByCat('géotechnique')"><span>⛏ Géotechnique</span><span class="cat-pill" id="cnt-géotechnique">—</span></div>
+      <div class="cat-row" role="button" tabindex="0" onclick="filterByCat('topographie')"><span>📐 Topographie</span><span class="cat-pill" id="cnt-topographie">—</span></div>
+      <div class="cat-row" role="button" tabindex="0" onclick="filterByCat('normes')"><span>📋 Normes & DTU</span><span class="cat-pill" id="cnt-normes">—</span></div>
+      <div class="cat-row" role="button" tabindex="0" onclick="filterByCat('métrés')"><span>💼 Métrés & Devis</span><span class="cat-pill" id="cnt-métrés">—</span></div>
+      <div class="cat-row" role="button" tabindex="0" onclick="filterByCat('environnement')"><span>🌿 Environnement</span><span class="cat-pill" id="cnt-environnement">—</span></div>
     </div>
     <div class="sidebar-card">
       <div class="sc-head">🕐 Récemment ajoutés</div>
@@ -888,29 +983,29 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
     </div>
     <div class="sidebar-card">
       <div class="sc-head">📊 Par format</div>
-      <div class="cat-row" onclick="filterByType('pdf')"><span>📄 PDF</span><span class="cat-pill" id="cnt-pdf">—</span></div>
-      <div class="cat-row" onclick="filterByType('dwg')"><span>📐 DWG / DXF</span><span class="cat-pill" id="cnt-dwg">—</span></div>
-      <div class="cat-row" onclick="filterByType('xlsx')"><span>📊 Excel</span><span class="cat-pill" id="cnt-xlsx">—</span></div>
-      <div class="cat-row" onclick="filterByType('docx')"><span>📝 Word</span><span class="cat-pill" id="cnt-docx">—</span></div>
-      <div class="cat-row" onclick="filterByType('video')"><span>🎥 Vidéo</span><span class="cat-pill" id="cnt-video">—</span></div>
+      <div class="cat-row" role="button" tabindex="0" onclick="filterByType('pdf')"><span>📄 PDF</span><span class="cat-pill" id="cnt-pdf">—</span></div>
+      <div class="cat-row" role="button" tabindex="0" onclick="filterByType('dwg')"><span>📐 DWG / DXF</span><span class="cat-pill" id="cnt-dwg">—</span></div>
+      <div class="cat-row" role="button" tabindex="0" onclick="filterByType('xlsx')"><span>📊 Excel</span><span class="cat-pill" id="cnt-xlsx">—</span></div>
+      <div class="cat-row" role="button" tabindex="0" onclick="filterByType('docx')"><span>📝 Word</span><span class="cat-pill" id="cnt-docx">—</span></div>
+      <div class="cat-row" role="button" tabindex="0" onclick="filterByType('video')"><span>🎥 Vidéo</span><span class="cat-pill" id="cnt-video">—</span></div>
     </div>
     <div class="sidebar-card">
       <div class="sc-head">🏷 Tags populaires</div>
       <div class="tag-cloud">
-        <span class="tag-pill" style="background:var(--red-dim);color:var(--red)" onclick="searchTag('béton armé')">Béton armé</span>
-        <span class="tag-pill" style="background:var(--blue-dim);color:var(--blue)" onclick="searchTag('coffrage')">Coffrage</span>
-        <span class="tag-pill" style="background:var(--green-dim);color:var(--green)" onclick="searchTag('ferraillage')">Ferraillage</span>
-        <span class="tag-pill" style="background:var(--orange-dim);color:var(--orange)" onclick="searchTag('terrassement')">Terrassement</span>
-        <span class="tag-pill" style="background:var(--purple-dim);color:var(--purple)" onclick="searchTag('VRD')">VRD</span>
-        <span class="tag-pill" style="background:var(--teal-dim);color:var(--teal)" onclick="searchTag('AutoCAD')">AutoCAD</span>
-        <span class="tag-pill" style="background:var(--pink-dim);color:var(--pink)" onclick="searchTag('Excel')">Excel</span>
-        <span class="tag-pill" style="background:var(--accent-dim);color:var(--accent)" onclick="searchTag('DTU')">Normes DTU</span>
-        <span class="tag-pill" style="background:var(--red-dim);color:var(--red)" onclick="searchTag('étude de prix')">Étude de prix</span>
-        <span class="tag-pill" style="background:var(--blue-dim);color:var(--blue)" onclick="searchTag('fondations')">Fondations</span>
-        <span class="tag-pill" style="background:var(--green-dim);color:var(--green)" onclick="searchTag('PFE')">PFE</span>
-        <span class="tag-pill" style="background:var(--orange-dim);color:var(--orange)" onclick="searchTag('rapport de stage')">Rapport de stage</span>
-        <span class="tag-pill" style="background:var(--purple-dim);color:var(--purple)" onclick="searchTag('topographie')">Topographie</span>
-        <span class="tag-pill" style="background:var(--teal-dim);color:var(--teal)" onclick="searchTag('matériaux')">Matériaux</span>
+        <span class="tag-pill" role="button" tabindex="0" style="background:var(--red-dim);color:var(--red)" onclick="searchTag('béton armé')">Béton armé</span>
+        <span class="tag-pill" role="button" tabindex="0" style="background:var(--blue-dim);color:var(--blue)" onclick="searchTag('coffrage')">Coffrage</span>
+        <span class="tag-pill" role="button" tabindex="0" style="background:var(--green-dim);color:var(--green)" onclick="searchTag('ferraillage')">Ferraillage</span>
+        <span class="tag-pill" role="button" tabindex="0" style="background:var(--orange-dim);color:var(--orange)" onclick="searchTag('terrassement')">Terrassement</span>
+        <span class="tag-pill" role="button" tabindex="0" style="background:var(--purple-dim);color:var(--purple)" onclick="searchTag('VRD')">VRD</span>
+        <span class="tag-pill" role="button" tabindex="0" style="background:var(--teal-dim);color:var(--teal)" onclick="searchTag('AutoCAD')">AutoCAD</span>
+        <span class="tag-pill" role="button" tabindex="0" style="background:var(--pink-dim);color:var(--pink)" onclick="searchTag('Excel')">Excel</span>
+        <span class="tag-pill" role="button" tabindex="0" style="background:var(--accent-dim);color:var(--accent)" onclick="searchTag('DTU')">Normes DTU</span>
+        <span class="tag-pill" role="button" tabindex="0" style="background:var(--red-dim);color:var(--red)" onclick="searchTag('étude de prix')">Étude de prix</span>
+        <span class="tag-pill" role="button" tabindex="0" style="background:var(--blue-dim);color:var(--blue)" onclick="searchTag('fondations')">Fondations</span>
+        <span class="tag-pill" role="button" tabindex="0" style="background:var(--green-dim);color:var(--green)" onclick="searchTag('PFE')">PFE</span>
+        <span class="tag-pill" role="button" tabindex="0" style="background:var(--orange-dim);color:var(--orange)" onclick="searchTag('rapport de stage')">Rapport de stage</span>
+        <span class="tag-pill" role="button" tabindex="0" style="background:var(--purple-dim);color:var(--purple)" onclick="searchTag('topographie')">Topographie</span>
+        <span class="tag-pill" role="button" tabindex="0" style="background:var(--teal-dim);color:var(--teal)" onclick="searchTag('matériaux')">Matériaux</span>
       </div>
     </div>
     <div class="sidebar-card">
@@ -1277,23 +1372,27 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
   <div class="section-head" style="border:none;padding:0;margin-bottom:0"><h2>❓ Questions <span>fréquentes</span></h2></div>
   <div class="faq-list">
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Est-ce que la plateforme est vraiment gratuite ?<span class="faq-arrow">▾</span></div>
-      <div class="faq-a"><div class="faq-a-inner">Oui, entièrement. La consultation, le téléchargement et la publication de documents sont gratuits pour tous les membres de la communauté.</div></div>
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">Est-ce que la plateforme est vraiment gratuite ?<span class="faq-arrow">▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Oui, entièrement. La consultation, le téléchargement et la publication de documents sont gratuits, sans abonnement ni frais cachés. Pour débloquer les téléchargements, il vous est simplement demandé de proposer d'abord l'un de vos propres documents : c'est ce partage mutuel qui fait vivre la bibliothèque.</div></div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Qui peut publier des documents ?<span class="faq-arrow">▾</span></div>
-      <div class="faq-a"><div class="faq-a-inner">La publication est actuellement réservée à l'administrateur de la plateforme, afin de garantir la qualité et la pertinence des documents partagés. Vous pouvez cependant commenter, noter et proposer vos propres documents par le formulaire de contact.</div></div>
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">Pourquoi mes téléchargements sont-ils verrouillés ?<span class="faq-arrow">▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Le cadenas 🔒 signifie que vous n'avez pas encore de contribution approuvée. Proposez un document via le bouton « 📤 Proposer un document » : dès qu'il est validé par l'administrateur, le cadenas passe à 🔓 et vos téléchargements sont débloqués automatiquement.</div></div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Quels formats de fichiers sont acceptés ?<span class="faq-arrow">▾</span></div>
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">Qui peut publier des documents ?<span class="faq-arrow">▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Tout le monde peut proposer un document via le bouton « 📤 Proposer un document ». Chaque contribution est examinée par l'administrateur avant d'être publiée, afin de garantir la qualité et la pertinence des documents partagés.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">Quels formats de fichiers sont acceptés ?<span class="faq-arrow">▾</span></div>
       <div class="faq-a"><div class="faq-a-inner">PDF, DWG, DXF, XLSX, DOCX, PPTX, IFC (BIM) ainsi que les archives ZIP et RAR.</div></div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Comment signaler une erreur dans un document ?<span class="faq-arrow">▾</span></div>
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">Comment signaler une erreur dans un document ?<span class="faq-arrow">▾</span></div>
       <div class="faq-a"><div class="faq-a-inner">Utilisez l'espace commentaires sous le document concerné, ou passez par le formulaire de contact pour un signalement plus détaillé.</div></div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Puis-je utiliser ces documents pour un projet professionnel ?<span class="faq-arrow">▾</span></div>
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">Puis-je utiliser ces documents pour un projet professionnel ?<span class="faq-arrow">▾</span></div>
       <div class="faq-a"><div class="faq-a-inner">Les documents sont partagés à titre informatif et pédagogique. Vérifiez toujours les calculs et hypothèses avant tout usage professionnel, et référez-vous aux normes en vigueur dans votre pays.</div></div>
     </div>
   </div>
@@ -1331,16 +1430,95 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
 </div>
 
 <!-- ═══ POLITIQUE DE CONFIDENTIALITÉ ═══ -->
+<div class="legal-section reveal" id="terms">
+  <div class="section-head" style="border:none;padding:0;margin-bottom:0"><h2>📜 Conditions <span>d'utilisation</span></h2></div>
+  <p class="legal-updated">Dernière mise à jour : août 2026 — cliquez sur une section pour la déplier</p>
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">1. Objet et acceptation<span class="faq-arrow">▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Les présentes conditions régissent l'utilisation de GenieCivil Docs, bibliothèque collaborative et gratuite de documents techniques de génie civil, éditée depuis Ouagadougou, Burkina Faso. En consultant le site, en publiant un commentaire, en proposant un document ou en téléchargeant un fichier, vous acceptez ces conditions. Si vous n'êtes pas d'accord, merci de ne pas utiliser le site.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">2. Description du service<span class="faq-arrow">▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">
+        GenieCivil Docs permet de :
+        <ul style="margin:.6rem 0 .6rem 1.1rem;padding:0">
+          <li style="margin-bottom:.4rem">Consulter et rechercher gratuitement des documents techniques (notes de calcul, plans, normes, tableurs, présentations…) partagés par la communauté</li>
+          <li style="margin-bottom:.4rem">Proposer ses propres documents à la publication, sous réserve de validation par l'administrateur</li>
+          <li style="margin-bottom:.4rem">Commenter les documents et échanger dans l'espace discussions</li>
+          <li>Consulter des offres d'emploi et utiliser les calculateurs et convertisseurs mis à disposition</li>
+        </ul>
+        Aucun compte n'est nécessaire pour consulter le site. Un identifiant anonyme est simplement généré dans votre navigateur pour suivre le déblocage de vos téléchargements (voir la Politique de confidentialité).
+      </div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">3. Règle de téléchargement<span class="faq-arrow">▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Pour télécharger un document, un visiteur doit d'abord proposer l'un des siens via le formulaire de contribution. Une fois ce document examiné et approuvé par l'administrateur, les téléchargements sont débloqués pour ce visiteur. Cette règle garantit que la bibliothèque continue de s'enrichir grâce à la communauté ; elle peut évoluer si le fonctionnement du site change.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">4. Contenu que vous publiez<span class="faq-arrow">▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">
+        En proposant un document ou en publiant un commentaire, vous garantissez que :
+        <ul style="margin:.6rem 0 .6rem 1.1rem;padding:0">
+          <li style="margin-bottom:.4rem">vous détenez les droits nécessaires sur ce contenu, ou êtes autorisé(e) à le partager (par exemple un document que vous avez vous-même rédigé, ou dont la diffusion est légale) ;</li>
+          <li style="margin-bottom:.4rem">ce contenu ne viole aucun droit d'auteur, secret professionnel ou autre droit d'un tiers, et n'est ni illégal, ni diffamatoire, ni trompeur ;</li>
+          <li>ce contenu n'est pas une copie piratée d'un logiciel, d'une norme payante ou d'un ouvrage protégé.</li>
+        </ul>
+        Vous conservez vos droits sur votre contenu, mais vous accordez à GenieCivil Docs le droit de l'héberger, l'afficher et le rendre téléchargeable sur le site dans le cadre normal du service. L'administrateur peut refuser, modifier ou retirer à tout moment un document ou un commentaire qui ne respecterait pas ces règles.
+      </div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">5. Propriété intellectuelle et logiciels tiers<span class="faq-arrow">▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">La marque, le logo et la mise en forme du site appartiennent à GenieCivil Docs ; les documents partagés restent la propriété de leurs auteurs respectifs. Pour les logiciels commerciaux mentionnés dans la section « Logiciels » (AutoCAD, Revit, ETABS…), GenieCivil Docs ne distribue et ne propose aucune version piratée : les liens renvoient uniquement vers le site officiel de l'éditeur ou vers des versions étudiantes/libres légales.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">6. Signalement d'un contenu<span class="faq-arrow">▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Si vous estimez qu'un document ou un commentaire publié sur le site porte atteinte à vos droits ou enfreint ces conditions, contactez-nous à <a href="mailto:genieciviledocs@yahoo.com" style="color:var(--accent)">genieciviledocs@yahoo.com</a> ou sur WhatsApp au +226 62 47 84 10 en précisant le document concerné et le motif du signalement. Nous examinerons la demande et retirerons le contenu si elle est fondée.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">7. Absence de garantie et usage professionnel<span class="faq-arrow">▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Les documents, notes de calcul et calculateurs mis à disposition sont fournis « en l'état », à titre informatif et pédagogique, par une communauté de contributeurs bénévoles. GenieCivil Docs ne garantit ni leur exactitude, ni leur conformité aux normes en vigueur, ni leur adéquation à un projet particulier. Ils ne remplacent en aucun cas la validation d'un ingénieur qualifié : vérifiez toujours les hypothèses, les combinaisons de charges et les normes applicables avant tout usage professionnel.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">8. Limitation de responsabilité<span class="faq-arrow">▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Dans la mesure permise par la loi applicable, GenieCivil Docs ne pourra être tenu responsable des dommages directs ou indirects résultant de l'utilisation du site, du contenu partagé par des tiers, ou de l'indisponibilité temporaire du service. Le site est fourni gratuitement, sans garantie de disponibilité continue.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">9. Comportement attendu<span class="faq-arrow">▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">
+        En utilisant le site, vous vous engagez à ne pas :
+        <ul style="margin:.6rem 0 0 1.1rem;padding:0">
+          <li style="margin-bottom:.3rem">publier de contenu illégal, injurieux, discriminatoire ou trompeur ;</li>
+          <li style="margin-bottom:.3rem">tenter de contourner la modération, le système de déblocage ou la sécurité du site ;</li>
+          <li>usurper l'identité d'une autre personne dans un commentaire ou une contribution.</li>
+        </ul>
+      </div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">10. Dons et liens externes<span class="faq-arrow">▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Les dons via PayPal sont entièrement volontaires et ne donnent droit à aucune contrepartie ni accès privilégié. Le site contient des liens vers des sites tiers (éditeurs de logiciels, réseaux sociaux, PayPal) sur lesquels GenieCivil Docs n'a aucun contrôle et dont il ne saurait être tenu responsable du contenu ou des pratiques.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">11. Modification des conditions<span class="faq-arrow">▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Ces conditions peuvent être modifiées à tout moment, notamment pour refléter l'évolution du site. La date de dernière mise à jour est indiquée en haut de cette page. Votre utilisation continue du site après une modification vaut acceptation des nouvelles conditions.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">12. Droit applicable et contact<span class="faq-arrow">▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Les présentes conditions sont régies par le droit burkinabè. Pour toute question, contactez-nous à <a href="mailto:genieciviledocs@yahoo.com" style="color:var(--accent)">genieciviledocs@yahoo.com</a> ou sur WhatsApp au +226 62 47 84 10.</div></div>
+    </div>
+  </div>
+</div>
+
 <div class="legal-section reveal" id="privacy">
   <div class="section-head" style="border:none;padding:0;margin-bottom:0"><h2>🔒 Politique de <span>confidentialité</span></h2></div>
   <p class="legal-updated">Dernière mise à jour : août 2026 — cliquez sur une section pour la déplier</p>
   <div class="faq-list">
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">1. Qui sommes-nous<span class="faq-arrow">▾</span></div>
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">1. Qui sommes-nous<span class="faq-arrow">▾</span></div>
       <div class="faq-a"><div class="faq-a-inner">GenieCivil Docs est une plateforme collaborative et gratuite de partage de documents techniques de génie civil, basée à Ouagadougou, Burkina Faso. Pour toute question relative à cette politique, contactez-nous à <a href="mailto:genieciviledocs@yahoo.com" style="color:var(--accent)">genieciviledocs@yahoo.com</a> ou sur WhatsApp au +226 62 47 84 10.</div></div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">2. Données que nous collectons<span class="faq-arrow">▾</span></div>
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">2. Données que nous collectons<span class="faq-arrow">▾</span></div>
       <div class="faq-a"><div class="faq-a-inner">
         Selon la façon dont vous utilisez le site, nous pouvons collecter :
         <ul style="margin:.6rem 0 .6rem 1.1rem;padding:0">
@@ -1354,7 +1532,7 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
       </div></div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">3. Comment nous utilisons ces données<span class="faq-arrow">▾</span></div>
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">3. Comment nous utilisons ces données<span class="faq-arrow">▾</span></div>
       <div class="faq-a"><div class="faq-a-inner">
         <ul style="margin:0 0 .6rem 1.1rem;padding:0">
           <li style="margin-bottom:.3rem">Afficher et modérer les commentaires et contributions</li>
@@ -1366,7 +1544,7 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
       </div></div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">4. Services tiers utilisés<span class="faq-arrow">▾</span></div>
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">4. Services tiers utilisés<span class="faq-arrow">▾</span></div>
       <div class="faq-a"><div class="faq-a-inner">
         Le site s'appuie sur les prestataires suivants, qui peuvent traiter certaines données techniques :
         <ul style="margin:.6rem 0 0 1.1rem;padding:0">
@@ -1379,23 +1557,23 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
       </div></div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">5. Cookies et publicité<span class="faq-arrow">▾</span></div>
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">5. Cookies et publicité<span class="faq-arrow">▾</span></div>
       <div class="faq-a"><div class="faq-a-inner">Notre site peut afficher des annonces publicitaires fournies par <strong style="color:var(--text)">Google AdSense</strong>. Google et ses partenaires peuvent utiliser des cookies et identifiants publicitaires pour diffuser des annonces personnalisées. Vous pouvez gérer vos préférences via <a href="https://adssettings.google.com" target="_blank" rel="noopener" style="color:var(--accent)">adssettings.google.com</a>, ou désactiver la personnalisation via <a href="https://www.aboutads.info" target="_blank" rel="noopener" style="color:var(--accent)">aboutads.info</a>.<br/><br/>Le site utilise aussi le stockage local de votre navigateur (localStorage) pour mémoriser votre thème, vos favoris et votre statut de contribution — ces informations restent sur votre appareil, ce ne sont pas des cookies traceurs.</div></div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">6. Vos droits<span class="faq-arrow">▾</span></div>
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">6. Vos droits<span class="faq-arrow">▾</span></div>
       <div class="faq-a"><div class="faq-a-inner">Vous pouvez à tout moment nous demander de consulter, corriger ou supprimer les données personnelles vous concernant (par exemple un commentaire ou une contribution) en nous contactant par email ou WhatsApp. Nous traiterons votre demande dans un délai raisonnable.</div></div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">7. Sécurité<span class="faq-arrow">▾</span></div>
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">7. Sécurité<span class="faq-arrow">▾</span></div>
       <div class="faq-a"><div class="faq-a-inner">Nous prenons des mesures raisonnables pour protéger vos données, mais aucun système n'est infaillible à 100 %. Ne partagez jamais d'informations sensibles dans un commentaire public.</div></div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">8. Enfants<span class="faq-arrow">▾</span></div>
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">8. Enfants<span class="faq-arrow">▾</span></div>
       <div class="faq-a"><div class="faq-a-inner">Ce site s'adresse aux étudiants, techniciens et professionnels du génie civil. Il n'est pas destiné aux enfants de moins de 13 ans, et nous ne collectons pas sciemment de données les concernant.</div></div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">9. Modifications de cette politique<span class="faq-arrow">▾</span></div>
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">9. Modifications de cette politique<span class="faq-arrow">▾</span></div>
       <div class="faq-a"><div class="faq-a-inner">Cette politique peut évoluer avec le temps, notamment si de nouvelles fonctionnalités sont ajoutées au site. La date de dernière mise à jour est indiquée en haut de cette page.</div></div>
     </div>
   </div>
@@ -1408,12 +1586,12 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
       <div style="display:inline-flex;align-items:center;gap:.65rem"><div class="logo-mark"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3L4 9.5V21H9V15H15V21H20V9.5L12 3Z" stroke="#0a0c10" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 12H15" stroke="#0a0c10" stroke-width="1.8" stroke-linecap="round"/></svg></div><div class="logo-text">GenieCivil<span>Docs</span></div></div>
       <p>La bibliothèque collaborative de documents techniques pour les professionnels du génie civil.</p>
     </div>
-    <div class="ft-col"><h5>Navigation</h5><ul><li><a href="#">Accueil</a></li><li><a href="#">Documents</a></li><li><a href="#">Catégories</a></li><li><a href="#">Forum</a></li></ul></div>
-    <div class="ft-col"><h5>Formats</h5><ul><li><a href="#">PDF</a></li><li><a href="#">DWG / DXF</a></li><li><a href="#">Excel (XLSX)</a></li><li><a href="#">Word / PPTX</a></li><li><a href="#">IFC / BIM</a></li></ul></div>
-    <div class="ft-col"><h5>Infos</h5><ul><li><a href="#">Conditions</a></li><li><a href="#privacy">Confidentialité</a></li><li><a href="#contact">Contact</a></li></ul></div>
+    <div class="ft-col"><h5>Navigation</h5><ul><li><a href="#">Accueil</a></li><li><a href="#docs">Documents</a></li><li><a href="#docs">Catégories</a></li><li><a href="#comments">Discussions</a></li></ul></div>
+    <div class="ft-col"><h5>Formats</h5><ul><li><a href="#docs" onclick="filterByType('pdf')">PDF</a></li><li><a href="#docs" onclick="filterByType('dwg')">DWG / DXF</a></li><li><a href="#docs" onclick="filterByType('xlsx')">Excel (XLSX)</a></li><li><a href="#docs">Word / PPTX</a></li><li><a href="#docs" onclick="filterByType('ifc')">IFC / BIM</a></li></ul></div>
+    <div class="ft-col"><h5>Infos</h5><ul><li><a href="#terms">Conditions</a></li><li><a href="#privacy">Confidentialité</a></li><li><a href="#contact">Contact</a></li></ul></div>
   </div>
   <div class="footer-bottom">
-    <span>© 2025 GenieCivil Docs</span>
+    <span>© <span id="footerYear">2025</span> GenieCivil Docs</span>
     <span style="color:var(--accent)">Partagez le savoir · Bâtissez l'avenir 🏗</span>
   </div>
 </footer>
@@ -1422,21 +1600,21 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
 <!-- ═══ MODAL : LOGIN ═══ -->
 <div class="overlay" id="loginOverlay">
   <div class="modal" style="max-width:400px">
-    <button class="modal-close" onclick="closeOverlay('loginOverlay')">✕</button>
+    <button class="modal-close" onclick="closeOverlay('loginOverlay')" aria-label="Fermer">✕</button>
     <div class="lock-head"><div class="lock-icon">🔐</div></div>
     <h2 class="modal-title" style="text-align:center;border:none;padding:0;margin-bottom:.5rem">Espace <span>Admin</span></h2>
     <p class="lock-hint">Accès exclusif à l'administrateur.<br/>Les visiteurs ne peuvent pas publier.</p>
-    <div class="form-group"><label class="fl">Identifiant</label><input class="fc" type="text" id="adminUser" placeholder="admin"/></div>
-    <div class="form-group"><label class="fl">Mot de passe</label><input class="fc" type="password" id="adminPw" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"/>
+    <div class="form-group"><label class="fl">Email</label><input class="fc" type="email" id="adminUser" placeholder="admin@exemple.com" autocomplete="username" onkeydown="if(event.key==='Enter')doLogin()"/></div>
+    <div class="form-group"><label class="fl">Mot de passe</label><input class="fc" type="password" id="adminPw" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()"/>
     <p class="wrong-pw" id="wrongPw">❌ Identifiants incorrects.</p></div>
-    <div class="modal-footer"><button class="btn btn-ghost" onclick="closeOverlay('loginOverlay')">Annuler</button><button class="btn btn-accent" onclick="doLogin()">🔓 Connexion</button></div>
+    <div class="modal-footer"><button class="btn btn-ghost" onclick="closeOverlay('loginOverlay')">Annuler</button><button class="btn btn-accent" id="loginBtn" onclick="doLogin()">🔓 Connexion</button></div>
   </div>
 </div>
 
 <!-- ═══ MODAL : UPLOAD ═══ -->
 <div class="overlay" id="uploadOverlay">
   <div class="modal">
-    <button class="modal-close" onclick="closeOverlay('uploadOverlay')">✕</button>
+    <button class="modal-close" onclick="closeOverlay('uploadOverlay')" aria-label="Fermer">✕</button>
     <h2 class="modal-title">📤 Publier des <span>documents</span></h2>
     <p class="lock-hint" style="text-align:left">Sélectionnez un ou plusieurs fichiers. La catégorie, l'auteur et la description s'appliquent à tous ; le titre de chacun reste modifiable individuellement.</p>
 
@@ -1482,7 +1660,7 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
 <!-- ═══ MODAL : CONTRIBUTE (visitors) ═══ -->
 <div class="overlay" id="contributeOverlay">
   <div class="modal">
-    <button class="modal-close" onclick="closeOverlay('contributeOverlay')">✕</button>
+    <button class="modal-close" onclick="closeOverlay('contributeOverlay')" aria-label="Fermer">✕</button>
     <h2 class="modal-title">📤 Proposer un <span>document</span></h2>
     <p class="lock-hint" style="text-align:left">Votre document sera d'abord examiné par l'administrateur. Une fois validé, vos téléchargements seront débloqués automatiquement.</p>
     <div class="form-row-2">
@@ -1529,7 +1707,7 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
 <!-- ═══ MODAL : PENDING REVIEW (admin) ═══ -->
 <div class="overlay" id="pendingOverlay">
   <div class="modal" style="max-width:600px">
-    <button class="modal-close" onclick="closeOverlay('pendingOverlay')">✕</button>
+    <button class="modal-close" onclick="closeOverlay('pendingOverlay')" aria-label="Fermer">✕</button>
     <h2 class="modal-title">📥 Contributions en <span>attente</span></h2>
     <div id="pendingList" style="max-height:460px;overflow-y:auto"></div>
   </div>
@@ -1538,7 +1716,7 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
 <!-- ═══ MODAL : EDIT ═══ -->
 <div class="overlay" id="editOverlay">
   <div class="modal">
-    <button class="modal-close" onclick="closeOverlay('editOverlay')">✕</button>
+    <button class="modal-close" onclick="closeOverlay('editOverlay')" aria-label="Fermer">✕</button>
     <h2 class="modal-title">✏️ Modifier le <span>document</span></h2>
     <input type="hidden" id="editId"/>
     <div class="form-group"><label class="fl">Titre</label><input class="fc" type="text" id="editTitle"/></div>
@@ -1552,7 +1730,7 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
 <!-- ═══ MODAL : ACTIVITY LOG ═══ -->
 <div class="overlay" id="logOverlay">
   <div class="modal" style="max-width:580px">
-    <button class="modal-close" onclick="closeOverlay('logOverlay')">✕</button>
+    <button class="modal-close" onclick="closeOverlay('logOverlay')" aria-label="Fermer">✕</button>
     <h2 class="modal-title">📋 Journal d'<span>activité</span></h2>
     <div id="activityLog" style="max-height:420px;overflow-y:auto"></div>
   </div>
@@ -1561,13 +1739,13 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
 <!-- ═══ MODAL : SHARE ═══ -->
 <div class="overlay" id="shareOverlay">
   <div class="modal" style="max-width:400px">
-    <button class="modal-close" onclick="closeOverlay('shareOverlay')">✕</button>
+    <button class="modal-close" onclick="closeOverlay('shareOverlay')" aria-label="Fermer">✕</button>
     <h2 class="modal-title">🔗 Partager le <span>document</span></h2>
     <div class="share-options">
-      <div class="share-opt" onclick="shareVia('whatsapp')"><div class="so-icon">💬</div>WhatsApp</div>
-      <div class="share-opt" onclick="shareVia('email')"><div class="so-icon">✉️</div>Email</div>
-      <div class="share-opt" onclick="shareVia('linkedin')"><div class="so-icon">💼</div>LinkedIn</div>
-      <div class="share-opt" onclick="shareVia('copy')"><div class="so-icon">📋</div>Copier</div>
+      <div class="share-opt" role="button" tabindex="0" onclick="shareVia('whatsapp')"><div class="so-icon">💬</div>WhatsApp</div>
+      <div class="share-opt" role="button" tabindex="0" onclick="shareVia('email')"><div class="so-icon">✉️</div>Email</div>
+      <div class="share-opt" role="button" tabindex="0" onclick="shareVia('linkedin')"><div class="so-icon">💼</div>LinkedIn</div>
+      <div class="share-opt" role="button" tabindex="0" onclick="shareVia('copy')"><div class="so-icon">📋</div>Copier</div>
     </div>
     <div class="form-group"><label class="fl">Lien direct</label>
       <div class="share-link-row">
@@ -1581,7 +1759,7 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
 <!-- ═══ MODAL : PREVIEW ═══ -->
 <div class="overlay" id="previewOverlay">
   <div class="modal preview-modal">
-    <button class="modal-close" onclick="closeOverlay('previewOverlay')">✕</button>
+    <button class="modal-close" onclick="closeOverlay('previewOverlay')" aria-label="Fermer">✕</button>
     <h2 class="modal-title" id="prevTitle">Aperçu du <span>document</span></h2>
     <div class="preview-area"><div class="pa-icon" id="prevIcon">📄</div><p id="prevMsg" style="font-size:.85rem;color:var(--text3);text-align:center"></p></div>
     <div style="display:flex;gap:.6rem;justify-content:flex-end">
@@ -1594,7 +1772,7 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
 <!-- ═══ MODAL : FAVORITES ═══ -->
 <div class="overlay" id="favsOverlay">
   <div class="modal" style="max-width:460px">
-    <button class="modal-close" onclick="closeOverlay('favsOverlay')">✕</button>
+    <button class="modal-close" onclick="closeOverlay('favsOverlay')" aria-label="Fermer">✕</button>
     <h2 class="modal-title">❤️ Mes <span>favoris</span></h2>
     <div id="favsModal" style="max-height:380px;overflow-y:auto"></div>
   </div>
@@ -1603,7 +1781,7 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
 <!-- ═══ MODAL : AUTHOR PROFILE ═══ -->
 <div class="overlay" id="authorOverlay">
   <div class="modal" style="max-width:520px">
-    <button class="modal-close" onclick="closeOverlay('authorOverlay')">✕</button>
+    <button class="modal-close" onclick="closeOverlay('authorOverlay')" aria-label="Fermer">✕</button>
     <div class="author-profile-head">
       <div class="author-profile-avatar" id="apAvatar">—</div>
       <div>
@@ -1619,7 +1797,7 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
 <!-- ═══ MODAL : DONATE ═══ -->
 <div class="overlay" id="donateOverlay">
   <div class="modal donate-modal">
-    <button class="modal-close" onclick="closeOverlay('donateOverlay')">✕</button>
+    <button class="modal-close" onclick="closeOverlay('donateOverlay')" aria-label="Fermer">✕</button>
     <div class="donate-icon">☕</div>
     <h2 class="modal-title" style="border:none;padding:0;margin-bottom:.6rem">Soutenir <span>GenieCivil Docs</span></h2>
     <p class="donate-text">Ce site est gratuit et le restera. Si les documents vous ont aidé dans vos études ou vos projets, un petit don aide à couvrir l'hébergement et à faire grandir la bibliothèque. Merci ! 🙏</p>
@@ -1631,7 +1809,7 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
 <!-- ═══ MODAL : POST / EDIT JOB (admin) ═══ -->
 <div class="overlay" id="jobOverlay">
   <div class="modal">
-    <button class="modal-close" onclick="closeOverlay('jobOverlay')">✕</button>
+    <button class="modal-close" onclick="closeOverlay('jobOverlay')" aria-label="Fermer">✕</button>
     <h2 class="modal-title">📢 Publier une <span>offre d'emploi</span></h2>
     <input type="hidden" id="jobId"/>
     <div class="form-row-2">
@@ -1689,9 +1867,12 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
 const SUPABASE_URL  = 'https://gckswhsblnbkkuffcjea.supabase.co';        // ex: https://abcdef.supabase.co
 const SUPABASE_ANON = 'sb_publishable_glmbLR6euzg6vtL-sK98GQ_mh8zJBve';   // clé publique anon
 
-/* ══ ADMIN LOCAL (changez ces valeurs !) ══ */
-const ADMIN_USER = 'admin';
-const ADMIN_PW   = 'Bitou@7';   // 🔑 Changez ce mot de passe !
+/* ══ ADMIN ══
+   L'identité admin est vérifiée par Supabase Auth (connexion email/mot de
+   passe) + la table public.admins protégée par RLS — aucun identifiant
+   n'est stocké dans ce fichier. Pour créer un administrateur : ajoutez son
+   compte dans Supabase (Authentication → Users), puis ajoutez son email
+   dans la table public.admins. */
 
 /* ══════════════════════════════════════════════
    INITIALISATION
@@ -1714,6 +1895,13 @@ function getVisitorId() {
   let id = localStorage.getItem('gcd_visitor_id');
   if(!id) { id = 'v_' + Math.random().toString(36).slice(2) + Date.now().toString(36); localStorage.setItem('gcd_visitor_id', id); }
   return id;
+}
+
+/* Échappe le HTML pour tout contenu fourni par un utilisateur (titres, noms,
+   commentaires, offres…) avant insertion via innerHTML, afin d'éviter les
+   failles XSS stockées. */
+function esc(s) {
+  return String(s==null?'':s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
 
 function loadScriptOnce(src) {
@@ -1766,10 +1954,15 @@ async function initSupabase() {
       return;
     }
     sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+    isAdmin = await checkAdminStatus();
+    sb.auth.onAuthStateChange((event) => {
+      if(event === 'SIGNED_OUT' && isAdmin) { isAdmin = false; applyAdminUI(); }
+    });
     await loadDocs();
     await loadComments();
     await loadPending();
     await loadJobs();
+    applyAdminUI();
     banner.className = 'status-banner ok show';
     textEl.textContent = '✅ Connecté à Supabase — Données en temps réel actives.';
     setTimeout(() => { banner.classList.remove('show'); }, 4000);
@@ -1862,19 +2055,19 @@ function showDocs() {
   }
 
   grid.innerHTML = page.map(d => `
-    <div class="doc-card" data-id="${d.id}" data-cat="${d.cat||''}" onmousemove="cardGlow(event,this)">
+    <div class="doc-card" data-id="${d.id}" data-cat="${d.cat||''}" onmousemove="cardGlow(event,this)" onclick="cardOpen(event,'${d.id}')">
       <div class="dc-banner" data-type="${d.type}">
         <span class="dc-type-badge">${d.type.toUpperCase()}</span>
         ${d.featured ? '<span class="dc-featured-badge">⭐ Vedette</span>' : ''}
         <span class="dc-bg-icon">${tIcon(d.type)}</span>
-        <span class="dc-cat-pill" onclick="event.stopPropagation();goToCategoryPage('${d.cat||''}')" style="cursor:pointer">${(d.cat||'').toUpperCase()}</span>
-        <button class="dc-fav ${d.fav?'active':''}" onclick="toggleFav(event,'${d.id}')">${d.fav?'❤️':'🤍'}</button>
+        <span class="dc-cat-pill" role="button" tabindex="0" onclick="event.stopPropagation();goToCategoryPage('${d.cat||''}')" style="cursor:pointer">${(d.cat||'').toUpperCase()}</span>
+        <button class="dc-fav ${d.fav?'active':''}" onclick="toggleFav(event,'${d.id}')" aria-label="${d.fav?'Retirer des favoris':'Ajouter aux favoris'}">${d.fav?'❤️':'🤍'}</button>
       </div>
       <div class="dc-body">
-        <h4 class="dc-title">${d.title}</h4>
-        <p class="dc-desc">${d.description||''}</p>
+        <h4 class="dc-title">${esc(d.title)}</h4>
+        <p class="dc-desc">${esc(d.description)}</p>
         <div class="dc-meta">
-          <span>👤 <span class="author-link" onclick="event.stopPropagation();openAuthorProfile('${(d.author||'Inconnu').replace(/'/g,"\\'")}')">${d.author||'Inconnu'}</span></span>
+          <span>👤 <span class="author-link" role="button" tabindex="0" onclick="event.stopPropagation();openAuthorProfile('${(d.author||'Inconnu').replace(/'/g,"\\'")}')">${esc(d.author||'Inconnu')}</span></span>
           <span>📁 ${d.file_size||'—'}</span>
           <span class="dl-badge">⬇ ${d.download_count||0}</span>
         </div>
@@ -1909,8 +2102,12 @@ function showDocs() {
 }
 
 function tIcon(t){return{pdf:'📄',dwg:'📐',xlsx:'📊',docx:'📝',pptx:'📊',ifc:'🏗',zip:'📦',video:'🎥'}[t]||'📁'}
-function renderStars(r,id){let s='';for(let i=1;i<=5;i++)s+=`<span class="star ${i<=Math.round(r)?'filled':''}" onclick="rateDoc('${id}',${i})">${i<=Math.round(r)?'★':'☆'}</span>`;return s;}
+function renderStars(r,id){let s='';for(let i=1;i<=5;i++)s+=`<span class="star ${i<=Math.round(r)?'filled':''}" role="button" tabindex="0" aria-label="Noter ${i} sur 5" onclick="rateDoc('${id}',${i})">${i<=Math.round(r)?'★':'☆'}</span>`;return s;}
 function cardGlow(e,c){const r=c.getBoundingClientRect();c.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');c.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%');}
+/* La carte entière est cliquable (elle affiche déjà un curseur main), mais on
+   ignore les clics venant d'un contrôle interne — télécharger, partager,
+   favori, étoiles, actions admin — pour ne pas déclencher deux actions. */
+function cardOpen(e,id){ if(e.target.closest('button,a,[role="button"]')) return; openPreview(id); }
 
 /* ══ STATS ══ */
 function updateStats() {
@@ -1929,20 +2126,20 @@ function updateFeatured() {
   const colors = ['var(--red-dim)','var(--blue-dim)','var(--green-dim)'];
   const badges = ['Populaire','Nouveau','Recommandé'];
   document.getElementById('featuredGrid').innerHTML = featDocs.length ? featDocs.map((d,i)=>`
-    <div class="fi" onclick=""><div class="fi-icon" style="background:${colors[i%3]}">${tIcon(d.type)}</div>
-    <div><div class="fi-badge">${badges[i%3]}</div><div class="fi-title">${d.title}</div><div class="fi-meta">${d.type.toUpperCase()} · ⬇ ${d.download_count||0} · ⭐ ${d.rating||0}</div></div></div>`).join('') : '<p style="color:var(--text3);font-size:.8rem;padding:1rem">Aucun document en vedette.</p>';
+    <div class="fi" role="button" tabindex="0" onclick="openPreview('${d.id}')"><div class="fi-icon" style="background:${colors[i%3]}">${tIcon(d.type)}</div>
+    <div><div class="fi-badge">${badges[i%3]}</div><div class="fi-title">${esc(d.title)}</div><div class="fi-meta">${d.type.toUpperCase()} · ⬇ ${d.download_count||0} · ⭐ ${d.rating||0}</div></div></div>`).join('') : '<p style="color:var(--text3);font-size:.8rem;padding:1rem">Aucun document en vedette.</p>';
 }
 function updateRecentSidebar() {
   const recent = [...allDocs].sort((a,b)=>new Date(b.created_at)-new Date(a.created_at)).slice(0,4);
   const swatchColors = {pdf:'var(--red-dim)',dwg:'var(--blue-dim)',xlsx:'var(--green-dim)',docx:'var(--blue-dim)',pptx:'var(--orange-dim)',ifc:'var(--purple-dim)',zip:'var(--teal-dim)'};
-  document.getElementById('recentSidebar').innerHTML = recent.map(d=>`<div class="recent-row"><div class="rr-swatch" style="background:${swatchColors[d.type]||'var(--surface3)'}">${tIcon(d.type)}</div><div style="flex:1;min-width:0"><div class="rr-name">${d.title}</div><div class="rr-meta">${d.type.toUpperCase()} · ${timeAgo(d.created_at)}</div></div></div>`).join('');
+  document.getElementById('recentSidebar').innerHTML = recent.map(d=>`<div class="recent-row" role="button" tabindex="0" onclick="openPreview('${d.id}')"><div class="rr-swatch" style="background:${swatchColors[d.type]||'var(--surface3)'}">${tIcon(d.type)}</div><div style="flex:1;min-width:0"><div class="rr-name">${esc(d.title)}</div><div class="rr-meta">${d.type.toUpperCase()} · ${timeAgo(d.created_at)}</div></div></div>`).join('');
 }
 function updateHeroRecent() {
   const recent = [...allDocs].sort((a,b)=>new Date(b.created_at)-new Date(a.created_at)).slice(0,3);
   const colors = ['var(--red-dim)','var(--blue-dim)','var(--green-dim)'];
   document.getElementById('heroRecent').innerHTML = recent.map((d,i)=>`
     <div class="hc-doc"><div class="hc-icon" style="background:${colors[i]}">${tIcon(d.type)}</div>
-    <div style="flex:1;min-width:0"><div class="hc-name">${d.title}</div><div class="hc-meta">${d.type.toUpperCase()} · ${d.file_size||'—'} · ${timeAgo(d.created_at)}</div></div>
+    <div style="flex:1;min-width:0"><div class="hc-name">${esc(d.title)}</div><div class="hc-meta">${d.type.toUpperCase()} · ${d.file_size||'—'} · ${timeAgo(d.created_at)}</div></div>
     <div class="hc-dl">⬇ ${d.download_count||0}</div></div>`).join('');
 }
 function populateDocSelect() {
@@ -1969,7 +2166,7 @@ function updateAuthorsGrid() {
   document.getElementById('authorsGrid').innerHTML = authors.length ? authors.map(a=>`
     <div class="author-card" onclick="openAuthorProfile('${a.name.replace(/'/g,"\\'")}')">
       <div class="author-avatar">${initials(a.name)}</div>
-      <div class="author-name">${a.name}</div>
+      <div class="author-name">${esc(a.name)}</div>
       <div class="author-stats">${a.count} document${a.count>1?'s':''} · ⬇ ${a.downloads}</div>
     </div>`).join('') : '<p style="color:var(--text3);font-size:.8rem">Aucun contributeur pour le moment.</p>';
 }
@@ -1982,7 +2179,7 @@ function openAuthorProfile(name) {
   document.getElementById('apMeta').textContent = `${docs.length} document${docs.length>1?'s':''} · ⬇ ${stats?stats.downloads:0} téléchargements · ⭐ ${avgRating}`;
   document.getElementById('apDocs').innerHTML = docs.length ? docs.map(d=>`
     <div class="author-doc-row"><div class="adr-icon">${tIcon(d.type)}</div>
-      <div style="flex:1"><div style="font-weight:600;color:var(--text)">${d.title}</div><div style="font-size:.65rem;color:var(--text3);font-family:'JetBrains Mono'">${d.type.toUpperCase()} · ⬇ ${d.download_count||0}</div></div>
+      <div style="flex:1"><div style="font-weight:600;color:var(--text)">${esc(d.title)}</div><div style="font-size:.65rem;color:var(--text3);font-family:'JetBrains Mono'">${d.type.toUpperCase()} · ⬇ ${d.download_count||0}</div></div>
       <button class="btn btn-dl" style="font-size:.68rem;padding:.35rem .65rem" onclick="dlDoc('${d.id}')">⬇</button>
     </div>`).join('') : '<p style="color:var(--text3);font-size:.8rem">Aucun document.</p>';
   openOverlay('authorOverlay');
@@ -2034,12 +2231,12 @@ function renderJobs() {
     <div class="job-card ${j.sponsored?'sponsored':''}">
       ${j.sponsored?'<span class="job-sponsored-tag">⭐ Sponsorisé</span>':''}
       <span class="job-type-tag ${j.type}">${jobTypeLabel(j.type)}</span>
-      <h4 class="job-title">${j.title}</h4>
-      <div class="job-company">${j.company}</div>
-      <div class="job-meta">📍 ${j.location||'—'} · ${timeAgo(j.created_at)}</div>
-      <p class="job-desc">${j.description||''}</p>
+      <h4 class="job-title">${esc(j.title)}</h4>
+      <div class="job-company">${esc(j.company)}</div>
+      <div class="job-meta">📍 ${esc(j.location||'—')} · ${timeAgo(j.created_at)}</div>
+      <p class="job-desc">${esc(j.description)}</p>
       <div class="job-footer">
-        <a class="btn btn-accent" href="${/@/.test(j.contact)?'mailto:'+j.contact:j.contact}" target="_blank" rel="noopener">📨 Postuler</a>
+        <a class="btn btn-accent" href="${esc(/@/.test(j.contact)?'mailto:'+j.contact:j.contact)}" target="_blank" rel="noopener">📨 Postuler</a>
       </div>
       ${isAdmin?`<div class="job-admin-bar">
         <button class="btn btn-ghost" style="font-size:.68rem;padding:.3rem .6rem" onclick="openJobEdit('${j.id}')">✏️ Modifier</button>
@@ -2076,7 +2273,7 @@ async function saveJob() {
     const j = jobListings.find(x=>x.id===id);
     Object.assign(j, { title, company, type, location, description, contact, sponsored });
     if(sb && !id.startsWith('local_')) { await sb.from('job_listings').update({title,company,type,location,description,contact,sponsored}).eq('id',id); }
-    logActivity('✏️','var(--orange-dim)',`<strong>${title}</strong> — Offre modifiée`,timeAgo(new Date()));
+    logActivity('✏️','var(--orange-dim)',`<strong>${esc(title)}</strong> — Offre modifiée`,timeAgo(new Date()));
     showToast('✅ Offre modifiée !','success');
   } else {
     const entry = { title, company, type, location, description, contact, sponsored, created_at:new Date().toISOString() };
@@ -2087,7 +2284,7 @@ async function saveJob() {
     } else {
       jobListings.unshift({ ...entry, id:'local_'+Date.now() });
     }
-    logActivity('📢','var(--green-dim)',`<strong>${title}</strong> — Offre publiée`,timeAgo(new Date()));
+    logActivity('📢','var(--green-dim)',`<strong>${esc(title)}</strong> — Offre publiée`,timeAgo(new Date()));
     showToast(`✅ Offre "${title}" publiée !`,'success');
   }
   closeOverlay('jobOverlay');
@@ -2100,7 +2297,7 @@ async function deleteJob(id) {
   if(sb && !id.startsWith('local_')) { await sb.from('job_listings').delete().eq('id',id); }
   jobListings.splice(jobListings.findIndex(x=>x.id===id),1);
   renderJobs();
-  logActivity('🗑','var(--red-dim)',`<strong>${j.title}</strong> — Offre supprimée`,timeAgo(new Date()));
+  logActivity('🗑','var(--red-dim)',`<strong>${esc(j.title)}</strong> — Offre supprimée`,timeAgo(new Date()));
   showToast('🗑 Offre supprimée.','error');
 }
 
@@ -2113,9 +2310,25 @@ function updatePostJobBtn() {
 function toggleFaq(el) {
   const item = el.parentElement;
   const wasOpen = item.classList.contains('open');
-  document.querySelectorAll('.faq-item').forEach(f=>f.classList.remove('open'));
-  if(!wasOpen) item.classList.add('open');
+  document.querySelectorAll('.faq-item').forEach(f=>{
+    f.classList.remove('open');
+    const q = f.querySelector('.faq-q');
+    if(q) q.setAttribute('aria-expanded','false');
+  });
+  if(!wasOpen){ item.classList.add('open'); el.setAttribute('aria-expanded','true'); }
 }
+
+/* Beaucoup de contrôles du site sont des <div>/<span> cliquables (accordéons,
+   filtres, tags, étoiles…). Ils sont rendus focusables via role="button" +
+   tabindex ; ce gestionnaire leur donne le comportement clavier d'un vrai
+   bouton (Entrée / Espace), sinon ils resteraient inutilisables sans souris. */
+document.addEventListener('keydown', e => {
+  if(e.key !== 'Enter' && e.key !== ' ') return;
+  const el = e.target.closest('[role="button"]');
+  if(!el || el.tagName === 'BUTTON' || el.tagName === 'A') return;
+  e.preventDefault();
+  el.click();
+});
 
 /* ══ CONTACT FORM ══ */
 function sendContact() {
@@ -2128,7 +2341,7 @@ function sendContact() {
   window.open(`https://wa.me/22662478410?text=${encodeURIComponent(waText)}`, '_blank');
   document.getElementById('ctName').value=''; document.getElementById('ctEmail').value=''; document.getElementById('ctMessage').value='';
   showToast('✅ Ouverture de WhatsApp pour envoyer votre message…','success');
-  addNotification('✉️','var(--accent-dim)',`Nouveau message de contact : <strong>${subject}</strong>`,'À l\'instant');
+  addNotification('✉️','var(--accent-dim)',`Nouveau message de contact : <strong>${esc(subject)}</strong>`,'À l\'instant');
 }
 
 /* ══════════════════════════════════════════════
@@ -2244,6 +2457,18 @@ document.addEventListener('click', e=>{
   if(wrap && !wrap.contains(e.target)) document.getElementById('notifPanel').classList.remove('open');
 });
 
+/* ══ MENU MOBILE (hamburger) ══ */
+function toggleNavMenu() {
+  const links = document.querySelector('.nav-links');
+  const open = links.classList.toggle('open');
+  document.getElementById('navToggle').setAttribute('aria-expanded', open);
+}
+function closeNavMenu() {
+  document.querySelector('.nav-links').classList.remove('open');
+  document.getElementById('navToggle').setAttribute('aria-expanded', 'false');
+}
+document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click', closeNavMenu));
+
 /* ══ SCROLL REVEAL ══ */
 function initReveal() {
   const obs = new IntersectionObserver((entries)=>{
@@ -2350,7 +2575,7 @@ function acSearch(q){
   if(!q||q.length<2){drop.classList.remove('show');return;}
   const res = allDocs.filter(d=>d.title.toLowerCase().includes(q.toLowerCase())).slice(0,5);
   if(!res.length){drop.classList.remove('show');return;}
-  drop.innerHTML = res.map(d=>`<div class="ac-item" onmousedown="selectAc('${d.title.replace(/'/g,"\\'")}')">${tIcon(d.type)} ${d.title}</div>`).join('');
+  drop.innerHTML = res.map(d=>`<div class="ac-item" onmousedown="selectAc('${d.title.replace(/'/g,"\\'")}')">${tIcon(d.type)} ${esc(d.title)}</div>`).join('');
   drop.classList.add('show');
 }
 function selectAc(title){ document.getElementById('navSearch').value=title; document.getElementById('mainSearch').value=title; document.getElementById('acDrop').classList.remove('show'); filterDocs(); document.getElementById('docs').scrollIntoView({behavior:'smooth'}); }
@@ -2375,9 +2600,9 @@ function updateFavSidebar() {
   if(cnt) cnt.textContent = favs.length||'';
   const swatchColors = {pdf:'var(--red-dim)',dwg:'var(--blue-dim)',xlsx:'var(--green-dim)',docx:'var(--blue-dim)',pptx:'var(--orange-dim)',ifc:'var(--purple-dim)',zip:'var(--teal-dim)'};
   const favSb = document.getElementById('favSidebar');
-  favSb.innerHTML = favs.length ? favs.map(d=>`<div class="recent-row"><div class="rr-swatch" style="background:${swatchColors[d.type]||'var(--surface3)'}">${tIcon(d.type)}</div><div style="flex:1;min-width:0"><div class="rr-name">${d.title}</div><div class="rr-meta">${d.type.toUpperCase()} · ⬇ ${d.download_count||0}</div></div></div>`).join('') : '<div class="fav-empty">Aucun favori.</div>';
+  favSb.innerHTML = favs.length ? favs.map(d=>`<div class="recent-row" role="button" tabindex="0" onclick="openPreview('${d.id}')"><div class="rr-swatch" style="background:${swatchColors[d.type]||'var(--surface3)'}">${tIcon(d.type)}</div><div style="flex:1;min-width:0"><div class="rr-name">${esc(d.title)}</div><div class="rr-meta">${d.type.toUpperCase()} · ⬇ ${d.download_count||0}</div></div></div>`).join('') : '<div class="fav-empty">Aucun favori.</div>';
   const fm = document.getElementById('favsModal');
-  if(fm) fm.innerHTML = favs.length ? favs.map(d=>`<div class="comment-card" style="margin-bottom:.5rem"><div style="width:36px;height:36px;border-radius:8px;background:var(--surface2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.1rem">${tIcon(d.type)}</div><div style="flex:1;padding-left:.65rem"><div style="font-size:.82rem;font-weight:700;color:var(--text)">${d.title}</div><div style="font-size:.62rem;color:var(--text3);font-family:JetBrains Mono">${d.type.toUpperCase()} · ${d.file_size||'—'} · ⬇ ${d.download_count||0}</div></div><button class="btn btn-accent" style="font-size:.68rem;padding:.32rem .65rem" onclick="dlDoc('${d.id}')">⬇</button></div>`).join('') : '<div class="fav-empty">Aucun favori enregistré.</div>';
+  if(fm) fm.innerHTML = favs.length ? favs.map(d=>`<div class="comment-card" style="margin-bottom:.5rem"><div style="width:36px;height:36px;border-radius:8px;background:var(--surface2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.1rem">${tIcon(d.type)}</div><div style="flex:1;padding-left:.65rem"><div style="font-size:.82rem;font-weight:700;color:var(--text)">${esc(d.title)}</div><div style="font-size:.62rem;color:var(--text3);font-family:JetBrains Mono">${d.type.toUpperCase()} · ${d.file_size||'—'} · ⬇ ${d.download_count||0}</div></div><button class="btn btn-accent" style="font-size:.68rem;padding:.32rem .65rem" onclick="dlDoc('${d.id}')">⬇</button></div>`).join('') : '<div class="fav-empty">Aucun favori enregistré.</div>';
 }
 
 async function dlDoc(id) {
@@ -2398,7 +2623,7 @@ async function dlDoc(id) {
   doc.download_count = (doc.download_count||0)+1;
   if(sb){ await sb.from('documents').update({download_count: doc.download_count}).eq('id',id); }
   showDocs(); updateStats();
-  logActivity('⬇️','var(--blue-dim)',`<strong>${doc.title}</strong> téléchargé`,timeAgo(new Date()));
+  logActivity('⬇️','var(--blue-dim)',`<strong>${esc(doc.title)}</strong> téléchargé`,timeAgo(new Date()));
 }
 
 function rateDoc(id, stars) {
@@ -2413,7 +2638,7 @@ function rateDoc(id, stars) {
 function openPreview(id) {
   const doc = allDocs.find(d=>d.id===id);
   if(!doc) return;
-  document.getElementById('prevTitle').innerHTML = `Aperçu — <span>${doc.title}</span>`;
+  document.getElementById('prevTitle').innerHTML = `Aperçu — <span>${esc(doc.title)}</span>`;
   document.getElementById('prevIcon').textContent = tIcon(doc.type);
   document.getElementById('prevMsg').innerHTML = doc.type==='pdf' ? 'Aperçu PDF disponible.<br/>Cliquez Télécharger pour l\'ouvrir.' : `Format ${doc.type.toUpperCase()} — Téléchargez pour visualiser.`;
   document.getElementById('prevDlBtn').onclick = ()=>{ dlDoc(id); closeOverlay('previewOverlay'); };
@@ -2442,39 +2667,74 @@ function copyLink() { navigator.clipboard.writeText(document.getElementById('sha
 /* ══════════════════════════════════════════════
    ADMIN
 ══════════════════════════════════════════════ */
-function doLogin() {
-  const u = document.getElementById('adminUser').value.trim();
-  const p = document.getElementById('adminPw').value;
-  if(u.toLowerCase()===ADMIN_USER && p===ADMIN_PW) {
-    isAdmin = true;
-    closeOverlay('loginOverlay');
-    document.getElementById('adminPanel').classList.add('visible');
-    const btn = document.getElementById('adminNavBtn');
-    btn.innerHTML = '📋 Activité'; btn.style.color='var(--accent)';
-    document.getElementById('adminPw').value='';
-    document.getElementById('adminUser').value='';
-    document.getElementById('wrongPw').style.display='none';
-    showDocs();
-    buildLog();
-    updatePendingBadge();
-    updateVisitorPanel();
-    updatePostJobBtn();
-    renderJobs();
-    showToast('🎉 Bienvenue, Administrateur !','success');
-  } else {
-    document.getElementById('wrongPw').style.display='block';
-    document.getElementById('adminPw').value='';
-  }
+/* Interroge public.admins (protégée par RLS : chacun ne peut lire que sa
+   propre ligne) pour savoir si l'utilisateur Supabase Auth connecté est
+   administrateur. */
+async function checkAdminStatus() {
+  if(!sb) return false;
+  const { data: { user } } = await sb.auth.getUser();
+  if(!user) return false;
+  const { data } = await sb.from('admins').select('user_id').eq('user_id', user.id).maybeSingle();
+  return !!data;
 }
-function logout() {
-  isAdmin = false;
-  document.getElementById('adminPanel').classList.remove('visible');
+
+function applyAdminUI() {
+  document.getElementById('adminPanel').classList.toggle('visible', isAdmin);
   const btn = document.getElementById('adminNavBtn');
-  btn.innerHTML='🔐 Admin'; btn.style.color='';
+  btn.innerHTML = isAdmin ? '📋 Activité' : '🔐 Admin';
+  btn.style.color = isAdmin ? 'var(--accent)' : '';
   showDocs();
+  updatePendingBadge();
   updateVisitorPanel();
   updatePostJobBtn();
   renderJobs();
+  if(isAdmin) buildLog();
+}
+
+function setWrongPw(msg) {
+  const el = document.getElementById('wrongPw');
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+
+async function doLogin() {
+  if(!sb) { showToast('⚠️ Connexion à la base de données indisponible.','error'); return; }
+  const email = document.getElementById('adminUser').value.trim();
+  const pw = document.getElementById('adminPw').value;
+  if(!email || !pw) { setWrongPw('❌ Email et mot de passe requis.'); return; }
+
+  const btn = document.getElementById('loginBtn');
+  btn.disabled = true; btn.textContent = '⏳ Connexion…';
+
+  const { error } = await sb.auth.signInWithPassword({ email, password: pw });
+  if(error) {
+    setWrongPw('❌ ' + (error.message==='Invalid login credentials' ? 'Identifiants incorrects.' : error.message));
+    document.getElementById('adminPw').value='';
+    btn.disabled = false; btn.textContent = '🔓 Connexion';
+    return;
+  }
+  if(!await checkAdminStatus()) {
+    await sb.auth.signOut();
+    setWrongPw("❌ Ce compte n'a pas les droits administrateur.");
+    document.getElementById('adminPw').value='';
+    btn.disabled = false; btn.textContent = '🔓 Connexion';
+    return;
+  }
+
+  isAdmin = true;
+  closeOverlay('loginOverlay');
+  document.getElementById('adminPw').value='';
+  document.getElementById('adminUser').value='';
+  document.getElementById('wrongPw').style.display='none';
+  applyAdminUI();
+  btn.disabled = false; btn.textContent = '🔓 Connexion';
+  showToast('🎉 Bienvenue, Administrateur !','success');
+}
+
+async function logout() {
+  if(sb) await sb.auth.signOut();
+  isAdmin = false;
+  applyAdminUI();
   showToast('Vous êtes déconnecté.');
 }
 
@@ -2514,7 +2774,7 @@ function renderFileList() {
   list.innerHTML = selectedFiles.map((sf,idx)=>`
     <div class="file-row">
       <span class="fr-icon">${tIcon(detectFileType(sf.file.name))}</span>
-      <input class="fc" value="${sf.title.replace(/"/g,'&quot;')}" oninput="updateFileTitle(${idx},this.value)" placeholder="Titre du document"/>
+      <input class="fc" value="${esc(sf.title)}" oninput="updateFileTitle(${idx},this.value)" placeholder="Titre du document"/>
       <span class="fr-size">${(sf.file.size/1024/1024).toFixed(2)} Mo</span>
       <button class="fr-remove" onclick="removeFile(${idx})" title="Retirer">✕</button>
     </div>`).join('');
@@ -2561,7 +2821,7 @@ async function publishDoc() {
       } else {
         allDocs.unshift({ ...newDoc, id:'local_'+Date.now()+'_'+i, fav:false, userRating:0 });
       }
-      logActivity('📤','var(--green-dim)',`<strong>${sf.title}</strong> — Document publié`,timeAgo(new Date()));
+      logActivity('📤','var(--green-dim)',`<strong>${esc(sf.title)}</strong> — Document publié`,timeAgo(new Date()));
       successCount++; lastTitle = sf.title;
       document.getElementById('progFill').style.width = Math.round(((i+1)/total)*100)+'%';
     } catch(e) {
@@ -2572,7 +2832,7 @@ async function publishDoc() {
   closeOverlay('uploadOverlay');
   resetUploadForm();
   renderAll(); updateStats(); updateSidebarCounts(); updateFeatured(); updateRecentSidebar(); updateHeroRecent(); populateDocSelect(); updateAuthorsGrid(); updateAboutStats();
-  if(successCount === 1) addNotification('📤','var(--green-dim)',`Nouveau document : <strong>${lastTitle}</strong>`,'À l\'instant');
+  if(successCount === 1) addNotification('📤','var(--green-dim)',`Nouveau document : <strong>${esc(lastTitle)}</strong>`,'À l\'instant');
   else if(successCount > 1) addNotification('📤','var(--green-dim)',`<strong>${successCount} documents</strong> publiés`,'À l\'instant');
   showToast(successCount===total ? `✅ ${successCount} document${successCount>1?'s':''} publié${successCount>1?'s':''} avec succès !` : `⚠️ ${successCount}/${total} document(s) publié(s) — voir erreurs ci-dessus.`, successCount===total?'success':'error');
   btn.disabled = false; btn.textContent = '🚀 Publier';
@@ -2632,9 +2892,9 @@ function renderPendingList() {
     <div class="pending-row">
       <div class="pending-icon">${tIcon(p.type)}</div>
       <div class="pending-info">
-        <div class="pending-title">${p.title}</div>
-        <div class="pending-meta">👤 ${p.author} · ${(p.cat||'').toUpperCase()} · ${p.type.toUpperCase()} · ${timeAgo(p.created_at)}</div>
-        <div class="pending-desc">${p.description||''}</div>
+        <div class="pending-title">${esc(p.title)}</div>
+        <div class="pending-meta">👤 ${esc(p.author)} · ${(p.cat||'').toUpperCase()} · ${p.type.toUpperCase()} · ${timeAgo(p.created_at)}</div>
+        <div class="pending-desc">${esc(p.description)}</div>
         <div class="pending-actions">
           <button class="btn btn-accent" style="font-size:.7rem;padding:.4rem .75rem" onclick="approvePending('${p.id}')">✅ Approuver</button>
           <button class="btn btn-danger" style="font-size:.7rem;padding:.4rem .75rem" onclick="rejectPending('${p.id}')">❌ Rejeter</button>
@@ -2659,7 +2919,7 @@ async function approvePending(id) {
   if(p.contributor_id===VISITOR_ID) localStorage.setItem('gcd_unlocked_'+VISITOR_ID,'true');
   renderAll(); updateStats(); updateSidebarCounts(); updateFeatured(); updateRecentSidebar(); updateHeroRecent(); populateDocSelect(); updateAuthorsGrid(); updateAboutStats();
   updatePendingBadge(); renderPendingList(); updateVisitorPanel();
-  logActivity('✅','var(--green-dim)',`<strong>${p.title}</strong> — Contribution approuvée et publiée`,timeAgo(new Date()));
+  logActivity('✅','var(--green-dim)',`<strong>${esc(p.title)}</strong> — Contribution approuvée et publiée`,timeAgo(new Date()));
   showToast(`✅ "${p.title}" approuvé et publié !`,'success');
 }
 async function rejectPending(id) {
@@ -2668,11 +2928,11 @@ async function rejectPending(id) {
   if(sb) { await sb.from('pending_documents').update({status:'rejected'}).eq('id',id); }
   p.status='rejected';
   updatePendingBadge(); renderPendingList();
-  logActivity('❌','var(--red-dim)',`<strong>${p.title}</strong> — Contribution rejetée`,timeAgo(new Date()));
+  logActivity('❌','var(--red-dim)',`<strong>${esc(p.title)}</strong> — Contribution rejetée`,timeAgo(new Date()));
   showToast(`Contribution rejetée.`,'info');
 }
 
-function ctbPickFile(f){ if(!f)return; ctbFile=f; document.getElementById('ctbUzIcon').textContent='✅'; document.getElementById('ctbUzText').innerHTML=`<strong style="color:var(--accent)">${f.name}</strong> — ${(f.size/1024/1024).toFixed(2)} Mo`; }
+function ctbPickFile(f){ if(!f)return; ctbFile=f; document.getElementById('ctbUzIcon').textContent='✅'; document.getElementById('ctbUzText').innerHTML=`<strong style="color:var(--accent)">${esc(f.name)}</strong> — ${(f.size/1024/1024).toFixed(2)} Mo`; }
 function ctbDropFile(e){ e.preventDefault(); document.getElementById('ctbUzRoot').classList.remove('over'); if(e.dataTransfer.files[0]) ctbPickFile(e.dataTransfer.files[0]); }
 function resetContributeForm(){ document.getElementById('ctbTitle').value=''; document.getElementById('ctbDesc').value=''; document.getElementById('ctbAuthor').value=''; document.getElementById('ctbUzIcon').textContent='📁'; document.getElementById('ctbUzText').innerHTML='Glissez votre fichier ici ou <strong>cliquez pour parcourir</strong>'; ctbFile=null; document.getElementById('ctbProgFill').style.width='0'; document.getElementById('ctbProgWrap').classList.remove('show'); }
 
@@ -2740,7 +3000,7 @@ async function saveEdit() {
   if(sb && !id.startsWith('local_')) { await sb.from('documents').update({title,description,author,featured}).eq('id',id); }
   closeOverlay('editOverlay');
   renderAll(); updateFeatured();
-  logActivity('✏️','var(--orange-dim)',`<strong>${title}</strong> — Modifié`,timeAgo(new Date()));
+  logActivity('✏️','var(--orange-dim)',`<strong>${esc(title)}</strong> — Modifié`,timeAgo(new Date()));
   showToast(`✅ Document modifié !`,'success');
 }
 
@@ -2751,7 +3011,7 @@ async function delDoc(id) {
   if(sb && !id.startsWith('local_')) { await sb.from('documents').delete().eq('id',id); }
   allDocs.splice(allDocs.findIndex(d=>d.id===id),1);
   renderAll(); updateStats(); updateSidebarCounts(); updateFeatured();
-  logActivity('🗑','var(--red-dim)',`<strong>${doc.title}</strong> — Supprimé`,timeAgo(new Date()));
+  logActivity('🗑','var(--red-dim)',`<strong>${esc(doc.title)}</strong> — Supprimé`,timeAgo(new Date()));
   showToast(`🗑 Document supprimé.`,'error');
 }
 
@@ -2774,9 +3034,9 @@ function renderComments(data) {
     <div class="comment-card">
       <div class="avatar">${(c.name||'?').split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2)}</div>
       <div style="flex:1">
-        <div class="cc-name">${c.name||'Anonyme'}</div>
-        <div class="cc-meta">${timeAgo(c.created_at)} · <span class="cc-doc-link">📄 ${c.doc_ref||'Général'}</span></div>
-        <p class="cc-text">${c.message||''}</p>
+        <div class="cc-name">${esc(c.name||'Anonyme')}</div>
+        <div class="cc-meta">${timeAgo(c.created_at)} · <span class="cc-doc-link">📄 ${esc(c.doc_ref||'Général')}</span></div>
+        <p class="cc-text">${esc(c.message)}</p>
         <button class="cc-reply-btn" onclick="showReplyForm(this)">↩ Répondre</button>
       </div>
     </div>`).join('') : '<div class="fav-empty">Aucun commentaire. Soyez le premier !</div>';
@@ -2801,12 +3061,12 @@ async function postComment() {
     card.className='comment-card';
     card.style.animation='slideIn .3s ease';
     const initials=(name).split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
-    card.innerHTML=`<div class="avatar">${initials}</div><div style="flex:1"><div class="cc-name">${name}</div><div class="cc-meta">À l'instant · <span class="cc-doc-link">📄 ${doc_ref}</span></div><p class="cc-text">${message}</p><button class="cc-reply-btn" onclick="showReplyForm(this)">↩ Répondre</button></div>`;
+    card.innerHTML=`<div class="avatar">${initials}</div><div style="flex:1"><div class="cc-name">${esc(name)}</div><div class="cc-meta">À l'instant · <span class="cc-doc-link">📄 ${esc(doc_ref)}</span></div><p class="cc-text">${esc(message)}</p><button class="cc-reply-btn" onclick="showReplyForm(this)">↩ Répondre</button></div>`;
     list.prepend(card);
   }
   document.getElementById('cName').value=''; document.getElementById('cText').value='';
-  logActivity('💬','var(--accent-dim)',`Commentaire de <strong>${name}</strong>`,timeAgo(new Date()));
-  addNotification('💬','var(--accent-dim)',`Nouveau commentaire de <strong>${name}</strong>`,'À l\'instant');
+  logActivity('💬','var(--accent-dim)',`Commentaire de <strong>${esc(name)}</strong>`,timeAgo(new Date()));
+  addNotification('💬','var(--accent-dim)',`Nouveau commentaire de <strong>${esc(name)}</strong>`,'À l\'instant');
   showToast('✅ Commentaire publié !','success');
 }
 function showReplyForm(btn){
@@ -2823,7 +3083,7 @@ function postReply(btn){
   const replies=btn.closest('.cc-replies');
   const d=document.createElement('div');
   d.className='reply-card';
-  d.innerHTML=`<strong style="color:var(--text);font-size:.78rem">Vous</strong> — ${text}`;
+  d.innerHTML=`<strong style="color:var(--text);font-size:.78rem">Vous</strong> — ${esc(text)}`;
   replies.insertBefore(d,inp.parentElement);
   inp.parentElement.remove();
   showToast('↩ Réponse publiée !','success');
@@ -2866,11 +3126,66 @@ function openOverlay(id){
   if(id==='favsOverlay') updateFavSidebar();
   if(id==='logOverlay') buildLog();
   if(id==='pendingOverlay') renderPendingList();
-  document.getElementById(id).classList.add('open');
+  const ov = document.getElementById(id);
+  overlayReturnFocus = document.activeElement;
+  ov.classList.add('open');
+  focusInsideOverlay(ov);
 }
-function closeOverlay(id){ document.getElementById(id).classList.remove('open'); }
-document.querySelectorAll('.overlay').forEach(el=>el.addEventListener('click',e=>{ if(e.target===el) el.classList.remove('open'); }));
-document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ document.querySelectorAll('.overlay.open').forEach(o=>o.classList.remove('open')); document.getElementById('chatWindow').classList.remove('open'); } });
+function closeOverlay(id){
+  const ov = document.getElementById(id);
+  if(!ov || !ov.classList.contains('open')) return;
+  ov.classList.remove('open');
+  // Rend le focus au bouton qui avait ouvert la fenêtre, sinon l'utilisateur
+  // au clavier se retrouve renvoyé au début de la page.
+  if(overlayReturnFocus && document.contains(overlayReturnFocus)) overlayReturnFocus.focus();
+  overlayReturnFocus = null;
+}
+
+/* ══ ACCESSIBILITÉ DES FENÊTRES MODALES ══
+   Sans ça, ouvrir une fenêtre laisse le focus derrière elle : on tabule dans
+   la page du dessous sans jamais atteindre le formulaire, et un lecteur
+   d'écran n'annonce pas qu'une boîte de dialogue s'est ouverte. */
+let overlayReturnFocus = null;
+const OV_FOCUSABLE = 'a[href],button:not([disabled]),input:not([type=hidden]),select,textarea,[tabindex]:not([tabindex="-1"])';
+
+function overlayFocusables(ov){
+  return Array.from(ov.querySelectorAll(OV_FOCUSABLE)).filter(el => el.offsetParent !== null);
+}
+function focusInsideOverlay(ov){
+  // Un formulaire : on va droit au premier champ. Sinon on donne le focus au
+  // conteneur, pour que le lecteur d'écran annonce d'abord le titre du dialogue.
+  const field = ov.querySelector('input:not([type=hidden]),textarea,select');
+  (field || ov.querySelector('.modal') || ov).focus();
+}
+(function initOverlayA11y(){
+  document.querySelectorAll('.overlay').forEach((ov, i) => {
+    const modal = ov.querySelector('.modal');
+    if(!modal) return;
+    modal.setAttribute('role','dialog');
+    modal.setAttribute('aria-modal','true');
+    modal.setAttribute('tabindex','-1');
+    const title = modal.querySelector('.modal-title, h2, h3');
+    if(title){
+      if(!title.id) title.id = 'ov-title-' + (ov.id || i);
+      modal.setAttribute('aria-labelledby', title.id);
+    }
+  });
+})();
+
+/* Piège la tabulation à l'intérieur de la fenêtre ouverte. */
+document.addEventListener('keydown', e => {
+  if(e.key !== 'Tab') return;
+  const ov = document.querySelector('.overlay.open');
+  if(!ov) return;
+  const items = overlayFocusables(ov);
+  if(!items.length) return;
+  const first = items[0], last = items[items.length-1];
+  if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+  else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+});
+
+document.querySelectorAll('.overlay').forEach(el=>el.addEventListener('click',e=>{ if(e.target===el) closeOverlay(el.id); }));
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ document.querySelectorAll('.overlay.open').forEach(o=>closeOverlay(o.id)); document.getElementById('chatWindow').classList.remove('open'); closeNavMenu(); } });
 
 /* ══════════════════════════════════════════════
    TOAST
@@ -2905,8 +3220,8 @@ function renderSoftware(filterDomain){
   const cats=[...new Set(SOFTWARE_LIST.map(s=>s.domain))];
   const catsWrap=document.getElementById('softCats');
   if(catsWrap && !catsWrap.dataset.built){
-    catsWrap.innerHTML='<span class="soft-cat-chip active" onclick="renderSoftware(null,this)">Tous</span>'+
-      cats.map(c=>`<span class="soft-cat-chip" onclick="renderSoftware('${c}',this)">${c}</span>`).join('');
+    catsWrap.innerHTML='<span class="soft-cat-chip active" role="button" tabindex="0" onclick="renderSoftware(null,this)">Tous</span>'+
+      cats.map(c=>`<span class="soft-cat-chip" role="button" tabindex="0" onclick="renderSoftware('${c}',this)">${c}</span>`).join('');
     catsWrap.dataset.built='1';
   }
   const list = filterDomain ? SOFTWARE_LIST.filter(s=>s.domain===filterDomain) : SOFTWARE_LIST;
@@ -3225,6 +3540,7 @@ renderPlans();
 renderCalcList();
 initSupabase();
 initReveal();
+document.getElementById('footerYear').textContent = new Date().getFullYear();
 </script>
 </body>
 </html>
