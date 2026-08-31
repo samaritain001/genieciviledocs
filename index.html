@@ -1429,12 +1429,12 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
       <div style="display:inline-flex;align-items:center;gap:.65rem"><div class="logo-mark"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3L4 9.5V21H9V15H15V21H20V9.5L12 3Z" stroke="#0a0c10" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 12H15" stroke="#0a0c10" stroke-width="1.8" stroke-linecap="round"/></svg></div><div class="logo-text">GenieCivil<span>Docs</span></div></div>
       <p>La bibliothèque collaborative de documents techniques pour les professionnels du génie civil.</p>
     </div>
-    <div class="ft-col"><h5>Navigation</h5><ul><li><a href="#">Accueil</a></li><li><a href="#">Documents</a></li><li><a href="#">Catégories</a></li><li><a href="#">Forum</a></li></ul></div>
-    <div class="ft-col"><h5>Formats</h5><ul><li><a href="#">PDF</a></li><li><a href="#">DWG / DXF</a></li><li><a href="#">Excel (XLSX)</a></li><li><a href="#">Word / PPTX</a></li><li><a href="#">IFC / BIM</a></li></ul></div>
-    <div class="ft-col"><h5>Infos</h5><ul><li><a href="#">Conditions</a></li><li><a href="#privacy">Confidentialité</a></li><li><a href="#contact">Contact</a></li></ul></div>
+    <div class="ft-col"><h5>Navigation</h5><ul><li><a href="#">Accueil</a></li><li><a href="#docs">Documents</a></li><li><a href="#docs">Catégories</a></li><li><a href="#comments">Discussions</a></li></ul></div>
+    <div class="ft-col"><h5>Formats</h5><ul><li><a href="#docs" onclick="filterByType('pdf')">PDF</a></li><li><a href="#docs" onclick="filterByType('dwg')">DWG / DXF</a></li><li><a href="#docs" onclick="filterByType('xlsx')">Excel (XLSX)</a></li><li><a href="#docs">Word / PPTX</a></li><li><a href="#docs" onclick="filterByType('ifc')">IFC / BIM</a></li></ul></div>
+    <div class="ft-col"><h5>Infos</h5><ul><li><a href="#privacy">Conditions</a></li><li><a href="#privacy">Confidentialité</a></li><li><a href="#contact">Contact</a></li></ul></div>
   </div>
   <div class="footer-bottom">
-    <span>© 2025 GenieCivil Docs</span>
+    <span>© <span id="footerYear">2025</span> GenieCivil Docs</span>
     <span style="color:var(--accent)">Partagez le savoir · Bâtissez l'avenir 🏗</span>
   </div>
 </footer>
@@ -3308,6 +3308,7 @@ renderPlans();
 renderCalcList();
 initSupabase();
 initReveal();
+document.getElementById('footerYear').textContent = new Date().getFullYear();
 </script>
 </body>
 </html>
