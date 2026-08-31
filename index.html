@@ -65,6 +65,8 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;min-width:0}
 html{scroll-behavior:smooth}
 a{color:inherit;text-decoration:none}
+/* Sans repère visible, un utilisateur au clavier ne sait pas où il se trouve. */
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
 body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;transition:background var(--tr),color var(--tr);position:relative}
 ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
 
@@ -891,14 +893,14 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
   <aside class="sidebar">
     <div class="sidebar-card">
       <div class="sc-head">📂 Catégories</div>
-      <div class="cat-row" onclick="filterByCat('structures')"><span>🏗 Structures & BA</span><span class="cat-pill" id="cnt-structures">—</span></div>
-      <div class="cat-row" onclick="filterByCat('hydraulique')"><span>💧 Hydraulique</span><span class="cat-pill" id="cnt-hydraulique">—</span></div>
-      <div class="cat-row" onclick="filterByCat('routes')"><span>🛣 Routes & VRD</span><span class="cat-pill" id="cnt-routes">—</span></div>
-      <div class="cat-row" onclick="filterByCat('géotechnique')"><span>⛏ Géotechnique</span><span class="cat-pill" id="cnt-géotechnique">—</span></div>
-      <div class="cat-row" onclick="filterByCat('topographie')"><span>📐 Topographie</span><span class="cat-pill" id="cnt-topographie">—</span></div>
-      <div class="cat-row" onclick="filterByCat('normes')"><span>📋 Normes & DTU</span><span class="cat-pill" id="cnt-normes">—</span></div>
-      <div class="cat-row" onclick="filterByCat('métrés')"><span>💼 Métrés & Devis</span><span class="cat-pill" id="cnt-métrés">—</span></div>
-      <div class="cat-row" onclick="filterByCat('environnement')"><span>🌿 Environnement</span><span class="cat-pill" id="cnt-environnement">—</span></div>
+      <div class="cat-row" role="button" tabindex="0" onclick="filterByCat('structures')"><span>🏗 Structures & BA</span><span class="cat-pill" id="cnt-structures">—</span></div>
+      <div class="cat-row" role="button" tabindex="0" onclick="filterByCat('hydraulique')"><span>💧 Hydraulique</span><span class="cat-pill" id="cnt-hydraulique">—</span></div>
+      <div class="cat-row" role="button" tabindex="0" onclick="filterByCat('routes')"><span>🛣 Routes & VRD</span><span class="cat-pill" id="cnt-routes">—</span></div>
+      <div class="cat-row" role="button" tabindex="0" onclick="filterByCat('géotechnique')"><span>⛏ Géotechnique</span><span class="cat-pill" id="cnt-géotechnique">—</span></div>
+      <div class="cat-row" role="button" tabindex="0" onclick="filterByCat('topographie')"><span>📐 Topographie</span><span class="cat-pill" id="cnt-topographie">—</span></div>
+      <div class="cat-row" role="button" tabindex="0" onclick="filterByCat('normes')"><span>📋 Normes & DTU</span><span class="cat-pill" id="cnt-normes">—</span></div>
+      <div class="cat-row" role="button" tabindex="0" onclick="filterByCat('métrés')"><span>💼 Métrés & Devis</span><span class="cat-pill" id="cnt-métrés">—</span></div>
+      <div class="cat-row" role="button" tabindex="0" onclick="filterByCat('environnement')"><span>🌿 Environnement</span><span class="cat-pill" id="cnt-environnement">—</span></div>
     </div>
     <div class="sidebar-card">
       <div class="sc-head">🕐 Récemment ajoutés</div>
@@ -910,29 +912,29 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
     </div>
     <div class="sidebar-card">
       <div class="sc-head">📊 Par format</div>
-      <div class="cat-row" onclick="filterByType('pdf')"><span>📄 PDF</span><span class="cat-pill" id="cnt-pdf">—</span></div>
-      <div class="cat-row" onclick="filterByType('dwg')"><span>📐 DWG / DXF</span><span class="cat-pill" id="cnt-dwg">—</span></div>
-      <div class="cat-row" onclick="filterByType('xlsx')"><span>📊 Excel</span><span class="cat-pill" id="cnt-xlsx">—</span></div>
-      <div class="cat-row" onclick="filterByType('docx')"><span>📝 Word</span><span class="cat-pill" id="cnt-docx">—</span></div>
-      <div class="cat-row" onclick="filterByType('video')"><span>🎥 Vidéo</span><span class="cat-pill" id="cnt-video">—</span></div>
+      <div class="cat-row" role="button" tabindex="0" onclick="filterByType('pdf')"><span>📄 PDF</span><span class="cat-pill" id="cnt-pdf">—</span></div>
+      <div class="cat-row" role="button" tabindex="0" onclick="filterByType('dwg')"><span>📐 DWG / DXF</span><span class="cat-pill" id="cnt-dwg">—</span></div>
+      <div class="cat-row" role="button" tabindex="0" onclick="filterByType('xlsx')"><span>📊 Excel</span><span class="cat-pill" id="cnt-xlsx">—</span></div>
+      <div class="cat-row" role="button" tabindex="0" onclick="filterByType('docx')"><span>📝 Word</span><span class="cat-pill" id="cnt-docx">—</span></div>
+      <div class="cat-row" role="button" tabindex="0" onclick="filterByType('video')"><span>🎥 Vidéo</span><span class="cat-pill" id="cnt-video">—</span></div>
     </div>
     <div class="sidebar-card">
       <div class="sc-head">🏷 Tags populaires</div>
       <div class="tag-cloud">
-        <span class="tag-pill" style="background:var(--red-dim);color:var(--red)" onclick="searchTag('béton armé')">Béton armé</span>
-        <span class="tag-pill" style="background:var(--blue-dim);color:var(--blue)" onclick="searchTag('coffrage')">Coffrage</span>
-        <span class="tag-pill" style="background:var(--green-dim);color:var(--green)" onclick="searchTag('ferraillage')">Ferraillage</span>
-        <span class="tag-pill" style="background:var(--orange-dim);color:var(--orange)" onclick="searchTag('terrassement')">Terrassement</span>
-        <span class="tag-pill" style="background:var(--purple-dim);color:var(--purple)" onclick="searchTag('VRD')">VRD</span>
-        <span class="tag-pill" style="background:var(--teal-dim);color:var(--teal)" onclick="searchTag('AutoCAD')">AutoCAD</span>
-        <span class="tag-pill" style="background:var(--pink-dim);color:var(--pink)" onclick="searchTag('Excel')">Excel</span>
-        <span class="tag-pill" style="background:var(--accent-dim);color:var(--accent)" onclick="searchTag('DTU')">Normes DTU</span>
-        <span class="tag-pill" style="background:var(--red-dim);color:var(--red)" onclick="searchTag('étude de prix')">Étude de prix</span>
-        <span class="tag-pill" style="background:var(--blue-dim);color:var(--blue)" onclick="searchTag('fondations')">Fondations</span>
-        <span class="tag-pill" style="background:var(--green-dim);color:var(--green)" onclick="searchTag('PFE')">PFE</span>
-        <span class="tag-pill" style="background:var(--orange-dim);color:var(--orange)" onclick="searchTag('rapport de stage')">Rapport de stage</span>
-        <span class="tag-pill" style="background:var(--purple-dim);color:var(--purple)" onclick="searchTag('topographie')">Topographie</span>
-        <span class="tag-pill" style="background:var(--teal-dim);color:var(--teal)" onclick="searchTag('matériaux')">Matériaux</span>
+        <span class="tag-pill" role="button" tabindex="0" style="background:var(--red-dim);color:var(--red)" onclick="searchTag('béton armé')">Béton armé</span>
+        <span class="tag-pill" role="button" tabindex="0" style="background:var(--blue-dim);color:var(--blue)" onclick="searchTag('coffrage')">Coffrage</span>
+        <span class="tag-pill" role="button" tabindex="0" style="background:var(--green-dim);color:var(--green)" onclick="searchTag('ferraillage')">Ferraillage</span>
+        <span class="tag-pill" role="button" tabindex="0" style="background:var(--orange-dim);color:var(--orange)" onclick="searchTag('terrassement')">Terrassement</span>
+        <span class="tag-pill" role="button" tabindex="0" style="background:var(--purple-dim);color:var(--purple)" onclick="searchTag('VRD')">VRD</span>
+        <span class="tag-pill" role="button" tabindex="0" style="background:var(--teal-dim);color:var(--teal)" onclick="searchTag('AutoCAD')">AutoCAD</span>
+        <span class="tag-pill" role="button" tabindex="0" style="background:var(--pink-dim);color:var(--pink)" onclick="searchTag('Excel')">Excel</span>
+        <span class="tag-pill" role="button" tabindex="0" style="background:var(--accent-dim);color:var(--accent)" onclick="searchTag('DTU')">Normes DTU</span>
+        <span class="tag-pill" role="button" tabindex="0" style="background:var(--red-dim);color:var(--red)" onclick="searchTag('étude de prix')">Étude de prix</span>
+        <span class="tag-pill" role="button" tabindex="0" style="background:var(--blue-dim);color:var(--blue)" onclick="searchTag('fondations')">Fondations</span>
+        <span class="tag-pill" role="button" tabindex="0" style="background:var(--green-dim);color:var(--green)" onclick="searchTag('PFE')">PFE</span>
+        <span class="tag-pill" role="button" tabindex="0" style="background:var(--orange-dim);color:var(--orange)" onclick="searchTag('rapport de stage')">Rapport de stage</span>
+        <span class="tag-pill" role="button" tabindex="0" style="background:var(--purple-dim);color:var(--purple)" onclick="searchTag('topographie')">Topographie</span>
+        <span class="tag-pill" role="button" tabindex="0" style="background:var(--teal-dim);color:var(--teal)" onclick="searchTag('matériaux')">Matériaux</span>
       </div>
     </div>
     <div class="sidebar-card">
@@ -1299,23 +1301,23 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
   <div class="section-head" style="border:none;padding:0;margin-bottom:0"><h2>❓ Questions <span>fréquentes</span></h2></div>
   <div class="faq-list">
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Est-ce que la plateforme est vraiment gratuite ?<span class="faq-arrow">▾</span></div>
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">Est-ce que la plateforme est vraiment gratuite ?<span class="faq-arrow">▾</span></div>
       <div class="faq-a"><div class="faq-a-inner">Oui, entièrement. La consultation, le téléchargement et la publication de documents sont gratuits pour tous les membres de la communauté.</div></div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Qui peut publier des documents ?<span class="faq-arrow">▾</span></div>
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">Qui peut publier des documents ?<span class="faq-arrow">▾</span></div>
       <div class="faq-a"><div class="faq-a-inner">La publication est actuellement réservée à l'administrateur de la plateforme, afin de garantir la qualité et la pertinence des documents partagés. Vous pouvez cependant commenter, noter et proposer vos propres documents par le formulaire de contact.</div></div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Quels formats de fichiers sont acceptés ?<span class="faq-arrow">▾</span></div>
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">Quels formats de fichiers sont acceptés ?<span class="faq-arrow">▾</span></div>
       <div class="faq-a"><div class="faq-a-inner">PDF, DWG, DXF, XLSX, DOCX, PPTX, IFC (BIM) ainsi que les archives ZIP et RAR.</div></div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Comment signaler une erreur dans un document ?<span class="faq-arrow">▾</span></div>
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">Comment signaler une erreur dans un document ?<span class="faq-arrow">▾</span></div>
       <div class="faq-a"><div class="faq-a-inner">Utilisez l'espace commentaires sous le document concerné, ou passez par le formulaire de contact pour un signalement plus détaillé.</div></div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Puis-je utiliser ces documents pour un projet professionnel ?<span class="faq-arrow">▾</span></div>
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">Puis-je utiliser ces documents pour un projet professionnel ?<span class="faq-arrow">▾</span></div>
       <div class="faq-a"><div class="faq-a-inner">Les documents sont partagés à titre informatif et pédagogique. Vérifiez toujours les calculs et hypothèses avant tout usage professionnel, et référez-vous aux normes en vigueur dans votre pays.</div></div>
     </div>
   </div>
@@ -1358,11 +1360,11 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
   <p class="legal-updated">Dernière mise à jour : août 2026 — cliquez sur une section pour la déplier</p>
   <div class="faq-list">
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">1. Objet et acceptation<span class="faq-arrow">▾</span></div>
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">1. Objet et acceptation<span class="faq-arrow">▾</span></div>
       <div class="faq-a"><div class="faq-a-inner">Les présentes conditions régissent l'utilisation de GenieCivil Docs, bibliothèque collaborative et gratuite de documents techniques de génie civil, éditée depuis Ouagadougou, Burkina Faso. En consultant le site, en publiant un commentaire, en proposant un document ou en téléchargeant un fichier, vous acceptez ces conditions. Si vous n'êtes pas d'accord, merci de ne pas utiliser le site.</div></div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">2. Description du service<span class="faq-arrow">▾</span></div>
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">2. Description du service<span class="faq-arrow">▾</span></div>
       <div class="faq-a"><div class="faq-a-inner">
         GenieCivil Docs permet de :
         <ul style="margin:.6rem 0 .6rem 1.1rem;padding:0">
@@ -1375,11 +1377,11 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
       </div></div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">3. Règle de téléchargement<span class="faq-arrow">▾</span></div>
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">3. Règle de téléchargement<span class="faq-arrow">▾</span></div>
       <div class="faq-a"><div class="faq-a-inner">Pour télécharger un document, un visiteur doit d'abord proposer l'un des siens via le formulaire de contribution. Une fois ce document examiné et approuvé par l'administrateur, les téléchargements sont débloqués pour ce visiteur. Cette règle garantit que la bibliothèque continue de s'enrichir grâce à la communauté ; elle peut évoluer si le fonctionnement du site change.</div></div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">4. Contenu que vous publiez<span class="faq-arrow">▾</span></div>
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">4. Contenu que vous publiez<span class="faq-arrow">▾</span></div>
       <div class="faq-a"><div class="faq-a-inner">
         En proposant un document ou en publiant un commentaire, vous garantissez que :
         <ul style="margin:.6rem 0 .6rem 1.1rem;padding:0">
@@ -1391,23 +1393,23 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
       </div></div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">5. Propriété intellectuelle et logiciels tiers<span class="faq-arrow">▾</span></div>
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">5. Propriété intellectuelle et logiciels tiers<span class="faq-arrow">▾</span></div>
       <div class="faq-a"><div class="faq-a-inner">La marque, le logo et la mise en forme du site appartiennent à GenieCivil Docs ; les documents partagés restent la propriété de leurs auteurs respectifs. Pour les logiciels commerciaux mentionnés dans la section « Logiciels » (AutoCAD, Revit, ETABS…), GenieCivil Docs ne distribue et ne propose aucune version piratée : les liens renvoient uniquement vers le site officiel de l'éditeur ou vers des versions étudiantes/libres légales.</div></div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">6. Signalement d'un contenu<span class="faq-arrow">▾</span></div>
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">6. Signalement d'un contenu<span class="faq-arrow">▾</span></div>
       <div class="faq-a"><div class="faq-a-inner">Si vous estimez qu'un document ou un commentaire publié sur le site porte atteinte à vos droits ou enfreint ces conditions, contactez-nous à <a href="mailto:genieciviledocs@yahoo.com" style="color:var(--accent)">genieciviledocs@yahoo.com</a> ou sur WhatsApp au +226 62 47 84 10 en précisant le document concerné et le motif du signalement. Nous examinerons la demande et retirerons le contenu si elle est fondée.</div></div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">7. Absence de garantie et usage professionnel<span class="faq-arrow">▾</span></div>
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">7. Absence de garantie et usage professionnel<span class="faq-arrow">▾</span></div>
       <div class="faq-a"><div class="faq-a-inner">Les documents, notes de calcul et calculateurs mis à disposition sont fournis « en l'état », à titre informatif et pédagogique, par une communauté de contributeurs bénévoles. GenieCivil Docs ne garantit ni leur exactitude, ni leur conformité aux normes en vigueur, ni leur adéquation à un projet particulier. Ils ne remplacent en aucun cas la validation d'un ingénieur qualifié : vérifiez toujours les hypothèses, les combinaisons de charges et les normes applicables avant tout usage professionnel.</div></div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">8. Limitation de responsabilité<span class="faq-arrow">▾</span></div>
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">8. Limitation de responsabilité<span class="faq-arrow">▾</span></div>
       <div class="faq-a"><div class="faq-a-inner">Dans la mesure permise par la loi applicable, GenieCivil Docs ne pourra être tenu responsable des dommages directs ou indirects résultant de l'utilisation du site, du contenu partagé par des tiers, ou de l'indisponibilité temporaire du service. Le site est fourni gratuitement, sans garantie de disponibilité continue.</div></div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">9. Comportement attendu<span class="faq-arrow">▾</span></div>
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">9. Comportement attendu<span class="faq-arrow">▾</span></div>
       <div class="faq-a"><div class="faq-a-inner">
         En utilisant le site, vous vous engagez à ne pas :
         <ul style="margin:.6rem 0 0 1.1rem;padding:0">
@@ -1418,15 +1420,15 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
       </div></div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">10. Dons et liens externes<span class="faq-arrow">▾</span></div>
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">10. Dons et liens externes<span class="faq-arrow">▾</span></div>
       <div class="faq-a"><div class="faq-a-inner">Les dons via PayPal sont entièrement volontaires et ne donnent droit à aucune contrepartie ni accès privilégié. Le site contient des liens vers des sites tiers (éditeurs de logiciels, réseaux sociaux, PayPal) sur lesquels GenieCivil Docs n'a aucun contrôle et dont il ne saurait être tenu responsable du contenu ou des pratiques.</div></div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">11. Modification des conditions<span class="faq-arrow">▾</span></div>
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">11. Modification des conditions<span class="faq-arrow">▾</span></div>
       <div class="faq-a"><div class="faq-a-inner">Ces conditions peuvent être modifiées à tout moment, notamment pour refléter l'évolution du site. La date de dernière mise à jour est indiquée en haut de cette page. Votre utilisation continue du site après une modification vaut acceptation des nouvelles conditions.</div></div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">12. Droit applicable et contact<span class="faq-arrow">▾</span></div>
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">12. Droit applicable et contact<span class="faq-arrow">▾</span></div>
       <div class="faq-a"><div class="faq-a-inner">Les présentes conditions sont régies par le droit burkinabè. Pour toute question, contactez-nous à <a href="mailto:genieciviledocs@yahoo.com" style="color:var(--accent)">genieciviledocs@yahoo.com</a> ou sur WhatsApp au +226 62 47 84 10.</div></div>
     </div>
   </div>
@@ -1437,11 +1439,11 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
   <p class="legal-updated">Dernière mise à jour : août 2026 — cliquez sur une section pour la déplier</p>
   <div class="faq-list">
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">1. Qui sommes-nous<span class="faq-arrow">▾</span></div>
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">1. Qui sommes-nous<span class="faq-arrow">▾</span></div>
       <div class="faq-a"><div class="faq-a-inner">GenieCivil Docs est une plateforme collaborative et gratuite de partage de documents techniques de génie civil, basée à Ouagadougou, Burkina Faso. Pour toute question relative à cette politique, contactez-nous à <a href="mailto:genieciviledocs@yahoo.com" style="color:var(--accent)">genieciviledocs@yahoo.com</a> ou sur WhatsApp au +226 62 47 84 10.</div></div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">2. Données que nous collectons<span class="faq-arrow">▾</span></div>
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">2. Données que nous collectons<span class="faq-arrow">▾</span></div>
       <div class="faq-a"><div class="faq-a-inner">
         Selon la façon dont vous utilisez le site, nous pouvons collecter :
         <ul style="margin:.6rem 0 .6rem 1.1rem;padding:0">
@@ -1455,7 +1457,7 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
       </div></div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">3. Comment nous utilisons ces données<span class="faq-arrow">▾</span></div>
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">3. Comment nous utilisons ces données<span class="faq-arrow">▾</span></div>
       <div class="faq-a"><div class="faq-a-inner">
         <ul style="margin:0 0 .6rem 1.1rem;padding:0">
           <li style="margin-bottom:.3rem">Afficher et modérer les commentaires et contributions</li>
@@ -1467,7 +1469,7 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
       </div></div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">4. Services tiers utilisés<span class="faq-arrow">▾</span></div>
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">4. Services tiers utilisés<span class="faq-arrow">▾</span></div>
       <div class="faq-a"><div class="faq-a-inner">
         Le site s'appuie sur les prestataires suivants, qui peuvent traiter certaines données techniques :
         <ul style="margin:.6rem 0 0 1.1rem;padding:0">
@@ -1480,23 +1482,23 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
       </div></div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">5. Cookies et publicité<span class="faq-arrow">▾</span></div>
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">5. Cookies et publicité<span class="faq-arrow">▾</span></div>
       <div class="faq-a"><div class="faq-a-inner">Notre site peut afficher des annonces publicitaires fournies par <strong style="color:var(--text)">Google AdSense</strong>. Google et ses partenaires peuvent utiliser des cookies et identifiants publicitaires pour diffuser des annonces personnalisées. Vous pouvez gérer vos préférences via <a href="https://adssettings.google.com" target="_blank" rel="noopener" style="color:var(--accent)">adssettings.google.com</a>, ou désactiver la personnalisation via <a href="https://www.aboutads.info" target="_blank" rel="noopener" style="color:var(--accent)">aboutads.info</a>.<br/><br/>Le site utilise aussi le stockage local de votre navigateur (localStorage) pour mémoriser votre thème, vos favoris et votre statut de contribution — ces informations restent sur votre appareil, ce ne sont pas des cookies traceurs.</div></div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">6. Vos droits<span class="faq-arrow">▾</span></div>
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">6. Vos droits<span class="faq-arrow">▾</span></div>
       <div class="faq-a"><div class="faq-a-inner">Vous pouvez à tout moment nous demander de consulter, corriger ou supprimer les données personnelles vous concernant (par exemple un commentaire ou une contribution) en nous contactant par email ou WhatsApp. Nous traiterons votre demande dans un délai raisonnable.</div></div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">7. Sécurité<span class="faq-arrow">▾</span></div>
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">7. Sécurité<span class="faq-arrow">▾</span></div>
       <div class="faq-a"><div class="faq-a-inner">Nous prenons des mesures raisonnables pour protéger vos données, mais aucun système n'est infaillible à 100 %. Ne partagez jamais d'informations sensibles dans un commentaire public.</div></div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">8. Enfants<span class="faq-arrow">▾</span></div>
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">8. Enfants<span class="faq-arrow">▾</span></div>
       <div class="faq-a"><div class="faq-a-inner">Ce site s'adresse aux étudiants, techniciens et professionnels du génie civil. Il n'est pas destiné aux enfants de moins de 13 ans, et nous ne collectons pas sciemment de données les concernant.</div></div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">9. Modifications de cette politique<span class="faq-arrow">▾</span></div>
+      <div class="faq-q" role="button" tabindex="0" aria-expanded="false" onclick="toggleFaq(this)">9. Modifications de cette politique<span class="faq-arrow">▾</span></div>
       <div class="faq-a"><div class="faq-a-inner">Cette politique peut évoluer avec le temps, notamment si de nouvelles fonctionnalités sont ajoutées au site. La date de dernière mise à jour est indiquée en haut de cette page.</div></div>
     </div>
   </div>
@@ -1665,10 +1667,10 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
     <button class="modal-close" onclick="closeOverlay('shareOverlay')" aria-label="Fermer">✕</button>
     <h2 class="modal-title">🔗 Partager le <span>document</span></h2>
     <div class="share-options">
-      <div class="share-opt" onclick="shareVia('whatsapp')"><div class="so-icon">💬</div>WhatsApp</div>
-      <div class="share-opt" onclick="shareVia('email')"><div class="so-icon">✉️</div>Email</div>
-      <div class="share-opt" onclick="shareVia('linkedin')"><div class="so-icon">💼</div>LinkedIn</div>
-      <div class="share-opt" onclick="shareVia('copy')"><div class="so-icon">📋</div>Copier</div>
+      <div class="share-opt" role="button" tabindex="0" onclick="shareVia('whatsapp')"><div class="so-icon">💬</div>WhatsApp</div>
+      <div class="share-opt" role="button" tabindex="0" onclick="shareVia('email')"><div class="so-icon">✉️</div>Email</div>
+      <div class="share-opt" role="button" tabindex="0" onclick="shareVia('linkedin')"><div class="so-icon">💼</div>LinkedIn</div>
+      <div class="share-opt" role="button" tabindex="0" onclick="shareVia('copy')"><div class="so-icon">📋</div>Copier</div>
     </div>
     <div class="form-group"><label class="fl">Lien direct</label>
       <div class="share-link-row">
@@ -1983,14 +1985,14 @@ function showDocs() {
         <span class="dc-type-badge">${d.type.toUpperCase()}</span>
         ${d.featured ? '<span class="dc-featured-badge">⭐ Vedette</span>' : ''}
         <span class="dc-bg-icon">${tIcon(d.type)}</span>
-        <span class="dc-cat-pill" onclick="event.stopPropagation();goToCategoryPage('${d.cat||''}')" style="cursor:pointer">${(d.cat||'').toUpperCase()}</span>
+        <span class="dc-cat-pill" role="button" tabindex="0" onclick="event.stopPropagation();goToCategoryPage('${d.cat||''}')" style="cursor:pointer">${(d.cat||'').toUpperCase()}</span>
         <button class="dc-fav ${d.fav?'active':''}" onclick="toggleFav(event,'${d.id}')" aria-label="${d.fav?'Retirer des favoris':'Ajouter aux favoris'}">${d.fav?'❤️':'🤍'}</button>
       </div>
       <div class="dc-body">
         <h4 class="dc-title">${esc(d.title)}</h4>
         <p class="dc-desc">${esc(d.description)}</p>
         <div class="dc-meta">
-          <span>👤 <span class="author-link" onclick="event.stopPropagation();openAuthorProfile('${(d.author||'Inconnu').replace(/'/g,"\\'")}')">${esc(d.author||'Inconnu')}</span></span>
+          <span>👤 <span class="author-link" role="button" tabindex="0" onclick="event.stopPropagation();openAuthorProfile('${(d.author||'Inconnu').replace(/'/g,"\\'")}')">${esc(d.author||'Inconnu')}</span></span>
           <span>📁 ${d.file_size||'—'}</span>
           <span class="dl-badge">⬇ ${d.download_count||0}</span>
         </div>
@@ -2025,7 +2027,7 @@ function showDocs() {
 }
 
 function tIcon(t){return{pdf:'📄',dwg:'📐',xlsx:'📊',docx:'📝',pptx:'📊',ifc:'🏗',zip:'📦',video:'🎥'}[t]||'📁'}
-function renderStars(r,id){let s='';for(let i=1;i<=5;i++)s+=`<span class="star ${i<=Math.round(r)?'filled':''}" onclick="rateDoc('${id}',${i})">${i<=Math.round(r)?'★':'☆'}</span>`;return s;}
+function renderStars(r,id){let s='';for(let i=1;i<=5;i++)s+=`<span class="star ${i<=Math.round(r)?'filled':''}" role="button" tabindex="0" aria-label="Noter ${i} sur 5" onclick="rateDoc('${id}',${i})">${i<=Math.round(r)?'★':'☆'}</span>`;return s;}
 function cardGlow(e,c){const r=c.getBoundingClientRect();c.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');c.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%');}
 
 /* ══ STATS ══ */
@@ -2045,13 +2047,13 @@ function updateFeatured() {
   const colors = ['var(--red-dim)','var(--blue-dim)','var(--green-dim)'];
   const badges = ['Populaire','Nouveau','Recommandé'];
   document.getElementById('featuredGrid').innerHTML = featDocs.length ? featDocs.map((d,i)=>`
-    <div class="fi" onclick=""><div class="fi-icon" style="background:${colors[i%3]}">${tIcon(d.type)}</div>
+    <div class="fi" role="button" tabindex="0" onclick="openPreview('${d.id}')"><div class="fi-icon" style="background:${colors[i%3]}">${tIcon(d.type)}</div>
     <div><div class="fi-badge">${badges[i%3]}</div><div class="fi-title">${esc(d.title)}</div><div class="fi-meta">${d.type.toUpperCase()} · ⬇ ${d.download_count||0} · ⭐ ${d.rating||0}</div></div></div>`).join('') : '<p style="color:var(--text3);font-size:.8rem;padding:1rem">Aucun document en vedette.</p>';
 }
 function updateRecentSidebar() {
   const recent = [...allDocs].sort((a,b)=>new Date(b.created_at)-new Date(a.created_at)).slice(0,4);
   const swatchColors = {pdf:'var(--red-dim)',dwg:'var(--blue-dim)',xlsx:'var(--green-dim)',docx:'var(--blue-dim)',pptx:'var(--orange-dim)',ifc:'var(--purple-dim)',zip:'var(--teal-dim)'};
-  document.getElementById('recentSidebar').innerHTML = recent.map(d=>`<div class="recent-row"><div class="rr-swatch" style="background:${swatchColors[d.type]||'var(--surface3)'}">${tIcon(d.type)}</div><div style="flex:1;min-width:0"><div class="rr-name">${esc(d.title)}</div><div class="rr-meta">${d.type.toUpperCase()} · ${timeAgo(d.created_at)}</div></div></div>`).join('');
+  document.getElementById('recentSidebar').innerHTML = recent.map(d=>`<div class="recent-row" role="button" tabindex="0" onclick="openPreview('${d.id}')"><div class="rr-swatch" style="background:${swatchColors[d.type]||'var(--surface3)'}">${tIcon(d.type)}</div><div style="flex:1;min-width:0"><div class="rr-name">${esc(d.title)}</div><div class="rr-meta">${d.type.toUpperCase()} · ${timeAgo(d.created_at)}</div></div></div>`).join('');
 }
 function updateHeroRecent() {
   const recent = [...allDocs].sort((a,b)=>new Date(b.created_at)-new Date(a.created_at)).slice(0,3);
@@ -2229,9 +2231,25 @@ function updatePostJobBtn() {
 function toggleFaq(el) {
   const item = el.parentElement;
   const wasOpen = item.classList.contains('open');
-  document.querySelectorAll('.faq-item').forEach(f=>f.classList.remove('open'));
-  if(!wasOpen) item.classList.add('open');
+  document.querySelectorAll('.faq-item').forEach(f=>{
+    f.classList.remove('open');
+    const q = f.querySelector('.faq-q');
+    if(q) q.setAttribute('aria-expanded','false');
+  });
+  if(!wasOpen){ item.classList.add('open'); el.setAttribute('aria-expanded','true'); }
 }
+
+/* Beaucoup de contrôles du site sont des <div>/<span> cliquables (accordéons,
+   filtres, tags, étoiles…). Ils sont rendus focusables via role="button" +
+   tabindex ; ce gestionnaire leur donne le comportement clavier d'un vrai
+   bouton (Entrée / Espace), sinon ils resteraient inutilisables sans souris. */
+document.addEventListener('keydown', e => {
+  if(e.key !== 'Enter' && e.key !== ' ') return;
+  const el = e.target.closest('[role="button"]');
+  if(!el || el.tagName === 'BUTTON' || el.tagName === 'A') return;
+  e.preventDefault();
+  el.click();
+});
 
 /* ══ CONTACT FORM ══ */
 function sendContact() {
@@ -2503,7 +2521,7 @@ function updateFavSidebar() {
   if(cnt) cnt.textContent = favs.length||'';
   const swatchColors = {pdf:'var(--red-dim)',dwg:'var(--blue-dim)',xlsx:'var(--green-dim)',docx:'var(--blue-dim)',pptx:'var(--orange-dim)',ifc:'var(--purple-dim)',zip:'var(--teal-dim)'};
   const favSb = document.getElementById('favSidebar');
-  favSb.innerHTML = favs.length ? favs.map(d=>`<div class="recent-row"><div class="rr-swatch" style="background:${swatchColors[d.type]||'var(--surface3)'}">${tIcon(d.type)}</div><div style="flex:1;min-width:0"><div class="rr-name">${esc(d.title)}</div><div class="rr-meta">${d.type.toUpperCase()} · ⬇ ${d.download_count||0}</div></div></div>`).join('') : '<div class="fav-empty">Aucun favori.</div>';
+  favSb.innerHTML = favs.length ? favs.map(d=>`<div class="recent-row" role="button" tabindex="0" onclick="openPreview('${d.id}')"><div class="rr-swatch" style="background:${swatchColors[d.type]||'var(--surface3)'}">${tIcon(d.type)}</div><div style="flex:1;min-width:0"><div class="rr-name">${esc(d.title)}</div><div class="rr-meta">${d.type.toUpperCase()} · ⬇ ${d.download_count||0}</div></div></div>`).join('') : '<div class="fav-empty">Aucun favori.</div>';
   const fm = document.getElementById('favsModal');
   if(fm) fm.innerHTML = favs.length ? favs.map(d=>`<div class="comment-card" style="margin-bottom:.5rem"><div style="width:36px;height:36px;border-radius:8px;background:var(--surface2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.1rem">${tIcon(d.type)}</div><div style="flex:1;padding-left:.65rem"><div style="font-size:.82rem;font-weight:700;color:var(--text)">${esc(d.title)}</div><div style="font-size:.62rem;color:var(--text3);font-family:JetBrains Mono">${d.type.toUpperCase()} · ${d.file_size||'—'} · ⬇ ${d.download_count||0}</div></div><button class="btn btn-accent" style="font-size:.68rem;padding:.32rem .65rem" onclick="dlDoc('${d.id}')">⬇</button></div>`).join('') : '<div class="fav-empty">Aucun favori enregistré.</div>';
 }
@@ -3068,8 +3086,8 @@ function renderSoftware(filterDomain){
   const cats=[...new Set(SOFTWARE_LIST.map(s=>s.domain))];
   const catsWrap=document.getElementById('softCats');
   if(catsWrap && !catsWrap.dataset.built){
-    catsWrap.innerHTML='<span class="soft-cat-chip active" onclick="renderSoftware(null,this)">Tous</span>'+
-      cats.map(c=>`<span class="soft-cat-chip" onclick="renderSoftware('${c}',this)">${c}</span>`).join('');
+    catsWrap.innerHTML='<span class="soft-cat-chip active" role="button" tabindex="0" onclick="renderSoftware(null,this)">Tous</span>'+
+      cats.map(c=>`<span class="soft-cat-chip" role="button" tabindex="0" onclick="renderSoftware('${c}',this)">${c}</span>`).join('');
     catsWrap.dataset.built='1';
   }
   const list = filterDomain ? SOFTWARE_LIST.filter(s=>s.domain===filterDomain) : SOFTWARE_LIST;
