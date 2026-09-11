@@ -682,6 +682,7 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
 .soft-meta{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.9rem}
 .soft-tag{font-size:.65rem;color:var(--text3);background:var(--surface2);padding:.15rem .5rem;border-radius:5px;font-family:'JetBrains Mono'}
 .soft-footer{display:flex;gap:.5rem}
+.soft-admin-bar{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.7rem;padding-top:.6rem;border-top:1px solid rgba(232,197,71,.12)}
 .soft-footer .btn{flex:1;justify-content:center;font-size:.72rem;padding:.5rem}
 .soft-note{font-size:.72rem;color:var(--text3);margin-top:1.2rem;padding:.8rem 1rem;border-radius:10px;background:var(--surface2);border-left:3px solid var(--accent)}
 
@@ -1100,6 +1101,7 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
       <h2>💻 Logiciels <span>du BTP</span></h2>
       <p class="doc-count">Fiches, tutoriels et liens officiels — pas de copies piratées</p>
     </div>
+    <button class="btn btn-accent" id="postSoftBtn" onclick="openSoftEdit(null)" style="display:none">➕ Publier un logiciel</button>
   </div>
   <div class="soft-cats" id="softCats"></div>
   <div class="soft-grid" id="softGrid"></div>
@@ -1906,6 +1908,40 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
   </div>
 </div>
 
+<!-- ═══ MODAL : LOGICIEL ═══ -->
+<div class="overlay" id="softOverlay">
+  <div class="modal">
+    <button class="modal-close" onclick="closeOverlay('softOverlay')" aria-label="Fermer">✕</button>
+    <h2 class="modal-title">💻 Publier un <span>logiciel</span></h2>
+    <input type="hidden" id="softId"/>
+    <div class="form-row-2">
+      <div class="form-group" style="margin:0"><label class="fl" for="softName">Nom du logiciel *</label><input class="fc" type="text" id="softName" placeholder="Ex : AutoCAD"/></div>
+      <div class="form-group" style="margin:0"><label class="fl" for="softDomain">Domaine *</label><input class="fc" type="text" id="softDomain" list="softDomainList" placeholder="Ex : Structures"/>
+        <datalist id="softDomainList"></datalist>
+      </div>
+    </div>
+    <div class="form-row-2" style="margin-top:.8rem">
+      <div class="form-group" style="margin:0"><label class="fl" for="softIcon">Icône (emoji)</label><input class="fc" type="text" id="softIcon" placeholder="📐" maxlength="4"/></div>
+      <div class="form-group" style="margin:0"><label class="fl" for="softColor">Couleur</label>
+        <select class="fc" id="softColor">
+          <option value="blue">Bleu</option>
+          <option value="red">Rouge</option>
+          <option value="green">Vert</option>
+          <option value="orange">Orange</option>
+          <option value="purple">Violet</option>
+          <option value="teal">Turquoise</option>
+          <option value="pink">Rose</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group" style="margin-top:.8rem"><label class="fl" for="softDesc">Description</label><textarea class="fc" id="softDesc" placeholder="À quoi sert ce logiciel ?" style="min-height:70px"></textarea></div>
+    <div class="form-group"><label class="fl" for="softTags">Étiquettes (séparées par des virgules)</label><input class="fc" type="text" id="softTags" placeholder="Ex : Autodesk, Payant · essai gratuit"/></div>
+    <div class="form-group"><label class="fl" for="softUrl">Lien vers le site officiel *</label><input class="fc" type="url" id="softUrl" placeholder="https://…"/></div>
+    <p class="lock-hint" style="text-align:left">Rappel : ne référencez que le site officiel de l'éditeur ou une version étudiante/libre légale — aucune copie piratée.</p>
+    <div class="modal-footer"><button class="btn btn-ghost" onclick="closeOverlay('softOverlay')">Annuler</button><button class="btn btn-accent" onclick="saveSoft()">🚀 Publier</button></div>
+  </div>
+</div>
+
 <!-- ═══ ASSISTANT CHAT WIDGET ═══ -->
 <button class="chat-fab" id="chatFab" onclick="toggleChat()" aria-label="Ouvrir l'assistant" title="Assistant GenieCivil Docs">
   💬<span class="chat-fab-dot"></span>
@@ -2034,6 +2070,7 @@ async function initSupabase() {
     await loadComments();
     await loadPending();
     await loadJobs();
+    await loadSoftware();
     applyAdminUI();
     banner.className = 'status-banner ok show';
     textEl.textContent = '✅ Connecté à Supabase — Données en temps réel actives.';
@@ -2043,6 +2080,7 @@ async function initSupabase() {
     sb.channel('comments').on('postgres_changes',{event:'*',schema:'public',table:'comments'},()=>loadComments()).subscribe();
     sb.channel('pending_documents').on('postgres_changes',{event:'*',schema:'public',table:'pending_documents'},()=>loadPending()).subscribe();
     sb.channel('job_listings').on('postgres_changes',{event:'*',schema:'public',table:'job_listings'},()=>loadJobs()).subscribe();
+    if(softwareFromDb) sb.channel('software').on('postgres_changes',{event:'*',schema:'public',table:'software'},()=>loadSoftware()).subscribe();
   } catch(e) {
     banner.className = 'status-banner error-state show';
     textEl.textContent = '❌ Connexion impossible : ' + e.message;
@@ -2825,6 +2863,8 @@ function applyAdminUI() {
   updateVisitorPanel();
   updatePostJobBtn();
   renderJobs();
+  updatePostSoftBtn();
+  renderSoftware(softFilterDomain);
   if(isAdmin) buildLog();
 }
 
@@ -3260,6 +3300,7 @@ function openOverlay(id){
   if(id==='logOverlay'&&!isAdmin){ openOverlay('loginOverlay'); return; }
   if(id==='pendingOverlay'&&!isAdmin){ openOverlay('loginOverlay'); return; }
   if(id==='jobOverlay'&&!isAdmin){ openOverlay('loginOverlay'); return; }
+  if(id==='softOverlay'&&!isAdmin){ openOverlay('loginOverlay'); return; }
   if(id==='favsOverlay') updateFavSidebar();
   if(id==='logOverlay') buildLog();
   if(id==='pendingOverlay') renderPendingList();
@@ -3339,7 +3380,7 @@ function showToast(msg,type=''){
 /* ══════════════════════════════════════════════
    LOGICIELS
 ══════════════════════════════════════════════ */
-const SOFTWARE_LIST = [
+const DEMO_SOFTWARE = [
   {name:'AutoCAD',domain:'BIM / CAO',icon:'📐',color:'red',desc:"Dessin technique 2D/3D de référence : plans, coupes, détails d'exécution.",tags:['Autodesk','Payant · essai gratuit'],url:'https://www.autodesk.com/products/autocad/'},
   {name:'Revit',domain:'BIM / CAO',icon:'🏢',color:'blue',desc:'Modélisation BIM du bâtiment : structure, architecture, MEP en maquette unique.',tags:['Autodesk','Payant · essai gratuit'],url:'https://www.autodesk.com/products/revit/'},
   {name:'Civil 3D',domain:'BIM / CAO',icon:'🛣',color:'orange',desc:'Conception routière, terrassements, réseaux et projets VRD.',tags:['Autodesk','Payant · essai gratuit'],url:'https://www.autodesk.com/products/civil-3d/'},
@@ -3353,36 +3394,145 @@ const SOFTWARE_LIST = [
   {name:'QGIS',domain:'Topographie',icon:'🗺',color:'teal',desc:'Système d\'information géographique libre et gratuit pour la topographie.',tags:['Open source','Gratuit'],url:'https://qgis.org/'},
   {name:'FreeCAD',domain:'BIM / CAO',icon:'⚙️',color:'purple',desc:'Alternative libre et gratuite pour la modélisation 3D paramétrique.',tags:['Open source','Gratuit'],url:'https://www.freecad.org/'}
 ];
-function renderSoftware(filterDomain){
-  const cats=[...new Set(SOFTWARE_LIST.map(s=>s.domain))];
-  const catsWrap=document.getElementById('softCats');
-  if(catsWrap && !catsWrap.dataset.built){
-    catsWrap.innerHTML='<span class="soft-cat-chip active" role="button" tabindex="0" onclick="renderSoftware(null,this)">Tous</span>'+
-      cats.map(c=>`<span class="soft-cat-chip" role="button" tabindex="0" onclick="renderSoftware('${c}',this)">${c}</span>`).join('');
-    catsWrap.dataset.built='1';
+/* Liste vive des logiciels : alimentée par Supabase, avec repli sur la liste
+   ci-dessus si la base est injoignable (même principe que les documents). */
+let softwareList = [];
+let softFilterDomain = null;
+let softwareFromDb = false;   // faux tant que la table Supabase n'existe pas
+
+const SOFT_COLORS = ['blue','red','green','orange','purple','teal','pink'];
+function softColor(c){ return SOFT_COLORS.includes(c) ? c : 'blue'; }
+/* N'autorise que http(s) dans le lien "Site officiel" : une valeur comme
+   javascript:… deviendrait sinon un vecteur d'exécution au clic. */
+function safeUrl(u){ return /^https?:\/\//i.test(u||'') ? u : '#'; }
+function softTags(s){ return Array.isArray(s.tags) ? s.tags : String(s.tags||'').split(',').map(t=>t.trim()).filter(Boolean); }
+
+async function loadSoftware(){
+  try {
+    if(sb){
+      const { data, error } = await sb.from('software').select('*').order('name');
+      if(error) throw error;
+      softwareFromDb = true;
+      softwareList = data || [];
+    }
+    if(!softwareList.length && !softwareFromDb) softwareList = DEMO_SOFTWARE;
+  } catch(e) {
+    softwareFromDb = false;
+    console.warn('Logiciels : table absente ou injoignable, repli sur la liste intégrée —', e.message);
+    softwareList = DEMO_SOFTWARE;
   }
-  const list = filterDomain ? SOFTWARE_LIST.filter(s=>s.domain===filterDomain) : SOFTWARE_LIST;
-  document.getElementById('softGrid').innerHTML = list.map(s=>`
+  renderSoftware(softFilterDomain);
+}
+
+function renderSoftware(filterDomain){
+  // Une table réelle mais vide doit afficher « aucun logiciel », pas
+  // ressusciter la liste de démo.
+  if(!softwareList.length && !softwareFromDb) softwareList = DEMO_SOFTWARE;
+  softFilterDomain = filterDomain || null;
+  const cats=[...new Set(softwareList.map(s=>s.domain).filter(Boolean))];
+  const catsWrap=document.getElementById('softCats');
+  if(catsWrap){
+    // Reconstruit à chaque rendu : l'admin peut créer un nouveau domaine.
+    catsWrap.innerHTML='<span class="soft-cat-chip'+(filterDomain?'':' active')+'" role="button" tabindex="0" onclick="renderSoftware(null,this)">Tous</span>'+
+      cats.map(c=>`<span class="soft-cat-chip${c===filterDomain?' active':''}" role="button" tabindex="0" onclick="renderSoftware('${String(c).replace(/'/g,"\\'")}',this)">${esc(c)}</span>`).join('');
+  }
+  const dl = document.getElementById('softDomainList');
+  if(dl) dl.innerHTML = cats.map(c=>`<option value="${esc(c)}"></option>`).join('');
+
+  const list = filterDomain ? softwareList.filter(s=>s.domain===filterDomain) : softwareList;
+  document.getElementById('softGrid').innerHTML = list.length ? list.map(s=>`
     <div class="soft-card">
-      <div class="soft-icon" style="background:var(--${s.color}-dim)">${s.icon}</div>
-      <div class="soft-domain">${s.domain}</div>
-      <div class="soft-name">${s.name}</div>
-      <div class="soft-desc">${s.desc}</div>
-      <div class="soft-meta">${s.tags.map(t=>`<span class="soft-tag">${t}</span>`).join('')}</div>
+      <div class="soft-icon" style="background:var(--${softColor(s.color)}-dim)">${esc(s.icon||'💻')}</div>
+      <div class="soft-domain">${esc(s.domain)}</div>
+      <div class="soft-name">${esc(s.name)}</div>
+      <div class="soft-desc">${esc(s.description || s.desc)}</div>
+      <div class="soft-meta">${softTags(s).map(t=>`<span class="soft-tag">${esc(t)}</span>`).join('')}</div>
       <div class="soft-footer">
-        <a class="btn btn-accent" href="${s.url}" target="_blank" rel="noopener">🔗 Site officiel</a>
+        <a class="btn btn-accent" href="${esc(safeUrl(s.url))}" target="_blank" rel="noopener">🔗 Site officiel</a>
       </div>
-    </div>`).join('');
+      ${isAdmin && s.id ? `<div class="soft-admin-bar">
+        <button class="btn btn-ghost" style="font-size:.68rem;padding:.3rem .6rem" onclick="openSoftEdit('${s.id}')">✏️ Modifier</button>
+        <button class="btn btn-danger" style="font-size:.68rem;padding:.3rem .6rem" onclick="deleteSoft('${s.id}')">🗑 Supprimer</button>
+      </div>` : ''}
+    </div>`).join('') : '<p style="color:var(--text3);font-size:.85rem;padding:1rem">Aucun logiciel publié pour le moment.</p>';
+}
+
+function updatePostSoftBtn(){
+  const btn = document.getElementById('postSoftBtn');
+  if(btn) btn.style.display = isAdmin ? 'inline-flex' : 'none';
+}
+
+function openSoftEdit(id){
+  if(!isAdmin){ openOverlay('loginOverlay'); return; }
+  const s = id ? softwareList.find(x=>String(x.id)===String(id)) : null;
+  document.getElementById('softId').value      = s ? s.id : '';
+  document.getElementById('softName').value    = s ? s.name : '';
+  document.getElementById('softDomain').value  = s ? (s.domain||'') : '';
+  document.getElementById('softIcon').value    = s ? (s.icon||'') : '';
+  document.getElementById('softColor').value   = s ? softColor(s.color) : 'blue';
+  document.getElementById('softDesc').value    = s ? (s.description || s.desc || '') : '';
+  document.getElementById('softTags').value    = s ? softTags(s).join(', ') : '';
+  document.getElementById('softUrl').value     = s ? (s.url||'') : '';
+  openOverlay('softOverlay');
+}
+
+async function saveSoft(){
+  const id    = document.getElementById('softId').value;
+  const name  = document.getElementById('softName').value.trim();
+  const domain= document.getElementById('softDomain').value.trim();
+  const icon  = document.getElementById('softIcon').value.trim() || '💻';
+  const color = document.getElementById('softColor').value;
+  const description = document.getElementById('softDesc').value.trim();
+  const tags  = document.getElementById('softTags').value.split(',').map(t=>t.trim()).filter(Boolean);
+  const url   = document.getElementById('softUrl').value.trim();
+
+  if(!name || !domain || !url){ showToast('⚠️ Nom, domaine et lien sont requis.','error'); return; }
+  if(!/^https?:\/\//i.test(url)){ showToast('⚠️ Le lien doit commencer par http:// ou https://','error'); return; }
+
+  const entry = { name, domain, icon, color, description, tags, url };
+  try {
+    if(sb){
+      if(id){
+        const { error } = await sb.from('software').update(entry).eq('id', id);
+        if(error) throw error;
+      } else {
+        const { error } = await sb.from('software').insert([entry]);
+        if(error) throw error;
+      }
+      await loadSoftware();
+    } else {
+      // Mode démo hors ligne : on modifie la liste en mémoire uniquement.
+      if(id){ Object.assign(softwareList.find(x=>String(x.id)===String(id)) || {}, entry); }
+      else { softwareList.unshift({ ...entry, id:'local_'+Date.now() }); }
+      renderSoftware(softFilterDomain);
+    }
+    closeOverlay('softOverlay');
+    logActivity(id?'✏️':'💻', id?'var(--orange-dim)':'var(--green-dim)', `<strong>${esc(name)}</strong> — Logiciel ${id?'modifié':'publié'}`, timeAgo(new Date()));
+    showToast(id ? '✅ Logiciel modifié !' : '✅ Logiciel publié !','success');
+  } catch(e) {
+    showToast('Erreur : ' + e.message, 'error');
+  }
+}
+
+async function deleteSoft(id){
+  const s = softwareList.find(x=>String(x.id)===String(id));
+  if(!s || !confirm(`Supprimer "${s.name}" ? Action irréversible.`)) return;
+  try {
+    if(sb && !String(id).startsWith('local_')){
+      const { error } = await sb.from('software').delete().eq('id', id);
+      if(error) throw error;
+      await loadSoftware();
+    } else {
+      softwareList = softwareList.filter(x=>String(x.id)!==String(id));
+      renderSoftware(softFilterDomain);
+    }
+    logActivity('🗑','var(--red-dim)',`<strong>${esc(s.name)}</strong> — Logiciel supprimé`,timeAgo(new Date()));
+    showToast('🗑 Logiciel supprimé.','error');
+  } catch(e) {
+    showToast('Erreur : ' + e.message, 'error');
+  }
 }
 // wrap to also handle active-class toggling on the category chips
-renderSoftware = (function(orig){
-  return function(filterDomain, el){
-    orig(filterDomain);
-    document.querySelectorAll('#softCats .soft-cat-chip').forEach(c=>c.classList.remove('active'));
-    if(el) el.classList.add('active');
-    else if(!filterDomain) { const first=document.querySelector('#softCats .soft-cat-chip'); if(first) first.classList.add('active'); }
-  };
-})(renderSoftware);
 
 /* ══════════════════════════════════════════════
    PLANS & MODÈLES
