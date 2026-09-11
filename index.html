@@ -254,6 +254,21 @@ nav{position:sticky;top:0;z-index:200;background:rgba(10,12,16,0.88);backdrop-fi
 .filter-chip{font-size:.7rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;background:var(--surface2);border:1px solid var(--border);color:var(--text2);padding:.42rem .85rem;border-radius:7px;cursor:pointer;outline:none;transition:all var(--tr);appearance:none}
 .filter-chip:hover,.filter-chip:focus{border-color:var(--accent);color:var(--accent)}
 
+/* ═══ RECHERCHE AVANCÉE ═══ */
+.adv-toggle{position:relative;display:inline-flex;align-items:center;gap:.4rem}
+.adv-toggle.on{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
+.adv-count{display:none;align-items:center;justify-content:center;min-width:17px;height:17px;padding:0 .25rem;border-radius:100px;background:var(--accent);color:#0a0c10;font-size:.6rem;font-weight:800}
+.adv-count.show{display:inline-flex}
+.adv-panel{display:none;margin-top:.6rem;background:var(--surface);border:1px solid var(--border2);border-radius:13px;padding:1.1rem}
+.adv-panel.open{display:block}
+.adv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:.85rem}
+.adv-field label{display:block;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:.32rem}
+.adv-field input,.adv-field select{width:100%;font-family:'Syne',sans-serif;font-size:.82rem;background:var(--surface2);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:.5rem .75rem;outline:none;transition:border-color var(--tr);appearance:none}
+.adv-field input:focus,.adv-field select:focus{border-color:var(--accent)}
+.adv-foot{display:flex;align-items:center;justify-content:space-between;gap:.75rem;flex-wrap:wrap;margin-top:1rem;padding-top:.85rem;border-top:1px solid var(--border)}
+.adv-summary{font-size:.75rem;color:var(--text3)}
+.adv-summary b{color:var(--accent)}
+
 /* ═══ LAYOUT ═══ */
 .main-layout{max-width:1440px;margin:0 auto;padding:0 1.5rem 4rem;display:grid;grid-template-columns:1fr 270px;gap:1.75rem}
 .section-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:.6rem;margin-bottom:1.4rem;padding-bottom:1.1rem;border-bottom:1px solid var(--border)}
@@ -896,6 +911,63 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
       <option value="pptx">PowerPoint</option>
       <option value="video">Vidéo</option>
     </select>
+    <button class="filter-chip adv-toggle" id="advToggle" onclick="toggleAdvanced()" aria-expanded="false" aria-controls="advPanel">
+      ⚙ Avancée <span class="adv-count" id="advCount">0</span>
+    </button>
+  </div>
+
+  <div class="adv-panel" id="advPanel">
+    <div class="adv-grid">
+      <div class="adv-field">
+        <label for="advAuthor">Auteur / contributeur</label>
+        <input type="text" id="advAuthor" placeholder="Ex : A. Traoré" oninput="filterDocs()"/>
+      </div>
+      <div class="adv-field">
+        <label for="advKeyword">Mot-clé dans la description</label>
+        <input type="text" id="advKeyword" placeholder="Ex : semelle, BAEL, pieux…" oninput="filterDocs()"/>
+      </div>
+      <div class="adv-field">
+        <label for="advRating">Note minimale</label>
+        <select id="advRating" onchange="filterDocs()">
+          <option value="">Toutes les notes</option>
+          <option value="3">⭐ 3 et plus</option>
+          <option value="4">⭐ 4 et plus</option>
+          <option value="4.5">⭐ 4,5 et plus</option>
+        </select>
+      </div>
+      <div class="adv-field">
+        <label for="advPeriod">Ajouté</label>
+        <select id="advPeriod" onchange="filterDocs()">
+          <option value="">Depuis toujours</option>
+          <option value="7">7 derniers jours</option>
+          <option value="30">30 derniers jours</option>
+          <option value="90">3 derniers mois</option>
+          <option value="365">12 derniers mois</option>
+        </select>
+      </div>
+      <div class="adv-field">
+        <label for="advSort">Trier par</label>
+        <select id="advSort" onchange="setSortFromSelect(this.value)">
+          <option value="recent">Plus récents</option>
+          <option value="oldest">Plus anciens</option>
+          <option value="popular">Plus téléchargés</option>
+          <option value="rated">Mieux notés</option>
+          <option value="az">Titre (A → Z)</option>
+        </select>
+      </div>
+      <div class="adv-field">
+        <label for="advFav">Affichage</label>
+        <select id="advFav" onchange="filterDocs()">
+          <option value="">Tous les documents</option>
+          <option value="fav">❤️ Mes favoris uniquement</option>
+          <option value="featured">⭐ En vedette uniquement</option>
+        </select>
+      </div>
+    </div>
+    <div class="adv-foot">
+      <div class="adv-summary" id="advSummary">Aucun filtre actif.</div>
+      <button class="btn btn-ghost" onclick="resetFilters()">↺ Réinitialiser</button>
+    </div>
   </div>
 </div>
 
@@ -936,9 +1008,9 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:3rem
         <p class="doc-count" id="resultCount">Chargement…</p>
       </div>
       <div class="tabs-row">
-        <button class="tab active" onclick="setTab(this,'recent')">Récents</button>
-        <button class="tab" onclick="setTab(this,'popular')">Populaires</button>
-        <button class="tab" onclick="setTab(this,'rated')">Mieux notés</button>
+        <button class="tab active" data-sort="recent" onclick="setTab(this,'recent')">Récents</button>
+        <button class="tab" data-sort="popular" onclick="setTab(this,'popular')">Populaires</button>
+        <button class="tab" data-sort="rated" onclick="setTab(this,'rated')">Mieux notés</button>
       </div>
     </div>
 
@@ -2035,6 +2107,8 @@ function renderAll() {
   filteredDocs = getFiltered();
   applySort();
   showDocs();
+  syncSortControls();
+  updateFilterBadge();
 }
 
 function showDocs() {
@@ -2487,22 +2561,85 @@ function timeAgo(iso) {
 /* ══════════════════════════════════════════════
    FILTER & SORT
 ══════════════════════════════════════════════ */
+function val(id){ const el = document.getElementById(id); return el ? el.value.trim() : ''; }
+
 function getFiltered() {
-  const q = document.getElementById('mainSearch').value.toLowerCase();
-  const cat = document.getElementById('filterCat').value.toLowerCase();
-  const type = document.getElementById('filterType').value.toLowerCase();
-  return allDocs.filter(d =>
-    (!q || d.title.toLowerCase().includes(q) || (d.author||'').toLowerCase().includes(q)) &&
-    (!cat || (d.cat||'').toLowerCase().includes(cat.split(' ')[0])) &&
-    (!type || d.type === type)
-  );
+  const q      = val('mainSearch').toLowerCase();
+  const cat    = val('filterCat').toLowerCase();
+  const type   = val('filterType').toLowerCase();
+  const author = val('advAuthor').toLowerCase();
+  const kw     = val('advKeyword').toLowerCase();
+  const minRat = parseFloat(val('advRating')) || 0;
+  const days   = parseInt(val('advPeriod'), 10) || 0;
+  const view   = val('advFav');
+  const since  = days ? Date.now() - days*86400000 : 0;
+
+  return allDocs.filter(d => {
+    // La recherche principale couvre titre, auteur et description.
+    if(q && !(
+      (d.title||'').toLowerCase().includes(q) ||
+      (d.author||'').toLowerCase().includes(q) ||
+      (d.description||'').toLowerCase().includes(q)
+    )) return false;
+    if(cat && !(d.cat||'').toLowerCase().includes(cat.split(' ')[0])) return false;
+    if(type && d.type !== type) return false;
+    if(author && !(d.author||'').toLowerCase().includes(author)) return false;
+    if(kw && !(d.description||'').toLowerCase().includes(kw)) return false;
+    if(minRat && (d.rating||0) < minRat) return false;
+    if(since && new Date(d.created_at).getTime() < since) return false;
+    if(view === 'fav' && !d.fav) return false;
+    if(view === 'featured' && !d.featured) return false;
+    return true;
+  });
 }
+
+/* Nombre de critères actifs — affiché sur le bouton pour qu'un filtre oublié
+   dans le panneau replié n'explique pas silencieusement une liste vide. */
+function activeFilters(){
+  return ['mainSearch','filterCat','filterType','advAuthor','advKeyword','advRating','advPeriod','advFav']
+    .filter(id => val(id) !== '');
+}
+function updateFilterBadge(){
+  const n = activeFilters().length;
+  const badge = document.getElementById('advCount');
+  const toggle = document.getElementById('advToggle');
+  const summary = document.getElementById('advSummary');
+  if(badge){ badge.textContent = n; badge.classList.toggle('show', n>0); }
+  if(toggle) toggle.classList.toggle('on', n>0);
+  if(summary) summary.innerHTML = n
+    ? `<b>${n}</b> filtre${n>1?'s':''} actif${n>1?'s':''} · <b>${filteredDocs.length}</b> résultat${filteredDocs.length>1?'s':''}`
+    : 'Aucun filtre actif.';
+}
+function toggleAdvanced(){
+  const panel = document.getElementById('advPanel');
+  const open = panel.classList.toggle('open');
+  document.getElementById('advToggle').setAttribute('aria-expanded', open);
+}
+function resetFilters(){
+  ['mainSearch','filterCat','filterType','advAuthor','advKeyword','advRating','advPeriod','advFav']
+    .forEach(id => { const el = document.getElementById(id); if(el) el.value = ''; });
+  setHashForCat('');
+  filterDocs();
+  showToast('↺ Filtres réinitialisés','info');
+}
+
 function filterDocs(){ currentPage=1; renderAll(); }
 function applySort(){
-  if(currentSort==='popular') filteredDocs.sort((a,b)=>(b.download_count||0)-(a.download_count||0));
-  else if(currentSort==='rated') filteredDocs.sort((a,b)=>(b.rating||0)-(a.rating||0));
+  if(currentSort==='popular')      filteredDocs.sort((a,b)=>(b.download_count||0)-(a.download_count||0));
+  else if(currentSort==='rated')   filteredDocs.sort((a,b)=>(b.rating||0)-(a.rating||0));
+  else if(currentSort==='oldest')  filteredDocs.sort((a,b)=>new Date(a.created_at)-new Date(b.created_at));
+  else if(currentSort==='az')      filteredDocs.sort((a,b)=>(a.title||'').localeCompare(b.title||'','fr'));
+  else                             filteredDocs.sort((a,b)=>new Date(b.created_at)-new Date(a.created_at));
 }
-function setTab(btn,sort){ currentSort=sort; document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active')); btn.classList.add('active'); currentPage=1; renderAll(); }
+/* Les onglets et le sélecteur du panneau pilotent le même tri : on garde les
+   deux synchronisés pour qu'ils n'affichent jamais des états contradictoires. */
+function syncSortControls(){
+  const sel = document.getElementById('advSort');
+  if(sel) sel.value = currentSort;
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.sort === currentSort));
+}
+function setSortFromSelect(sort){ currentSort = sort; currentPage = 1; renderAll(); }
+function setTab(btn,sort){ currentSort=sort; currentPage=1; renderAll(); }
 function goPage(p){ const pages=Math.max(1,Math.ceil(filteredDocs.length/PER_PAGE)); currentPage=Math.min(Math.max(1,p),pages); showDocs(); window.scrollTo({top:document.getElementById('docs').offsetTop-80,behavior:'smooth'}); }
 const CAT_LABELS = {
   structures:'Structures & Béton armé', hydraulique:'Hydraulique & Assainissement', routes:'Routes & VRD',
